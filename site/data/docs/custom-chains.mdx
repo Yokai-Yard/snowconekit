@@ -1,0 +1,69 @@
+---
+title: Custom chains
+description: Create a custom chain
+---
+
+# Custom chains
+
+## Create a custom chain
+
+You can use the `Chain` type to help you create a custom chain. Then, pass that to the [`configureChains` function](https://wagmi.sh/docs/providers/configuring-chains).
+
+For example, here's how you can create an Avalanche chain for [avax.network](https://avax.network).
+
+```tsx
+import { Chain, getDefaultWallets } from '@rainbow-me/rainbowkit';
+import {
+  chain,
+  configureChains,
+  createClient,
+  WagmiConfig,
+} from 'wagmi';
+import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
+
+const avalancheChain: Chain = {
+  id: 43_114,
+  name: 'Avalanche',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'Avalanche',
+    symbol: 'AVAX',
+  },
+  rpcUrls: {
+    default: 'https://api.avax.network/ext/bc/C/rpc',
+  },
+  blockExplorers: {
+    default: { name: 'SnowTrace', url: 'https://snowtrace.io' },
+    snowtrace: { name: 'SnowTrace', url: 'https://snowtrace.io' },
+  },
+  testnet: false,
+};
+
+const { provider, chains } = configureChains(
+  [avalancheChain],
+  [jsonRpcProvider({ rpc: chain => ({ http: chain.rpcUrls.default }) })]
+);
+
+const { connectors } = getDefaultWallets({
+  appName: 'My RainbowKit App',
+  chains,
+});
+
+const wagmiClient = createClient({
+  autoConnect: true,
+  connectors,
+  provider,
+});
+
+const App = () => {
+  return (
+    <WagmiConfig client={wagmiClient}>
+      <RainbowKitProvider chains={chains}>
+        <YourApp />
+      </RainbowKitProvider>
+    </WagmiConfig>
+  );
+};
+```
+
+Learn more about [configuring chains](https://wagmi.sh/docs/providers/configuring-chains).

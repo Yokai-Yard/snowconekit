@@ -1,0 +1,6 @@
+coverage
+.next
+dist
+packages/*/CHANGELOG.md
+site/CHANGELOG.md
+.contentlayer

@@ -1,0 +1,58 @@
+import React from 'react';
+import { isMobile } from '../../utils/isMobile';
+import { Box } from '../Box/Box';
+import * as styles from './MenuButton.css';
+
+type Props = {
+  children?: React.ReactNode;
+  onClick?: React.MouseEventHandler<HTMLElement> | undefined;
+  currentlySelected?: boolean;
+};
+
+export const MenuButton = React.forwardRef(
+  (
+    { children, currentlySelected = false, onClick, ...urlProps }: Props,
+    ref: React.Ref<HTMLElement>
+  ) => {
+    const mobile = isMobile();
+    return (
+      <Box
+        as="button"
+        borderRadius="menuButton"
+        disabled={currentlySelected}
+        display="flex"
+        onClick={onClick}
+        ref={ref}
+        type="button"
+      >
+        <Box
+          borderRadius="menuButton"
+          className={mobile ? styles.unsetBackgroundOnHover : undefined}
+          padding={mobile ? '8' : '6'}
+          transition="default"
+          width="full"
+          {...(currentlySelected
+            ? {
+                background: 'accentColor',
+                borderColor: 'selectedOptionBorder',
+                borderStyle: 'solid',
+                borderWidth: '1',
+                boxShadow: 'selectedOption',
+                color: 'accentColorForeground',
+              }
+            : {
+                background: { hover: 'menuItemBackground' },
+                color: 'modalText',
+                transform: { active: 'shrink' },
+                transition: 'default',
+              })}
+          {...urlProps}
+        >
+          {children}
+        </Box>
+      </Box>
+    );
+  }
+);
+
+MenuButton.displayName = 'MenuButton';

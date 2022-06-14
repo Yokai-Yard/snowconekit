@@ -1,0 +1,120 @@
+---
+title: Installation
+description: Get up and running with RainbowKit
+---
+
+# Installation
+
+## Get up and running with RainbowKit
+
+### Install
+
+Install RainbowKit and its peer dependencies, [wagmi](https://wagmi-xyz.vercel.app/) and [ethers](https://docs.ethers.io).
+
+```bash
+npm install @rainbow-me/rainbowkit wagmi ethers
+```
+
+> Note: RainbowKit is a [React](https://reactjs.org/) library.
+
+### Import
+
+Import RainbowKit, wagmi, and ethers.
+
+```tsx
+import '@rainbow-me/rainbowkit/styles.css';
+
+import {
+  getDefaultWallets,
+  RainbowKitProvider,
+} from '@rainbow-me/rainbowkit';
+import {
+  chain,
+  configureChains,
+  createClient,
+  WagmiConfig,
+} from 'wagmi';
+import { alchemyProvider } from 'wagmi/providers/alchemy';
+import { publicProvider } from 'wagmi/providers/public';
+```
+
+### Configure
+
+Configure your desired chains and generate the required connectors. You will also need to setup a `wagmi` client.
+
+```tsx line=4-99
+...
+import { alchemyProvider } from 'wagmi/providers/alchemy';
+import { publicProvider } from 'wagmi/providers/public';
+
+const { chains, provider } = configureChains(
+  [chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum],
+  [
+    alchemyProvider({ alchemyId: process.env.ALCHEMY_ID }),
+    publicProvider()
+  ]
+);
+
+const { connectors } = getDefaultWallets({
+  appName: 'My RainbowKit App',
+  chains
+});
+
+const wagmiClient = createClient({
+  autoConnect: true,
+  connectors,
+  provider
+})
+```
+
+[Read more about configuring chains & providers with `wagmi`](https://wagmi.sh/docs/providers/configuring-chains).
+
+### Wrap providers
+
+Wrap your application with `RainbowKitProvider` and [`WagmiConfig`](https://wagmi.sh/docs/provider).
+
+```tsx
+const App = () => {
+  return (
+    <WagmiConfig client={wagmiClient}>
+      <RainbowKitProvider chains={chains}>
+        <YourApp />
+      </RainbowKitProvider>
+    </WagmiConfig>
+  );
+};
+```
+
+### Add the connect button
+
+Then, in your app, import and render the `ConnectButton` component.
+
+```tsx
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+
+export const YourApp = () => {
+  return <ConnectButton />;
+};
+```
+
+You're done! RainbowKit will now handle your user's wallet selection, display wallet/transaction information and handle network/wallet switching.
+
+> Note: If you're using [Remix,](https://remix.run) remember to [add RainbowKit to its server dependencies](https://remix.run/docs/en/v1/pages/gotchas#importing-esm-packages).
+
+### Add your own functionality
+
+Now that your users can connect their wallets, you can start building out the rest of your app using [wagmi.](https://wagmi.sh)
+
+Send transactions, interact with contracts, resolve ENS details and much more with wagmi’s comprehensive suite of React Hooks.
+
+For more detail, view the [wagmi documentation.](https://wagmi.sh)
+
+### Further examples
+
+To see some running examples of RainbowKit, or even use them to automatically scaffold a new project, check out the official [rainbowkit-examples](https://github.com/rainbow-me/rainbowkit-examples) repository.
+
+To try RainbowKit directly in your browser, check out the CodeSandbox links below:
+
+- with [Create React App](https://codesandbox.io/s/dn3rho)
+- with [Create React App](https://codesandbox.io/s/ilfuoy) (TypeScript)
+- with [Next.js](https://codesandbox.io/s/tmxcc0)
