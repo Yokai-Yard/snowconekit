@@ -26,26 +26,26 @@ export const ScrollClassName = style([
 
 export const sidebar = style({
   background: 'white',
-  marginRight: '-20px',
+  marginRight: '-10px',
   paddingTop: '18px',
   '@media': {
     [`screen and (min-width: ${largeScreenMinWidth}px)`]: {
-      minWidth: '287px',
+      minWidth: '187px',
     },
   },
-  'minWidth': '246px',
+  'minWidth': '146px',
 });
 export const waves = style({
   background: 'transparent',
-  marginRight: '-10px',
+  marginRight: '0px',
   boxShadow: 'none',
   paddingTop: '0px',
   '@media': {
     [`screen and (min-width: ${largeScreenMinWidth}px)`]: {
-      minWidth: '160px',
+      minWidth: '80px',
     },
   },
-  'minWidth': '180px',
+  'minWidth': '100px',
 });
 
 export const avaxContainer = style({

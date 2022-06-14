@@ -1,4 +1,8 @@
-import { keyframes, style } from '@vanilla-extract/css';
+import {
+  keyframes,
+  style,
+} from '@vanilla-extract/css';
+
 import { sprinkles } from '../../css/sprinkles.css';
 
 const slideUp = keyframes({
@@ -20,7 +24,7 @@ const bleed = 200;
 export const overlay = style([
   sprinkles({
     backdropFilter: 'modalOverlay',
-    background: 'modalBackdrop',
+    background: 'modalBackground',
     display: 'flex',
     justifyContent: 'center',
     position: 'fixed',

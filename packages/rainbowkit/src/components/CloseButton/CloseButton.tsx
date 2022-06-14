@@ -1,5 +1,8 @@
 import React from 'react';
-import { increaseHitAreaForHoverTransform } from '../../css/increaseHitAreaForHoverTransform.css';
+
+import {
+  increaseHitAreaForHoverTransform,
+} from '../../css/increaseHitAreaForHoverTransform.css';
 import { isMobile } from '../../utils/isMobile';
 import { Box } from '../Box/Box';
 import { CloseIcon } from '../Icons/Close';
@@ -35,7 +38,7 @@ export const CloseButton = ({
         display="flex"
         height="full"
         justifyContent="center"
-        style={{ willChange: 'transform' }}
+        style={{ willChange: 'transform', color: 'white' }}
         transform={{ active: 'shrinkSm', hover: 'growLg' }}
         transition="default"
         width="full"
