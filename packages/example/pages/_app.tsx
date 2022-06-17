@@ -10,6 +10,7 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import {
   chain,
+  Chain,
   configureChains,
   createClient,
   WagmiConfig,
@@ -31,12 +32,31 @@ import {
 const alchemyId = '_gg7wSSi0KMBsdKnGVfHDueq6xMB9EkC';
 const RAINBOW_TERMS = 'https://rainbow.me/terms-of-use';
 
+const avalancheChain: Chain = {
+  id: 43_113,
+  name: 'Avalanche',
+  network: 'avalanche',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'Avalanche',
+    symbol: 'AVAX',
+  },
+  rpcUrls: {
+    default: 'https://api.avax.network/ext/bc/C/rpc',
+  },
+  blockExplorers: {
+    default: { name: 'SnowTrace', url: 'https://snowtrace.io' },
+  },
+  testnet: false,
+};
+
 const { chains, provider, webSocketProvider } = configureChains(
   [
     chain.mainnet,
     chain.polygon,
     chain.optimism,
     chain.arbitrum,
+    avalancheChain,
     ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true'
       ? [chain.goerli, chain.kovan, chain.rinkeby, chain.ropsten]
       : []),

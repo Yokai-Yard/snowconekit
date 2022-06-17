@@ -4,7 +4,7 @@ import { AsyncBgImage } from '../AsyncImage/AsyncBgImage';
 import { loadImages } from '../AsyncImage/useAsyncImage';
 import { BoxProps } from '../Box/Box';
 
-const src = async () => (await import('../../../assets/snowcone-forest.png')).default;
+const src = async () => (await import('../../../assets/AvalncheTrophy.png')).default;
 
 export const preloadLoginIcon = () => loadImages(src);
 
