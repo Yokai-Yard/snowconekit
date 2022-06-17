@@ -1,8 +1,4 @@
-import React, {
-  ComponentProps,
-  useEffect,
-  useState,
-} from 'react';
+import React, { ComponentProps, useEffect, useState } from 'react';
 
 import {
   useAccount,
@@ -12,10 +8,7 @@ import {
   useSignTypedData,
 } from 'wagmi';
 
-import {
-  ConnectButton,
-  useAddRecentTransaction,
-} from '@rainbow-me/rainbowkit';
+import { ConnectButton, useAddRecentTransaction } from '@rainbow-me/rainbowkit';
 
 type ConnectButtonProps = ComponentProps<typeof ConnectButton>;
 type ExtractString<Value> = Value extends string ? Value : never;
@@ -42,6 +35,8 @@ const Example = () => {
   const [showBalanceLargeScreen, setShowBalanceLargeScreen] = useState<boolean>(
     defaultProps.showBalance.largeScreen
   );
+
+  const addRecentTransaction = useAddRecentTransaction();
 
   const { activeChain } = useNetwork();
 

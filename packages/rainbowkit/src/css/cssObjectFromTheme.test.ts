@@ -1,8 +1,4 @@
-import {
-  describe,
-  expect,
-  it,
-} from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { lightTheme } from '../themes/lightTheme';
 import { cssObjectFromTheme } from './cssObjectFromTheme';
@@ -12,7 +8,7 @@ describe('cssObjectFromTheme', () => {
     expect(cssObjectFromTheme(lightTheme)).toMatchInlineSnapshot(`
       {
         "--rk-blurs-modalOverlay": "blur(0px)",
-        "--rk-colors-accentColor": "#0E76FD",
+        "--rk-colors-accentColor": "#FF7AB8",
         "--rk-colors-accentColorForeground": "#FFF",
         "--rk-colors-actionButtonBorder": "rgba(0, 0, 0, 0.04)",
         "--rk-colors-actionButtonBorderMobile": "rgba(0, 0, 0, 0.06)",
@@ -40,11 +36,11 @@ describe('cssObjectFromTheme', () => {
         "--rk-colors-profileForeground": "rgba(60, 66, 66, 0.06)",
         "--rk-colors-selectedOptionBorder": "rgba(60, 66, 66, 0.1)",
         "--rk-colors-standby": "#FFD641",
-        "--rk-fonts-body": "CircularStd, ui-rounded, \\"SF Pro Rounded\\", -apple-system, BlinkMacSystemFont, \\"Segoe UI\\", Roboto, Helvetica, Arial, sans-serif, \\"Apple Color Emoji\\", \\"Segoe UI Emoji\\", \\"Segoe UI Symbol\\"",
+        "--rk-fonts-body": "CircularStd, -apple-system, BlinkMacSystemFont, \\"Segoe UI\\", Roboto, Helvetica, Arial, sans-serif, \\"Apple Color Emoji\\", \\"Segoe UI Emoji\\", \\"Segoe UI Symbol\\"",
         "--rk-radii-actionButton": "9999px",
-        "--rk-radii-connectButton": "12px",
-        "--rk-radii-menuButton": "12px",
-        "--rk-radii-modal": "24px",
+        "--rk-radii-connectButton": "8px",
+        "--rk-radii-menuButton": "8px",
+        "--rk-radii-modal": "16px",
         "--rk-radii-modalMobile": "28px",
         "--rk-shadows-connectButton": "0px 4px 12px rgba(0, 0, 0, 0.1)",
         "--rk-shadows-dialog": "0px 8px 32px rgba(0, 0, 0, 0.32)",

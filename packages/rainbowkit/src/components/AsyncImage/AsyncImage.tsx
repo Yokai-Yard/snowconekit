@@ -1,13 +1,7 @@
 import React, { useReducer } from 'react';
 
-import {
-  Box,
-  BoxProps,
-} from '../Box/Box';
-import {
-  AsyncImageSrc,
-  useAsyncImage,
-} from './useAsyncImage';
+import { Box, BoxProps } from '../Box/Box';
+import { AsyncImageSrc, useAsyncImage } from './useAsyncImage';
 
 type CustomBorderColor = {
   custom: string;
@@ -58,14 +52,14 @@ export function AsyncImage({
       <Box
         {...(isRemoteImage
           ? {
-            'aria-hidden': true,
-            'as': 'img',
-            'onLoad': setRemoteImageLoaded,
-            'src': src,
-          }
+              'aria-hidden': true,
+              'as': 'img',
+              'onLoad': setRemoteImageLoaded,
+              'src': src,
+            }
           : {
-            backgroundSize: 'cover',
-          })}
+              backgroundSize: 'cover',
+            })}
         height="full"
         position="absolute"
         style={{
@@ -74,13 +68,13 @@ export function AsyncImage({
           userSelect: 'none',
           ...(isRemoteImage
             ? {
-              opacity: isRemoteImageLoaded ? 1 : 0,
-            }
+                opacity: isRemoteImageLoaded ? 1 : 0,
+              }
             : {
-              backgroundImage: src ? `url(${src})` : undefined,
-              backgroundRepeat: 'no-repeat',
-              opacity: src ? 1 : 0,
-            }),
+                backgroundImage: src ? `url(${src})` : undefined,
+                backgroundRepeat: 'no-repeat',
+                opacity: src ? 1 : 0,
+              }),
         }}
         width="full"
       />

@@ -16,5 +16,3 @@ export const AssetsIcon = () => (
     width="48"
   />
 );
-
-

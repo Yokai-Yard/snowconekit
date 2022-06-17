@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
+
 import { useAddress } from '../hooks/useAddress';
 import { useChainId } from '../hooks/useChainId';
-import { useTransactionStore } from './TransactionStoreContext';
 import type { Transaction } from './transactionStore';
+import { useTransactionStore } from './TransactionStoreContext';
 
 export function useRecentTransactions(): Transaction[] {
   const store = useTransactionStore();
@@ -12,6 +13,8 @@ export function useRecentTransactions(): Transaction[] {
   const [transactions, setTransactions] = useState(() =>
     store && address && chainId ? store.getTransactions(address, chainId) : []
   );
+
+  console.log(transactions);
 
   useEffect(() => {
     if (store && address && chainId) {

@@ -16,7 +16,7 @@ export const colors = {
   blue30: '#A3D7FF',
   blue40: '#6BBFFF',
   blue50: '#3898FF',
-  blue60: '#0E76FD',
+  blue60: '#FF7AB8',
   blue70: '#1761E0',
   blue80: '#0B4AB8',
   blue90: '#053085',

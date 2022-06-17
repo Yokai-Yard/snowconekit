@@ -1,10 +1,7 @@
 import React, { ReactNode } from 'react';
 
 import { isMobile } from '../../utils/isMobile';
-import {
-  Box,
-  BoxProps,
-} from '../Box/Box';
+import { Box, BoxProps } from '../Box/Box';
 //import { ModalBg } from '../Icons/ModalBg';
 import * as styles from './DialogContent.css';
 
@@ -26,7 +23,6 @@ export function DialogContent({
   const mobile = isMobile();
   return (
     <Box marginTop={marginTop}>
-
       <Box
         className={[
           wide
@@ -38,10 +34,8 @@ export function DialogContent({
           mobile && bottomSheetOnMobile ? styles.bottomSheetOverrides : null,
         ].join(' ')}
       >
-
         <Box padding={padding}>{children}</Box>
       </Box>
-
     </Box>
   );
 }

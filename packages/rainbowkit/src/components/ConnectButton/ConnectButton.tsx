@@ -1,8 +1,6 @@
 import React from 'react';
 
-import {
-  increaseHitAreaForHoverTransform,
-} from '../../css/increaseHitAreaForHoverTransform.css';
+import { increaseHitAreaForHoverTransform } from '../../css/increaseHitAreaForHoverTransform.css';
 import {
   mapResponsiveValue,
   normalizeResponsiveValue,
@@ -13,9 +11,7 @@ import { AsyncImage } from '../AsyncImage/AsyncImage';
 import { Avatar } from '../Avatar/Avatar';
 import { Box } from '../Box/Box';
 import { DropdownIcon } from '../Icons/Dropdown';
-import {
-  useRainbowKitChains,
-} from '../RainbowKitProvider/RainbowKitChainContext';
+import { useRainbowKitChains } from '../RainbowKitProvider/RainbowKitChainContext';
 import { ConnectButtonRenderer } from './ConnectButtonRenderer';
 
 type AccountStatus = 'full' | 'avatar' | 'address';
@@ -202,7 +198,6 @@ export function ConnectButton({
                         borderWidth="2"
                         color="connectButtonText"
                         fontFamily="body"
-
                         fontWeight="medium"
                         paddingX="8"
                         paddingY="6"

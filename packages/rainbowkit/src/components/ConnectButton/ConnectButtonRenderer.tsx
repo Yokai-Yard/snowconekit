@@ -16,17 +16,12 @@ import {
 } from 'wagmi';
 
 import { useIsMounted } from '../../hooks/useIsMounted';
-import {
-  useRecentTransactions,
-} from '../../transactions/useRecentTransactions';
+import { useRecentTransactions } from '../../transactions/useRecentTransactions';
 import { isMobile } from '../../utils/isMobile';
 import { isNotNullish } from '../../utils/isNotNullish';
 import { useWalletConnectors } from '../../wallets/useWalletConnectors';
 import { AccountModal } from '../AccountModal/AccountModal';
-import {
-  loadImages,
-  useAsyncImage,
-} from '../AsyncImage/useAsyncImage';
+import { loadImages, useAsyncImage } from '../AsyncImage/useAsyncImage';
 import { ChainModal } from '../ChainModal/ChainModal';
 import { ConnectModal } from '../ConnectModal/ConnectModal';
 import { preloadAssetsIcon } from '../Icons/Assets';
@@ -35,9 +30,7 @@ import {
   useRainbowKitChains,
   useRainbowKitChainsById,
 } from '../RainbowKitProvider/RainbowKitChainContext';
-import {
-  ShowRecentTransactionsContext,
-} from '../RainbowKitProvider/ShowRecentTransactionsContext';
+import { ShowRecentTransactionsContext } from '../RainbowKitProvider/ShowRecentTransactionsContext';
 import { formatAddress } from './formatAddress';
 import { formatENS } from './formatENS';
 
@@ -118,6 +111,10 @@ export function ConnectButtonRenderer({
   const resolvedChainIconUrl = useAsyncImage(chainIconUrl);
 
   const showRecentTransactions = useContext(ShowRecentTransactionsContext);
+  const pendingTransactions = useRecentTransactions().filter(
+    ({ status }) => status === 'pending'
+  );
+
   const hasPendingTransactions =
     useRecentTransactions().some(({ status }) => status === 'pending') &&
     showRecentTransactions;
@@ -176,29 +173,29 @@ export function ConnectButtonRenderer({
       {children({
         account: accountData?.address
           ? {
-            address: accountData.address,
-            balanceDecimals: balanceData?.decimals,
-            balanceFormatted: balanceData?.formatted,
-            balanceSymbol: balanceData?.symbol,
-            displayBalance,
-            displayName: ensName
-              ? formatENS(ensName)
-              : formatAddress(accountData.address),
-            ensAvatar: ensAvatar ?? undefined,
-            ensName: ensName ?? undefined,
-            hasPendingTransactions,
-          }
+              address: accountData.address,
+              balanceDecimals: balanceData?.decimals,
+              balanceFormatted: balanceData?.formatted,
+              balanceSymbol: balanceData?.symbol,
+              displayBalance,
+              displayName: ensName
+                ? formatENS(ensName)
+                : formatAddress(accountData.address),
+              ensAvatar: ensAvatar ?? undefined,
+              ensName: ensName ?? undefined,
+              hasPendingTransactions,
+            }
           : undefined,
         accountModalOpen,
         chain: activeChain
           ? {
-            hasIcon: Boolean(chainIconUrl),
-            iconBackground: chainIconBackground,
-            iconUrl: resolvedChainIconUrl,
-            id: activeChain.id,
-            name: activeChain.name,
-            unsupported: activeChain.unsupported,
-          }
+              hasIcon: Boolean(chainIconUrl),
+              iconBackground: chainIconBackground,
+              iconUrl: resolvedChainIconUrl,
+              id: activeChain.id,
+              name: activeChain.name,
+              unsupported: activeChain.unsupported,
+            }
           : undefined,
         chainModalOpen,
         connectModalOpen,

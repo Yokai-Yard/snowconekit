@@ -1,17 +1,9 @@
 import React from 'react';
 
-import {
-  increaseHitAreaForHoverTransform,
-} from '../../css/increaseHitAreaForHoverTransform.css';
+import { increaseHitAreaForHoverTransform } from '../../css/increaseHitAreaForHoverTransform.css';
 import { isMobile } from '../../utils/isMobile';
-import {
-  Box,
-  BoxProps,
-} from '../Box/Box';
-import {
-  Text,
-  TextProps,
-} from '../Text/Text';
+import { Box, BoxProps } from '../Box/Box';
+import { Text, TextProps } from '../Text/Text';
 
 type Size = 'small' | 'medium' | 'large';
 
@@ -65,8 +57,8 @@ export function ActionButton({
   const background = isPrimary
     ? 'accentColor'
     : isNotLarge
-      ? 'actionButtonSecondaryBackground'
-      : null;
+    ? 'actionButtonSecondaryBackground'
+    : null;
   const { fontSize, height, paddingX, paddingY } = sizeVariants[size];
   const hasBorder = !mobile || !isNotLarge;
   return (
@@ -82,13 +74,13 @@ export function ActionButton({
       <Box
         {...(hasBorder
           ? {
-            borderColor:
-              mobile && !isNotLarge && !isPrimary
-                ? 'actionButtonBorderMobile'
-                : 'actionButtonBorder',
-            borderStyle: 'solid',
-            borderWidth: '1',
-          }
+              borderColor:
+                mobile && !isNotLarge && !isPrimary
+                  ? 'actionButtonBorderMobile'
+                  : 'actionButtonBorder',
+              borderStyle: 'solid',
+              borderWidth: '1',
+            }
           : {})}
         borderRadius="actionButton"
         paddingX={paddingX}

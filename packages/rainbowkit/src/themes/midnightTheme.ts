@@ -14,7 +14,6 @@ const accentColors: Record<AccentColorPreset, AccentColor> = {
   red: { accentColor: '#ff6680', accentColorForeground: '#FFF' },
 };
 
-
 const defaultAccentColor = accentColors.blue;
 
 export const midnightTheme = ({

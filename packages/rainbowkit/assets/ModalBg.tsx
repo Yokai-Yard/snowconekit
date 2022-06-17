@@ -8,10 +8,7 @@ const src = async () => (await import('./ModalBg.svg')).default;
 export const preloadLoginIcon = () => loadImages(src);
 
 export const ModalBg = ({ children }: { children: React.ReactNode }) => (
-  <AsyncBgImage
-    src={src}
-  >{children}
-  </AsyncBgImage>
+  <AsyncBgImage src={src}>{children}</AsyncBgImage>
 );
 
 //export const modalUrl = useAsyncImage(src)

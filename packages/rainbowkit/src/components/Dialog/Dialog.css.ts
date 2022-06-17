@@ -1,7 +1,4 @@
-import {
-  keyframes,
-  style,
-} from '@vanilla-extract/css';
+import { keyframes, style } from '@vanilla-extract/css';
 
 import { sprinkles } from '../../css/sprinkles.css';
 

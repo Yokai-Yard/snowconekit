@@ -1,12 +1,6 @@
-import React, {
-  useCallback,
-  useContext,
-  useState,
-} from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 
-import {
-  increaseHitAreaForHoverTransform,
-} from '../../css/increaseHitAreaForHoverTransform.css';
+import { increaseHitAreaForHoverTransform } from '../../css/increaseHitAreaForHoverTransform.css';
 import { isIOS } from '../../utils/isMobile';
 import {
   useWalletConnectors,

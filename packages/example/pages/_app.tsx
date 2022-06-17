@@ -1,10 +1,7 @@
 import './global.css';
 import '@rainbow-me/rainbowkit/styles.css';
 
-import React, {
-  useEffect,
-  useState,
-} from 'react';
+import React, { useEffect, useState } from 'react';
 
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -44,9 +41,7 @@ const avalancheChain: Chain = {
   rpcUrls: {
     default: 'https://api.avax.network/ext/bc/C/rpc',
   },
-  blockExplorers: {
-    default: { name: 'SnowTrace', url: 'https://snowtrace.io' },
-  },
+
   testnet: false,
 };
 

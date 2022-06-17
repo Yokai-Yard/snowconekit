@@ -1,12 +1,6 @@
-import React, {
-  Fragment,
-  useEffect,
-  useState,
-} from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 
-import {
-  increaseHitAreaForHoverTransform,
-} from '../../css/increaseHitAreaForHoverTransform.css';
+import { increaseHitAreaForHoverTransform } from '../../css/increaseHitAreaForHoverTransform.css';
 import { isSafari } from '../../utils/browsers';
 import { groupBy } from '../../utils/groupBy';
 import { isMobile } from '../../utils/isMobile';
@@ -28,11 +22,7 @@ import {
   GetDetail,
   InstructionDetail,
 } from './ConnectDetails';
-import {
-  ScrollClassName,
-  sidebar,
-  waves,
-} from './DesktopOptions.css';
+import { ScrollClassName, sidebar, waves } from './DesktopOptions.css';
 
 export enum WalletStep {
   None = 'NONE',
@@ -41,8 +31,6 @@ export enum WalletStep {
   Download = 'DOWNLOAD',
   Instructions = 'INSTRUCTIONS',
 }
-
-
 
 export function DesktopOptions({ onClose }: { onClose: () => void }) {
   const titleId = 'rk_connect_title';
@@ -163,10 +151,11 @@ export function DesktopOptions({ onClose }: { onClose: () => void }) {
             padding: '4px 16px',
           }}
         >
-          {`Scan with ${selectedWallet.name === 'WalletConnect'
-            ? 'your phone'
-            : selectedWallet.name
-            }`}
+          {`Scan with ${
+            selectedWallet.name === 'WalletConnect'
+              ? 'your phone'
+              : selectedWallet.name
+          }`}
         </Box>
       );
       break;
@@ -203,9 +192,14 @@ export function DesktopOptions({ onClose }: { onClose: () => void }) {
           flexDirection="column"
           marginTop="0"
         >
-
           <Box marginLeft="6" paddingBottom="8" paddingX="18">
-            <Text as="h1" color="modalText" id={titleId} size="18" weight="heavy">
+            <Text
+              as="h1"
+              color="modalText"
+              id={titleId}
+              size="18"
+              weight="heavy"
+            >
               Connect a Wallet
             </Text>
           </Box>
@@ -216,7 +210,11 @@ export function DesktopOptions({ onClose }: { onClose: () => void }) {
                   <Fragment key={index}>
                     {groupName ? (
                       <Box marginBottom="8" marginTop="16" marginX="6">
-                        <Text color="modalTextSecondary" size="14" weight="bold">
+                        <Text
+                          color="modalTextSecondary"
+                          size="14"
+                          weight="bold"
+                        >
                           {groupName}
                         </Text>
                       </Box>
@@ -246,7 +244,6 @@ export function DesktopOptions({ onClose }: { onClose: () => void }) {
         </Box>
         {!isMobile() && (
           <>
-
             <Box
               display="flex"
               flexDirection="column"

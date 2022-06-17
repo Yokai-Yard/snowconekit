@@ -3,6 +3,7 @@ export { wallet } from './wallets/walletConnectors';
 export { getDefaultWallets } from './wallets/getDefaultWallets';
 export { connectorsForWallets } from './wallets/connectorsForWallets';
 export { useAddRecentTransaction } from './transactions/useAddRecentTransaction';
+export { useSendTransaction } from './transactions/useSendTransaction';
 export type { Wallet, WalletList } from './wallets/Wallet';
 export type { Chain } from './components/RainbowKitProvider/RainbowKitChainContext';
 export type { Theme } from './components/RainbowKitProvider/RainbowKitProvider';
