@@ -1,5 +1,5 @@
 /* eslint-disable import/order */
-import '@rainbow-me/rainbowkit/styles.css';
+import '@sirbenchalot/snowconekit/styles.css';
 import '../css/global.css';
 
 import React, { useEffect } from 'react';

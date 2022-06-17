@@ -1,7 +1,7 @@
 {
-  "name": "@rainbow-me/rainbowkit",
-  "version": "0.2.1",
-  "description": "The best way to connect a wallet",
+  "name": "@sirbenchalot/snowconekit",
+  "version": "0.0.1",
+  "description": "SnowCones Web3 Connector",
   "files": [
     "dist"
   ],
@@ -36,7 +36,7 @@
     "hooks",
     "blockchain"
   ],
-  "author": "Rainbow",
+  "author": "SnowCone",
   "license": "MIT",
   "peerDependencies": {
     "ethers": ">=5.5.1",
@@ -70,7 +70,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rainbow-me/rainbowkit.git",
-    "directory": "packages/rainbowkit"
+    "url": "https://github.com/sirbenchalot757/snowconekit",
+    "directory": "packages/snowconekit"
   }
 }

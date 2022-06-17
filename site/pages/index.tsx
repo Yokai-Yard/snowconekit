@@ -1,4 +1,5 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix */
+
 import { Box } from 'components/Box/Box';
 import { Button } from 'components/Button/Button';
 import { Header } from 'components/Header/Header';
@@ -308,7 +309,7 @@ export default function Home() {
 
 function InstallScript() {
   const [requestCopy, setRequestCopy] = useState(false);
-  const code = 'npm i @rainbow-me/rainbowkit wagmi ethers';
+  const code = 'npm i @sirbenchalot/snowconekit wagmi ethers';
   const ref = useCoolMode('/rainbow.svg') as Ref<HTMLButtonElement>;
 
   React.useEffect(() => {

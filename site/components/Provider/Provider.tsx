@@ -9,7 +9,7 @@ import {
   connectorsForWallets,
   getDefaultWallets,
   wallet,
-} from '@rainbow-me/rainbowkit';
+} from '@sirbenchalot/snowconekit';
 
 const alchemyId = '_gg7wSSi0KMBsdKnGVfHDueq6xMB9EkC';
 

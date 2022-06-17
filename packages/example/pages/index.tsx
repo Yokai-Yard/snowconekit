@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { ComponentProps, useEffect, useState } from 'react';
 
 import {
@@ -8,7 +9,7 @@ import {
   useSignTypedData,
 } from 'wagmi';
 
-import { ConnectButton, useAddRecentTransaction } from '@rainbow-me/rainbowkit';
+import { ConnectButton, useAddRecentTransaction } from '../../snowconekit/dist';
 
 type ConnectButtonProps = ComponentProps<typeof ConnectButton>;
 type ExtractString<Value> = Value extends string ? Value : never;

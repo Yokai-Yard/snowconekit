@@ -42,17 +42,6 @@ export const waves = style({
   'minWidth': '100px',
 });
 
-export const avaxContainer = style({
-  boxShadow: '0 8px 16px 0 rgb(219 24 57 / 90%)',
-  background: '#fe003d',
-  transform: 'translateY(-15px)',
-  borderRadius: 6,
-  padding: 5,
-  border: '2px solid black',
-  marginRight: '-10px',
-  marginLeft: '-10px',
-});
-
 export const overlayStyle = style({
   top: 0,
   zIndex: 8,

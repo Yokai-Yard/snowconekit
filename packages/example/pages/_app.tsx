@@ -1,5 +1,7 @@
+/* eslint-disable import/order */
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 import './global.css';
-import '@rainbow-me/rainbowkit/styles.css';
+import '@sirbenchalot/snowconekit/styles.css';
 
 import React, { useEffect, useState } from 'react';
 
@@ -24,7 +26,7 @@ import {
   midnightTheme,
   RainbowKitProvider,
   wallet,
-} from '@rainbow-me/rainbowkit';
+} from '../../snowconekit/dist';
 
 const alchemyId = '_gg7wSSi0KMBsdKnGVfHDueq6xMB9EkC';
 const RAINBOW_TERMS = 'https://rainbow.me/terms-of-use';
