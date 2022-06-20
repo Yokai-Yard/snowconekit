@@ -37,9 +37,9 @@ const Example = () => {
     defaultProps.showBalance.largeScreen
   );
 
-  const addRecentTransaction = useAddRecentTransaction();
-
   const { activeChain } = useNetwork();
+
+    const addRecentTransaction = useAddRecentTransaction();
 
   const {
     data: transactionData,
@@ -50,7 +50,21 @@ const Example = () => {
       to: accountData?.address,
       value: 0,
     },
+    onSuccess(data) {
+      addRecentTransaction({
+        hash: data.hash,
+        description: 'Transaction',
+      });
+    },
   });
+
+  useEffect(() => {
+    transactionData &&
+      addRecentTransaction({
+        hash: transactionData.hash,
+        description: 'Transaction',
+      });
+  }, [transactionData]);
 
   const {
     data: signingData,

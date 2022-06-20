@@ -1,10 +1,3 @@
-import React, {
-  ReactNode,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
 
 import {
   useAccount,
@@ -14,6 +7,14 @@ import {
   useEnsName,
   useNetwork,
 } from 'wagmi';
+
+import React, {
+  ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 import { useIsMounted } from '../../hooks/useIsMounted';
 import { useRecentTransactions } from '../../transactions/useRecentTransactions';
@@ -33,6 +34,8 @@ import {
 import { ShowRecentTransactionsContext } from '../RainbowKitProvider/ShowRecentTransactionsContext';
 import { formatAddress } from './formatAddress';
 import { formatENS } from './formatENS';
+import TransactionModal from '../TransactionModal/index';
+import { useClearRecentTransactions } from '../../transactions/useClearRecentTransactions';
 
 const useBooleanState = (initialValue: boolean) => {
   const [value, setValue] = useState(initialValue);
@@ -67,9 +70,11 @@ export interface ConnectButtonRendererProps {
     openAccountModal: () => void;
     openChainModal: () => void;
     openConnectModal: () => void;
+      openTransactionModal: () => void;
     accountModalOpen: boolean;
     chainModalOpen: boolean;
     connectModalOpen: boolean;
+     transactionModalOpen: boolean;
   }) => ReactNode;
 }
 
@@ -168,6 +173,49 @@ export function ConnectButtonRenderer({
     ? `${Number(balanceData.formatted).toPrecision(3)} ${balanceData.symbol}`
     : undefined;
 
+
+      // ---------------------------------------------------------------
+
+  const transaction = useRecentTransactions();
+  const clearRecentTransactions = useClearRecentTransactions();
+  const [transactionStatus, setTransactionStatus] = useState('');
+
+  const {
+    setFalse: closeTransactionModal,
+    setTrue: openTransactionModal,
+    value: transactionModalOpen,
+  } = useBooleanState(false);
+
+  const closeModalAfter1Second = () => {
+    console.log('closeModalAfter1Second');
+    clearRecentTransactions();
+    setTimeout(() => {
+      closeTransactionModal();
+    }, 2000);
+  };
+
+  useEffect(() => {
+    hasPendingTransactions && openTransactionModal();
+
+    transaction[0]?.status === 'confirmed' &&
+      (clearRecentTransactions(), closeModalAfter1Second());
+    transaction[0]?.status === 'failed' && clearRecentTransactions();
+  }, [transaction, hasPendingTransactions]);
+
+  useEffect(() => {
+    transaction[0]?.status &&
+      transaction[0].status === 'pending' &&
+      setTransactionStatus('pending');
+    transaction[0]?.status &&
+      transaction[0].status === 'confirmed' &&
+      setTransactionStatus('confirmed');
+    transaction[0]?.status &&
+      transaction[0].status === 'failed' &&
+      setTransactionStatus('failed');
+  }, [transaction]);
+
+  // -----------------------------------------------------------------
+
   return (
     <>
       {children({
@@ -199,10 +247,12 @@ export function ConnectButtonRenderer({
           : undefined,
         chainModalOpen,
         connectModalOpen,
+        transactionModalOpen,
         mounted,
         openAccountModal,
         openChainModal,
         openConnectModal,
+        openTransactionModal,
       })}
 
       <ConnectModal onClose={closeConnectModal} open={connectModalOpen} />
@@ -214,6 +264,12 @@ export function ConnectButtonRenderer({
         onClose={closeAccountModal}
         onDisconnect={disconnect}
         open={accountModalOpen}
+      />
+            <TransactionModal
+        transactionStatus={transactionStatus}
+        onClose={closeTransactionModal}
+        onDisconnect={disconnect}
+        open={transactionModalOpen}
       />
       <ChainModal
         activeChain={activeChain}

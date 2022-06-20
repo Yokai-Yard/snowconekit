@@ -70,7 +70,7 @@ const demoAppInfo = {
   appName: 'Rainbowkit Demo',
 };
 
-const DisclaimerDemo: DisclaimerComponent = ({ Link, Text }) => {
+const DisclaimerDemo: DisclaimerComponent = ({ Link, Text }: any) => {
   return (
     <Text>
       By connecting, you agree to this demo&apos;s{' '}
