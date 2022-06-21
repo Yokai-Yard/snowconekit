@@ -39,7 +39,7 @@ const Example = () => {
 
   const { activeChain } = useNetwork();
 
-    const addRecentTransaction = useAddRecentTransaction();
+  const addRecentTransaction = useAddRecentTransaction();
 
   const {
     data: transactionData,
@@ -256,7 +256,14 @@ const Example = () => {
                 Sign Typed Data
               </button>
             </div>
-            <div>
+            {/* fixit */}
+            <div
+              style={{
+                width: '80vw',
+                inlineSize: '100px',
+                overflow: 'hidden',
+              }}
+            >
               {transactionData && (
                 <div>Transaction: {JSON.stringify(transactionData)}</div>
               )}

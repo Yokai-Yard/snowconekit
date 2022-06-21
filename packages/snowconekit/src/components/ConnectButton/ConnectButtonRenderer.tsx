@@ -1,4 +1,3 @@
-
 import {
   useAccount,
   useBalance,
@@ -70,11 +69,11 @@ export interface ConnectButtonRendererProps {
     openAccountModal: () => void;
     openChainModal: () => void;
     openConnectModal: () => void;
-      openTransactionModal: () => void;
+    openTransactionModal: () => void;
     accountModalOpen: boolean;
     chainModalOpen: boolean;
     connectModalOpen: boolean;
-     transactionModalOpen: boolean;
+    transactionModalOpen: boolean;
   }) => ReactNode;
 }
 
@@ -173,8 +172,7 @@ export function ConnectButtonRenderer({
     ? `${Number(balanceData.formatted).toPrecision(3)} ${balanceData.symbol}`
     : undefined;
 
-
-      // ---------------------------------------------------------------
+  // ---------------------------------------------------------------
 
   const transaction = useRecentTransactions();
   const clearRecentTransactions = useClearRecentTransactions();
@@ -186,8 +184,7 @@ export function ConnectButtonRenderer({
     value: transactionModalOpen,
   } = useBooleanState(false);
 
-  const closeModalAfter1Second = () => {
-    console.log('closeModalAfter1Second');
+  const closeModalAfter2Seconds = () => {
     clearRecentTransactions();
     setTimeout(() => {
       closeTransactionModal();
@@ -198,7 +195,7 @@ export function ConnectButtonRenderer({
     hasPendingTransactions && openTransactionModal();
 
     transaction[0]?.status === 'confirmed' &&
-      (clearRecentTransactions(), closeModalAfter1Second());
+      (clearRecentTransactions(), closeModalAfter2Seconds());
     transaction[0]?.status === 'failed' && clearRecentTransactions();
   }, [transaction, hasPendingTransactions]);
 
@@ -265,7 +262,7 @@ export function ConnectButtonRenderer({
         onDisconnect={disconnect}
         open={accountModalOpen}
       />
-            <TransactionModal
+      <TransactionModal
         transactionStatus={transactionStatus}
         onClose={closeTransactionModal}
         onDisconnect={disconnect}
