@@ -58,6 +58,7 @@ export function ConnectModalIntro({ getWallet }: { getWallet: () => void }) {
               flexDirection="column"
               gap="4"
               className={connectCards}
+              background="modalBackground"
             >
               <Text color="modalText" size="14" weight="bold">
                 A New Way to Log In

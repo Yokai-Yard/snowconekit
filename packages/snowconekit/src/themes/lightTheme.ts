@@ -6,7 +6,7 @@ import {
 } from './baseTheme';
 
 const accentColors: Record<AccentColorPreset, AccentColor> = {
-  pink: { accentColor: '#FF7AB8', accentColorForeground: '#FFF' },
+  pink: { accentColor: '#ff66cc', accentColorForeground: '#FFF' },
   blue: { accentColor: '#667fff', accentColorForeground: '#FFF' },
   green: { accentColor: '#66ff99', accentColorForeground: '#FFF' },
   orange: { accentColor: '#ff9966', accentColorForeground: '#FFF' },
@@ -42,7 +42,7 @@ export const lightTheme = ({
     generalBorderDim: 'rgba(0, 0, 0, 0.03)',
     menuItemBackground: 'rgba(60, 66, 66, 0.1)',
     modalBackdrop: 'rgba(0, 0, 0, 0.3)',
-    modalBackground: '#FFF',
+    modalBackground: '#FFFFFF',
     modalBorder: 'transparent',
     modalText: '#25292E',
     modalTextDim: 'rgba(60, 66, 66, 0.3)',

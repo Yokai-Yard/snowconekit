@@ -182,12 +182,12 @@ export function DesktopOptions({ onClose }: { onClose: () => void }) {
     default:
       break;
   }
-
   return (
     <ModalBg>
       <Box display="flex" flexDirection="row" style={{ maxHeight: 504 }}>
         <Box
           className={sidebar}
+          background="modalBackground"
           display="flex"
           flexDirection="column"
           marginTop="0"

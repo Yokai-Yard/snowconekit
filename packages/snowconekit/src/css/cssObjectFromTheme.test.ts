@@ -8,7 +8,7 @@ describe('cssObjectFromTheme', () => {
     expect(cssObjectFromTheme(lightTheme)).toMatchInlineSnapshot(`
       {
         "--rk-blurs-modalOverlay": "blur(0px)",
-        "--rk-colors-accentColor": "#FF7AB8",
+        "--rk-colors-accentColor": "#ff66cc",
         "--rk-colors-accentColorForeground": "#FFF",
         "--rk-colors-actionButtonBorder": "rgba(0, 0, 0, 0.04)",
         "--rk-colors-actionButtonBorderMobile": "rgba(0, 0, 0, 0.06)",
@@ -26,7 +26,7 @@ describe('cssObjectFromTheme', () => {
         "--rk-colors-generalBorderDim": "rgba(0, 0, 0, 0.03)",
         "--rk-colors-menuItemBackground": "rgba(60, 66, 66, 0.1)",
         "--rk-colors-modalBackdrop": "rgba(0, 0, 0, 0.3)",
-        "--rk-colors-modalBackground": "#FFF",
+        "--rk-colors-modalBackground": "#FFFFFF",
         "--rk-colors-modalBorder": "transparent",
         "--rk-colors-modalText": "#25292E",
         "--rk-colors-modalTextDim": "rgba(60, 66, 66, 0.3)",
@@ -37,7 +37,7 @@ describe('cssObjectFromTheme', () => {
         "--rk-colors-selectedOptionBorder": "rgba(60, 66, 66, 0.1)",
         "--rk-colors-standby": "#FFD641",
         "--rk-fonts-body": "CircularStd, -apple-system, BlinkMacSystemFont, \\"Segoe UI\\", Roboto, Helvetica, Arial, sans-serif, \\"Apple Color Emoji\\", \\"Segoe UI Emoji\\", \\"Segoe UI Symbol\\"",
-        "--rk-radii-actionButton": "9999px",
+        "--rk-radii-actionButton": "8px",
         "--rk-radii-connectButton": "8px",
         "--rk-radii-menuButton": "8px",
         "--rk-radii-modal": "16px",

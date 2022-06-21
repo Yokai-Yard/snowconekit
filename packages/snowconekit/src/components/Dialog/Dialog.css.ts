@@ -21,7 +21,7 @@ const bleed = 200;
 export const overlay = style([
   sprinkles({
     backdropFilter: 'modalOverlay',
-    background: 'modalBackground',
+    background: 'modalBackdrop',
     display: 'flex',
     justifyContent: 'center',
     position: 'fixed',

@@ -2,7 +2,6 @@ import React, { ReactNode } from 'react';
 
 import { isMobile } from '../../utils/isMobile';
 import { Box, BoxProps } from '../Box/Box';
-//import { ModalBg } from '../Icons/ModalBg';
 import * as styles from './DialogContent.css';
 
 interface DialogContentProps {

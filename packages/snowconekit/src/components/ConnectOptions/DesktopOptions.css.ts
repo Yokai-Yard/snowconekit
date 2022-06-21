@@ -19,7 +19,6 @@ export const ScrollClassName = style([
 ]);
 
 export const sidebar = style({
-  'background': 'white',
   'marginRight': '-10px',
   'paddingTop': '18px',
   '@media': {

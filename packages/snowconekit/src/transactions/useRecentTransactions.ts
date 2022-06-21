@@ -14,8 +14,6 @@ export function useRecentTransactions(): Transaction[] {
     store && address && chainId ? store.getTransactions(address, chainId) : []
   );
 
-  console.log(transactions);
-
   useEffect(() => {
     if (store && address && chainId) {
       setTransactions(store.getTransactions(address, chainId));
