@@ -5,17 +5,20 @@
   "private": true,
   "main": "index.js",
   "dependencies": {
+    "@babel/core": "^7.16.0",
     "@sirbenchalot/snowconekit": "workspace:*",
     "ethers": "^5.0.0",
     "next": "^12.1.5",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-spinners-kit": "^1.9.1",
+    "wagmi": "^0.4.2"
   },
   "peerDependencies": {
     "wagmi": "^0.4.2"
   },
   "scripts": {
-    "dev": "NEXT_PUBLIC_ENABLE_TESTNETS=true next dev",
+    "dev": "next dev",
     "build": "next build",
     "typecheck": "pnpm tsc --noEmit"
   },

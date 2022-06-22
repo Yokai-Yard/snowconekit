@@ -70,5 +70,9 @@
     "onlyBuiltDependencies": [
       "esbuild"
     ]
+      },
+  "dependencies": {
+    "ethers": "^5.0.0",
+    "vite": "^2.9.12"
   }
 }

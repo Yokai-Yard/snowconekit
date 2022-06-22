@@ -32,7 +32,7 @@ export function AccountModal({
   return (
     <>
       {accountData && (
-        <Dialog onClose={onClose} open={open} titleId={titleId}>
+        <Dialog onClose={onClose} open={true} titleId={titleId}>
           <DialogContent bottomSheetOnMobile padding="0">
             <ProfileDetails
               accountData={accountData}
