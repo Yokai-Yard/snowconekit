@@ -9,12 +9,12 @@ const accentColors: Record<AccentColorPreset, AccentColor> = {
   blue: { accentColor: '#667fff', accentColorForeground: '#FFF' },
   green: { accentColor: '#66ff99', accentColorForeground: '#000' },
   orange: { accentColor: '#ff9966', accentColorForeground: '#000' },
-  pink: { accentColor: '#FF7AB8', accentColorForeground: '#000' },
+  pink: { accentColor: '#FF7AB8', accentColorForeground: '#FFF' },
   purple: { accentColor: '#8cabcf', accentColorForeground: '#FFF' },
   red: { accentColor: '#ff6680', accentColorForeground: '#FFF' },
 };
 
-const defaultAccentColor = accentColors.blue;
+const defaultAccentColor = accentColors.pink;
 
 export const midnightTheme = ({
   accentColor = defaultAccentColor.accentColor,
@@ -42,7 +42,7 @@ export const midnightTheme = ({
     generalBorderDim: 'rgba(255, 255, 255, 0.04)',
     menuItemBackground: 'rgba(255, 255, 255, 0.08)',
     modalBackdrop: 'rgba(0, 0, 0, 0.7)',
-    modalBackground: '#000',
+    modalBackground: '#000000',
     modalBorder: 'rgba(255, 255, 255, 0.08)',
     modalText: '#FFF',
     modalTextDim: 'rgba(255, 255, 255, 0.2)',

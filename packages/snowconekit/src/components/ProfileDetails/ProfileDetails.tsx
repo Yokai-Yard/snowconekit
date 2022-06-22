@@ -1,5 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
+
 import { useAccount, useBalance, useEnsAvatar, useEnsName } from 'wagmi';
+
 import { isMobile } from '../../utils/isMobile';
 import { Avatar } from '../Avatar/Avatar';
 import { Box } from '../Box/Box';
@@ -150,6 +152,7 @@ export function ProfileDetails({
                 )}
               </Box>
             </Box>
+          </Box>
           </ProfileCreditCard>
           <Box
             display="flex"

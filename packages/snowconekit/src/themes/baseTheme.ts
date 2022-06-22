@@ -21,13 +21,13 @@ const radiusScales: Record<
   }
 > = {
   large: {
-    actionButton: '9999px',
+    actionButton: '8px',
     connectButton: '8px',
     modal: '16px',
     modalMobile: '28px',
   },
   medium: {
-    actionButton: '10px',
+    actionButton: '8px',
     connectButton: '8px',
     modal: '16px',
     modalMobile: '18px',

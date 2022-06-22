@@ -1,18 +1,20 @@
 import React, { createContext, ReactNode, useContext, useMemo } from 'react';
+
 import { cssStringFromTheme } from '../../css/cssStringFromTheme';
 import { ThemeVars } from '../../css/sprinkles.css';
 import { lightTheme } from '../../themes/lightTheme';
 import { TransactionStoreProvider } from '../../transactions/TransactionStoreContext';
 import { AppContext, defaultAppInfo, DisclaimerComponent } from './AppContext';
 import { CoolModeContext } from './CoolModeContext';
+import { provideRainbowKitChains } from './provideRainbowKitChains';
 import {
   RainbowKitChain,
   RainbowKitChainContext,
 } from './RainbowKitChainContext';
 import { ShowRecentTransactionsContext } from './ShowRecentTransactionsContext';
-import { provideRainbowKitChains } from './provideRainbowKitChains';
 
 const ThemeIdContext = createContext<string | undefined>(undefined);
+export const ThemeContext = createContext<ThemeVars>(lightTheme());
 
 const attr = 'data-rk';
 
@@ -22,7 +24,6 @@ const createThemeRootSelector = (id: string | undefined) => {
   if (id && !/^[a-zA-Z0-9_]+$/.test(id)) {
     throw new Error(`Invalid ID: ${id}`);
   }
-
   return id ? `[${attr}="${id}"]` : `[${attr}]`;
 };
 
@@ -31,18 +32,32 @@ export const useThemeRootProps = () => {
   return createThemeRootProps(id);
 };
 
-export type Theme =
-  | ThemeVars
-  | {
-      lightMode: ThemeVars;
-      darkMode: ThemeVars;
-    };
+type preTheme = {
+  lightMode: ThemeVars;
+  darkMode: ThemeVars;
+};
+
+export type Theme = ThemeVars | preTheme;
+
+type convert<Theme> = Theme extends ThemeVars ? ThemeVars : preTheme;
+
+/* const convertTheme = (theme: Theme): convert<Theme> => {
+  return theme as convert<Theme>;
+  } */
+const convertTheme = (theme: Theme): ThemeVars => {
+  const lightMode = lightTheme();
+
+  if (theme.hasOwnProperty('lightMode')) {
+    return lightMode as ThemeVars;
+  }
+  return theme as ThemeVars;
+};
 
 export interface RainbowKitProviderProps {
   chains: RainbowKitChain[];
   id?: string;
   children: ReactNode;
-  theme?: Theme | null;
+  theme?: Theme;
   showRecentTransactions?: boolean;
   appInfo?: {
     appName?: string;
@@ -81,6 +96,8 @@ export function RainbowKitProvider({
     ...appInfo,
   };
 
+  const newTheme = convertTheme(theme);
+
   return (
     <RainbowKitChainContext.Provider value={rainbowkitChains}>
       <CoolModeContext.Provider value={coolMode}>
@@ -111,7 +128,9 @@ export function RainbowKitProvider({
                         ].join(''),
                       }}
                     />
-                    {children}
+                    <ThemeContext.Provider value={newTheme}>
+                      {children}
+                    </ThemeContext.Provider>
                   </div>
                 ) : (
                   children
