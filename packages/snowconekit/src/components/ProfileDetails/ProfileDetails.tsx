@@ -4,7 +4,7 @@ import { isMobile } from '../../utils/isMobile';
 import { Avatar } from '../Avatar/Avatar';
 import { Box } from '../Box/Box';
 import { CloseButton } from '../CloseButton/CloseButton';
-import { formatAddress } from '../ConnectButton/formatAddress';
+import { formatModalAddress } from '../ConnectButton/formatModalAddress';
 import { formatENS } from '../ConnectButton/formatENS';
 import { CopiedIcon } from '../Icons/Copied';
 import { CopyIcon } from '../Icons/Copy';
@@ -12,6 +12,7 @@ import { DisconnectIcon } from '../Icons/Disconnect';
 import { ShowRecentTransactionsContext } from '../RainbowKitProvider/ShowRecentTransactionsContext';
 import { Text } from '../Text/Text';
 import { TxList } from '../Txs/TxList';
+import { ProfileCreditCard } from './ProfileCreditCard';
 import { ProfileDetailsAction } from './ProfileDetailsAction';
 
 interface ProfileDetailsProps {
@@ -56,7 +57,7 @@ export function ProfileDetails({
 
   const accountName = ensName
     ? formatENS(ensName)
-    : formatAddress(accountData.address);
+    : formatModalAddress(accountData.address);
   const ethBalance = balanceData?.formatted;
   const balance = Number(ethBalance).toPrecision(3);
   const titleId = 'rk_profile_title';
@@ -67,63 +68,89 @@ export function ProfileDetails({
       <Box display="flex" flexDirection="column">
         <Box background="profileForeground" padding="16">
           <Box
-            alignItems="center"
-            display="flex"
-            flexDirection="column"
-            gap={mobile ? '16' : '12'}
-            justifyContent="center"
-            margin="8"
-            style={{ textAlign: 'center' }}
+            style={{
+              position: 'absolute',
+              right: 16,
+              top: 16,
+              willChange: 'transform',
+            }}
+          >
+            <CloseButton onClose={onClose} />
+          </Box>
+          <ProfileCreditCard
+            style={{
+              overflow: 'hidden',
+              borderRadius: '8px',
+              boxShadow:
+                '0px 5px 5px -3px rgb(145 158 171 / 20%), 0px 8px 10px 1px rgb(145 158 171 / 14%), 0px 3px 14px 2px rgb(145 158 171 / 12%)',
+              marginTop: '32px',
+            }}
           >
             <Box
+              display="flex"
+              margin="10"
+              flexDirection="column"
+              justifyContent="space-between"
               style={{
-                position: 'absolute',
-                right: 16,
-                top: 16,
-                willChange: 'transform',
+                height: '187px',
               }}
             >
-              <CloseButton onClose={onClose} />
-            </Box>{' '}
-            <Box marginTop={mobile ? '24' : '0'}>
-              <Avatar
-                address={accountData.address}
-                imageUrl={ensAvatar}
-                size={mobile ? 82 : 74}
-              />
-            </Box>
-            <Box
-              display="flex"
-              flexDirection="column"
-              gap={mobile ? '4' : '0'}
-              textAlign="center"
-            >
-              <Box textAlign="center">
-                <Text
-                  as="h1"
-                  color="modalText"
-                  id={titleId}
-                  size={mobile ? '20' : '18'}
-                  weight="heavy"
-                >
-                  {accountName}
-                </Text>
+              <Box
+                marginTop={mobile ? '24' : '0'}
+                style={{
+                  border: '4px solid white',
+                  width: '48px',
+                  borderRadius: '50%',
+                }}
+              >
+                <Avatar
+                  address={accountData.address}
+                  imageUrl={ensAvatar}
+                  size={40}
+                />
               </Box>
-              {balanceData && (
-                <Box textAlign="center">
+
+              <Box paddingBottom="20" style={{}}>
+                <Box
+                  textAlign="left"
+                  style={{
+                    textShadow:
+                      '0px 1px 1px rgba(0,0,0, .15), 0px -1px 1.5px rgba(255,255,255, .5)',
+                  }}
+                >
                   <Text
                     as="h1"
-                    color="modalTextSecondary"
+                    color="accentColorForeground"
                     id={titleId}
-                    size={mobile ? '16' : '14'}
-                    weight="semibold"
+                    size={mobile ? '20' : '18'}
+                    weight="regular"
                   >
-                    {balance} {balanceData.symbol}
+                    {accountName}
                   </Text>
                 </Box>
-              )}
+                {balanceData && (
+                  <Box
+                    textAlign="left"
+                    style={{
+                      opacity: '.65',
+                      textShadow:
+                        '0px 1px 1px rgba(255,255,255, .15), 0px -1px 1.5px rgba(100,100,100, .5)',
+                    }}
+                  >
+                    <Text
+                      as="h1"
+                      color="modalText"
+                      id={titleId}
+                      size={mobile ? '16' : '14'}
+                      weight="semibold"
+                    >
+                      {balance} {balanceData.symbol}
+                    </Text>
+                  </Box>
+                )}
+              </Box>
             </Box>
-          </Box>
+          </ProfileCreditCard>
           <Box
             display="flex"
             flexDirection="row"

@@ -32,3 +32,26 @@ export function AsyncBgImage({
     </Box>
   );
 }
+export function AsyncContainBgImage({
+  src: srcProp,
+  children,
+  other,
+}: AsyncImageProps) {
+  const src = useAsyncImage(srcProp);
+  return (
+    <Box
+      {...other}
+      style={{
+        backgroundImage: src ? `url(${src})` : undefined,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'contain',
+        opacity: src ? 1 : 0,
+
+        overflow: 'hidden',
+      }}
+      width="full"
+    >
+      {children}
+    </Box>
+  );
+}

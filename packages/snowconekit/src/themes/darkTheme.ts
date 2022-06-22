@@ -11,12 +11,12 @@ const accentColors: Record<AccentColorPreset, AccentColor> = {
   blue: { accentColor: '#667fff', accentColorForeground: '#FFF' },
   green: { accentColor: '#66ff99', accentColorForeground: darkGrey },
   orange: { accentColor: '#ff9966', accentColorForeground: darkGrey },
-  pink: { accentColor: '#FF7AB8', accentColorForeground: darkGrey },
+  pink: { accentColor: '#ff66cc', accentColorForeground: '#FFF' },
   purple: { accentColor: '#8cabcf', accentColorForeground: '#FFF' },
   red: { accentColor: '#ff6680', accentColorForeground: '#FFF' },
 };
 
-const defaultAccentColor = accentColors.blue;
+const defaultAccentColor = accentColors.pink;
 
 export const darkTheme = ({
   accentColor = defaultAccentColor.accentColor,
