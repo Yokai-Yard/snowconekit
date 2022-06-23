@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 import React, { ComponentProps, useEffect, useState } from 'react';
 
 import {

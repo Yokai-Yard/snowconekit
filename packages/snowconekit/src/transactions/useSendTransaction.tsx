@@ -2,8 +2,7 @@ import { useSendTransaction as wagmiSendTransaction } from 'wagmi';
 
 import { useAddRecentTransaction } from './useAddRecentTransaction';
 
-//declare a type with the same shape as wagmiSendTransaction's input type
-type txProps = typeof wagmiSendTransaction;
+type txProps = Partial<import('@wagmi/core').SendTransactionArgs> | undefined;
 
 export function useSendTransaction(props: txProps) {
   const addRecentTransaction = useAddRecentTransaction();
