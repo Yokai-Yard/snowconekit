@@ -18,7 +18,7 @@
     "wagmi": "^0.4.2"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "NEXT_PUBLIC_ENABLE_TESTNETS=true next dev",
     "build": "next build",
     "typecheck": "pnpm tsc --noEmit"
   },
