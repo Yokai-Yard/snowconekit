@@ -152,7 +152,6 @@ export function ProfileDetails({
                 )}
               </Box>
             </Box>
-          </Box>
           </ProfileCreditCard>
           <Box
             display="flex"

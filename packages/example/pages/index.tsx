@@ -4,12 +4,15 @@ import React, { ComponentProps, useEffect, useState } from 'react';
 import {
   useAccount,
   useNetwork,
-  useSendTransaction,
   useSignMessage,
   useSignTypedData,
 } from 'wagmi';
 
-import { ConnectButton, useAddRecentTransaction } from '../../snowconekit/dist';
+import {
+  ConnectButton,
+  useAddRecentTransaction,
+  useSendTransaction,
+} from '../../snowconekit/dist';
 
 type ConnectButtonProps = ComponentProps<typeof ConnectButton>;
 type ExtractString<Value> = Value extends string ? Value : never;
@@ -39,8 +42,6 @@ const Example = () => {
 
   const { activeChain } = useNetwork();
 
-  const addRecentTransaction = useAddRecentTransaction();
-
   const {
     data: transactionData,
     error: transactionError,
@@ -50,21 +51,7 @@ const Example = () => {
       to: accountData?.address,
       value: 0,
     },
-    onSuccess(data) {
-      addRecentTransaction({
-        hash: data.hash,
-        description: 'Transaction',
-      });
-    },
   });
-
-  useEffect(() => {
-    transactionData &&
-      addRecentTransaction({
-        hash: transactionData.hash,
-        description: 'Transaction',
-      });
-  }, [transactionData]);
 
   const {
     data: signingData,
