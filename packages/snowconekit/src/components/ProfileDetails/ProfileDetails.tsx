@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 
 import { useAccount, useBalance, useEnsAvatar, useEnsName } from 'wagmi';
-
+import { GlassCard, GlassNav } from './ProfileDetails.css';
 import { isMobile } from '../../utils/isMobile';
 import { Avatar } from '../Avatar/Avatar';
 import { Box } from '../Box/Box';
@@ -16,6 +16,7 @@ import { Text } from '../Text/Text';
 import { TxList } from '../Txs/TxList';
 import { ProfileCreditCard } from './ProfileCreditCard';
 import { ProfileDetailsAction } from './ProfileDetailsAction';
+import { LayeredBg } from '../Icons/LayeredBg';
 
 interface ProfileDetailsProps {
   accountData: ReturnType<typeof useAccount>['data'];
@@ -68,118 +69,119 @@ export function ProfileDetails({
   return (
     <>
       <Box display="flex" flexDirection="column">
-        <Box background="profileForeground" padding="16">
-          <Box
-            style={{
-              position: 'absolute',
-              right: 16,
-              top: 16,
-              willChange: 'transform',
-            }}
-          >
+        <LayeredBg>
+          <Box className={GlassNav}>
             <CloseButton onClose={onClose} />
           </Box>
-          <ProfileCreditCard
-            style={{
-              overflow: 'hidden',
-              borderRadius: '8px',
-              boxShadow:
-                '0px 5px 5px -3px rgb(145 158 171 / 20%), 0px 8px 10px 1px rgb(145 158 171 / 14%), 0px 3px 14px 2px rgb(145 158 171 / 12%)',
-              marginTop: '32px',
-            }}
-          >
+          <Box background="profileForeground" padding="16">
             <Box
-              display="flex"
-              margin="10"
-              flexDirection="column"
-              justifyContent="space-between"
+              className={GlassCard}
               style={{
-                height: '187px',
+                overflow: 'hidden',
+                borderRadius: '8px',
+                boxShadow:
+                  '0px 5px 5px -3px rgb(145 158 171 / 20%), 0px 8px 10px 1px rgb(145 158 171 / 14%), 0px 3px 14px 2px rgb(145 158 171 / 12%)',
+                marginTop: '13px',
               }}
             >
               <Box
-                marginTop={mobile ? '24' : '0'}
+                display="flex"
+                margin="10"
+                flexDirection="column"
+                justifyContent="space-between"
                 style={{
-                  border: '4px solid white',
-                  width: '48px',
-                  borderRadius: '50%',
+                  height: '187px',
                 }}
               >
-                <Avatar
-                  address={accountData.address}
-                  imageUrl={ensAvatar}
-                  size={40}
-                />
-              </Box>
-
-              <Box paddingBottom="20" style={{}}>
                 <Box
-                  textAlign="left"
+                  marginTop={mobile ? '24' : '0'}
                   style={{
-                    textShadow:
-                      '0px 1px 1px rgba(0,0,0, .15), 0px -1px 1.5px rgba(255,255,255, .5)',
+                    width: '60px',
+                    height: '60px',
+                    borderRadius: '50%',
+                    backdropFilter: 'blur(4px)',
+                    backgroundColor: '#ffffff',
+                    inset: 0,
+                    position: 'relative',
+                    zIndex: 11,
                   }}
                 >
-                  <Text
-                    as="h1"
-                    color="accentColorForeground"
-                    id={titleId}
-                    size={mobile ? '20' : '18'}
-                    weight="regular"
-                  >
-                    {accountName}
-                  </Text>
+                  <Avatar
+                    address={accountData.address}
+                    imageUrl={ensAvatar}
+                    size={60}
+                  />
                 </Box>
-                {balanceData && (
+
+                <Box paddingBottom="20" style={{}}>
                   <Box
                     textAlign="left"
                     style={{
-                      opacity: '.65',
                       textShadow:
-                        '0px 1px 1px rgba(255,255,255, .15), 0px -1px 1.5px rgba(100,100,100, .5)',
+                        '0px 1px 1px rgba(0,0,0, .15), 0px -1px 1.5px rgba(255,255,255, .5)',
                     }}
                   >
                     <Text
                       as="h1"
-                      color="modalText"
+                      color="accentColorForeground"
                       id={titleId}
-                      size={mobile ? '16' : '14'}
-                      weight="semibold"
+                      size={mobile ? '20' : '18'}
+                      weight="regular"
                     >
-                      {balance} {balanceData.symbol}
+                      {accountName}
                     </Text>
                   </Box>
-                )}
+                  {balanceData && (
+                    <Box
+                      textAlign="left"
+                      style={{
+                        opacity: '.65',
+                        textShadow:
+                          '0px 1px 1px rgba(255,255,255, .15), 0px -1px 1.5px rgba(100,100,100, .5)',
+                      }}
+                    >
+                      <Text
+                        as="h1"
+                        color="modalText"
+                        id={titleId}
+                        size={mobile ? '16' : '14'}
+                        weight="semibold"
+                      >
+                        {balance} {balanceData.symbol}
+                      </Text>
+                    </Box>
+                  )}
+                </Box>
               </Box>
             </Box>
-          </ProfileCreditCard>
-          <Box
-            display="flex"
-            flexDirection="row"
-            gap="8"
-            margin="2"
-            marginTop="16"
-          >
-            <ProfileDetailsAction
-              action={copyAddressAction}
-              icon={copiedAddress ? <CopiedIcon /> : <CopyIcon />}
-              label={copiedAddress ? 'Copied!' : 'Copy Address'}
-            />
-            <ProfileDetailsAction
-              action={onDisconnect}
-              icon={<DisconnectIcon />}
-              label="Disconnect"
-            />
-          </Box>
-        </Box>
-        {showRecentTransactions && (
-          <>
-            <Box background="generalBorder" height="1" marginTop="-1" />
-            <Box>
-              <TxList accountData={accountData} />
+            <Box
+              display="flex"
+              flexDirection="row"
+              gap="8"
+              margin="2"
+              marginTop="16"
+            >
+              <ProfileDetailsAction
+                action={copyAddressAction}
+                icon={copiedAddress ? <CopiedIcon /> : <CopyIcon />}
+                label={copiedAddress ? 'Copied!' : 'Copy Address'}
+              />
+              <ProfileDetailsAction
+                action={onDisconnect}
+                icon={<DisconnectIcon />}
+                label="Disconnect"
+              />
             </Box>
-          </>
-        )}
+          </Box>
+          {showRecentTransactions && (
+            <>
+              <Box background="generalBorder" height="1" marginTop="-1" />
+              <Box>
+                <TxList accountData={accountData} />
+              </Box>
+            </>
+          )}
+        </LayeredBg>
       </Box>
     </>
   );

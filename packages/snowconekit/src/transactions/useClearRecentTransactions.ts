@@ -8,6 +8,8 @@ export function useClearRecentTransactions(): () => void {
   const address = useAddress();
   const chainId = useChainId();
 
+  console.log('clear transactions was called');
+
   return useCallback(() => {
     if (!address || !chainId) {
       throw new Error('No address or chain ID found');

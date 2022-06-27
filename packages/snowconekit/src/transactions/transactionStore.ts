@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { providers } from 'ethers';
 
 const storageKey = 'rk-transactions';
@@ -64,7 +65,7 @@ export function createTransactionStore({
   provider: providers.BaseProvider;
 }) {
   let data: Data = loadData();
-
+  console.log('creating new store...');
   let provider = initialProvider;
   const listeners: Set<() => void> = new Set();
   const transactionRequestCache: Map<string, Promise<void>> = new Map();
@@ -73,6 +74,9 @@ export function createTransactionStore({
     provider = newProvider;
   }
 
+  useEffect(() => {
+    data && console.log(data);
+  }, [data]);
   function getTransactions(account: string, chainId: number): Transaction[] {
     return data[account]?.[chainId] ?? [];
   }

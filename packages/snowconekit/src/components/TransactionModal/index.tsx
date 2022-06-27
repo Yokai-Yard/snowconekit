@@ -70,7 +70,7 @@ export function TxItem({ transactionStatus, mobile }: TxProps) {
               <ImpulseSpinner
                 frontColor="white"
                 backColor="white"
-                size={mobile ? '12' : '14'}
+                size={mobile ? 12 : 14}
               />
             </Box>
           ) : null}
