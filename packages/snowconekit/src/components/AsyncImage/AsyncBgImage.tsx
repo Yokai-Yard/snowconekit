@@ -18,20 +18,22 @@ export function AsyncBgImage({
 }: AsyncImageProps) {
   const src = useAsyncImage(srcProp);
 
+  const styles = [
+    profColor && { backgroundColor: profColor },
+    {
+      backgroundImage: src ? `url(${src})` : undefined,
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      opacity: src ? 1 : 0,
+
+      overflow: 'hidden',
+    },
+  ]
+
   return (
     <Box
       {...other}
-      style={[
-        profColor && { backgroundColor: profColor },
-        {
-          backgroundImage: src ? `url(${src})` : undefined,
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          opacity: src ? 1 : 0,
-
-          overflow: 'hidden',
-        },
-      ]}
+      style={...styles}
       width="full"
     >
       {children}

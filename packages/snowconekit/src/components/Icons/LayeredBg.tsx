@@ -6,7 +6,7 @@ import { BoxProps } from '../Box/Box';
 import { ThemeContext } from '../RainbowKitProvider/RainbowKitProvider';
 
 const src = async () =>
-  (await import('../../../assets/layerShader.svg')).default;
+  (await import('../../../assets/LayerShader.svg')).default;
 
 /* const src = async () => await ColorChangingLayers('#ff66cc'); */
 
