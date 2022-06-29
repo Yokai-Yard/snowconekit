@@ -6,7 +6,13 @@ import React, {
   useMemo,
 } from 'react';
 
-import { useAccount, useBalance, useEnsAvatar, useEnsName } from 'wagmi';
+import {
+  useAccount,
+  useBalance,
+  useEnsAvatar,
+  useEnsName,
+  useNetwork,
+} from 'wagmi';
 import { GlassCard, GlassNav, GlassAvatar } from './ProfileDetails.css';
 import { isMobile } from '../../utils/isMobile';
 import { Avatar } from '../Avatar/Avatar';
@@ -24,6 +30,8 @@ import { emojiAvatarForAddress } from '../Avatar/emojiAvatarForAddress';
 
 import { LayeredBg } from '../Icons/LayeredBg';
 import { NavButton } from './NavButton';
+import { ModalTxList } from '../Txs/ModalTxList';
+import NetworkCarousel from '../ChainModal/NetworkCarousel';
 
 interface ProfileDetailsProps {
   accountData: ReturnType<typeof useAccount>['data'];
@@ -32,6 +40,11 @@ interface ProfileDetailsProps {
   ensName: ReturnType<typeof useEnsName>['data'];
   onClose: () => void;
   onDisconnect: () => void;
+  //
+  activeChain: ReturnType<typeof useNetwork>['activeChain'];
+  chains: ReturnType<typeof useNetwork>['chains'];
+  networkError: ReturnType<typeof useNetwork>['error'];
+  onSwitchNetwork?: (chainId: number) => unknown;
 }
 
 export function ProfileDetails({
@@ -41,6 +54,11 @@ export function ProfileDetails({
   ensName,
   onClose,
   onDisconnect,
+  //
+  activeChain,
+  chains,
+  networkError,
+  onSwitchNetwork,
 }: ProfileDetailsProps) {
   const showRecentTransactions = useContext(ShowRecentTransactionsContext);
   const [copiedAddress, setCopiedAddress] = useState(false);
@@ -171,7 +189,14 @@ export function ProfileDetails({
                 </Box>
               </Box>
             </Box>
-            <Box
+            <NetworkCarousel
+              activeChain={activeChain}
+              chains={chains}
+              networkError={networkError}
+              onSwitchNetwork={onSwitchNetwork}
+              onClose={onClose}
+            />
+            {/* <Box
               display="flex"
               flexDirection="row"
               gap="8"
@@ -188,13 +213,13 @@ export function ProfileDetails({
                 icon={<DisconnectIcon />}
                 label="Disconnect"
               />
-            </Box>
+            </Box> */}
           </Box>
           {showRecentTransactions && (
             <>
               <Box background="generalBorder" height="1" marginTop="-1" />
               <Box>
-                <TxList accountData={accountData} />
+                <ModalTxList accountData={accountData} chains={chains} />
               </Box>
             </>
           )}

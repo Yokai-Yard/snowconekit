@@ -1,6 +1,6 @@
 export function formatModalAddress(address: string): string {
-  const leadingChars = 6;
-  const trailingChars = 8;
+  const leadingChars = 11;
+  const trailingChars = 9;
 
   return address.length < leadingChars + trailingChars
     ? address

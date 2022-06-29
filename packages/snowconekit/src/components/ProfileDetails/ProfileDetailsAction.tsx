@@ -29,7 +29,7 @@ export function ProfileDetailsAction({
     <Box
       as={url ? 'a' : 'button'}
       borderRadius="menuButton"
-      className={!mobile ? increaseHitAreaForHoverTransform.grow : undefined}
+      // className={!mobile ? increaseHitAreaForHoverTransform.grow : undefined}
       display="flex"
       onClick={action}
       style={{ flexBasis: 0, flexGrow: 1 }}
@@ -37,10 +37,10 @@ export function ProfileDetailsAction({
     >
       <Box
         {...urlProps}
-        background={{
-          base: 'profileAction',
-          ...(!mobile ? { hover: 'profileActionHover' } : {}),
-        }}
+        // background={{
+        //   base: 'profileAction',
+        //   ...(!mobile ? { hover: 'profileActionHover' } : {}),
+        // }}
         borderRadius="menuButton"
         boxShadow="profileDetailsAction"
         padding={mobile ? '6' : '8'}
@@ -56,14 +56,14 @@ export function ProfileDetailsAction({
           alignItems="center"
           display="flex"
           flexDirection="column"
-          gap="1"
+          // gap="1"
           justifyContent="center"
-          paddingTop="2"
+          // paddingTop="2"
         >
           <Box color="modalText" height="max">
             {icon}
           </Box>
-          <Box>
+          {/* <Box>
             <Text
               color="modalText"
               size={mobile ? '12' : '13'}
@@ -71,7 +71,7 @@ export function ProfileDetailsAction({
             >
               {label}
             </Text>
-          </Box>
+          </Box> */}
         </Box>
       </Box>
     </Box>

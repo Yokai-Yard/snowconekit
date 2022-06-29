@@ -258,6 +258,10 @@ export function ConnectButtonRenderer({
         onClose={closeAccountModal}
         onDisconnect={disconnect}
         open={accountModalOpen}
+        activeChain={activeChain}
+        chains={chains}
+        networkError={networkError}
+        onSwitchNetwork={switchNetwork}
       />
       <TransactionModal
         transactionStatus={transactionStatus}

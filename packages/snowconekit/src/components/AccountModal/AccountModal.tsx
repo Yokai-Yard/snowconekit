@@ -1,5 +1,11 @@
 import React from 'react';
-import { useAccount, useBalance, useEnsAvatar, useEnsName } from 'wagmi';
+import {
+  useAccount,
+  useBalance,
+  useEnsAvatar,
+  useEnsName,
+  useNetwork,
+} from 'wagmi';
 import { Dialog } from '../Dialog/Dialog';
 import { DialogContent } from '../Dialog/DialogContent';
 import { ProfileDetails } from '../ProfileDetails/ProfileDetails';
@@ -12,6 +18,11 @@ export interface AccountModalProps {
   open: boolean;
   onClose: () => void;
   onDisconnect: () => void;
+  // -----------------------------------
+  activeChain: ReturnType<typeof useNetwork>['activeChain'];
+  chains: ReturnType<typeof useNetwork>['chains'];
+  networkError: ReturnType<typeof useNetwork>['error'];
+  onSwitchNetwork?: (chainId: number) => unknown;
 }
 
 export function AccountModal({
@@ -22,6 +33,11 @@ export function AccountModal({
   onClose,
   onDisconnect,
   open,
+  // ---------------------
+  activeChain,
+  chains,
+  networkError,
+  onSwitchNetwork,
 }: AccountModalProps) {
   if (!accountData) {
     return null;
@@ -41,6 +57,10 @@ export function AccountModal({
               ensName={ensName}
               onClose={onClose}
               onDisconnect={onDisconnect}
+              activeChain={activeChain}
+              chains={chains}
+              networkError={networkError}
+              onSwitchNetwork={onSwitchNetwork}
             />
           </DialogContent>
         </Dialog>
