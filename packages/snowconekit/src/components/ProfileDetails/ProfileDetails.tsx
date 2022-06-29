@@ -1,7 +1,13 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+  useMemo,
+} from 'react';
 
 import { useAccount, useBalance, useEnsAvatar, useEnsName } from 'wagmi';
-import { GlassCard, GlassNav } from './ProfileDetails.css';
+import { GlassCard, GlassNav, GlassAvatar } from './ProfileDetails.css';
 import { isMobile } from '../../utils/isMobile';
 import { Avatar } from '../Avatar/Avatar';
 import { Box } from '../Box/Box';
@@ -14,9 +20,10 @@ import { DisconnectIcon } from '../Icons/Disconnect';
 import { ShowRecentTransactionsContext } from '../RainbowKitProvider/ShowRecentTransactionsContext';
 import { Text } from '../Text/Text';
 import { TxList } from '../Txs/TxList';
-import { ProfileCreditCard } from './ProfileCreditCard';
-import { ProfileDetailsAction } from './ProfileDetailsAction';
+import { emojiAvatarForAddress } from '../Avatar/emojiAvatarForAddress';
+
 import { LayeredBg } from '../Icons/LayeredBg';
+import { NavButton } from './NavButton';
 
 interface ProfileDetailsProps {
   accountData: ReturnType<typeof useAccount>['data'];
@@ -37,6 +44,12 @@ export function ProfileDetails({
 }: ProfileDetailsProps) {
   const showRecentTransactions = useContext(ShowRecentTransactionsContext);
   const [copiedAddress, setCopiedAddress] = useState(false);
+
+  const { color: backgroundColor, emoji } = useMemo(
+    () =>
+      emojiAvatarForAddress(accountData?.address ? accountData.address : ''),
+    [accountData]
+  );
 
   const copyAddressAction = useCallback(() => {
     if (accountData?.address) {
@@ -69,8 +82,23 @@ export function ProfileDetails({
   return (
     <>
       <Box display="flex" flexDirection="column">
-        <LayeredBg>
-          <Box className={GlassNav}>
+        <LayeredBg profColor={backgroundColor}>
+          <Box
+            className={GlassNav}
+            style={{
+              background: `linear-gradient(52deg, ${backgroundColor}20 0%, ${backgroundColor}40 100%)`,
+            }}
+          >
+            <NavButton
+              action={copyAddressAction}
+              icon={copiedAddress ? <CopiedIcon /> : <CopyIcon />}
+              label={copiedAddress ? 'Copied!' : 'Copy Address'}
+            />
+            <NavButton
+              action={onDisconnect}
+              icon={<DisconnectIcon />}
+              label="Disconnect"
+            />
             <CloseButton onClose={onClose} />
           </Box>
           <Box background="profileForeground" padding="16">
@@ -88,24 +116,11 @@ export function ProfileDetails({
                 display="flex"
                 margin="10"
                 flexDirection="column"
-                justifyContent="space-between"
                 style={{
                   height: '187px',
                 }}
               >
-                <Box
-                  marginTop={mobile ? '24' : '0'}
-                  style={{
-                    width: '60px',
-                    height: '60px',
-                    borderRadius: '50%',
-                    backdropFilter: 'blur(4px)',
-                    backgroundColor: '#ffffff',
-                    inset: 0,
-                    position: 'relative',
-                    zIndex: 11,
-                  }}
-                >
+                <Box marginTop={mobile ? '24' : '0'} className={GlassAvatar}>
                   <Avatar
                     address={accountData.address}
                     imageUrl={ensAvatar}
@@ -113,19 +128,20 @@ export function ProfileDetails({
                   />
                 </Box>
 
-                <Box paddingBottom="20" style={{}}>
+                <Box paddingBottom="0">
                   <Box
+                    marginTop={'44'}
                     textAlign="left"
-                    style={{
+                    /* style={{
                       textShadow:
                         '0px 1px 1px rgba(0,0,0, .15), 0px -1px 1.5px rgba(255,255,255, .5)',
-                    }}
+                    }} */
                   >
                     <Text
                       as="h1"
+                      className="accountText"
                       color="accentColorForeground"
-                      id={titleId}
-                      size={mobile ? '20' : '18'}
+                      size={mobile ? '20' : '23'}
                       weight="regular"
                     >
                       {accountName}
@@ -133,16 +149,17 @@ export function ProfileDetails({
                   </Box>
                   {balanceData && (
                     <Box
+                      marginTop={'20'}
                       textAlign="left"
                       style={{
                         opacity: '.65',
-                        textShadow:
-                          '0px 1px 1px rgba(255,255,255, .15), 0px -1px 1.5px rgba(100,100,100, .5)',
+                        /*  textShadow:
+                          '0px 1px 1px rgba(255,255,255, .15), 0px -1px 1.5px rgba(100,100,100, .5)', */
                       }}
                     >
                       <Text
                         as="h1"
-                        color="modalText"
+                        color="accentColorForeground"
                         id={titleId}
                         size={mobile ? '16' : '14'}
                         weight="semibold"
@@ -161,12 +178,12 @@ export function ProfileDetails({
               margin="2"
               marginTop="16"
             >
-              <ProfileDetailsAction
+              <NavButton
                 action={copyAddressAction}
                 icon={copiedAddress ? <CopiedIcon /> : <CopyIcon />}
                 label={copiedAddress ? 'Copied!' : 'Copy Address'}
               />
-              <ProfileDetailsAction
+              <NavButton
                 action={onDisconnect}
                 icon={<DisconnectIcon />}
                 label="Disconnect"

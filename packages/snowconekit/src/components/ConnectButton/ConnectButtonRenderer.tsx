@@ -175,7 +175,6 @@ export function ConnectButtonRenderer({
   // ---------------------------------------------------------------
 
   const transaction = useRecentTransactions();
-  const clearRecentTransactions = useClearRecentTransactions();
   const [transactionStatus, setTransactionStatus] = useState('');
 
   const {
@@ -185,7 +184,6 @@ export function ConnectButtonRenderer({
   } = useBooleanState(false);
 
   const closeModalAfter2Seconds = () => {
-    clearRecentTransactions();
     setTimeout(() => {
       closeTransactionModal();
     }, 2000);
@@ -194,9 +192,8 @@ export function ConnectButtonRenderer({
   useEffect(() => {
     hasPendingTransactions && openTransactionModal();
 
-    transaction[0]?.status === 'confirmed' &&
-      (clearRecentTransactions(), closeModalAfter2Seconds());
-    transaction[0]?.status === 'failed' && clearRecentTransactions();
+    transaction[0]?.status === 'confirmed' && closeModalAfter2Seconds();
+    transaction[0]?.status === 'failed' && closeModalAfter2Seconds();
   }, [transaction, hasPendingTransactions]);
 
   useEffect(() => {

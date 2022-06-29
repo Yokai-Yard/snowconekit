@@ -50,11 +50,11 @@
     "@types/qrcode": "^1.4.2",
     "@vanilla-extract/private": "^1.0.2",
     "autoprefixer": "^10.4.0",
-    "react-dom": "^17.0.2",
     "ethers": "^5.0.0",
     "nock": "^13.2.4",
     "postcss": "^8.4.4",
     "react": "^18.0.0",
+    "react-dom": "^17.0.2",
     "vitest": "^0.5.0"
   },
   "dependencies": {
@@ -67,7 +67,9 @@
     "clsx": "1.1.1",
     "qrcode": "1.5.0",
     "react-remove-scroll": "2.5.3",
-    "react-spinners-kit": "^1.9.1"
+    "react-spinners-kit": "^1.9.1",
+    "rgb-hex": "^4.0.0",
+    "values.js": "^2.1.1"
   },
   "repository": {
     "type": "git",

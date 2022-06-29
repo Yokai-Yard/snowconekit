@@ -6,7 +6,9 @@ import { BoxProps } from '../Box/Box';
 import { ThemeContext } from '../RainbowKitProvider/RainbowKitProvider';
 
 const src = async () =>
-  (await import('../../../assets/SnowConeLayers.svg')).default;
+  (await import('../../../assets/layerShader.svg')).default;
+
+/* const src = async () => await ColorChangingLayers('#ff66cc'); */
 
 const darkSrc = async () =>
   (await import('../../../assets/SnowConeLayers.svg')).default;
@@ -16,15 +18,23 @@ export const preloadLoginIcon = () => loadImages(src);
 type AsyncBgImageProps = {
   children: React.ReactNode;
   other?: BoxProps;
+  profColor: string;
 };
 
-export const LayeredBg = ({ children, other }: AsyncBgImageProps) => {
+export const LayeredBg = ({
+  profColor,
+  children,
+  other,
+}: AsyncBgImageProps) => {
   const theme = useContext(ThemeContext);
 
   const isLightMode = theme?.colors?.modalBackground === '#FFFFFF';
-
   return (
-    <AsyncBgImage src={isLightMode ? src : darkSrc} other={other}>
+    <AsyncBgImage
+      profColor={profColor}
+      src={isLightMode ? src : darkSrc}
+      other={other}
+    >
       {children}
     </AsyncBgImage>
   );
