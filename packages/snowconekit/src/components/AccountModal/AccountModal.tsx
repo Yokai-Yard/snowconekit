@@ -5,13 +5,14 @@ import {
   useEnsAvatar,
   useEnsName,
   useNetwork,
+  useSwitchNetwork,
 } from 'wagmi';
 import { Dialog } from '../Dialog/Dialog';
 import { DialogContent } from '../Dialog/DialogContent';
 import { ProfileDetails } from '../ProfileDetails/ProfileDetails';
 
 export interface AccountModalProps {
-  accountData: ReturnType<typeof useAccount>['data'];
+  address: ReturnType<typeof useAccount>['address'];
   balanceData: ReturnType<typeof useBalance>['data'];
   ensAvatar: ReturnType<typeof useEnsAvatar>['data'];
   ensName: ReturnType<typeof useEnsName>['data'];
@@ -19,27 +20,26 @@ export interface AccountModalProps {
   onClose: () => void;
   onDisconnect: () => void;
   // -----------------------------------
-  activeChain: ReturnType<typeof useNetwork>['activeChain'];
+  activeChain: ReturnType<typeof useNetwork>['chain'];
   chains: ReturnType<typeof useNetwork>['chains'];
-  networkError: ReturnType<typeof useNetwork>['error'];
+  networkError: ReturnType<typeof useSwitchNetwork>['error'];
   onSwitchNetwork?: (chainId: number) => unknown;
 }
 
 export function AccountModal({
-  accountData,
+  address,
   balanceData,
   ensAvatar,
   ensName,
   onClose,
   onDisconnect,
   open,
-  // ---------------------
   activeChain,
   chains,
   networkError,
   onSwitchNetwork,
 }: AccountModalProps) {
-  if (!accountData) {
+  if (!address) {
     return null;
   }
 
@@ -47,11 +47,11 @@ export function AccountModal({
 
   return (
     <>
-      {accountData && (
+      {address && (
         <Dialog onClose={onClose} open={open} titleId={titleId}>
           <DialogContent bottomSheetOnMobile padding="0">
             <ProfileDetails
-              accountData={accountData}
+              address={address}
               balanceData={balanceData}
               ensAvatar={ensAvatar}
               ensName={ensName}

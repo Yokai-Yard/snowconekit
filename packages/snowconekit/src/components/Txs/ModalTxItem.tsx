@@ -36,7 +36,7 @@ export function ModalTxItem({ tx, chains }: ModalTxProps) {
   const mobile = isMobile();
   const Icon = getTxStatusIcon(tx.status);
   const color = tx.status === 'failed' ? 'error' : 'accentColor';
-  const { activeChain } = useNetwork();
+  const { chain: activeChain } = useNetwork();
 
   const confirmationStatus =
     tx.status === 'confirmed'

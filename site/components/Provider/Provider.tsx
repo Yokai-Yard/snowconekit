@@ -1,15 +1,12 @@
-/* eslint-disable import/order */
-import React from 'react';
-
-import { chain, configureChains, createClient, WagmiConfig } from 'wagmi';
-import { alchemyProvider } from 'wagmi/providers/alchemy';
-import { publicProvider } from 'wagmi/providers/public';
-
 import {
   connectorsForWallets,
   getDefaultWallets,
   wallet,
 } from '@sirbenchalot/snowconekit';
+import React from 'react';
+import { chain, configureChains, createClient, WagmiConfig } from 'wagmi';
+import { alchemyProvider } from 'wagmi/providers/alchemy';
+import { publicProvider } from 'wagmi/providers/public';
 
 const alchemyId = '_gg7wSSi0KMBsdKnGVfHDueq6xMB9EkC';
 

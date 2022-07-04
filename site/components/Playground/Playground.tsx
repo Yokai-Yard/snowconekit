@@ -1,8 +1,12 @@
-/* eslint-disable import/order */
-
 /* eslint-disable sort-keys-fix/sort-keys-fix */
-import React, { useState } from 'react';
-
+import * as RadioGroup from '@radix-ui/react-radio-group';
+import {
+  __private__,
+  darkTheme,
+  lightTheme,
+  midnightTheme,
+  RainbowKitProvider,
+} from '@sirbenchalot/snowconekit';
 import clsx from 'clsx';
 import { Box } from 'components/Box/Box';
 import { MeshGradient } from 'components/MeshGradient/MeshGradient';
@@ -12,16 +16,7 @@ import { Wrapper } from 'components/Wrapper/Wrapper';
 import { motion } from 'framer-motion';
 import { isAndroid } from 'lib/isMobile';
 import { useMounted } from 'lib/useMounted';
-
-import * as RadioGroup from '@radix-ui/react-radio-group';
-import {
-  __private__,
-  darkTheme,
-  lightTheme,
-  midnightTheme,
-  RainbowKitProvider,
-} from '@sirbenchalot/snowconekit';
-
+import React, { useState } from 'react';
 import { radio, ring } from './Playground.css';
 
 const { DesktopOptions, MobileOptions, dialogContent, dialogContentMobile } =

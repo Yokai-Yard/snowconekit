@@ -1,12 +1,3 @@
-import {
-  useAccount,
-  useBalance,
-  useDisconnect,
-  useEnsAvatar,
-  useEnsName,
-  useNetwork,
-} from 'wagmi';
-
 import React, {
   ReactNode,
   useCallback,
@@ -14,7 +5,15 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-
+import {
+  useAccount,
+  useBalance,
+  useDisconnect,
+  useEnsAvatar,
+  useEnsName,
+  useNetwork,
+  useSwitchNetwork,
+} from 'wagmi';
 import { useIsMounted } from '../../hooks/useIsMounted';
 import { useRecentTransactions } from '../../transactions/useRecentTransactions';
 import { isMobile } from '../../utils/isMobile';
@@ -31,10 +30,9 @@ import {
   useRainbowKitChainsById,
 } from '../RainbowKitProvider/RainbowKitChainContext';
 import { ShowRecentTransactionsContext } from '../RainbowKitProvider/ShowRecentTransactionsContext';
+import { abbreviateETHBalance } from './abbreviateETHBalance';
 import { formatAddress } from './formatAddress';
 import { formatENS } from './formatENS';
-import TransactionModal from '../TransactionModal/index';
-import { useClearRecentTransactions } from '../../transactions/useClearRecentTransactions';
 
 const useBooleanState = (initialValue: boolean) => {
   const [value, setValue] = useState(initialValue);
@@ -69,11 +67,9 @@ export interface ConnectButtonRendererProps {
     openAccountModal: () => void;
     openChainModal: () => void;
     openConnectModal: () => void;
-    openTransactionModal: () => void;
     accountModalOpen: boolean;
     chainModalOpen: boolean;
     connectModalOpen: boolean;
-    transactionModalOpen: boolean;
   }) => ReactNode;
 }
 
@@ -82,26 +78,24 @@ export function ConnectButtonRenderer({
 }: ConnectButtonRendererProps) {
   const mounted = useIsMounted();
 
-  const { data: accountData } = useAccount();
+  const { address, isConnected } = useAccount();
 
   const { data: ensAvatar } = useEnsAvatar({
-    addressOrName: accountData?.address,
+    addressOrName: address,
+    chainId: 1,
   });
 
-  const { data: ensName } = useEnsName({ address: accountData?.address });
+  const { data: ensName } = useEnsName({
+    address,
+    chainId: 1,
+  });
 
   const { data: balanceData } = useBalance({
-    addressOrName: accountData?.address,
+    addressOrName: address,
   });
 
-  const {
-    activeChain,
-    chains,
-    error: networkError,
-    switchNetwork,
-  } = useNetwork();
-
-  const clearRecentTransactions = useClearRecentTransactions();
+  const { chain: activeChain } = useNetwork();
+  const { chains, error: networkError, switchNetwork } = useSwitchNetwork();
 
   const { disconnect } = useDisconnect();
 
@@ -117,10 +111,6 @@ export function ConnectButtonRenderer({
   const resolvedChainIconUrl = useAsyncImage(chainIconUrl);
 
   const showRecentTransactions = useContext(ShowRecentTransactionsContext);
-  const pendingTransactions = useRecentTransactions().filter(
-    ({ status }) => status === 'pending'
-  );
-
   const hasPendingTransactions =
     useRecentTransactions().some(({ status }) => status === 'pending') &&
     showRecentTransactions;
@@ -143,20 +133,18 @@ export function ConnectButtonRenderer({
     value: chainModalOpen,
   } = useBooleanState(false);
 
-  const hasAccountData = Boolean(accountData);
   useEffect(() => {
     closeConnectModal();
     closeAccountModal();
     closeChainModal();
-  }, [hasAccountData, closeConnectModal, closeAccountModal, closeChainModal]);
+  }, [isConnected, closeConnectModal, closeAccountModal, closeChainModal]);
 
   const walletConnectors = useWalletConnectors();
 
   const preloadImages = useCallback(() => {
     loadImages(
       ...walletConnectors.map(wallet => wallet.iconUrl),
-      ...rainbowKitChains.map(chain => chain.iconUrl).filter(isNotNullish),
-      '/images/Web3ModaleHeader.svg'
+      ...rainbowKitChains.map(chain => chain.iconUrl).filter(isNotNullish)
     );
 
     // Preload illustrations used on desktop
@@ -171,60 +159,24 @@ export function ConnectButtonRenderer({
   }, [preloadImages]);
 
   const displayBalance = balanceData
-    ? `${Number(balanceData.formatted).toPrecision(3)} ${balanceData.symbol}`
+    ? `${abbreviateETHBalance(parseFloat(balanceData.formatted))} ${
+        balanceData.symbol
+      }`
     : undefined;
-
-  // ---------------------------------------------------------------
-
-  const transaction = useRecentTransactions();
-  const [transactionStatus, setTransactionStatus] = useState('');
-
-  const {
-    setFalse: closeTransactionModal,
-    setTrue: openTransactionModal,
-    value: transactionModalOpen,
-  } = useBooleanState(false);
-
-  const closeModalAfter2Seconds = () => {
-    setTimeout(() => {
-      closeTransactionModal();
-    }, 2000);
-  };
-
-  useEffect(() => {
-    hasPendingTransactions && openTransactionModal();
-
-    transaction[0]?.status === 'confirmed' && closeModalAfter2Seconds();
-    transaction[0]?.status === 'failed' && closeModalAfter2Seconds();
-  }, [transaction, hasPendingTransactions]);
-
-  useEffect(() => {
-    transaction[0]?.status &&
-      transaction[0].status === 'pending' &&
-      setTransactionStatus('pending');
-    transaction[0]?.status &&
-      transaction[0].status === 'confirmed' &&
-      setTransactionStatus('confirmed');
-    transaction[0]?.status &&
-      transaction[0].status === 'failed' &&
-      setTransactionStatus('failed');
-  }, [transaction]);
-
-  // -----------------------------------------------------------------
 
   return (
     <>
       {children({
-        account: accountData?.address
+        account: address
           ? {
-              address: accountData.address,
+              address,
               balanceDecimals: balanceData?.decimals,
               balanceFormatted: balanceData?.formatted,
               balanceSymbol: balanceData?.symbol,
               displayBalance,
               displayName: ensName
                 ? formatENS(ensName)
-                : formatAddress(accountData.address),
+                : formatAddress(address),
               ensAvatar: ensAvatar ?? undefined,
               ensName: ensName ?? undefined,
               hasPendingTransactions,
@@ -243,17 +195,15 @@ export function ConnectButtonRenderer({
           : undefined,
         chainModalOpen,
         connectModalOpen,
-        transactionModalOpen,
         mounted,
         openAccountModal,
         openChainModal,
         openConnectModal,
-        openTransactionModal,
       })}
 
       <ConnectModal onClose={closeConnectModal} open={connectModalOpen} />
       <AccountModal
-        accountData={accountData}
+        address={address}
         balanceData={balanceData}
         ensAvatar={ensAvatar}
         ensName={ensName}
@@ -265,17 +215,12 @@ export function ConnectButtonRenderer({
         networkError={networkError}
         onSwitchNetwork={switchNetwork}
       />
-      <TransactionModal
-        transactionStatus={transactionStatus}
-        onClose={closeTransactionModal}
-        onDisconnect={disconnect}
-        open={transactionModalOpen}
-      />
       <ChainModal
         activeChain={activeChain}
         chains={chains}
         networkError={networkError}
         onClose={closeChainModal}
+        onDisconnect={disconnect}
         onSwitchNetwork={switchNetwork}
         open={chainModalOpen}
       />

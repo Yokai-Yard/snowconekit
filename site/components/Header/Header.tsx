@@ -1,20 +1,16 @@
-/* eslint-disable import/order */
-import React from 'react';
-
-import { Badge } from 'components/Badge/Badge';
-import { Box } from 'components/Box/Box';
-import { chains } from 'components/Provider/Provider';
-import { Text } from 'components/Text/Text';
-import { vars } from 'css/vars.css';
-import NextLink from 'next/link';
-
 import {
   ConnectButton,
   darkTheme,
   lightTheme,
   RainbowKitProvider,
 } from '@sirbenchalot/snowconekit';
-
+import { Badge } from 'components/Badge/Badge';
+import { Box } from 'components/Box/Box';
+import { chains } from 'components/Provider/Provider';
+import { Text } from 'components/Text/Text';
+import { vars } from 'css/vars.css';
+import NextLink from 'next/link';
+import React from 'react';
 import pckg from '../../../packages/snowconekit/package.json';
 import { header, logo, row } from './Header.css';
 

@@ -1,14 +1,35 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
-import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
 import { Chain } from '../../../components/RainbowKitProvider/RainbowKitChainContext';
 import { isAndroid, isMobile } from '../../../utils/isMobile';
-import { rpcUrlsForChains } from '../../../utils/rpcUrlsForChains';
 import { Wallet } from '../../Wallet';
+import { getWalletConnectConnector } from '../../getWalletConnectConnector';
 
 export interface MetaMaskOptions {
   chains: Chain[];
   shimDisconnect?: boolean;
+}
+
+export function isMetaMask(ethereum: NonNullable<typeof window['ethereum']>) {
+  // Logic borrowed from wagmi's MetaMaskConnector
+  // https://github.com/tmm/wagmi/blob/main/packages/core/src/connectors/metaMask.ts
+  const isMetaMask = Boolean(ethereum.isMetaMask);
+
+  if (!isMetaMask) {
+    return false;
+  }
+
+  // Brave tries to make itself look like MetaMask
+  // Could also try RPC `web3_clientVersion` if following is unreliable
+  if (ethereum.isBraveWallet && !ethereum._events && !ethereum._state) {
+    return false;
+  }
+
+  if (ethereum.isTokenary) {
+    return false;
+  }
+
+  return true;
 }
 
 export const metaMask = ({
@@ -16,7 +37,9 @@ export const metaMask = ({
   shimDisconnect,
 }: MetaMaskOptions): Wallet => {
   const isMetaMaskInjected =
-    typeof window !== 'undefined' && window.ethereum?.isMetaMask;
+    typeof window !== 'undefined' &&
+    typeof window.ethereum !== 'undefined' &&
+    isMetaMask(window.ethereum);
 
   const shouldUseWalletConnect = isMobile() && !isMetaMaskInjected;
 
@@ -33,15 +56,8 @@ export const metaMask = ({
       ios: 'https://apps.apple.com/us/app/metamask/id1438144202',
     },
     createConnector: () => {
-      const rpc = rpcUrlsForChains(chains);
       const connector = shouldUseWalletConnect
-        ? new WalletConnectConnector({
-            chains,
-            options: {
-              qrcode: false,
-              rpc,
-            },
-          })
+        ? getWalletConnectConnector({ chains })
         : new MetaMaskConnector({
             chains,
             options: { shimDisconnect },

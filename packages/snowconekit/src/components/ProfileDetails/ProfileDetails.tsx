@@ -5,13 +5,14 @@ import React, {
   useState,
   useMemo,
 } from 'react';
-
 import {
   useAccount,
+  useDisconnect,
+  useNetwork,
+  useSwitchNetwork,
   useBalance,
   useEnsAvatar,
   useEnsName,
-  useNetwork,
 } from 'wagmi';
 import { GlassCard, GlassNav, GlassAvatar } from './ProfileDetails.css';
 import { isMobile } from '../../utils/isMobile';
@@ -34,21 +35,20 @@ import { ModalTxList } from '../Txs/ModalTxList';
 import NetworkCarousel from '../ChainModal/NetworkCarousel';
 
 interface ProfileDetailsProps {
-  accountData: ReturnType<typeof useAccount>['data'];
+  address: ReturnType<typeof useAccount>['address'];
   balanceData: ReturnType<typeof useBalance>['data'];
   ensAvatar: ReturnType<typeof useEnsAvatar>['data'];
   ensName: ReturnType<typeof useEnsName>['data'];
   onClose: () => void;
   onDisconnect: () => void;
-  //
-  activeChain: ReturnType<typeof useNetwork>['activeChain'];
+  activeChain: ReturnType<typeof useNetwork>['chain'];
   chains: ReturnType<typeof useNetwork>['chains'];
-  networkError: ReturnType<typeof useNetwork>['error'];
+  networkError: ReturnType<typeof useSwitchNetwork>['error'];
   onSwitchNetwork?: (chainId: number) => unknown;
 }
 
 export function ProfileDetails({
-  accountData,
+  address,
   balanceData,
   ensAvatar,
   ensName,
@@ -64,17 +64,16 @@ export function ProfileDetails({
   const [copiedAddress, setCopiedAddress] = useState(false);
 
   const { color: backgroundColor, emoji } = useMemo(
-    () =>
-      emojiAvatarForAddress(accountData?.address ? accountData.address : ''),
-    [accountData]
+    () => emojiAvatarForAddress(address ? address : ''),
+    [address]
   );
 
   const copyAddressAction = useCallback(() => {
-    if (accountData?.address) {
-      navigator.clipboard.writeText(accountData?.address);
+    if (address) {
+      navigator.clipboard.writeText(address);
       setCopiedAddress(true);
     }
-  }, [accountData?.address]);
+  }, [address]);
 
   useEffect(() => {
     if (copiedAddress) {
@@ -85,13 +84,13 @@ export function ProfileDetails({
     }
   }, [copiedAddress]);
 
-  if (!accountData?.address) {
+  if (!address) {
     return null;
   }
 
   const accountName = ensName
     ? formatENS(ensName)
-    : formatModalAddress(accountData.address);
+    : formatModalAddress(address);
   const ethBalance = balanceData?.formatted;
   const balance = Number(ethBalance).toPrecision(3);
   const titleId = 'rk_profile_title';
@@ -139,11 +138,7 @@ export function ProfileDetails({
                 }}
               >
                 <Box marginTop={mobile ? '24' : '0'} className={GlassAvatar}>
-                  <Avatar
-                    address={accountData.address}
-                    imageUrl={ensAvatar}
-                    size={60}
-                  />
+                  <Avatar address={address} imageUrl={ensAvatar} size={60} />
                 </Box>
 
                 <Box paddingBottom="0">
@@ -219,7 +214,7 @@ export function ProfileDetails({
             <>
               <Box background="generalBorder" height="1" marginTop="-1" />
               <Box>
-                <ModalTxList accountData={accountData} chains={chains} />
+                <ModalTxList address={address} chains={chains} />
               </Box>
             </>
           )}

@@ -1,7 +1,5 @@
 import { style } from '@vanilla-extract/css';
-
 import { largeScreenMinWidth, sprinkles } from '../../css/sprinkles.css';
-
 export const QRCodeBackgroundClassName = style([
   {
     background: 'white',

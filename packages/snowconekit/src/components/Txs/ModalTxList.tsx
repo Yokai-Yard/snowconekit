@@ -18,16 +18,15 @@ import { useRainbowKitChainsById } from '../RainbowKitProvider/RainbowKitChainCo
 const NUMBER_OF_VISIBLE_TXS = 3;
 
 interface ModalTxListProps {
-  accountData: ReturnType<typeof useAccount>['data'];
+  address: ReturnType<typeof useAccount>['address'];
   chains: ReturnType<typeof useNetwork>['chains'];
   // activeChain: ReturnType<typeof useNetwork>['activeChain'];
 }
 
-export function ModalTxList({ accountData, chains }: ModalTxListProps) {
+export function ModalTxList({ address, chains }: ModalTxListProps) {
   const recentTransactions = useRecentTransactions();
   const clearRecentTransactions = useClearRecentTransactions();
-  const { activeChain } = useNetwork();
-  const address = accountData?.address;
+  const { chain: activeChain } = useNetwork();
   const explorerLink = chainToExplorerUrl(activeChain);
   const visibleTxs = recentTransactions.slice(0, NUMBER_OF_VISIBLE_TXS);
   const hasTransactions = visibleTxs.length > 0;
@@ -36,11 +35,6 @@ export function ModalTxList({ accountData, chains }: ModalTxListProps) {
 
   // console.log(visibleTxs);
   // console.log(accountData);
-
-  //
-  //
-
-  console.log(activeChain);
 
   return (
     <>

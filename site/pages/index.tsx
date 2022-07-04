@@ -1,5 +1,4 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix */
-
 import { Box } from 'components/Box/Box';
 import { Button } from 'components/Button/Button';
 import { Header } from 'components/Header/Header';
@@ -18,10 +17,10 @@ import { useCoolMode } from 'lib/useCoolMode';
 import NextImage from 'next/image';
 import NextLink from 'next/link';
 import React, { Ref, useState } from 'react';
-import { useConnect } from 'wagmi';
+import { useAccount } from 'wagmi';
 
 export default function Home() {
-  const { isConnected } = useConnect();
+  const { isConnected } = useAccount();
   const ref = useCoolMode('/rainbow.svg', !isConnected) as Ref<HTMLDivElement>;
 
   return (
@@ -309,7 +308,7 @@ export default function Home() {
 
 function InstallScript() {
   const [requestCopy, setRequestCopy] = useState(false);
-  const code = 'npm i @sirbenchalot/snowconekit wagmi ethers';
+  const code = 'npm init @rainbow-me/rainbowkit@latest';
   const ref = useCoolMode('/rainbow.svg') as Ref<HTMLButtonElement>;
 
   React.useEffect(() => {

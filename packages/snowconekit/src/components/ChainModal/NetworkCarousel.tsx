@@ -5,7 +5,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { useConnect, useNetwork } from 'wagmi';
+import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi';
 import { isMobile } from '../../utils/isMobile';
 import { AsyncImage } from '../AsyncImage/AsyncImage';
 import { Box, BoxProps } from '../Box/Box';
@@ -17,10 +17,10 @@ import ReactSimplyCarousel from 'react-simply-carousel';
 import { GlassCard } from '../ProfileDetails/ProfileDetails.css';
 
 export interface NetworkCarouselProps {
-  activeChain: ReturnType<typeof useNetwork>['activeChain'];
+  activeChain: ReturnType<typeof useNetwork>['chain'];
   chains: ReturnType<typeof useNetwork>['chains'];
   onClose: () => void;
-  networkError: ReturnType<typeof useNetwork>['error'];
+  networkError: ReturnType<typeof useSwitchNetwork>['error'];
   onSwitchNetwork?: (chainId: number) => unknown;
 }
 
@@ -31,7 +31,7 @@ export function NetworkCarousel({
   onClose,
   onSwitchNetwork,
 }: NetworkCarouselProps) {
-  const { activeConnector } = useConnect();
+  const { connector: activeConnector } = useAccount();
   const [switchingToChain, setSwitchingToChain] = useState<number | null>();
   const titleId = 'rk_chain_modal_title';
   const mobile = isMobile();

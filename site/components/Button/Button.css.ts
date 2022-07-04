@@ -1,13 +1,9 @@
-/* eslint-disable import/order */
-/* eslint-disable eslint-comments/disable-enable-pair */
-
-import { atoms } from 'css/atoms';
-import { Sprinkles } from 'css/sprinkles.css';
-import { vars } from 'css/vars.css';
-
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 import { style } from '@vanilla-extract/css';
 import { recipe, RecipeVariants } from '@vanilla-extract/recipes';
+import { atoms } from 'css/atoms';
+import { Sprinkles } from 'css/sprinkles.css';
+import { vars } from 'css/vars.css';
 
 const size = {
   xs: atoms({

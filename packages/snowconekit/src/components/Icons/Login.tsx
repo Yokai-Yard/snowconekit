@@ -1,9 +1,8 @@
 import React from 'react';
-
 import { AsyncImage } from '../AsyncImage/AsyncImage';
 import { loadImages } from '../AsyncImage/useAsyncImage';
 
-const src = async () => (await import('./AppIcon.svg')).default;
+const src = async () => (await import('./login.svg')).default;
 
 export const preloadLoginIcon = () => loadImages(src);
 
