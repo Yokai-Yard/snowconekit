@@ -101,6 +101,8 @@ export function ConnectButtonRenderer({
     switchNetwork,
   } = useNetwork();
 
+  const clearRecentTransactions = useClearRecentTransactions();
+
   const { disconnect } = useDisconnect();
 
   const rainbowKitChains = useRainbowKitChains();

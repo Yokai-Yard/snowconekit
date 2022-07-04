@@ -41,7 +41,8 @@ const avalancheChain: Chain = {
     symbol: 'AVAX',
   },
   rpcUrls: {
-    default: 'https://api.avax.network/ext/bc/C/rpc',
+    default:
+      'https://nd-274-434-047.p2pify.com/648ffb21504d82b842193feaafb6c1f2/ext/bc/C/rpc',
   },
 
   testnet: false,
