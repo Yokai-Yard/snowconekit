@@ -29,18 +29,13 @@ import {
   useRainbowKitChains,
   useRainbowKitChainsById,
 } from '../RainbowKitProvider/RainbowKitChainContext';
+import TransactionModal from '../TransactionModal';
 import { ShowRecentTransactionsContext } from '../RainbowKitProvider/ShowRecentTransactionsContext';
 import { abbreviateETHBalance } from './abbreviateETHBalance';
 import { formatAddress } from './formatAddress';
 import { formatENS } from './formatENS';
-
-const useBooleanState = (initialValue: boolean) => {
-  const [value, setValue] = useState(initialValue);
-  const setTrue = useCallback(() => setValue(true), []);
-  const setFalse = useCallback(() => setValue(false), []);
-
-  return { setFalse, setTrue, value };
-};
+import useBooleanState from '../../hooks/useBooleanState';
+import useTxModal from '../../hooks/useTxModal';
 
 export interface ConnectButtonRendererProps {
   children: (renderProps: {
@@ -53,7 +48,7 @@ export interface ConnectButtonRendererProps {
       displayName: string;
       ensAvatar?: string;
       ensName?: string;
-      hasPendingTransactions: boolean;
+      displayRecentTransactions: boolean;
     };
     chain?: {
       hasIcon: boolean;
@@ -110,15 +105,27 @@ export function ConnectButtonRenderer({
 
   const resolvedChainIconUrl = useAsyncImage(chainIconUrl);
 
+  const { setTx, txProps } = useTxModal();
+
   const showRecentTransactions = useContext(ShowRecentTransactionsContext);
-  const hasPendingTransactions =
-    useRecentTransactions().some(({ status }) => status === 'pending') &&
+
+  const pendingTransactions =
+    useRecentTransactions().filter(({ status }) => status === 'pending')[0];
+
+  const displayRecentTransactions =
+    pendingTransactions &&
     showRecentTransactions;
 
   const {
     setFalse: closeConnectModal,
     setTrue: openConnectModal,
     value: connectModalOpen,
+  } = useBooleanState(false);
+
+  const {
+    setFalse: closeTxModal,
+    setTrue: openTxModal,
+    value: txModalOpen,
   } = useBooleanState(false);
 
   const {
@@ -132,6 +139,10 @@ export function ConnectButtonRenderer({
     setTrue: openChainModal,
     value: chainModalOpen,
   } = useBooleanState(false);
+
+  useEffect(() => {
+    pendingTransactions && setTx(pendingTransactions);
+  }, [pendingTransactions]);
 
   useEffect(() => {
     closeConnectModal();
@@ -159,9 +170,8 @@ export function ConnectButtonRenderer({
   }, [preloadImages]);
 
   const displayBalance = balanceData
-    ? `${abbreviateETHBalance(parseFloat(balanceData.formatted))} ${
-        balanceData.symbol
-      }`
+    ? `${abbreviateETHBalance(parseFloat(balanceData.formatted))} ${balanceData.symbol
+    }`
     : undefined;
 
   return (
@@ -169,29 +179,29 @@ export function ConnectButtonRenderer({
       {children({
         account: address
           ? {
-              address,
-              balanceDecimals: balanceData?.decimals,
-              balanceFormatted: balanceData?.formatted,
-              balanceSymbol: balanceData?.symbol,
-              displayBalance,
-              displayName: ensName
-                ? formatENS(ensName)
-                : formatAddress(address),
-              ensAvatar: ensAvatar ?? undefined,
-              ensName: ensName ?? undefined,
-              hasPendingTransactions,
-            }
+            address,
+            balanceDecimals: balanceData?.decimals,
+            balanceFormatted: balanceData?.formatted,
+            balanceSymbol: balanceData?.symbol,
+            displayBalance,
+            displayName: ensName
+              ? formatENS(ensName)
+              : formatAddress(address),
+            ensAvatar: ensAvatar ?? undefined,
+            ensName: ensName ?? undefined,
+            displayRecentTransactions,
+          }
           : undefined,
         accountModalOpen,
         chain: activeChain
           ? {
-              hasIcon: Boolean(chainIconUrl),
-              iconBackground: chainIconBackground,
-              iconUrl: resolvedChainIconUrl,
-              id: activeChain.id,
-              name: activeChain.name,
-              unsupported: activeChain.unsupported,
-            }
+            hasIcon: Boolean(chainIconUrl),
+            iconBackground: chainIconBackground,
+            iconUrl: resolvedChainIconUrl,
+            id: activeChain.id,
+            name: activeChain.name,
+            unsupported: activeChain.unsupported,
+          }
           : undefined,
         chainModalOpen,
         connectModalOpen,
@@ -214,6 +224,9 @@ export function ConnectButtonRenderer({
         chains={chains}
         networkError={networkError}
         onSwitchNetwork={switchNetwork}
+      />
+      <TransactionModal
+        {...txProps}
       />
       <ChainModal
         activeChain={activeChain}
