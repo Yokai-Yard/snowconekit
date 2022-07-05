@@ -33,6 +33,7 @@ import { LayeredBg } from '../Icons/LayeredBg';
 import { NavButton } from './NavButton';
 import { ModalTxList } from '../Txs/ModalTxList';
 import NetworkCarousel from '../ChainModal/NetworkCarousel';
+import { ChainIcon } from '../Icons/ChainIcon';
 
 interface ProfileDetailsProps {
   address: ReturnType<typeof useAccount>['address'];
@@ -45,6 +46,7 @@ interface ProfileDetailsProps {
   chains: ReturnType<typeof useNetwork>['chains'];
   networkError: ReturnType<typeof useSwitchNetwork>['error'];
   onSwitchNetwork?: (chainId: number) => unknown;
+  openChainModal: () => void;
 }
 
 export function ProfileDetails({
@@ -59,6 +61,7 @@ export function ProfileDetails({
   chains,
   networkError,
   onSwitchNetwork,
+  openChainModal,
 }: ProfileDetailsProps) {
   const showRecentTransactions = useContext(ShowRecentTransactionsContext);
   const [copiedAddress, setCopiedAddress] = useState(false);
@@ -106,6 +109,14 @@ export function ProfileDetails({
               background: `linear-gradient(52deg, ${backgroundColor}20 0%, ${backgroundColor}40 100%)`,
             }}
           >
+            {mobile && (
+              <NavButton
+                action={openChainModal}
+                icon={<ChainIcon />}
+                label={'Change Network'}
+              />
+            )}
+            <Box style={{ flexGrow: 1 }} />
             <NavButton
               action={copyAddressAction}
               icon={copiedAddress ? <CopiedIcon /> : <CopyIcon />}
