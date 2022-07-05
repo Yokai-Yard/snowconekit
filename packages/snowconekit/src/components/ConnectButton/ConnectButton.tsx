@@ -216,7 +216,7 @@ export function ConnectButton({
                           <Avatar
                             address={account.address}
                             imageUrl={account.ensAvatar}
-                            loading={account.hasPendingTransactions}
+                            loading={account.displayRecentTransactions}
                             size={24}
                           />
                         </Box>

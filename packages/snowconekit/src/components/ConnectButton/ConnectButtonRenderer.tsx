@@ -29,18 +29,13 @@ import {
   useRainbowKitChains,
   useRainbowKitChainsById,
 } from '../RainbowKitProvider/RainbowKitChainContext';
+import TransactionModal from '../TransactionModal';
 import { ShowRecentTransactionsContext } from '../RainbowKitProvider/ShowRecentTransactionsContext';
 import { abbreviateETHBalance } from './abbreviateETHBalance';
 import { formatAddress } from './formatAddress';
 import { formatENS } from './formatENS';
-
-const useBooleanState = (initialValue: boolean) => {
-  const [value, setValue] = useState(initialValue);
-  const setTrue = useCallback(() => setValue(true), []);
-  const setFalse = useCallback(() => setValue(false), []);
-
-  return { setFalse, setTrue, value };
-};
+import useBooleanState from '../../hooks/useBooleanState';
+import useTxModal from '../../hooks/useTxModal';
 
 export interface ConnectButtonRendererProps {
   children: (renderProps: {
@@ -53,7 +48,7 @@ export interface ConnectButtonRendererProps {
       displayName: string;
       ensAvatar?: string;
       ensName?: string;
-      hasPendingTransactions: boolean;
+      displayRecentTransactions: boolean;
     };
     chain?: {
       hasIcon: boolean;
@@ -110,15 +105,27 @@ export function ConnectButtonRenderer({
 
   const resolvedChainIconUrl = useAsyncImage(chainIconUrl);
 
+  const { setTx, txProps } = useTxModal();
+
   const showRecentTransactions = useContext(ShowRecentTransactionsContext);
-  const hasPendingTransactions =
-    useRecentTransactions().some(({ status }) => status === 'pending') &&
-    showRecentTransactions;
+
+  const pendingTransactions = useRecentTransactions().filter(
+    ({ status }) => status === 'pending'
+  )[0];
+
+  const displayRecentTransactions =
+    pendingTransactions && showRecentTransactions;
 
   const {
     setFalse: closeConnectModal,
     setTrue: openConnectModal,
     value: connectModalOpen,
+  } = useBooleanState(false);
+
+  const {
+    setFalse: closeTxModal,
+    setTrue: openTxModal,
+    value: txModalOpen,
   } = useBooleanState(false);
 
   const {
@@ -132,6 +139,10 @@ export function ConnectButtonRenderer({
     setTrue: openChainModal,
     value: chainModalOpen,
   } = useBooleanState(false);
+
+  useEffect(() => {
+    pendingTransactions && setTx(pendingTransactions);
+  }, [pendingTransactions]);
 
   useEffect(() => {
     closeConnectModal();
@@ -179,7 +190,7 @@ export function ConnectButtonRenderer({
                 : formatAddress(address),
               ensAvatar: ensAvatar ?? undefined,
               ensName: ensName ?? undefined,
-              hasPendingTransactions,
+              displayRecentTransactions,
             }
           : undefined,
         accountModalOpen,
@@ -216,6 +227,7 @@ export function ConnectButtonRenderer({
         onSwitchNetwork={switchNetwork}
         openChainModal={openChainModal}
       />
+      <TransactionModal {...txProps} />
       <ChainModal
         activeChain={activeChain}
         chains={chains}

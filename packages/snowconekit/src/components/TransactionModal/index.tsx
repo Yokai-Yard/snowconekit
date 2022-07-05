@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { isMobile } from '../../utils/isMobile';
 import { Dialog } from '../Dialog/Dialog';
 import { TxDialogContent } from '../Dialog/TxDialogContent';
@@ -10,9 +10,10 @@ import { DialogContent } from '../Dialog/DialogContent';
 import { TxCheck } from '../Icons/TxCheck';
 import { CopiedIcon } from '../Icons/Copied';
 import * as styles from './TxDialog.css';
+import type { Transaction } from '../../transactions/transactionStore';
 
 interface TxProps {
-  transactionStatus: string;
+  transactionStatus: Transaction['status'];
   mobile: boolean;
 }
 export function TxItem({ transactionStatus, mobile }: TxProps) {
@@ -90,25 +91,30 @@ export function TxItem({ transactionStatus, mobile }: TxProps) {
 }
 
 export interface TransactionModalProps {
-  transactionStatus: string;
   open: boolean;
   onClose: () => void;
-  onDisconnect: () => void;
+  trackedTx: Transaction | null;
 }
 
 const TransactionModal = ({
-  transactionStatus,
   onClose,
   open,
+  trackedTx,
 }: TransactionModalProps) => {
   const mobile = isMobile();
   const titleId = 'rk_account_modal_title';
+
+  useEffect(() => {
+    console.log(trackedTx);
+  }, [trackedTx]);
 
   return (
     <>
       <Dialog onClose={onClose} open={open} titleId={titleId}>
         <TxDialogContent bottomSheetOnMobile padding="8">
-          <TxItem transactionStatus={transactionStatus} mobile={mobile} />
+          {trackedTx && (
+            <TxItem transactionStatus={trackedTx.status} mobile={mobile} />
+          )}
         </TxDialogContent>
       </Dialog>
     </>
