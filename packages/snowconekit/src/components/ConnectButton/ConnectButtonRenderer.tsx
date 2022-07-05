@@ -225,6 +225,7 @@ export function ConnectButtonRenderer({
         chains={chains}
         networkError={networkError}
         onSwitchNetwork={switchNetwork}
+        openChainModal={openChainModal}
       />
       <TransactionModal {...txProps} />
       <ChainModal

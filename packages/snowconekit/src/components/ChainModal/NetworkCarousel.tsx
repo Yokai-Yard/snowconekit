@@ -1,10 +1,4 @@
-import React, {
-  Fragment,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi';
 import { isMobile } from '../../utils/isMobile';
 import { AsyncImage } from '../AsyncImage/AsyncImage';
@@ -22,6 +16,7 @@ export interface NetworkCarouselProps {
   onClose: () => void;
   networkError: ReturnType<typeof useSwitchNetwork>['error'];
   onSwitchNetwork?: (chainId: number) => unknown;
+  pendingChainId?: ReturnType<typeof useSwitchNetwork>['pendingChainId'];
 }
 
 export function NetworkCarousel({
@@ -30,13 +25,15 @@ export function NetworkCarousel({
   networkError,
   onClose,
   onSwitchNetwork,
+  pendingChainId,
 }: NetworkCarouselProps) {
   const { connector: activeConnector } = useAccount();
   const [switchingToChain, setSwitchingToChain] = useState<number | null>();
   const titleId = 'rk_chain_modal_title';
   const mobile = isMobile();
   const rainbowkitChainsById = useRainbowKitChainsById();
-  const [activeSlideIndex, setActiveSlideIndex] = useState(7);
+  const [chainIndex, setChainIndex] = useState(Number);
+  const [activeSlideIndex, setActiveSlideIndex] = useState(chainIndex);
 
   const stopSwitching = useCallback(() => {
     setSwitchingToChain(null);
@@ -76,6 +73,17 @@ export function NetworkCarousel({
     return null;
   }
 
+  //
+  //
+
+  useEffect(() => {
+    const activeChainIndex = chains.findIndex(
+      chain => chain.id === activeChain?.id
+    );
+    setChainIndex(activeChainIndex);
+    setActiveSlideIndex(chainIndex);
+  }, [chainIndex]);
+
   return (
     <Box
       display="flex"
@@ -92,19 +100,6 @@ export function NetworkCarousel({
         marginTop: '13px',
       }}
     >
-      {/* <Box
-        display="flex"
-        flexDirection="column"
-        gap="14"
-        paddingTop="4"
-        paddingBottom="4"
-      > */}
-      {/* <Box
-            display="flex"
-            flexDirection="row"
-            justifyContent="space-between"
-          >
-            {mobile && <div />} */}
       <Box paddingBottom="0" paddingLeft="10" paddingTop="4">
         <Text
           as="h1"
@@ -116,7 +111,6 @@ export function NetworkCarousel({
           Switch Networks
         </Text>
       </Box>
-      {/* </Box> */}
       <ReactSimplyCarousel
         centerMode={true}
         updateOnItemClick={true}
@@ -138,7 +132,6 @@ export function NetworkCarousel({
             right: 8,
             top: '48%',
             zIndex: 100,
-            // alignSelf: 'center',
             background: 'black',
             border: 'none',
             borderRadius: '50%',
@@ -147,7 +140,6 @@ export function NetworkCarousel({
             fontSize: '20px',
             height: 26,
             lineHeight: 1,
-            // textAlign: 'center',
             width: 26,
           },
           children: <span>{`>`}</span>,
@@ -160,7 +152,6 @@ export function NetworkCarousel({
             left: 8,
             top: '48%',
             zIndex: 100,
-            // alignSelf: 'center',
             background: 'black',
             border: 'none',
             borderRadius: '50%',
@@ -169,7 +160,6 @@ export function NetworkCarousel({
             fontSize: '20px',
             height: 26,
             lineHeight: 1,
-            // textAlign: 'center',
             width: 26,
           },
           children: <span>{`<`}</span>,
@@ -190,8 +180,9 @@ export function NetworkCarousel({
             const rainbowKitChain = rainbowkitChainsById[chain.id];
             const chainIconSize: BoxProps['width'] = mobile ? '36' : '28';
             const chainIconUrl = rainbowKitChain?.iconUrl;
+
             return (
-              <Fragment key={chain.id}>
+              <Box key={chain.id}>
                 <CarouselButton
                   className="item"
                   currentlySelected={isCurrentChain}
@@ -206,7 +197,7 @@ export function NetworkCarousel({
                 >
                   <Box
                     style={{
-                      paddingInline: '10px',
+                      paddingInline: mobile ? '16px' : '5px',
                     }}
                     alignItems="center"
                     display="flex"
@@ -224,7 +215,6 @@ export function NetworkCarousel({
                       >
                         <AsyncImage
                           alt={chain.name}
-                          // background={chainIconBackground}
                           borderRadius="full"
                           height="full"
                           src={chainIconUrl}
@@ -257,7 +247,7 @@ export function NetworkCarousel({
                 {mobile && idx < chains?.length - 1 && (
                   <Box background="generalBorderDim" height="1" marginX="8" />
                 )}
-              </Fragment>
+              </Box>
             );
           })
         ) : (

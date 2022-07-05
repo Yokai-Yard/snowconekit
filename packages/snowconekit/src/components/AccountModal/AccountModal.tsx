@@ -24,6 +24,7 @@ export interface AccountModalProps {
   chains: ReturnType<typeof useNetwork>['chains'];
   networkError: ReturnType<typeof useSwitchNetwork>['error'];
   onSwitchNetwork?: (chainId: number) => unknown;
+  openChainModal: () => void;
 }
 
 export function AccountModal({
@@ -38,6 +39,7 @@ export function AccountModal({
   chains,
   networkError,
   onSwitchNetwork,
+  openChainModal,
 }: AccountModalProps) {
   if (!address) {
     return null;
@@ -61,6 +63,7 @@ export function AccountModal({
               chains={chains}
               networkError={networkError}
               onSwitchNetwork={onSwitchNetwork}
+              openChainModal={openChainModal}
             />
           </DialogContent>
         </Dialog>
