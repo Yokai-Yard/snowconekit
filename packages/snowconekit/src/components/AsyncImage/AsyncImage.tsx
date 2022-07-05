@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 
 import { Box, BoxProps } from '../Box/Box';
 import { AsyncImageSrc, useAsyncImage } from './useAsyncImage';
+import { SpinnerIcon } from '../Icons/Spinner';
 
 type CustomBorderColor = {
   custom: string;
@@ -15,6 +16,7 @@ interface AsyncImageProps {
   borderRadius?: BoxProps['borderRadius'];
   borderColor?: BoxProps['borderColor'] | CustomBorderColor;
   boxShadow?: BoxProps['boxShadow'];
+  loading?: boolean;
 }
 
 export function AsyncImage({
@@ -26,6 +28,7 @@ export function AsyncImage({
   height,
   src: srcProp,
   width,
+  loading,
 }: AsyncImageProps) {
   const src = useAsyncImage(srcProp);
   const isRemoteImage = src && /^http/.test(src);
@@ -91,6 +94,24 @@ export function AsyncImage({
           width="full"
         />
       ) : null}
+      {typeof loading === 'boolean' && (
+        <Box
+          display="flex"
+          position="absolute"
+          height={typeof height === 'string' ? height : undefined}
+          width={typeof width === 'string' ? width : undefined}
+          style={{
+            color: 'hotPink',
+
+            zIndex: 100,
+            opacity: loading ? 1 : 0,
+            transition: loading ? '0.6s ease' : '0.2s ease',
+            transitionDelay: loading ? '.05s' : undefined,
+          }}
+        >
+          <SpinnerIcon height="100%" width="100%" />
+        </Box>
+      )}
     </Box>
   );
 }

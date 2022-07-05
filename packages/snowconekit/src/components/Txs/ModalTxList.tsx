@@ -1,40 +1,30 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { useAccount, useNetwork } from 'wagmi';
 import { increaseHitAreaForHoverTransform } from '../../css/increaseHitAreaForHoverTransform.css';
-import { useClearRecentTransactions } from '../../transactions/useClearRecentTransactions';
 import { useRecentTransactions } from '../../transactions/useRecentTransactions';
 import { chainToExplorerUrl } from '../../utils/chainToExplorerUrl';
 import { isMobile } from '../../utils/isMobile';
-import { Box, BoxProps } from '../Box/Box';
+import { Box } from '../Box/Box';
 import { ExternalLinkIcon } from '../Icons/ExternalLink';
 import { AppContext } from '../RainbowKitProvider/AppContext';
 import { Text } from '../Text/Text';
 import { ModalTxItem } from './ModalTxItem';
-import { TxItem } from './TxItem';
-//
-//
-import { useRainbowKitChainsById } from '../RainbowKitProvider/RainbowKitChainContext';
 
 const NUMBER_OF_VISIBLE_TXS = 3;
 
 interface ModalTxListProps {
   address: ReturnType<typeof useAccount>['address'];
   chains: ReturnType<typeof useNetwork>['chains'];
-  // activeChain: ReturnType<typeof useNetwork>['activeChain'];
 }
 
 export function ModalTxList({ address, chains }: ModalTxListProps) {
   const recentTransactions = useRecentTransactions();
-  const clearRecentTransactions = useClearRecentTransactions();
   const { chain: activeChain } = useNetwork();
   const explorerLink = chainToExplorerUrl(activeChain);
   const visibleTxs = recentTransactions.slice(0, NUMBER_OF_VISIBLE_TXS);
   const hasTransactions = visibleTxs.length > 0;
   const mobile = isMobile();
   const { appName } = useContext(AppContext);
-
-  // console.log(visibleTxs);
-  // console.log(accountData);
 
   return (
     <>
@@ -47,73 +37,10 @@ export function ModalTxList({ address, chains }: ModalTxListProps) {
         paddingX={mobile ? '8' : '18'}
         style={{ backgroundColor: 'white', borderRadius: '16px 16px 0 0' }}
       >
-        {/* {hasTransactions && (
-          <Box
-            paddingBottom={mobile ? '4' : '0'}
-            paddingTop="8"
-            paddingX={mobile ? '12' : '6'}
-          >
-            <Box display="flex" justifyContent="space-between">
-              <Text
-                color="modalTextSecondary"
-                size={mobile ? '16' : '14'}
-                weight="semibold"
-              >
-                Recent Transactions
-              </Text>
-              <Box
-                style={{
-                  marginBottom: -6,
-                  marginLeft: -10,
-                  marginRight: -10,
-                  marginTop: -6,
-                }}
-              >
-                <Box
-                  as="button"
-                  borderRadius="actionButton"
-                  className={increaseHitAreaForHoverTransform.grow}
-                  display="flex"
-                  onClick={clearRecentTransactions}
-                  type="button"
-                >
-                  <Box
-                    background={{
-                      hover: 'profileForeground',
-                    }}
-                    borderRadius="actionButton"
-                    paddingX={mobile ? '8' : '12'}
-                    paddingY={mobile ? '4' : '5'}
-                    transform={{
-                      active: 'shrink',
-                    }}
-                    transition="default"
-                  >
-                    <Text
-                      color="modalTextSecondary"
-                      size={mobile ? '16' : '14'}
-                      weight="semibold"
-                    >
-                      Clear All
-                    </Text>
-                  </Box>
-                </Box>
-              </Box>
-            </Box>
-          </Box>
-        )} */}
         <Box display="flex" flexDirection="column" gap="4">
           {hasTransactions ? (
             visibleTxs.map(tx => {
-              return (
-                // <TxItem
-                //   key={tx.hash}
-                //   tx={tx}
-                //   chain={chain}
-                //   // chainIconUrl={chainIconUrl}
-                // />
-                <ModalTxItem key={tx.hash} tx={tx} chains={chains} />
-              );
+              return <ModalTxItem key={tx.hash} tx={tx} address={address} />;
             })
           ) : (
             <>
@@ -139,7 +66,15 @@ export function ModalTxList({ address, chains }: ModalTxListProps) {
         </Box>
       </Box>
       {explorerLink && (
-        <Box paddingBottom="18" paddingX={mobile ? '8' : '18'}>
+        <Box
+          paddingX={mobile ? '8' : '18'}
+          style={{
+            alignSelf: 'center',
+            backgroundColor: 'white',
+            height: '62px',
+          }}
+          background={{ hover: 'profileForeground' }}
+        >
           <Box
             as="a"
             borderRadius="menuButton"
@@ -151,7 +86,6 @@ export function ModalTxList({ address, chains }: ModalTxListProps) {
           >
             <Box
               alignItems="center"
-              background={{ hover: 'profileForeground' }}
               borderRadius="menuButton"
               color="modalTextDim"
               display="flex"

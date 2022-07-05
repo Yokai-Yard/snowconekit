@@ -7,7 +7,6 @@ import React, {
 } from 'react';
 import {
   useAccount,
-  useDisconnect,
   useNetwork,
   useSwitchNetwork,
   useBalance,
@@ -26,13 +25,12 @@ import { CopyIcon } from '../Icons/Copy';
 import { DisconnectIcon } from '../Icons/Disconnect';
 import { ShowRecentTransactionsContext } from '../RainbowKitProvider/ShowRecentTransactionsContext';
 import { Text } from '../Text/Text';
-import { TxList } from '../Txs/TxList';
 import { emojiAvatarForAddress } from '../Avatar/emojiAvatarForAddress';
 
 import { LayeredBg } from '../Icons/LayeredBg';
 import { NavButton } from './NavButton';
 import { ModalTxList } from '../Txs/ModalTxList';
-import NetworkCarousel from '../ChainModal/NetworkCarousel';
+import { NetworkCarousel } from '../NetworkCarousel/NetworkCarousel';
 import { ChainIcon } from '../Icons/ChainIcon';
 
 interface ProfileDetailsProps {
@@ -56,7 +54,6 @@ export function ProfileDetails({
   ensName,
   onClose,
   onDisconnect,
-  //
   activeChain,
   chains,
   networkError,
@@ -195,31 +192,14 @@ export function ProfileDetails({
                 </Box>
               </Box>
             </Box>
-            <NetworkCarousel
-              activeChain={activeChain}
-              chains={chains}
-              networkError={networkError}
-              onSwitchNetwork={onSwitchNetwork}
-              onClose={onClose}
-            />
-            {/* <Box
-              display="flex"
-              flexDirection="row"
-              gap="8"
-              margin="2"
-              marginTop="16"
-            >
-              <NavButton
-                action={copyAddressAction}
-                icon={copiedAddress ? <CopiedIcon /> : <CopyIcon />}
-                label={copiedAddress ? 'Copied!' : 'Copy Address'}
+            {!mobile && (
+              <NetworkCarousel
+                activeChain={activeChain}
+                chains={chains}
+                networkError={networkError}
+                onSwitchNetwork={onSwitchNetwork}
               />
-              <NavButton
-                action={onDisconnect}
-                icon={<DisconnectIcon />}
-                label="Disconnect"
-              />
-            </Box> */}
+            )}
           </Box>
           {showRecentTransactions && (
             <>

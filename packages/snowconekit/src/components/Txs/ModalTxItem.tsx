@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useNetwork } from 'wagmi';
+import React from 'react';
+import { useNetwork, useAccount } from 'wagmi';
 import { increaseHitAreaForHoverTransform } from '../../css/increaseHitAreaForHoverTransform.css';
 import { Transaction } from '../../transactions/transactionStore';
 import { chainToExplorerUrl } from '../../utils/chainToExplorerUrl';
@@ -28,33 +28,24 @@ const getTxStatusIcon = (status: Transaction['status']) => {
 };
 
 interface ModalTxProps {
+  address: ReturnType<typeof useAccount>['address'];
   tx: Transaction;
-  chains: ReturnType<typeof useNetwork>['chains'];
 }
 
-export function ModalTxItem({ tx, chains }: ModalTxProps) {
+export function ModalTxItem({ tx, address }: ModalTxProps) {
   const mobile = isMobile();
-  const Icon = getTxStatusIcon(tx.status);
   const color = tx.status === 'failed' ? 'error' : 'accentColor';
-  const { chain: activeChain } = useNetwork();
-
+  const { chain } = useNetwork();
+  const explorerLink = chainToExplorerUrl(chain);
+  const rainbowkitChainsById = useRainbowKitChainsById();
+  const rainbowKitChain = chain ? rainbowkitChainsById[chain.id] : undefined;
+  const chainIconUrl = rainbowKitChain?.iconUrl ?? undefined;
   const confirmationStatus =
     tx.status === 'confirmed'
       ? 'Confirmed'
       : tx.status === 'failed'
       ? 'Failed'
       : 'Pending';
-
-  const explorerLink = chainToExplorerUrl(activeChain);
-
-  //
-  //
-
-  const rainbowkitChainsById = useRainbowKitChainsById();
-  const rainbowKitChain = activeChain
-    ? rainbowkitChainsById[activeChain.id]
-    : undefined;
-  const chainIconUrl = rainbowKitChain?.iconUrl ?? undefined;
 
   return (
     <>
@@ -111,14 +102,21 @@ export function ModalTxItem({ tx, chains }: ModalTxProps) {
             </Badge>
 
             <Box display="flex" flexDirection="column" gap={mobile ? '3' : '1'}>
-              <Box>
+              <Box
+                style={{
+                  width: '100px',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                }}
+              >
                 <Text
                   color="modalText"
                   font="body"
                   size={mobile ? '16' : '14'}
                   weight="bold"
                 >
-                  {tx?.description}
+                  {address}
                 </Text>
               </Box>
               <Box>

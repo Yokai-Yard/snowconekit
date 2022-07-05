@@ -31,9 +31,6 @@ export const CarouselButton = React.forwardRef(
         onClick={onClick}
         ref={ref}
         type="button"
-        style={{
-          opacity: currentlySelected ? 1 : 0.5,
-        }}
       >
         <Box
           style={{ backgroundColor: 'transparent' }}

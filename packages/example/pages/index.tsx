@@ -244,7 +244,10 @@ const Example = () => {
             </div>
             <div>
               {transactionData && (
-                <div>Transaction: {JSON.stringify(transactionData)}</div>
+                // <div style={{ width: '90vw', wordWrap: 'break-word' }}>
+                //   Transaction: {JSON.stringify(transactionData)}
+                // </div>
+                <div>Success</div>
               )}
               {transactionError && <div>Error sending transaction</div>}
               {signingData && (

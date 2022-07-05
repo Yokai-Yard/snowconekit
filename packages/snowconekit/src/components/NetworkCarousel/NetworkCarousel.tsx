@@ -8,37 +8,65 @@ import { AppContext } from '../RainbowKitProvider/AppContext';
 import { useRainbowKitChainsById } from '../RainbowKitProvider/RainbowKitChainContext';
 import { Text } from '../Text/Text';
 import ReactSimplyCarousel from 'react-simply-carousel';
-import { GlassCard } from '../ProfileDetails/ProfileDetails.css';
+import {
+  GlassCard,
+  carousel,
+  backBtn,
+  forwardBtn,
+} from './NetworkCarousel.css';
 
 export interface NetworkCarouselProps {
   activeChain: ReturnType<typeof useNetwork>['chain'];
   chains: ReturnType<typeof useNetwork>['chains'];
-  onClose: () => void;
   networkError: ReturnType<typeof useSwitchNetwork>['error'];
   onSwitchNetwork?: (chainId: number) => unknown;
-  pendingChainId?: ReturnType<typeof useSwitchNetwork>['pendingChainId'];
 }
+
+export interface IconClassesProps {
+  isCurrentChain: boolean;
+  switching: boolean;
+  switchingToChain: number | null | undefined;
+}
+
+const chainIconClasses = ({
+  isCurrentChain,
+  switching,
+  switchingToChain,
+}: IconClassesProps) => {
+  const isOld = isCurrentChain && !switching && switchingToChain;
+  const opacity = (isCurrentChain || switching) && !isOld ? '1' : '0.5';
+  const size = isCurrentChain || switching ? '38px' : '33px';
+
+  const styles = {
+    width: size,
+    height: size,
+    borderRadius: '50%',
+    border: '3px solid white',
+    boxShadow: '2px 2px 4px 2px  rgba(0, 0, 0, 0.3)',
+    opacity: opacity,
+  };
+
+  return styles;
+};
 
 export function NetworkCarousel({
   activeChain,
   chains,
   networkError,
-  onClose,
   onSwitchNetwork,
-  pendingChainId,
 }: NetworkCarouselProps) {
   const { connector: activeConnector } = useAccount();
   const [switchingToChain, setSwitchingToChain] = useState<number | null>();
   const titleId = 'rk_chain_modal_title';
   const mobile = isMobile();
   const rainbowkitChainsById = useRainbowKitChainsById();
-  const [chainIndex, setChainIndex] = useState(Number);
-  const [activeSlideIndex, setActiveSlideIndex] = useState(chainIndex);
+  const [activeSlideIndex, setActiveSlideIndex] = useState(
+    chains.findIndex(chain => chain.id === activeChain?.id)
+  );
 
   const stopSwitching = useCallback(() => {
     setSwitchingToChain(null);
-    onClose();
-  }, [onClose]);
+  }, [networkError]);
 
   useEffect(() => {
     if (!activeConnector) {
@@ -47,7 +75,6 @@ export function NetworkCarousel({
 
     const stopSwitching = () => {
       setSwitchingToChain(null);
-      onClose();
     };
 
     let provider: any;
@@ -59,7 +86,7 @@ export function NetworkCarousel({
     return () => {
       provider?.removeListener('chainChanged', stopSwitching);
     };
-  }, [activeConnector, onClose, stopSwitching]);
+  }, [activeConnector, networkError, stopSwitching]);
 
   useEffect(() => {
     if (networkError && networkError.name === 'UserRejectedRequestError') {
@@ -73,17 +100,6 @@ export function NetworkCarousel({
     return null;
   }
 
-  //
-  //
-
-  useEffect(() => {
-    const activeChainIndex = chains.findIndex(
-      chain => chain.id === activeChain?.id
-    );
-    setChainIndex(activeChainIndex);
-    setActiveSlideIndex(chainIndex);
-  }, [chainIndex]);
-
   return (
     <Box
       display="flex"
@@ -91,14 +107,7 @@ export function NetworkCarousel({
       gap="14"
       paddingTop="6"
       paddingBottom="6"
-      className={GlassCard}
-      style={{
-        overflow: 'hidden',
-        borderRadius: '8px',
-        boxShadow:
-          '0px 5px 5px -3px rgb(145 158 171 / 20%), 0px 8px 10px 1px rgb(145 158 171 / 14%), 0px 3px 14px 2px rgb(145 158 171 / 12%)',
-        marginTop: '13px',
-      }}
+      className={[GlassCard, carousel]}
     >
       <Box paddingBottom="0" paddingLeft="10" paddingTop="4">
         <Text
@@ -125,43 +134,11 @@ export function NetworkCarousel({
           },
         }}
         forwardBtnProps={{
-          style: {
-            margin: '5px',
-            opacity: '.6',
-            position: 'absolute',
-            right: 8,
-            top: '48%',
-            zIndex: 100,
-            background: 'black',
-            border: 'none',
-            borderRadius: '50%',
-            color: 'white',
-            cursor: 'pointer',
-            fontSize: '20px',
-            height: 26,
-            lineHeight: 1,
-            width: 26,
-          },
+          style: forwardBtn,
           children: <span>{`>`}</span>,
         }}
         backwardBtnProps={{
-          style: {
-            margin: '5px',
-            opacity: '.6',
-            position: 'absolute',
-            left: 8,
-            top: '48%',
-            zIndex: 100,
-            background: 'black',
-            border: 'none',
-            borderRadius: '50%',
-            color: 'white',
-            cursor: 'pointer',
-            fontSize: '20px',
-            height: 26,
-            lineHeight: 1,
-            width: 26,
-          },
+          style: backBtn,
           children: <span>{`<`}</span>,
         }}
         responsiveProps={[
@@ -180,7 +157,11 @@ export function NetworkCarousel({
             const rainbowKitChain = rainbowkitChainsById[chain.id];
             const chainIconSize: BoxProps['width'] = mobile ? '36' : '28';
             const chainIconUrl = rainbowKitChain?.iconUrl;
-
+            const styles = chainIconClasses({
+              isCurrentChain,
+              switching,
+              switchingToChain,
+            });
             return (
               <Box key={chain.id}>
                 <CarouselButton
@@ -204,45 +185,18 @@ export function NetworkCarousel({
                     height={chainIconSize}
                   >
                     {chainIconUrl ? (
-                      <Box
-                        style={{
-                          width: isCurrentChain ? '38px' : '33px',
-                          height: isCurrentChain ? '38px' : '33px',
-                          borderRadius: '50%',
-                          border: '3px solid white',
-                          boxShadow: '2px 2px 4px 2px  rgba(0, 0, 0, 0.3)',
-                        }}
-                      >
+                      <Box style={styles}>
                         <AsyncImage
                           alt={chain.name}
                           borderRadius="full"
                           height="full"
                           src={chainIconUrl}
                           width="full"
+                          loading={switching}
                         />
                       </Box>
                     ) : null}
                   </Box>
-
-                  {switching && (
-                    <Box
-                      alignItems="center"
-                      display="flex"
-                      flexDirection="row"
-                      marginRight="6"
-                    >
-                      <Text color="modalText" size="14" weight="medium">
-                        Confirm in Wallet
-                      </Text>
-                      <Box
-                        background="standby"
-                        borderRadius="full"
-                        height="8"
-                        marginLeft="8"
-                        width="8"
-                      />
-                    </Box>
-                  )}
                 </CarouselButton>
                 {mobile && idx < chains?.length - 1 && (
                   <Box background="generalBorderDim" height="1" marginX="8" />
@@ -271,6 +225,7 @@ export function NetworkCarousel({
 }
 
 export default NetworkCarousel;
+
 function e(e: any) {
   throw new Error('Function not implemented.');
 }
