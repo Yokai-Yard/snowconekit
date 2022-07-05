@@ -109,12 +109,12 @@ export function ConnectButtonRenderer({
 
   const showRecentTransactions = useContext(ShowRecentTransactionsContext);
 
-  const pendingTransactions =
-    useRecentTransactions().filter(({ status }) => status === 'pending')[0];
+  const pendingTransactions = useRecentTransactions().filter(
+    ({ status }) => status === 'pending'
+  )[0];
 
   const displayRecentTransactions =
-    pendingTransactions &&
-    showRecentTransactions;
+    pendingTransactions && showRecentTransactions;
 
   const {
     setFalse: closeConnectModal,
@@ -170,8 +170,9 @@ export function ConnectButtonRenderer({
   }, [preloadImages]);
 
   const displayBalance = balanceData
-    ? `${abbreviateETHBalance(parseFloat(balanceData.formatted))} ${balanceData.symbol
-    }`
+    ? `${abbreviateETHBalance(parseFloat(balanceData.formatted))} ${
+        balanceData.symbol
+      }`
     : undefined;
 
   return (
@@ -179,29 +180,29 @@ export function ConnectButtonRenderer({
       {children({
         account: address
           ? {
-            address,
-            balanceDecimals: balanceData?.decimals,
-            balanceFormatted: balanceData?.formatted,
-            balanceSymbol: balanceData?.symbol,
-            displayBalance,
-            displayName: ensName
-              ? formatENS(ensName)
-              : formatAddress(address),
-            ensAvatar: ensAvatar ?? undefined,
-            ensName: ensName ?? undefined,
-            displayRecentTransactions,
-          }
+              address,
+              balanceDecimals: balanceData?.decimals,
+              balanceFormatted: balanceData?.formatted,
+              balanceSymbol: balanceData?.symbol,
+              displayBalance,
+              displayName: ensName
+                ? formatENS(ensName)
+                : formatAddress(address),
+              ensAvatar: ensAvatar ?? undefined,
+              ensName: ensName ?? undefined,
+              displayRecentTransactions,
+            }
           : undefined,
         accountModalOpen,
         chain: activeChain
           ? {
-            hasIcon: Boolean(chainIconUrl),
-            iconBackground: chainIconBackground,
-            iconUrl: resolvedChainIconUrl,
-            id: activeChain.id,
-            name: activeChain.name,
-            unsupported: activeChain.unsupported,
-          }
+              hasIcon: Boolean(chainIconUrl),
+              iconBackground: chainIconBackground,
+              iconUrl: resolvedChainIconUrl,
+              id: activeChain.id,
+              name: activeChain.name,
+              unsupported: activeChain.unsupported,
+            }
           : undefined,
         chainModalOpen,
         connectModalOpen,
@@ -225,9 +226,7 @@ export function ConnectButtonRenderer({
         networkError={networkError}
         onSwitchNetwork={switchNetwork}
       />
-      <TransactionModal
-        {...txProps}
-      />
+      <TransactionModal {...txProps} />
       <ChainModal
         activeChain={activeChain}
         chains={chains}

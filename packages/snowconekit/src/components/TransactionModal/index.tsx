@@ -112,7 +112,9 @@ const TransactionModal = ({
     <>
       <Dialog onClose={onClose} open={open} titleId={titleId}>
         <TxDialogContent bottomSheetOnMobile padding="8">
-          {trackedTx && <TxItem transactionStatus={trackedTx.status} mobile={mobile} />}
+          {trackedTx && (
+            <TxItem transactionStatus={trackedTx.status} mobile={mobile} />
+          )}
         </TxDialogContent>
       </Dialog>
     </>
