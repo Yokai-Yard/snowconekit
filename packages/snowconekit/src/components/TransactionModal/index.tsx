@@ -10,13 +10,15 @@ import { TxCheck } from '../Icons/TxCheck';
 import { CopiedIcon } from '../Icons/Copied';
 import * as styles from './TxDialog.css';
 import type { Transaction } from '../../transactions/transactionStore';
+import { CloseButton } from '../CloseButton/CloseButton';
 
 interface TxProps {
   transactionStatus: Transaction['status'];
   mobile: boolean;
+  onClose: () => void;
 }
 
-export function TxItem({ transactionStatus, mobile }: TxProps) {
+export function TxItem({ transactionStatus, mobile, onClose }: TxProps) {
   const pendingTx = transactionStatus === 'pending';
   const confirmedTx = transactionStatus === 'confirmed';
   const confirmationStatus =
@@ -53,9 +55,19 @@ export function TxItem({ transactionStatus, mobile }: TxProps) {
         <Box
           display="flex"
           flexDirection="row"
+          justifyContent="flex-end"
+          width="full"
+          paddingTop="4"
+          paddingRight="20"
+        >
+          <CloseButton onClose={onClose} />
+        </Box>
+        <Box
+          display="flex"
+          flexDirection="row"
           alignItems="flex-end"
           style={{
-            paddingTop: !mobile ? (confirmedTx ? '220px' : '70px') : '',
+            paddingTop: !mobile ? (confirmedTx ? '170px' : '20px') : '',
           }}
         >
           <Text
@@ -114,7 +126,11 @@ const TransactionModal = ({
       <Dialog onClose={closeTxModal} open={txModalOpen} titleId={titleId}>
         <TxDialogContent bottomSheetOnMobile padding="8">
           {trackedTx?.status && (
-            <TxItem transactionStatus={trackedTx.status} mobile={mobile} />
+            <TxItem
+              transactionStatus={trackedTx.status}
+              mobile={mobile}
+              onClose={closeTxModal}
+            />
           )}
         </TxDialogContent>
       </Dialog>

@@ -26,12 +26,12 @@ import { DisconnectIcon } from '../Icons/Disconnect';
 import { ShowRecentTransactionsContext } from '../RainbowKitProvider/ShowRecentTransactionsContext';
 import { Text } from '../Text/Text';
 import { emojiAvatarForAddress } from '../Avatar/emojiAvatarForAddress';
-
 import { LayeredBg } from '../Icons/LayeredBg';
 import { NavButton } from './NavButton';
 import { ModalTxList } from '../Txs/ModalTxList';
 import { NetworkCarousel } from '../NetworkCarousel/NetworkCarousel';
 import { ChainIcon } from '../Icons/ChainIcon';
+import Alert from '@mui/material/alert';
 
 interface ProfileDetailsProps {
   address: ReturnType<typeof useAccount>['address'];
@@ -106,13 +106,13 @@ export function ProfileDetails({
               background: `linear-gradient(52deg, ${backgroundColor}20 0%, ${backgroundColor}40 100%)`,
             }}
           >
-            {mobile && (
+            {mobile && onSwitchNetwork ? (
               <NavButton
                 action={openChainModal}
                 icon={<ChainIcon />}
                 label={'Change Network'}
               />
-            )}
+            ) : null}
             <Box style={{ flexGrow: 1 }} />
             <NavButton
               action={copyAddressAction}
@@ -192,13 +192,24 @@ export function ProfileDetails({
                 </Box>
               </Box>
             </Box>
-            {!mobile && (
-              <NetworkCarousel
-                activeChain={activeChain}
-                chains={chains}
-                networkError={networkError}
-                onSwitchNetwork={onSwitchNetwork}
-              />
+            {onSwitchNetwork ? (
+              !mobile ? (
+                <NetworkCarousel
+                  activeChain={activeChain}
+                  chains={chains}
+                  networkError={networkError}
+                  onSwitchNetwork={onSwitchNetwork}
+                />
+              ) : null
+            ) : (
+              <Alert
+                severity="warning"
+                sx={{ marginTop: '18px', borderRadius: '8px' }}
+              >
+                Your wallet does not support switching networks from
+                SnowconeKit. Try switching networks from within your wallet
+                instead.
+              </Alert>
             )}
           </Box>
           {showRecentTransactions && (

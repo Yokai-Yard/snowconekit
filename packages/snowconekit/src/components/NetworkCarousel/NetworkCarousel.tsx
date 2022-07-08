@@ -153,61 +153,60 @@ export function NetworkCarousel({
         speed={400}
         easing="ease"
       >
-        {onSwitchNetwork ? (
-          chains.map((chain, idx) => {
-            const isCurrentChain = chain.id === activeChain?.id;
-            const switching = chain.id === switchingToChain;
-            const rainbowKitChain = rainbowkitChainsById[chain.id];
-            const chainIconSize: BoxProps['width'] = mobile ? '36' : '28';
-            const chainIconUrl = rainbowKitChain?.iconUrl;
-            const styles = chainIconClasses({
-              isCurrentChain,
-              switching,
-              switchingToChain,
-            });
-            return (
-              <Box key={chain.id}>
-                <CarouselButton
-                  className="item"
-                  currentlySelected={isCurrentChain}
-                  onClick={
-                    isCurrentChain
-                      ? undefined
-                      : () => {
-                          setSwitchingToChain(chain.id);
-                          onSwitchNetwork(chain.id);
-                        }
-                  }
+        {chains.map((chain, idx) => {
+          const isCurrentChain = chain.id === activeChain?.id;
+          const switching = chain.id === switchingToChain;
+          const rainbowKitChain = rainbowkitChainsById[chain.id];
+          const chainIconSize: BoxProps['width'] = mobile ? '36' : '28';
+          const chainIconUrl = rainbowKitChain?.iconUrl;
+          const styles = chainIconClasses({
+            isCurrentChain,
+            switching,
+            switchingToChain,
+          });
+          return (
+            <Box key={chain.id}>
+              <CarouselButton
+                className="item"
+                currentlySelected={isCurrentChain}
+                onClick={
+                  isCurrentChain
+                    ? undefined
+                    : () => {
+                        setSwitchingToChain(chain.id);
+                        onSwitchNetwork && onSwitchNetwork(chain.id);
+                      }
+                }
+              >
+                <Box
+                  style={{
+                    paddingInline: mobile ? '16px' : '5px',
+                  }}
+                  alignItems="center"
+                  display="flex"
+                  height={chainIconSize}
                 >
-                  <Box
-                    style={{
-                      paddingInline: mobile ? '16px' : '5px',
-                    }}
-                    alignItems="center"
-                    display="flex"
-                    height={chainIconSize}
-                  >
-                    {chainIconUrl ? (
-                      <Box style={styles}>
-                        <AsyncImage
-                          alt={chain.name}
-                          borderRadius="full"
-                          height="full"
-                          src={chainIconUrl}
-                          width="full"
-                        />
-                      </Box>
-                    ) : null}
-                  </Box>
-                </CarouselButton>
-                {mobile && idx < chains?.length - 1 && (
-                  <Box background="generalBorderDim" height="1" marginX="8" />
-                )}
-              </Box>
-            );
-          })
-        ) : (
-          <Box
+                  {chainIconUrl ? (
+                    <Box style={styles}>
+                      <AsyncImage
+                        alt={chain.name}
+                        borderRadius="full"
+                        height="full"
+                        src={chainIconUrl}
+                        width="full"
+                      />
+                    </Box>
+                  ) : null}
+                </Box>
+              </CarouselButton>
+              {mobile && idx < chains?.length - 1 && (
+                <Box background="generalBorderDim" height="1" marginX="8" />
+              )}
+            </Box>
+          );
+        })}
+      </ReactSimplyCarousel>
+      {/* <Box
             background="generalBorder"
             borderRadius="menuButton"
             paddingX="18"
@@ -218,9 +217,7 @@ export function NetworkCarousel({
               {appName ?? 'this app'}. Try switching networks from within your
               wallet instead.
             </Text>
-          </Box>
-        )}
-      </ReactSimplyCarousel>
+          </Box> */}
     </Box>
     // </Box>
   );
