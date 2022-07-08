@@ -5,14 +5,16 @@ const storageKey = 'rk-transactions';
 
 type TransactionStatus = 'pending' | 'confirmed' | 'failed';
 
-export interface Transaction {
+export type NewTransaction = {
   hash: string;
   description: string;
-  status: TransactionStatus;
   confirmations?: number;
-}
+};
 
-export type NewTransaction = Omit<Transaction, 'status'>;
+export interface Transaction extends NewTransaction {
+  status: TransactionStatus;
+  timeStamp: number;
+}
 
 type Data = Record<string, Record<number, Transaction[] | undefined>>;
 
@@ -92,9 +94,11 @@ export function createTransactionStore({
       throw new Error(['Unable to add transaction', ...errors].join('\n'));
     }
 
+    const now = new Date().getTime();
+
     updateTransactions(account, chainId, transactions => {
       return [
-        { ...transaction, status: 'pending' },
+        { ...transaction, status: 'pending', timeStamp: now },
         ...transactions.filter(({ hash }) => {
           // Omit any duplicate transactions
           return hash !== transaction.hash;

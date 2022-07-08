@@ -68,7 +68,7 @@ export function ConnectButton({
             {mounted && account ? (
               <>
                 {pendingTransactions && setTx(pendingTransactions)}
-                {chain && (chains.length > 1 || unsupportedChain) && (
+                {chain && unsupportedChain && (
                   <Box
                     alignItems="center"
                     as="button"
@@ -104,53 +104,19 @@ export function ConnectButton({
                     transition="default"
                     type="button"
                   >
-                    {unsupportedChain ? (
-                      <Box
-                        alignItems="center"
-                        display="flex"
-                        height="24"
-                        paddingX="4"
-                      >
-                        Wrong network
-                      </Box>
-                    ) : (
-                      <Box alignItems="center" display="flex" gap="6">
-                        {chain.hasIcon ? (
-                          <Box
-                            display={mapResponsiveValue(chainStatus, value =>
-                              value === 'full' || value === 'icon'
-                                ? 'block'
-                                : 'none'
-                            )}
-                            height="24"
-                            width="24"
-                          >
-                            <AsyncImage
-                              alt={chain.name ?? 'Chain icon'}
-                              background={chain.iconBackground}
-                              borderRadius="full"
-                              height="24"
-                              src={chain.iconUrl}
-                              width="24"
-                            />
-                          </Box>
-                        ) : null}
+                    {unsupportedChain && (
+                      <Box>
                         <Box
-                          display={mapResponsiveValue(chainStatus, value => {
-                            if (value === 'icon' && !chain.iconUrl) {
-                              return 'block'; // Show the chain name if there is no iconUrl
-                            }
-
-                            return value === 'full' || value === 'name'
-                              ? 'block'
-                              : 'none';
-                          })}
+                          alignItems="center"
+                          display="flex"
+                          height="24"
+                          paddingX="4"
                         >
-                          {chain.name ?? chain.id}
+                          Wrong network
                         </Box>
+                        <DropdownIcon />
                       </Box>
                     )}
-                    <DropdownIcon />
                   </Box>
                 )}
 
