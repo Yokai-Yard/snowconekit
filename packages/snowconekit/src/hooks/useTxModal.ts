@@ -39,7 +39,7 @@ const useTxModal = ({ closeTxModal, openTxModal, txModalOpen }: stateProps) => {
     setTimeout(() => {
       closeTxModal();
       setTrackedTx(null);
-    }, 300);
+    }, 3000);
   };
 
   useEffect(() => {
