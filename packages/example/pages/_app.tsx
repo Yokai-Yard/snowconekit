@@ -45,16 +45,16 @@ const avalancheChain: Chain = {
       'https://nd-274-434-047.p2pify.com/648ffb21504d82b842193feaafb6c1f2/ext/bc/C/rpc',
   },
 
-  testnet: false,
+  testnet: true,
 };
 
 const { chains, provider, webSocketProvider } = configureChains(
   [
+    avalancheChain,
     chain.mainnet,
     chain.polygon,
     chain.optimism,
     chain.arbitrum,
-    avalancheChain,
     ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true'
       ? [chain.goerli, chain.kovan, chain.rinkeby, chain.ropsten]
       : []),

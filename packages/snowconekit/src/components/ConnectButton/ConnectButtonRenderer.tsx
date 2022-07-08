@@ -35,6 +35,7 @@ import { abbreviateETHBalance } from './abbreviateETHBalance';
 import { formatAddress } from './formatAddress';
 import { formatENS } from './formatENS';
 import useBooleanState from '../../hooks/useBooleanState';
+import type { Transaction } from '../../transactions/transactionStore';
 import useTxModal from '../../hooks/useTxModal';
 
 export interface ConnectButtonRendererProps {
@@ -65,6 +66,8 @@ export interface ConnectButtonRendererProps {
     accountModalOpen: boolean;
     chainModalOpen: boolean;
     connectModalOpen: boolean;
+    setTx: (tx: Transaction) => void;
+    pendingTransactions: Transaction;
   }) => ReactNode;
 }
 
@@ -105,8 +108,6 @@ export function ConnectButtonRenderer({
 
   const resolvedChainIconUrl = useAsyncImage(chainIconUrl);
 
-  const { setTx, txProps } = useTxModal();
-
   const showRecentTransactions = useContext(ShowRecentTransactionsContext);
 
   const pendingTransactions = useRecentTransactions().filter(
@@ -117,15 +118,21 @@ export function ConnectButtonRenderer({
     pendingTransactions && showRecentTransactions;
 
   const {
-    setFalse: closeConnectModal,
-    setTrue: openConnectModal,
-    value: connectModalOpen,
-  } = useBooleanState(false);
-
-  const {
     setFalse: closeTxModal,
     setTrue: openTxModal,
     value: txModalOpen,
+  } = useBooleanState(false);
+
+  const { setTx, trackedTx } = useTxModal({
+    closeTxModal,
+    openTxModal,
+    txModalOpen,
+  });
+
+  const {
+    setFalse: closeConnectModal,
+    setTrue: openConnectModal,
+    value: connectModalOpen,
   } = useBooleanState(false);
 
   const {
@@ -139,10 +146,6 @@ export function ConnectButtonRenderer({
     setTrue: openChainModal,
     value: chainModalOpen,
   } = useBooleanState(false);
-
-  useEffect(() => {
-    pendingTransactions && setTx(pendingTransactions);
-  }, [pendingTransactions]);
 
   useEffect(() => {
     closeConnectModal();
@@ -210,6 +213,8 @@ export function ConnectButtonRenderer({
         openAccountModal,
         openChainModal,
         openConnectModal,
+        setTx,
+        pendingTransactions,
       })}
 
       <ConnectModal onClose={closeConnectModal} open={connectModalOpen} />
@@ -227,7 +232,11 @@ export function ConnectButtonRenderer({
         onSwitchNetwork={switchNetwork}
         openChainModal={openChainModal}
       />
-      <TransactionModal {...txProps} />
+      <TransactionModal
+        closeTxModal={closeTxModal}
+        txModalOpen={txModalOpen}
+        trackedTx={trackedTx}
+      />
       <ChainModal
         activeChain={activeChain}
         chains={chains}

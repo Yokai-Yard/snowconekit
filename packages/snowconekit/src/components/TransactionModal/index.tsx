@@ -6,7 +6,6 @@ import { Box } from '../Box/Box';
 import { Text } from '../Text/Text';
 import { Rocket } from '../Icons/Rocket';
 import { ImpulseSpinner, SphereSpinner } from 'react-spinners-kit';
-import { DialogContent } from '../Dialog/DialogContent';
 import { TxCheck } from '../Icons/TxCheck';
 import { CopiedIcon } from '../Icons/Copied';
 import * as styles from './TxDialog.css';
@@ -16,6 +15,7 @@ interface TxProps {
   transactionStatus: Transaction['status'];
   mobile: boolean;
 }
+
 export function TxItem({ transactionStatus, mobile }: TxProps) {
   const pendingTx = transactionStatus === 'pending';
   const confirmedTx = transactionStatus === 'confirmed';
@@ -37,7 +37,12 @@ export function TxItem({ transactionStatus, mobile }: TxProps) {
     );
 
   return (
-    <>
+    <Box
+      style={{
+        width: mobile ? '100vw' : '476px',
+        height: mobile ? '' : '500px',
+      }}
+    >
       <Box
         display="flex"
         flexDirection="column"
@@ -86,33 +91,29 @@ export function TxItem({ transactionStatus, mobile }: TxProps) {
           </Box>
         )}
       </Box>
-    </>
+    </Box>
   );
 }
 
 export interface TransactionModalProps {
-  open: boolean;
-  onClose: () => void;
+  txModalOpen: boolean;
+  closeTxModal: () => void;
   trackedTx: Transaction | null;
 }
 
 const TransactionModal = ({
-  onClose,
-  open,
+  txModalOpen,
+  closeTxModal,
   trackedTx,
 }: TransactionModalProps) => {
   const mobile = isMobile();
   const titleId = 'rk_account_modal_title';
 
-  useEffect(() => {
-    console.log(trackedTx);
-  }, [trackedTx]);
-
   return (
     <>
-      <Dialog onClose={onClose} open={open} titleId={titleId}>
+      <Dialog onClose={closeTxModal} open={txModalOpen} titleId={titleId}>
         <TxDialogContent bottomSheetOnMobile padding="8">
-          {trackedTx && (
+          {trackedTx?.status && (
             <TxItem transactionStatus={trackedTx.status} mobile={mobile} />
           )}
         </TxDialogContent>

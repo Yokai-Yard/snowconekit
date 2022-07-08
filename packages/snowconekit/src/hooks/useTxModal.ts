@@ -1,33 +1,57 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import useBooleanState from '../hooks/useBooleanState';
 import type { Transaction } from '../transactions/transactionStore';
 import { useRecentTransactions } from '../transactions/useRecentTransactions';
 
 type txModalProps = Transaction | null;
 
-const useTxModal = () => {
-  const [tx, setTx] = React.useState<txModalProps>(null);
-  const trackedTx = useRecentTransactions().filter(
-    ({ hash }) => hash === tx?.hash
-  )[0];
+type Props = {
+  pendingTransactions: Transaction;
+  openTxModal: () => void;
+};
 
-  const {
-    setFalse: onClose,
-    setTrue: openTxModal,
-    value: open,
-  } = useBooleanState(false);
+type stateProps = {
+  closeTxModal: () => void;
+  openTxModal: () => void;
+  txModalOpen: boolean;
+};
+
+const useTxModal = ({ closeTxModal, openTxModal, txModalOpen }: stateProps) => {
+  const [trackedTx, setTrackedTx] = useState<txModalProps>(null);
+
+  const transactions = useRecentTransactions();
+
+  const findTx = (tx: txModalProps) =>
+    tx && transactions.filter(({ hash }) => hash === tx?.hash)[0];
+
+  const setTx = (transaction: Transaction) => {
+    if (trackedTx) return;
+    if (!trackedTx && transaction) {
+      setTrackedTx(findTx(transaction));
+    }
+  };
 
   useEffect(() => {
-    trackedTx?.status === 'pending' && openTxModal();
-  }, [tx]);
-
-  useEffect(() => {
-    console.log(trackedTx);
+    trackedTx && !txModalOpen && openTxModal();
   }, [trackedTx]);
 
-  const txProps = { trackedTx, open, onClose };
+  const handleonClose = () => {
+    setTimeout(() => {
+      closeTxModal();
+      setTrackedTx(null);
+    }, 300);
+  };
 
-  return { setTx, txProps };
+  useEffect(() => {
+    const updatedTx = findTx(trackedTx);
+    trackedTx?.status !== updatedTx?.status && setTrackedTx(updatedTx);
+  }, [transactions]);
+
+  useEffect(() => {
+    trackedTx && findTx(trackedTx)?.status === 'confirmed' && handleonClose();
+  }, [trackedTx, transactions]);
+
+  return { setTx, trackedTx };
 };
 
 export default useTxModal;

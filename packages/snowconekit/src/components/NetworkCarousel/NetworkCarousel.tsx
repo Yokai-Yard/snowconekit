@@ -66,6 +66,9 @@ export function NetworkCarousel({
 
   const stopSwitching = useCallback(() => {
     setSwitchingToChain(null);
+    setActiveSlideIndex(
+      chains.findIndex(chain => chain.id === activeChain?.id)
+    );
   }, [networkError]);
 
   useEffect(() => {
@@ -192,7 +195,6 @@ export function NetworkCarousel({
                           height="full"
                           src={chainIconUrl}
                           width="full"
-                          loading={switching}
                         />
                       </Box>
                     ) : null}
