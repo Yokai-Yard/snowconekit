@@ -12,6 +12,7 @@ import {
   useAddRecentTransaction,
   useSendTransaction,
 } from '../../snowconekit/dist';
+import { Box } from '../../snowconekit/src/components/Box/Box';
 
 type ConnectButtonProps = ComponentProps<typeof ConnectButton>;
 type ExtractString<Value> = Value extends string ? Value : never;
@@ -219,6 +220,77 @@ const Example = () => {
             <h3>
               Example Actions {!isConnected && <span>(not connected)</span>}
             </h3>
+
+            <div
+              style={{
+                backgroundColor: 'rgba(209, 209, 209, 0.5)',
+                height: '72px',
+                width: '21px',
+                borderRadius: '14px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'column',
+              }}
+            >
+              <div
+                style={{
+                  position: 'relative',
+                  top: 8,
+                  zIndex: 1,
+                  height: '50px',
+                  borderRight: '1px solid #A3A3A3',
+                }}
+              />
+              <div
+                style={{
+                  position: 'relative',
+                  top: -49,
+                  // right: 0,
+                  zIndex: 10,
+                  backgroundColor: 'rgb(16, 194, 10)',
+                  height: '9px',
+                  width: '9px',
+                  borderRadius: '50%',
+                }}
+              />
+              <div
+                style={{
+                  position: 'relative',
+                  top: -25,
+                  right: 0,
+                  zIndex: 10,
+                  backgroundColor: 'black',
+                  // backgroundColor: 'rgb(255, 255, 0)',
+                  height: '9px',
+                  width: '9px',
+                  borderRadius: '50%',
+                  margin: -10,
+                }}
+              />
+              <div
+                style={{
+                  position: 'relative',
+                  top: 1,
+                  // right: 8.2,
+                  zIndex: 10,
+                  backgroundColor: 'rgb(241, 29, 29)',
+                  height: '9px',
+                  width: '9px',
+                  borderRadius: '50%',
+                }}
+              />
+            </div>
+
+            {/* 
+
+
+
+
+
+
+
+*/}
             <div style={{ display: 'flex', gap: 12, paddingBottom: 12 }}>
               <button
                 disabled={!isConnected}

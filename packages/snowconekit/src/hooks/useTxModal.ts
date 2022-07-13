@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import useBooleanState from '../hooks/useBooleanState';
+import { useState, useEffect } from 'react';
 import type { Transaction } from '../transactions/transactionStore';
 import { useRecentTransactions } from '../transactions/useRecentTransactions';
 
@@ -39,7 +38,7 @@ const useTxModal = ({ closeTxModal, openTxModal, txModalOpen }: stateProps) => {
     setTimeout(() => {
       closeTxModal();
       setTrackedTx(null);
-    }, 700);
+    }, 5000);
   };
 
   useEffect(() => {

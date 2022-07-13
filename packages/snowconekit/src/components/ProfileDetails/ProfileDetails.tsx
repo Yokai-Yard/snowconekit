@@ -31,6 +31,8 @@ import { NavButton } from './NavButton';
 import { ModalTxList } from '../Txs/ModalTxList';
 import { NetworkCarousel } from '../NetworkCarousel/NetworkCarousel';
 import { ChainIcon } from '../Icons/ChainIcon';
+import { AsyncImage } from '../AsyncImage/AsyncImage';
+import DangerIcon from '../Icons/danger.png';
 
 interface ProfileDetailsProps {
   address: ReturnType<typeof useAccount>['address'];
@@ -94,7 +96,6 @@ export function ProfileDetails({
   const balance = Number(ethBalance).toPrecision(3);
   const titleId = 'rk_profile_title';
   const mobile = isMobile();
-
   return (
     <>
       <Box display="flex" flexDirection="column">
@@ -153,9 +154,9 @@ export function ProfileDetails({
                     marginTop={'44'}
                     textAlign="left"
                     /* style={{
-                    textShadow:
-                      '0px 1px 1px rgba(0,0,0, .15), 0px -1px 1.5px rgba(255,255,255, .5)',
-                  }} */
+                  textShadow:
+                    '0px 1px 1px rgba(0,0,0, .15), 0px -1px 1.5px rgba(255,255,255, .5)',
+                }} */
                   >
                     <Text
                       as="h1"
@@ -201,10 +202,26 @@ export function ProfileDetails({
                 />
               ) : null
             ) : (
-              <Box style={{ marginTop: '18px', borderRadius: '8px' }}>
-                Your wallet does not support switching networks from
-                SnowconeKit. Try switching networks from within your wallet
-                instead.
+              <Box
+                display="flex"
+                flexDirection="row"
+                style={{
+                  backgroundColor: 'rgb(256,244,226)',
+                  marginTop: '18px',
+                  borderRadius: '8px',
+                  padding: '16px',
+                }}
+              >
+                <Box style={{ paddingRight: '12px', paddingTop: '4px' }}>
+                  <img src={DangerIcon} alt="danger" />
+                </Box>
+                <Box style={{ color: 'rgb(102, 60, 0)' }}>
+                  <Text size="14" weight="regular" color={undefined}>
+                    Your wallet does not support switching networks from
+                    SnowconeKit. Try switching networks from within your wallet
+                    instead.
+                  </Text>
+                </Box>
               </Box>
             )}
           </Box>

@@ -14,9 +14,11 @@ export const Rocket = () => {
     <>
       <Box
         style={{
+          // display: 'flex',
+          transform: 'scale(.8)',
           position: 'relative',
-          width: '125px',
-          height: '200px',
+          top: '50px',
+          height: '120px',
           zIndex: '1',
         }}
       >
@@ -24,7 +26,9 @@ export const Rocket = () => {
       </Box>
       <Box
         style={{
-          transform: 'rotate(90deg)',
+          position: 'relative',
+          top: '40px',
+          transform: ' scale(.6) rotate(90deg) ',
         }}
       >
         <PushSpinner color="white" />

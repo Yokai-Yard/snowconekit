@@ -236,6 +236,9 @@ export function ConnectButtonRenderer({
         closeTxModal={closeTxModal}
         txModalOpen={txModalOpen}
         trackedTx={trackedTx}
+        chainIconBackground={chainIconBackground}
+        address={address}
+        activeChain={activeChain}
       />
       <ChainModal
         activeChain={activeChain}

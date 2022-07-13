@@ -1,24 +1,39 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useMemo } from 'react';
 import { isMobile } from '../../utils/isMobile';
 import { Dialog } from '../Dialog/Dialog';
 import { TxDialogContent } from '../Dialog/TxDialogContent';
 import { Box } from '../Box/Box';
 import { Text } from '../Text/Text';
 import { Rocket } from '../Icons/Rocket';
-import { ImpulseSpinner, SphereSpinner } from 'react-spinners-kit';
-import { TxCheck } from '../Icons/TxCheck';
+import { SphereSpinner } from 'react-spinners-kit';
 import { CopiedIcon } from '../Icons/Copied';
 import * as styles from './TxDialog.css';
 import type { Transaction } from '../../transactions/transactionStore';
 import { CloseButton } from '../CloseButton/CloseButton';
+import { useAccount, useNetwork } from 'wagmi';
+import TxStatusImage from './TxStatusImage';
+import { StatusBox, BoxInfo } from './StatusBox.css';
+import { touchableStyles } from '../../css/touchableStyles';
+import { ExternalLinkIcon } from '../Icons/ExternalLink';
+import { chainToExplorerUrl } from '../../utils/chainToExplorerUrl';
 
 interface TxProps {
   transactionStatus: Transaction['status'];
   mobile: boolean;
   onClose: () => void;
+  chainIconBackground?: string;
+  address: ReturnType<typeof useAccount>['address'];
+  activeChain: ReturnType<typeof useNetwork>['chain'];
 }
 
-export function TxItem({ transactionStatus, mobile, onClose }: TxProps) {
+export function TxItem({
+  transactionStatus,
+  mobile,
+  onClose,
+  chainIconBackground,
+  address,
+  activeChain,
+}: TxProps) {
   const pendingTx = transactionStatus === 'pending';
   const confirmedTx = transactionStatus === 'confirmed';
   const confirmationStatus =
@@ -28,95 +43,123 @@ export function TxItem({ transactionStatus, mobile, onClose }: TxProps) {
           <CopiedIcon />
         </Box>
       ) : (
-        <Box style={{ color: 'white' }}>
-          <TxCheck />
-        </Box>
+        'Transaction Confirmed'
       )
     ) : transactionStatus === 'failed' ? (
-      'Failed'
+      'Transaction Failed'
     ) : (
-      'Pending Transaction'
+      `Awaiting Confirmations on ${activeChain?.name} Network`
     );
+  const { chain: chain } = useNetwork();
+  const explorerLink = chainToExplorerUrl(chain);
+
+  console.log(explorerLink);
 
   return (
     <Box
-      style={{
-        width: mobile ? '100vw' : '476px',
-        height: mobile ? '' : '500px',
-      }}
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      overflow="hidden"
+      height="40"
+      style={{ boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)' }}
     >
       <Box
         display="flex"
-        flexDirection="column"
-        alignItems="center"
-        overflow="hidden"
-        style={{ gap: mobile ? '10px' : '45px' }}
+        flexDirection="row"
+        justifyContent="flex-end"
+        width="full"
+        paddingRight="16"
+        style={{
+          background: `linear-gradient(52deg, ${chainIconBackground} 20 0%,  ${chainIconBackground} 40 100%)`,
+        }}
       >
-        <Box
-          display="flex"
-          flexDirection="row"
-          justifyContent="flex-end"
-          width="full"
-          paddingTop="4"
-          paddingRight="20"
-        >
-          <CloseButton onClose={onClose} />
+        <CloseButton onClose={onClose} />
+      </Box>
+
+      {!mobile ? (
+        <Box className={[pendingTx ? styles.onEnter : styles.onExit]}>
+          <Rocket />
         </Box>
+      ) : (
+        <Box style={{ marginBottom: '3px' }}>
+          {pendingTx && <SphereSpinner size={18} />}
+        </Box>
+      )}
+      <Box className={StatusBox}>
+        <Box className={BoxInfo}>
+          <Box
+            style={{
+              alignSelf: 'center',
+              width: '200px',
+            }}
+          >
+            <Text color="modalText" font="body" size="16" weight="medium">
+              {confirmationStatus}
+            </Text>
+            {/* {explorerLink && ( */}
+            <Box paddingX={mobile ? '8' : '18'}></Box> {/* )} */}
+          </Box>
+
+          <Box style={{ paddingTop: '20px' }}>
+            <TxStatusImage transactionStatus={transactionStatus} />
+          </Box>
+        </Box>
+
         <Box
+          alignItems="center"
+          as="a"
+          background={{ hover: 'profileForeground' }}
+          borderRadius="menuButton"
+          className={touchableStyles({ active: 'shrink' })}
+          color="modalTextDim"
           display="flex"
           flexDirection="row"
-          alignItems="flex-end"
-          style={{
-            paddingTop: !mobile ? (confirmedTx ? '170px' : '20px') : '',
-          }}
+          href={`${explorerLink}/address/${address}`}
+          justifyContent="flex-start"
+          paddingX="28"
+          paddingBottom="16"
+          rel="noreferrer noopener"
+          style={{ willChange: 'transform' }}
+          target="_blank"
+          transition="default"
+          width="full"
+          {...(mobile ? { paddingLeft: '12' } : {})}
         >
           <Text
-            color="accentColorForeground"
+            color="modalText"
             font="body"
-            size={mobile ? '14' : '23'}
-            weight="medium"
+            size={mobile ? '16' : '14'}
+            // weight={mobile ? 'semibold' : 'bold'}
           >
-            {confirmationStatus}
+            View on Explorer
           </Text>
-          {pendingTx ? (
-            <Box
-              style={{
-                paddingBottom: mobile ? '4px' : '6px',
-                paddingLeft: '2px',
-              }}
-            >
-              <ImpulseSpinner
-                frontColor="white"
-                backColor="white"
-                size={mobile ? 12 : 14}
-              />
-            </Box>
-          ) : null}
+          <Box paddingLeft="8">
+            <ExternalLinkIcon />
+          </Box>
         </Box>
-        {!mobile ? (
-          <Box className={[pendingTx ? styles.onEnter : styles.onExit]}>
-            <Rocket />
-          </Box>
-        ) : (
-          <Box style={{ marginBottom: '3px' }}>
-            {pendingTx && <SphereSpinner size={18} />}
-          </Box>
-        )}
       </Box>
     </Box>
   );
 }
 
 export interface TransactionModalProps {
+  chainIconBackground?: string;
   txModalOpen: boolean;
   closeTxModal: () => void;
   trackedTx: Transaction | null;
+  address: ReturnType<typeof useAccount>['address'];
+  activeChain: ReturnType<typeof useNetwork>['chain'];
 }
 
 const TransactionModal = ({
   txModalOpen,
   closeTxModal,
   trackedTx,
+  address,
+  chainIconBackground,
+  activeChain,
 }: TransactionModalProps) => {
   const mobile = isMobile();
   const titleId = 'rk_account_modal_title';
@@ -124,12 +167,19 @@ const TransactionModal = ({
   return (
     <>
       <Dialog onClose={closeTxModal} open={txModalOpen} titleId={titleId}>
-        <TxDialogContent bottomSheetOnMobile padding="8">
+        <TxDialogContent
+          bottomSheetOnMobile
+          padding="0"
+          chainIconBackground={chainIconBackground}
+        >
           {trackedTx?.status && (
             <TxItem
               transactionStatus={trackedTx.status}
               mobile={mobile}
               onClose={closeTxModal}
+              chainIconBackground={chainIconBackground}
+              address={address}
+              activeChain={activeChain}
             />
           )}
         </TxDialogContent>
@@ -138,3 +188,7 @@ const TransactionModal = ({
   );
 };
 export default TransactionModal;
+
+// pendingtx = awaiting confirmations from "X" network
+// confirmedtx = transaction confirmed
+// failedtx = transaction failed
