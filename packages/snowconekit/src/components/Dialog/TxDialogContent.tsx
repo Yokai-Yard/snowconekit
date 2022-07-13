@@ -11,6 +11,7 @@ interface TxDialogContentProps {
   padding?: BoxProps['padding'];
   marginTop?: BoxProps['marginTop'];
   wide?: boolean;
+  chainIconBackground?: string;
 }
 
 export function TxDialogContent({
@@ -19,8 +20,11 @@ export function TxDialogContent({
   marginTop,
   padding = '16',
   wide = false,
+  chainIconBackground,
 }: TxDialogContentProps) {
   const mobile = isMobile();
+
+  console.log(chainIconBackground);
 
   return (
     <Box
@@ -34,13 +38,12 @@ export function TxDialogContent({
         mobile && bottomSheetOnMobile ? styles.bottomSheetOverrides : null,
       ].join(' ')}
       style={{
-        width: mobile ? '100vw' : '476px',
-        height: mobile ? '' : '500px',
+        width: mobile ? '100vw' : '360px',
+        height: mobile ? '' : '360px',
+        backgroundColor: `${chainIconBackground}`,
       }}
     >
       <Box padding={padding}>{children}</Box>
     </Box>
   );
 }
-
-// write a function that allows me to use copilot for free for forever

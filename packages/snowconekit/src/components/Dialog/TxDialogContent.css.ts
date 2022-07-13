@@ -23,7 +23,10 @@ export const dialogContent = style([
     'boxSizing': 'content-box',
     'maxWidth': '100vw',
     'width': '360px',
-    'backgroundImage': 'linear-gradient(to right, #c73154, #ff6680)',
+    // '&.avax': {
+    'backgroundImage':
+      'linear-gradient(to right, rgba(255,255,255,0), rgba(0,0,0,.2))',
+    // },
   },
 ]);
 

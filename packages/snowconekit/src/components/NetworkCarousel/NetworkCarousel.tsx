@@ -126,7 +126,7 @@ export function NetworkCarousel({
       <ReactSimplyCarousel
         centerMode={true}
         updateOnItemClick={true}
-        hideNavIfAllVisible={false}
+        hideNavIfAllVisible={true}
         activeSlideIndex={activeSlideIndex}
         onRequestChange={setActiveSlideIndex}
         itemsToShow={5}
