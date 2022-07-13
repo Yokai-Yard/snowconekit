@@ -9,12 +9,10 @@ import {
 } from '@sirbenchalot/snowconekit';
 import clsx from 'clsx';
 import { Box } from 'components/Box/Box';
-import { MeshGradient } from 'components/MeshGradient/MeshGradient';
 import { chains, Provider } from 'components/Provider/Provider';
 import { Text } from 'components/Text/Text';
 import { Wrapper } from 'components/Wrapper/Wrapper';
 import { motion } from 'framer-motion';
-import { isAndroid } from 'lib/isMobile';
 import { useMounted } from 'lib/useMounted';
 import React, { useState } from 'react';
 import { radio, ring } from './Playground.css';
@@ -80,7 +78,7 @@ export function Playground() {
     borderRadius: radii,
   });
 
-  const gradient = gradientColors[accent];
+  /* const gradient = gradientColors[accent]; */
 
   return useMounted() ? (
     <Box
@@ -94,7 +92,7 @@ export function Playground() {
         position="absolute"
         style={{ height: '100%', width: '100%' }}
       >
-        {isAndroid() && (
+        {/*  {isAndroid() && (
           <motion.div
             animate={{
               backgroundImage: `linear-gradient(136deg, rgb(${gradient[2]}) 0%, rgb(${gradient[0]}) 100%)`,
@@ -103,16 +101,16 @@ export function Playground() {
             style={{ width: '100%', height: '100%' }}
             transition={{ duration: 1.5 }}
           />
-        )}
+        )} */}
 
-        {!isAndroid() && (
+        {/* {!isAndroid() && (
           <MeshGradient
             backgroundColor="#1f4fcc"
             u_c1={gradient[0]}
             u_c2={gradient[1]}
             u_c3={gradient[2]}
           />
-        )}
+        )} */}
       </Box>
       <Box position="relative">
         <Wrapper>
@@ -123,7 +121,7 @@ export function Playground() {
             style={{ lineHeight: 1 }}
             weight="bold"
           >
-            Give RainbowKit a spin
+            Give SnowConeKit a spin
           </Text>
           <Text
             align={{ xs: 'left', md: 'center' }}
@@ -135,7 +133,7 @@ export function Playground() {
             weight="semibold"
           >
             Make your Ethereum login experience feel right at home on your
-            website. RainbowKit allows you to fully customize color, border
+            website. SnowConeKit allows you to fully customize color, border
             radius, wallet providers and a lot more — all through an easy-to-use
             API. Get a feel for it below!
           </Text>

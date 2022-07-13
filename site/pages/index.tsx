@@ -17,38 +17,22 @@ import { useCoolMode } from 'lib/useCoolMode';
 import NextImage from 'next/image';
 import NextLink from 'next/link';
 import React, { Ref, useState } from 'react';
-import { useAccount } from 'wagmi';
 
 export default function Home() {
-  const { isConnected } = useAccount();
-  const ref = useCoolMode('/rainbow.svg', !isConnected) as Ref<HTMLDivElement>;
-
   return (
     <Box
-      backgroundColor="background"
       data-mode="dark"
-      ref={ref}
-      style={{ minHeight: '100vh', overflow: 'hidden' }}
+      style={{
+        minHeight: '100vh',
+        overflow: 'hidden',
+        background: 'radial-gradient(#ff66cc 0%, rgba(0,0,0,1) 100%);)',
+      }}
     >
       <TitleAndMetaTags color="black" />
       <Header darkMode />
       <Wrapper>
         <Box marginTop="11" textAlign="center">
-          <Text
-            as="h1"
-            marginBottom="3"
-            size={{ xs: '5', md: '8' }}
-            style={{
-              backgroundImage: `linear-gradient(270deg, ${vars.colors.purple50} 0%, ${vars.colors.blue50} 100%)`,
-              display: 'inline-block',
-              lineHeight: 1,
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-            }}
-            weight="bold"
-          >
-            RainbowKit
-          </Text>
+          <NextImage height="136px" src="/SnowConeKitNeon.svg" width="969px" />
           <Text
             as="h2"
             marginBottom="5"
@@ -56,31 +40,23 @@ export default function Home() {
             style={{ lineHeight: 1 }}
             weight="bold"
           >
-            The best way to connect a wallet
+            A beautiful wallet experience
           </Text>
-          <Text
-            as="p"
-            marginBottom="10"
-            size={{ xs: '4', md: '5' }}
-            style={{ lineHeight: 1 }}
-            weight="semibold"
-          >
-            Designed for everyone. Built for developers.
-          </Text>
-          <Box marginBottom="8">
-            <InstallScript />
-          </Box>
-          <Box marginBottom={{ xs: '0', md: '11' }}>
+
+          {/* <Box marginBottom={{ xs: '0', md: '2' }}>
             <NextLink href="/docs" passHref>
               <Button as="a" size="xl" variant="purpleGradient">
                 View the Docs
               </Button>
             </NextLink>
-          </Box>
+          </Box> */}
         </Box>
       </Wrapper>
 
       <Hero />
+      <Box display="flex" justifyContent="center" marginBottom="8">
+        <InstallScript />
+      </Box>
 
       <Playground />
 
@@ -110,7 +86,7 @@ export default function Home() {
             style={{ lineHeight: '28px', maxWidth: 720 }}
             weight="semibold"
           >
-            RainbowKit provides a fast, easy and highly customizable way for
+            SnowConeKit provides a fast, easy and highly customizable way for
             developers to add a great wallet experience to their application. We
             handle the hard stuff so developers and teams can focus on building
             amazing products and communities for their users.
@@ -193,9 +169,9 @@ export default function Home() {
               top="3"
             >
               <NextImage
-                alt="Rainbow logo"
+                alt="SnowCone logo"
                 height={36}
-                src="/rainbow-logo.png"
+                src="/NeonIcon.png"
                 width={36}
               />
             </Box>
@@ -207,9 +183,9 @@ export default function Home() {
               top="3"
             >
               <NextImage
-                alt="Rainbow logo"
+                alt="SnowCone logo"
                 height={56}
-                src="/rainbow-logo.png"
+                src="/NeonIcon.png"
                 width={56}
               />
             </Box>
@@ -223,9 +199,9 @@ export default function Home() {
             style={{ lineHeight: '28px', maxWidth: 720 }}
             weight="semibold"
           >
-            Building RainbowKit has been an incredibly fun effort across many
+            Building SnowConeKit has been an incredibly fun effort across many
             people at Rainbow and our frens at other companies. We&apos;re
-            always looking to make RainbowKit better, so please let us know how
+            always looking to make SnowConeKit better, so please let us know how
             we can improve.
           </Text>
 
@@ -253,7 +229,7 @@ export default function Home() {
             </Button>
             <Button
               as="a"
-              href="https://github.com/rainbow-me/rainbowkit/discussions/new?category=feedback"
+              href="https://github.com/rainbow-me/SnowConeKit/discussions/new?category=feedback"
               shadow
               size="xl"
               target="_blank"
@@ -275,7 +251,7 @@ export default function Home() {
           >
             <Text size="4" weight="bold">
               <Link
-                href="https://github.com/rainbow-me/rainbowkit"
+                href="https://github.com/rainbow-me/SnowConeKit"
                 variant="gray"
               >
                 <span data-emoji>👾</span> github
@@ -308,8 +284,8 @@ export default function Home() {
 
 function InstallScript() {
   const [requestCopy, setRequestCopy] = useState(false);
-  const code = 'npm init @rainbow-me/rainbowkit@latest';
-  const ref = useCoolMode('/rainbow.svg') as Ref<HTMLButtonElement>;
+  const code = 'npm init @rainbow-me/SnowConeKit@latest';
+  const ref = useCoolMode('/NeonIconSvg.svg') as Ref<HTMLButtonElement>;
 
   React.useEffect(() => {
     if (requestCopy) copy(code);

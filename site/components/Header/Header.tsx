@@ -14,7 +14,7 @@ import React from 'react';
 import pckg from '../../../packages/snowconekit/package.json';
 import { header, logo, row } from './Header.css';
 
-const RAINBOWKIT_VERSION = pckg.version;
+const SNOWCONEKIT_VERSION = pckg.version;
 
 export function Header({
   darkMode,
@@ -35,7 +35,7 @@ export function Header({
             as="img"
             className={logo}
             marginRight="4"
-            src="/rainbow.svg"
+            src="/NeonIconSvg.svg"
             transform={{
               active: 'shrink',
               hover: 'grow',
@@ -56,9 +56,9 @@ export function Header({
           gap={{ xs: '1', sm: '4' }}
         >
           <Text style={{ lineHeight: 1 }} variant="title3" weight="bold">
-            RainbowKit
+            SnowConeKit
           </Text>
-          <Badge>{RAINBOWKIT_VERSION}</Badge>
+          <Badge>{SNOWCONEKIT_VERSION}</Badge>
         </Box>
 
         <Box style={{ marginLeft: 'auto' }}>

@@ -39,7 +39,7 @@ export function DocsLayout({ children }: { children: React.ReactNode }) {
 
   const { isConnected } = useAccount();
   const ref = useCoolMode(
-    '/rainbow.svg',
+    '/NeonIconSvg.svg',
     !isConnected,
     true
   ) as Ref<HTMLDivElement>;

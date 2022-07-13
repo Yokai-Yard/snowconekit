@@ -23,7 +23,7 @@ const radiusScales: Record<
   large: {
     actionButton: '8px',
     connectButton: '8px',
-    modal: '16px',
+    modal: '24px',
     modalMobile: '28px',
   },
   medium: {

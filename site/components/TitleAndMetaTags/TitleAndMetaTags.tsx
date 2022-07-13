@@ -16,8 +16,8 @@ export function TitleAndMetaTags({
   description = 'The best way to connect a wallet 🌈',
   image,
   pathname,
-  title = 'RainbowKit',
-  url = 'https://rainbowkit.com',
+  title = 'SnowConeKit',
+  url = 'https://SnowConeKit.com',
 }: TitleAndMetaTagsProps) {
   const router = useRouter();
 

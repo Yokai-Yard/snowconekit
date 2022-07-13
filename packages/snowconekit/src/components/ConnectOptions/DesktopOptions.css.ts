@@ -47,3 +47,8 @@ export const overlayStyle = style({
   height: '100%',
   position: 'absolute',
 });
+
+export const connectCards = style({
+  borderRadius: '8px',
+  padding: '10px 25px',
+});

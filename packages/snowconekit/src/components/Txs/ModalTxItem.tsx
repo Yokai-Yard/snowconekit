@@ -12,7 +12,6 @@ import { SuccessIcon } from '../Icons/Success';
 import { Text } from '../Text/Text';
 import { AsyncImage } from '../AsyncImage/AsyncImage';
 import { useRainbowKitChainsById } from '../RainbowKitProvider/RainbowKitChainContext';
-import Badge from '@mui/material/badge';
 import { timeAgo } from '../../utils/timeAgo';
 
 const getTxStatusIcon = (status: Transaction['status']) => {
@@ -80,22 +79,15 @@ export function ModalTxItem({ tx, address }: ModalTxProps) {
           gap={mobile ? '16' : '14'}
           alignItems="center"
         >
-          <Badge
-            badgeContent={4}
-            color="primary"
-            variant="dot"
-            overlap="circular"
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-          >
-            <Box width="30" height="30">
-              <AsyncImage
-                borderRadius="full"
-                height="full"
-                src={chainIconUrl}
-                width="full"
-              />
-            </Box>
-          </Badge>
+          <Box width="30" height="30">
+            <AsyncImage
+              borderRadius="full"
+              height="full"
+              src={chainIconUrl}
+              width="full"
+            />
+          </Box>
+
           <Box
             className="annoyingrow"
             width="full"

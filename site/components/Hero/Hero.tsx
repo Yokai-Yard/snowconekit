@@ -1,13 +1,7 @@
 import { Box } from 'components/Box/Box';
 import NextImage from 'next/image';
 import React from 'react';
-import {
-  heroWrapper,
-  MODAL_SIZE,
-  modalWrapper,
-  PHONE_SIZE,
-  phoneWrapper,
-} from './Hero.css';
+import { heroWrapper, MODAL_SIZE, modalWrapper } from './Hero.css';
 
 export function Hero() {
   return (
@@ -31,15 +25,8 @@ export function Hero() {
           <Box className={modalWrapper}>
             <NextImage
               height={MODAL_SIZE.height}
-              src="/hero-modal.png"
+              src="/DemoModal.svg"
               width={MODAL_SIZE.width}
-            />
-          </Box>
-          <Box className={phoneWrapper}>
-            <NextImage
-              height={PHONE_SIZE.height}
-              src="/hero-iphone.png"
-              width={PHONE_SIZE.width}
             />
           </Box>
         </Box>

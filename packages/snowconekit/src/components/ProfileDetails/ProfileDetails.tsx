@@ -31,7 +31,6 @@ import { NavButton } from './NavButton';
 import { ModalTxList } from '../Txs/ModalTxList';
 import { NetworkCarousel } from '../NetworkCarousel/NetworkCarousel';
 import { ChainIcon } from '../Icons/ChainIcon';
-import Alert from '@mui/material/alert';
 
 interface ProfileDetailsProps {
   address: ReturnType<typeof useAccount>['address'];
@@ -154,9 +153,9 @@ export function ProfileDetails({
                     marginTop={'44'}
                     textAlign="left"
                     /* style={{
-                      textShadow:
-                        '0px 1px 1px rgba(0,0,0, .15), 0px -1px 1.5px rgba(255,255,255, .5)',
-                    }} */
+                    textShadow:
+                      '0px 1px 1px rgba(0,0,0, .15), 0px -1px 1.5px rgba(255,255,255, .5)',
+                  }} */
                   >
                     <Text
                       as="h1"
@@ -202,14 +201,11 @@ export function ProfileDetails({
                 />
               ) : null
             ) : (
-              <Alert
-                severity="warning"
-                sx={{ marginTop: '18px', borderRadius: '8px' }}
-              >
+              <Box style={{ marginTop: '18px', borderRadius: '8px' }}>
                 Your wallet does not support switching networks from
                 SnowconeKit. Try switching networks from within your wallet
                 instead.
-              </Alert>
+              </Box>
             )}
           </Box>
           {showRecentTransactions && (

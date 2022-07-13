@@ -685,8 +685,8 @@ export default function DS() {
       </Text>
 
       <Box display="flex" alignItems="center" gap="4" marginY="4">
-        <Code>RainbowKitProvider</Code>
-        <Code variant="secondary">RainbowKitProvider</Code>
+        <Code>SnowConeKitProvider</Code>
+        <Code variant="secondary">SnowConeKitProvider</Code>
       </Box>
     </Wrapper>
   );

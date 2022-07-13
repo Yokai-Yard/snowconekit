@@ -40,7 +40,7 @@ describe('cssObjectFromTheme', () => {
         "--rk-radii-actionButton": "8px",
         "--rk-radii-connectButton": "8px",
         "--rk-radii-menuButton": "8px",
-        "--rk-radii-modal": "16px",
+        "--rk-radii-modal": "24px",
         "--rk-radii-modalMobile": "28px",
         "--rk-shadows-connectButton": "0px 4px 12px rgba(0, 0, 0, 0.1)",
         "--rk-shadows-dialog": "0px 8px 32px rgba(0, 0, 0, 0.32)",

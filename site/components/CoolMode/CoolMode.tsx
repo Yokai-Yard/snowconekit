@@ -7,7 +7,7 @@ import { cool } from './CoolMode.css';
 export function CoolMode() {
   const coolCoinbaseRef = useCoolMode('/coinbase.svg');
   const coolMetaMaskRef = useCoolMode('/metaMask.svg');
-  const coolRainbowRef = useCoolMode('/rainbow.svg');
+  const coolRainbowRef = useCoolMode('/NeonIconSvg.svg');
   const coolArgentRef = useCoolMode('/argent.svg');
   const coolWalletConnectRef = useCoolMode('/walletConnect.svg');
   const coolTrustRef = useCoolMode('/trust.svg');
@@ -15,7 +15,7 @@ export function CoolMode() {
   return (
     <Box className={cool} id="cool-mode-demo">
       <Box ref={coolRainbowRef}>
-        <CoolButton src="/rainbow.svg">Rainbow</CoolButton>
+        <CoolButton src="/NeonIconSvg.svg">Rainbow</CoolButton>
       </Box>
       <Box ref={coolWalletConnectRef}>
         <CoolButton src="/walletConnect.svg">WalletConnect</CoolButton>
