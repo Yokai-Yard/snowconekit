@@ -1,10 +1,4 @@
-import React, {
-  ReactNode,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { ReactNode, useCallback, useContext, useEffect } from 'react';
 import {
   useAccount,
   useBalance,
@@ -55,6 +49,7 @@ export interface ConnectButtonRendererProps {
       hasIcon: boolean;
       iconUrl?: string;
       iconBackground?: string;
+      rocketUrl?: string;
       id: number;
       name?: string;
       unsupported?: boolean;
@@ -105,8 +100,10 @@ export function ConnectButtonRenderer({
     : undefined;
   const chainIconUrl = rainbowKitChain?.iconUrl ?? undefined;
   const chainIconBackground = rainbowKitChain?.iconBackground ?? undefined;
+  const chainRocketUrl = rainbowKitChain?.rocketUrl ?? undefined;
 
   const resolvedChainIconUrl = useAsyncImage(chainIconUrl);
+  const resolvedRocketUrl = useAsyncImage(chainRocketUrl);
 
   const showRecentTransactions = useContext(ShowRecentTransactionsContext);
 
@@ -158,7 +155,8 @@ export function ConnectButtonRenderer({
   const preloadImages = useCallback(() => {
     loadImages(
       ...walletConnectors.map(wallet => wallet.iconUrl),
-      ...rainbowKitChains.map(chain => chain.iconUrl).filter(isNotNullish)
+      ...rainbowKitChains.map(chain => chain.iconUrl).filter(isNotNullish),
+      ...rainbowKitChains.map(chain => chain.rocketUrl).filter(isNotNullish)
     );
 
     // Preload illustrations used on desktop
@@ -202,6 +200,7 @@ export function ConnectButtonRenderer({
               hasIcon: Boolean(chainIconUrl),
               iconBackground: chainIconBackground,
               iconUrl: resolvedChainIconUrl,
+              rocketUrl: resolvedRocketUrl,
               id: activeChain.id,
               name: activeChain.name,
               unsupported: activeChain.unsupported,
@@ -236,9 +235,10 @@ export function ConnectButtonRenderer({
         closeTxModal={closeTxModal}
         txModalOpen={txModalOpen}
         trackedTx={trackedTx}
-        chainIconBackground={chainIconBackground}
         address={address}
+        iconBackground={chainIconBackground}
         activeChain={activeChain}
+        rocketUrl={resolvedRocketUrl}
       />
       <ChainModal
         activeChain={activeChain}

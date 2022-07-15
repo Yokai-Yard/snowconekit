@@ -1,3 +1,4 @@
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 import React, { ComponentProps, useEffect, useState } from 'react';
 
 import {
@@ -12,7 +13,6 @@ import {
   useAddRecentTransaction,
   useSendTransaction,
 } from '../../snowconekit/dist';
-import { Box } from '../../snowconekit/src/components/Box/Box';
 
 type ConnectButtonProps = ComponentProps<typeof ConnectButton>;
 type ExtractString<Value> = Value extends string ? Value : never;

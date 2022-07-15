@@ -1,6 +1,6 @@
 {
   "name": "@sirbenchalot/snowconekit",
-  "version": "0.1.02",
+  "version": "0.1.4",
   "description": "SnowCone's Web3 Connector",
   "files": [
     "dist"

@@ -24,8 +24,6 @@ export function TxDialogContent({
 }: TxDialogContentProps) {
   const mobile = isMobile();
 
-  console.log(chainIconBackground);
-
   return (
     <Box
       className={[

@@ -27,11 +27,20 @@ type IconMetadata = {
 
 type ChainMetadata = {
   chainId: number;
-} & IconMetadata;
+} & IconMetadata &
+  ChainRocket;
+
+type ChainRocket = {
+  rocketUrl: () => Promise<string>;
+};
 
 const arbitrumIcon: IconMetadata = {
   iconBackground: '#96bedc',
   iconUrl: async () => (await import('./chainIcons/arbitrum.svg')).default,
+};
+
+const arbitrumRocket = {
+  rocketUrl: async () => (await import('../Icons/testRocket.png')).default,
 };
 
 const avalancheIcon: IconMetadata = {
@@ -39,9 +48,17 @@ const avalancheIcon: IconMetadata = {
   iconUrl: async () => (await import('./chainIcons/avalanche.svg')).default,
 };
 
+const avalancheRocket = {
+  rocketUrl: async () => (await import('../Icons/avaxRocket.png')).default,
+};
+
 const ethereumIcon: IconMetadata = {
   iconBackground: '#484c50',
   iconUrl: async () => (await import('./chainIcons/ethereum.svg')).default,
+};
+
+const ethereumRocket = {
+  rocketUrl: async () => (await import('../Icons/ethRocket.png')).default,
 };
 
 const hardhatIcon: IconMetadata = {
@@ -49,9 +66,17 @@ const hardhatIcon: IconMetadata = {
   iconUrl: async () => (await import('./chainIcons/hardhat.svg')).default,
 };
 
+const hardhatRocket = {
+  rocketUrl: async () => (await import('../Icons/testRocket.png')).default,
+};
+
 const optimismIcon: IconMetadata = {
   iconBackground: '#ff5a57',
   iconUrl: async () => (await import('./chainIcons/optimism.svg')).default,
+};
+
+const optimismRocket = {
+  rocketUrl: async () => (await import('../Icons/testRocket.png')).default,
 };
 
 const polygonIcon: IconMetadata = {
@@ -59,22 +84,26 @@ const polygonIcon: IconMetadata = {
   iconUrl: async () => (await import('./chainIcons/polygon.svg')).default,
 };
 
+const polygonRocket = {
+  rocketUrl: async () => (await import('../Icons/polyRocket.png')).default,
+};
+
 const chainMetadataByName: Record<ChainName, ChainMetadata | null> = {
-  arbitrum: { chainId: 42_161, ...arbitrumIcon },
-  arbitrumRinkeby: { chainId: 421_611, ...arbitrumIcon },
-  avalanche: { chainId: 43_114, ...avalancheIcon },
-  avalancheFuji: { chainId: 43_113, ...avalancheIcon },
-  goerli: { chainId: 5, ...ethereumIcon },
-  hardhat: { chainId: 31_337, ...hardhatIcon },
-  kovan: { chainId: 42, ...ethereumIcon },
-  localhost: { chainId: 1_337, ...ethereumIcon },
-  mainnet: { chainId: 1, ...ethereumIcon },
-  optimism: { chainId: 10, ...optimismIcon },
-  optimismKovan: { chainId: 69, ...optimismIcon },
-  polygon: { chainId: 137, ...polygonIcon },
-  polygonMumbai: { chainId: 80_001, ...polygonIcon },
-  rinkeby: { chainId: 4, ...ethereumIcon },
-  ropsten: { chainId: 3, ...ethereumIcon },
+  arbitrum: { chainId: 42_161, ...arbitrumIcon, ...arbitrumRocket },
+  arbitrumRinkeby: { chainId: 421_611, ...arbitrumIcon, ...arbitrumRocket },
+  avalanche: { chainId: 43_114, ...avalancheIcon, ...avalancheRocket },
+  avalancheFuji: { chainId: 43_113, ...avalancheIcon, ...avalancheRocket },
+  goerli: { chainId: 5, ...ethereumIcon, ...ethereumRocket },
+  hardhat: { chainId: 31_337, ...hardhatIcon, ...hardhatRocket },
+  kovan: { chainId: 42, ...ethereumIcon, ...ethereumRocket },
+  localhost: { chainId: 1_337, ...ethereumIcon, ...ethereumRocket },
+  mainnet: { chainId: 1, ...ethereumIcon, ...ethereumRocket },
+  optimism: { chainId: 10, ...optimismIcon, ...optimismRocket },
+  optimismKovan: { chainId: 69, ...optimismIcon, ...optimismRocket },
+  polygon: { chainId: 137, ...polygonIcon, ...polygonRocket },
+  polygonMumbai: { chainId: 80_001, ...polygonIcon, ...polygonRocket },
+  rinkeby: { chainId: 4, ...ethereumIcon, ...ethereumRocket },
+  ropsten: { chainId: 3, ...ethereumIcon, ...ethereumRocket },
 };
 
 const chainMetadataById = Object.fromEntries(

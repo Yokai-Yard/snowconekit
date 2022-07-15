@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNetwork, useAccount } from 'wagmi';
 import { increaseHitAreaForHoverTransform } from '../../css/increaseHitAreaForHoverTransform.css';
 import { Transaction } from '../../transactions/transactionStore';

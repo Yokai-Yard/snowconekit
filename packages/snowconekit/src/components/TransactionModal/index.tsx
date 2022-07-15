@@ -4,7 +4,6 @@ import { Dialog } from '../Dialog/Dialog';
 import { TxDialogContent } from '../Dialog/TxDialogContent';
 import { Box } from '../Box/Box';
 import { Text } from '../Text/Text';
-import { Rocket } from '../Icons/Rocket';
 import { SphereSpinner } from 'react-spinners-kit';
 import { CopiedIcon } from '../Icons/Copied';
 import * as styles from './TxDialog.css';
@@ -16,6 +15,7 @@ import { StatusBox, BoxInfo } from './StatusBox.css';
 import { touchableStyles } from '../../css/touchableStyles';
 import { ExternalLinkIcon } from '../Icons/ExternalLink';
 import { chainToExplorerUrl } from '../../utils/chainToExplorerUrl';
+import { AsyncImage } from '../AsyncImage/AsyncImage';
 
 interface TxProps {
   transactionStatus: Transaction['status'];
@@ -24,6 +24,7 @@ interface TxProps {
   chainIconBackground?: string;
   address: ReturnType<typeof useAccount>['address'];
   activeChain: ReturnType<typeof useNetwork>['chain'];
+  rocketUrl?: string;
 }
 
 export function TxItem({
@@ -33,6 +34,7 @@ export function TxItem({
   chainIconBackground,
   address,
   activeChain,
+  rocketUrl,
 }: TxProps) {
   const pendingTx = transactionStatus === 'pending';
   const confirmedTx = transactionStatus === 'confirmed';
@@ -52,8 +54,6 @@ export function TxItem({
     );
   const { chain: chain } = useNetwork();
   const explorerLink = chainToExplorerUrl(chain);
-
-  console.log(explorerLink);
 
   return (
     <Box
@@ -78,10 +78,21 @@ export function TxItem({
         <CloseButton onClose={onClose} />
       </Box>
 
-      {!mobile ? (
-        <Box className={[pendingTx ? styles.onEnter : styles.onExit]}>
-          <Rocket />
-        </Box>
+      {!mobile && activeChain ? (
+        rocketUrl && (
+          <Box
+            className={[pendingTx ? styles.onEnter : styles.onExit]}
+            style={{ width: '75px', height: '123px' }}
+          >
+            <AsyncImage
+              alt={activeChain.name}
+              borderRadius="full"
+              height="full"
+              src={rocketUrl}
+              width="full"
+            />
+          </Box>
+        )
       ) : (
         <Box style={{ marginBottom: '3px' }}>
           {pendingTx && <SphereSpinner size={18} />}
@@ -145,12 +156,13 @@ export function TxItem({
 }
 
 export interface TransactionModalProps {
-  chainIconBackground?: string;
   txModalOpen: boolean;
   closeTxModal: () => void;
   trackedTx: Transaction | null;
   address: ReturnType<typeof useAccount>['address'];
   activeChain: ReturnType<typeof useNetwork>['chain'];
+  iconBackground?: string;
+  rocketUrl?: string;
 }
 
 const TransactionModal = ({
@@ -158,8 +170,9 @@ const TransactionModal = ({
   closeTxModal,
   trackedTx,
   address,
-  chainIconBackground,
   activeChain,
+  iconBackground,
+  rocketUrl,
 }: TransactionModalProps) => {
   const mobile = isMobile();
   const titleId = 'rk_account_modal_title';
@@ -170,16 +183,17 @@ const TransactionModal = ({
         <TxDialogContent
           bottomSheetOnMobile
           padding="0"
-          chainIconBackground={chainIconBackground}
+          chainIconBackground={iconBackground}
         >
           {trackedTx?.status && (
             <TxItem
               transactionStatus={trackedTx.status}
               mobile={mobile}
               onClose={closeTxModal}
-              chainIconBackground={chainIconBackground}
+              chainIconBackground={iconBackground}
               address={address}
               activeChain={activeChain}
+              rocketUrl={rocketUrl}
             />
           )}
         </TxDialogContent>
@@ -188,7 +202,3 @@ const TransactionModal = ({
   );
 };
 export default TransactionModal;
-
-// pendingtx = awaiting confirmations from "X" network
-// confirmedtx = transaction confirmed
-// failedtx = transaction failed
