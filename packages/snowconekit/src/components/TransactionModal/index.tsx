@@ -4,11 +4,11 @@ import { Dialog } from '../Dialog/Dialog';
 import { TxDialogContent } from '../Dialog/TxDialogContent';
 import { Box } from '../Box/Box';
 import { Text } from '../Text/Text';
-import { SphereSpinner } from 'react-spinners-kit';
+import { PushSpinner, SphereSpinner } from 'react-spinners-kit';
 import { CopiedIcon } from '../Icons/Copied';
 import * as styles from './TxDialog.css';
 import type { Transaction } from '../../transactions/transactionStore';
-import { CloseButton } from '../CloseButton/CloseButton';
+import { TxCloseButton } from '../CloseButton/TxCloseButton';
 import { useAccount, useNetwork } from 'wagmi';
 import TxStatusImage from './TxStatusImage';
 import { StatusBox, BoxInfo } from './StatusBox.css';
@@ -63,26 +63,32 @@ export function TxItem({
       justifyContent="center"
       overflow="hidden"
       height="40"
-      style={{ boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)' }}
+      style={{
+        boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
+      }}
     >
       <Box
         display="flex"
         flexDirection="row"
         justifyContent="flex-end"
         width="full"
-        paddingRight="16"
+        paddingRight="10"
+        overflow="hidden"
         style={{
           background: `linear-gradient(52deg, ${chainIconBackground} 20 0%,  ${chainIconBackground} 40 100%)`,
         }}
       >
-        <CloseButton onClose={onClose} />
+        <TxCloseButton onClose={onClose} />
       </Box>
-
       {!mobile && activeChain ? (
         rocketUrl && (
           <Box
             className={[pendingTx ? styles.onEnter : styles.onExit]}
-            style={{ width: '75px', height: '123px' }}
+            style={{
+              width: '75px',
+              height: '123px',
+              marginTop: '60px',
+            }}
           >
             <AsyncImage
               alt={activeChain.name}
@@ -91,6 +97,16 @@ export function TxItem({
               src={rocketUrl}
               width="full"
             />
+            <Box
+              style={{
+                position: 'relative',
+                top: '-3px',
+                right: '-1px',
+                transform: ' scale(.6) rotate(90deg) ',
+              }}
+            >
+              <PushSpinner color="white" />
+            </Box>
           </Box>
         )
       ) : (
@@ -110,7 +126,8 @@ export function TxItem({
               {confirmationStatus}
             </Text>
             {/* {explorerLink && ( */}
-            <Box paddingX={mobile ? '8' : '18'}></Box> {/* )} */}
+            <Box paddingX={mobile ? '8' : '18'} />
+            {/* )} */}
           </Box>
 
           <Box style={{ paddingTop: '20px' }}>
@@ -119,7 +136,6 @@ export function TxItem({
         </Box>
 
         <Box
-          alignItems="center"
           as="a"
           background={{ hover: 'profileForeground' }}
           borderRadius="menuButton"
@@ -139,10 +155,10 @@ export function TxItem({
           {...(mobile ? { paddingLeft: '12' } : {})}
         >
           <Text
-            color="modalText"
+            color="modalTextSecondary"
             font="body"
             size={mobile ? '16' : '14'}
-            // weight={mobile ? 'semibold' : 'bold'}
+            weight="semibold"
           >
             View on Explorer
           </Text>

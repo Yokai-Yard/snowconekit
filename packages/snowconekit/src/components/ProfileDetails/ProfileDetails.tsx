@@ -18,7 +18,7 @@ import { isMobile } from '../../utils/isMobile';
 import { Avatar } from '../Avatar/Avatar';
 import { Box } from '../Box/Box';
 import { CloseButton } from '../CloseButton/CloseButton';
-import { formatModalAddress } from '../ConnectButton/formatModalAddress';
+import { formatModalAddress } from '../ConnectButton/formatModalAddresses';
 import { formatENS } from '../ConnectButton/formatENS';
 import { CopiedIcon } from '../Icons/Copied';
 import { CopyIcon } from '../Icons/Copy';
@@ -31,8 +31,9 @@ import { NavButton } from './NavButton';
 import { ModalTxList } from '../Txs/ModalTxList';
 import { NetworkCarousel } from '../NetworkCarousel/NetworkCarousel';
 import { ChainIcon } from '../Icons/ChainIcon';
-import { AsyncImage } from '../AsyncImage/AsyncImage';
 import DangerIcon from '../Icons/danger.png';
+import { AsyncImage } from '../AsyncImage/AsyncImage';
+import { useRainbowKitChainsById } from '../RainbowKitProvider/RainbowKitChainContext';
 
 interface ProfileDetailsProps {
   address: ReturnType<typeof useAccount>['address'];
@@ -88,6 +89,17 @@ export function ProfileDetails({
   if (!address) {
     return null;
   }
+  const styles = {
+    width: '38px',
+    height: '38px',
+    borderRadius: '50%',
+    border: '3px solid white',
+    boxShadow: '2px 2px 4px 2px  rgba(0, 0, 0, 0.3)',
+  };
+  const rainbowkitChainsById = useRainbowKitChainsById();
+
+  const currentChain = activeChain && rainbowkitChainsById[activeChain?.id];
+  const chainIconUrl = currentChain?.iconUrl;
 
   const accountName = ensName
     ? formatENS(ensName)
@@ -96,6 +108,7 @@ export function ProfileDetails({
   const balance = Number(ethBalance).toPrecision(3);
   const titleId = 'rk_profile_title';
   const mobile = isMobile();
+
   return (
     <>
       <Box display="flex" flexDirection="column">
@@ -124,7 +137,9 @@ export function ProfileDetails({
               icon={<DisconnectIcon />}
               label="Disconnect"
             />
-            <CloseButton onClose={onClose} />
+            <Box style={{ background: 'closeButtonBackground' }}>
+              <CloseButton onClose={onClose} />
+            </Box>
           </Box>
           <Box background="profileForeground" padding="16">
             <Box
@@ -192,7 +207,37 @@ export function ProfileDetails({
                 </Box>
               </Box>
             </Box>
-            {onSwitchNetwork ? (
+            {chains.length === 1 ? (
+              <Box
+                display="flex"
+                marginTop="14"
+                paddingY="14"
+                paddingLeft="10"
+                className={GlassCard}
+              >
+                <Box
+                  display="flex"
+                  flexDirection="row"
+                  gap="14"
+                  alignItems="center"
+                >
+                  {chainIconUrl && (
+                    <Box style={styles}>
+                      <AsyncImage
+                        alt={activeChain?.name}
+                        borderRadius="full"
+                        height="full"
+                        src={chainIconUrl}
+                        width="full"
+                      />
+                    </Box>
+                  )}
+                  <Text color="accentColorForeground">
+                    Connected to {activeChain?.name}
+                  </Text>
+                </Box>
+              </Box>
+            ) : onSwitchNetwork ? (
               !mobile ? (
                 <NetworkCarousel
                   activeChain={activeChain}

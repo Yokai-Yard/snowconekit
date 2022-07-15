@@ -4,12 +4,12 @@ export const timeAgo = (timestamp: number) => {
   const minutes = Math.floor(seconds / 60);
   const hours = Math.floor(minutes / 60);
   const days = Math.floor(hours / 24);
-  if (days > 0) {
-    return `${days} days ago`;
-  } else if (hours > 0) {
-    return `${hours} hours ago`;
-  } else if (minutes > 0) {
-    return `${minutes} minutes ago`;
+  if (days) {
+    return days > 1 ? `${days} days ago` : `${days} day ago`;
+  } else if (hours) {
+    return hours > 1 ? `${hours} hours ago` : `${hours} hour ago`;
+  } else if (minutes) {
+    return minutes > 1 ? `${minutes} minutes ago` : `${minutes} minute ago`;
   } else {
     return `${seconds} seconds ago`;
   }

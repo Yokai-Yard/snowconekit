@@ -206,20 +206,7 @@ export function NetworkCarousel({
           );
         })}
       </ReactSimplyCarousel>
-      {/* <Box
-            background="generalBorder"
-            borderRadius="menuButton"
-            paddingX="18"
-            paddingY="12"
-          >
-            <Text color="modalText" size="14" weight="medium">
-              Your wallet does not support switching networks from{' '}
-              {appName ?? 'this app'}. Try switching networks from within your
-              wallet instead.
-            </Text>
-          </Box> */}
     </Box>
-    // </Box>
   );
 }
 
