@@ -1,32 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNetwork, useAccount } from 'wagmi';
 import { increaseHitAreaForHoverTransform } from '../../css/increaseHitAreaForHoverTransform.css';
 import { Transaction } from '../../transactions/transactionStore';
 import { chainToExplorerUrl } from '../../utils/chainToExplorerUrl';
 import { isMobile } from '../../utils/isMobile';
 import { Box } from '../Box/Box';
-import { CancelIcon } from '../Icons/Cancel';
 import { ExternalLinkIcon } from '../Icons/ExternalLink';
-import { SpinnerIcon } from '../Icons/Spinner';
-import { SuccessIcon } from '../Icons/Success';
 import { Text } from '../Text/Text';
 import { AsyncImage } from '../AsyncImage/AsyncImage';
 import { useRainbowKitChainsById } from '../RainbowKitProvider/RainbowKitChainContext';
 import { timeAgo } from '../../utils/timeAgo';
 import { formatTransactionAddress } from '../ConnectButton/formatModalAddresses';
-
-const getTxStatusIcon = (status: Transaction['status']) => {
-  switch (status) {
-    case 'pending':
-      return SpinnerIcon;
-    case 'confirmed':
-      return SuccessIcon;
-    case 'failed':
-      return CancelIcon;
-    default:
-      return SpinnerIcon;
-  }
-};
+import CheckIcon from '../Icons/check.png';
+import { Avatar, Badge, BadgeImage, Time } from './ModalTxs.css';
 
 interface ModalTxProps {
   address: ReturnType<typeof useAccount>['address'];
@@ -49,17 +35,6 @@ export function ModalTxItem({ tx, address }: ModalTxProps) {
       : 'Pending';
 
   const transactionAddress = address && formatTransactionAddress(address);
-
-  const styles = {
-    position: 'relative',
-    width: 46,
-    height: 38,
-    borderRadius: '50%',
-    border: '4px solid white',
-    boxShadow: '3px 3px 4px  rgba(0, 0, 0, 0.3)',
-    bottom: '9%',
-    filter: 'drop-shadow(1.79px 1.79px 3.58px rgba(0, 0, 0, 0.33))',
-  };
 
   return (
     <>
@@ -93,7 +68,7 @@ export function ModalTxItem({ tx, address }: ModalTxProps) {
           gap={mobile ? '16' : '14'}
           alignItems="center"
         >
-          <Box style={styles}>
+          <Box className={Avatar}>
             <AsyncImage
               borderRadius="full"
               height="full"
@@ -101,21 +76,16 @@ export function ModalTxItem({ tx, address }: ModalTxProps) {
               width="full"
             />
             <Box
+              className={Badge}
               style={{
-                position: 'absolute',
-                left: 0,
-                top: 0,
-                borderRadius: '20%',
-                width: '100%',
-                height: '100%',
-                background:
-                  'linear-gradient(120deg, rgba(255, 255, 255, 0.4) 0%, rgba(0, 0, 0, 0) 100%)',
+                backgroundColor:
+                  confirmationStatus === 'Confirmed' ? 'limegreen' : 'red',
               }}
-            ></Box>
+            >
+              <img className={BadgeImage} src={CheckIcon} />
+            </Box>
           </Box>
-
           <Box
-            className="annoyingrow"
             width="full"
             display="flex"
             flexDirection="row"
@@ -133,7 +103,6 @@ export function ModalTxItem({ tx, address }: ModalTxProps) {
                   {transactionAddress}
                 </Text>
               </Box>
-
               <Box>
                 <Text
                   color={tx.status === 'pending' ? 'modalTextSecondary' : color}
@@ -141,7 +110,7 @@ export function ModalTxItem({ tx, address }: ModalTxProps) {
                   size="14"
                   weight={mobile ? 'medium' : 'regular'}
                 >
-                  {confirmationStatus}
+                  {tx.description}
                 </Text>
               </Box>
             </Box>
@@ -152,15 +121,7 @@ export function ModalTxItem({ tx, address }: ModalTxProps) {
               gap={mobile ? '3' : '1'}
               height="full"
             >
-              <Box
-                style={{
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  textAlign: 'right',
-                  opacity: 0.65,
-                }}
-              >
+              <Box className={Time}>
                 <Text
                   color="modalText"
                   font="body"
@@ -172,7 +133,6 @@ export function ModalTxItem({ tx, address }: ModalTxProps) {
               </Box>
             </Box>
           </Box>
-
           {/* {explorerLink && (
             <Box alignItems="center" color="modalTextDim" display="flex">
               <ExternalLinkIcon />

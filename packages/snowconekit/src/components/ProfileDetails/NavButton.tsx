@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { increaseHitAreaForHoverTransform } from '../../css/increaseHitAreaForHoverTransform.css';
 import { isMobile } from '../../utils/isMobile';
 import { Box } from '../Box/Box';

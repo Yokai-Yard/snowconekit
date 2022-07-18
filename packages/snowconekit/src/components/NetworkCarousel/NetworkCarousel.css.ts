@@ -4,7 +4,6 @@ export const GlassCard = style([
   {
     'background':
       'linear-gradient(112deg, rgba(255, 255, 255,0.2) 0%, rgba(255, 255, 255,0.0) 100%)',
-    //background: "rgba( 255, 255, 255, 0.25 )",
     'boxShadow': '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
     'backdropFilter': 'blur( 18px )',
     'WebkitBackdropFilter': 'blur( 18px )',
@@ -33,10 +32,9 @@ export const backBtn = {
   margin: '5px',
   opacity: '.6',
   position: 'absolute',
-  left: 8,
+  left: 4,
   top: '48%',
   zIndex: 100,
-  // alignSelf: 'center',
   background: 'black',
   border: 'none',
   borderRadius: '50%',
@@ -45,18 +43,19 @@ export const backBtn = {
   fontSize: '20px',
   height: 26,
   lineHeight: 1,
-  // textAlign: 'center',
   width: 26,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 };
 
 export const forwardBtn = {
   margin: '5px',
   opacity: '.6',
   position: 'absolute',
-  right: 8,
+  right: 4,
   top: '48%',
   zIndex: 100,
-  // alignSelf: 'center',
   background: 'black',
   border: 'none',
   borderRadius: '50%',
@@ -65,6 +64,21 @@ export const forwardBtn = {
   fontSize: '20px',
   height: 26,
   lineHeight: 1,
-  // textAlign: 'center',
   width: 26,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 };
+
+export const CarouselAvatar = style([
+  {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    borderRadius: '25%',
+    width: '100%',
+    height: '100%',
+    background:
+      'linear-gradient(120deg, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0) 100%)',
+  },
+]);

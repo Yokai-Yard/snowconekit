@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
 import { Box, BoxProps } from '../Box/Box';
 import { AsyncImageSrc, useAsyncImage } from './useAsyncImage';
@@ -24,7 +24,6 @@ export function AsyncBgImage({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     opacity: src ? 1 : 0,
-
     overflow: 'hidden',
   };
 
@@ -48,7 +47,6 @@ export function AsyncContainBgImage({
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'contain',
         opacity: src ? 1 : 0,
-
         overflow: 'hidden',
       }}
       width="full"

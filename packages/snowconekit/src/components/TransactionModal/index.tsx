@@ -1,14 +1,14 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { isMobile } from '../../utils/isMobile';
 import { Dialog } from '../Dialog/Dialog';
-import { TxDialogContent } from '../Dialog/TxDialogContent';
+import { TxDialogContent } from './TxDialogContent';
 import { Box } from '../Box/Box';
 import { Text } from '../Text/Text';
 import { PushSpinner, SphereSpinner } from 'react-spinners-kit';
 import { CopiedIcon } from '../Icons/Copied';
 import * as styles from './TxDialog.css';
 import type { Transaction } from '../../transactions/transactionStore';
-import { TxCloseButton } from '../CloseButton/TxCloseButton';
+import { CloseButton } from '../CloseButton/CloseButton';
 import { useAccount, useNetwork } from 'wagmi';
 import TxStatusImage from './TxStatusImage';
 import { StatusBox, BoxInfo } from './StatusBox.css';
@@ -56,11 +56,21 @@ export function TxItem({
   const explorerLink = chainToExplorerUrl(chain);
 
   return (
-    <>
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      overflow="hidden"
+      style={{
+        boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
+      }}
+    >
       <Box
         display="flex"
         flexDirection="row"
         justifyContent="flex-end"
+        alignItems="center"
         width="full"
         paddingRight="10"
         height="40"
@@ -70,7 +80,7 @@ export function TxItem({
           boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
         }}
       >
-        <TxCloseButton onClose={onClose} />
+        <CloseButton onClose={onClose} background={false} />
       </Box>
       <TxBg>
         <Box display="flex" flexDirection="column" alignItems="center">
@@ -149,7 +159,7 @@ export function TxItem({
           </Box>
         </Box>
       </TxBg>
-    </>
+    </Box>
   );
 }
 

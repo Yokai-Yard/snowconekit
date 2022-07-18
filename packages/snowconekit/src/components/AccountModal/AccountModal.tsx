@@ -12,32 +12,31 @@ import { DialogContent } from '../Dialog/DialogContent';
 import { ProfileDetails } from '../ProfileDetails/ProfileDetails';
 
 export interface AccountModalProps {
+  activeChain: ReturnType<typeof useNetwork>['chain'];
   address: ReturnType<typeof useAccount>['address'];
   balanceData: ReturnType<typeof useBalance>['data'];
+  chains: ReturnType<typeof useNetwork>['chains'];
   ensAvatar: ReturnType<typeof useEnsAvatar>['data'];
   ensName: ReturnType<typeof useEnsName>['data'];
+  networkError: ReturnType<typeof useSwitchNetwork>['error'];
   open: boolean;
   onClose: () => void;
   onDisconnect: () => void;
-  // -----------------------------------
-  activeChain: ReturnType<typeof useNetwork>['chain'];
-  chains: ReturnType<typeof useNetwork>['chains'];
-  networkError: ReturnType<typeof useSwitchNetwork>['error'];
   onSwitchNetwork?: (chainId: number) => unknown;
   openChainModal: () => void;
 }
 
 export function AccountModal({
+  activeChain,
   address,
   balanceData,
+  chains,
   ensAvatar,
   ensName,
+  networkError,
+  open,
   onClose,
   onDisconnect,
-  open,
-  activeChain,
-  chains,
-  networkError,
   onSwitchNetwork,
   openChainModal,
 }: AccountModalProps) {

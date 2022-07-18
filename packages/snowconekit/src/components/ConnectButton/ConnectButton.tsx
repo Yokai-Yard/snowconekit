@@ -6,7 +6,6 @@ import {
 } from '../../css/sprinkles.css';
 import { touchableStyles } from '../../css/touchableStyles';
 import { isMobile } from '../../utils/isMobile';
-import { AsyncImage } from '../AsyncImage/AsyncImage';
 import { Avatar } from '../Avatar/Avatar';
 import { Box } from '../Box/Box';
 import { DropdownIcon } from '../Icons/Dropdown';
@@ -44,11 +43,11 @@ export function ConnectButton({
         account,
         chain,
         mounted,
+        pendingTransactions,
         openAccountModal,
         openChainModal,
         openConnectModal,
         setTx,
-        pendingTransactions,
       }) => {
         const unsupportedChain = chain?.unsupported ?? false;
 

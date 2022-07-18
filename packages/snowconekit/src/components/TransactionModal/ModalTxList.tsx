@@ -9,6 +9,7 @@ import { ExternalLinkIcon } from '../Icons/ExternalLink';
 import { AppContext } from '../RainbowKitProvider/AppContext';
 import { Text } from '../Text/Text';
 import { ModalTxItem } from './ModalTxItem';
+import { ExplorerLink, ModalList } from './ModalTxs.css';
 
 const NUMBER_OF_VISIBLE_TXS = 3;
 
@@ -29,13 +30,9 @@ export function ModalTxList({ address, chains }: ModalTxListProps) {
   return (
     <>
       <Box
-        display="flex"
-        flexDirection="column"
-        gap="10"
-        paddingBottom="2"
-        paddingTop="16"
+        className={ModalList}
         paddingX={mobile ? '8' : '18'}
-        style={{ backgroundColor: 'white', borderRadius: '16px 16px 0 0' }}
+        style={{ background: { hover: 'profileForeground' } }}
       >
         <Box display="flex" flexDirection="column" gap="4">
           {hasTransactions ? (
@@ -66,15 +63,7 @@ export function ModalTxList({ address, chains }: ModalTxListProps) {
         </Box>
       </Box>
       {explorerLink && (
-        <Box
-          paddingX={mobile ? '8' : '18'}
-          style={{
-            alignSelf: 'center',
-            backgroundColor: 'white',
-            height: '62px',
-          }}
-          background={{ hover: 'profileForeground' }}
-        >
+        <Box className={ExplorerLink} paddingX={mobile ? '8' : '18'}>
           <Box
             as="a"
             borderRadius="menuButton"
