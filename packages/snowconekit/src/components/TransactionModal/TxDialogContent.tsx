@@ -1,8 +1,6 @@
 import React, { ReactNode } from 'react';
-
 import { isMobile } from '../../utils/isMobile';
 import { Box, BoxProps } from '../Box/Box';
-//import { ModalBg } from '../Icons/ModalBg';
 import * as styles from './TxDialogContent.css';
 
 interface TxDialogContentProps {
@@ -17,7 +15,6 @@ interface TxDialogContentProps {
 export function TxDialogContent({
   bottomSheetOnMobile = false,
   children,
-  marginTop,
   padding = '16',
   wide = false,
   chainIconBackground,

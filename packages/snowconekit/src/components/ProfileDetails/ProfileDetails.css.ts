@@ -8,7 +8,6 @@ export const DropdownIconClassName = sprinkles({
 export const GlassNav = style([
   {
     'padding': '4px 16px',
-
     'boxShadow': '0 2px 8px 0 rgba( 31, 38, 135, 0.37 )',
     'backdropFilter': 'blur( 8px )',
     'WebkitBackdropFilter': 'blur( 8px )',
@@ -34,7 +33,6 @@ export const GlassCard = style([
   {
     'background':
       'linear-gradient(112deg, rgba(255, 255, 255,0.2) 0%, rgba(255, 255, 255,0.0) 100%)',
-    //background: "rgba( 255, 255, 255, 0.25 )",
     'boxShadow': '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
     'backdropFilter': 'blur( 18px )',
     'WebkitBackdropFilter': 'blur( 18px )',
@@ -48,20 +46,11 @@ export const GlassCard = style([
       inset: '0px',
       zIndex: '-1',
     },
+    'overflow': 'hidden',
+    'marginTop': '13px',
   },
 ]);
 
-/*  '&::before': {
-                      content: '""',
-                      position: 'absolute',
-                      top: '0',
-                      left: '0',
-                      width: '100%',
-                      height: '100%',
-                      background: 'linear-gradient(to bottom, rgba(255, 255, 255, ) 0%, rgba(255, 255, 255, 0.5) 100%)',
-                      backdropFilter: 'blur(4px)',
-                      zIndex: -1,
-                    }, */
 export const GlassAvatar = style([
   {
     'width': '60px',
@@ -78,5 +67,26 @@ export const GlassAvatar = style([
       inset: '0px',
       zIndex: '11',
     },
+  },
+]);
+
+export const NetworkSwitchAlert = style([
+  {
+    display: 'flex',
+    flexDirection: 'row',
+    backgroundColor: 'rgb(256,244,226)',
+    marginTop: '18px',
+    borderRadius: '8px',
+    padding: '16px',
+  },
+]);
+
+export const ConnectedToAvatar = style([
+  {
+    width: '38px',
+    height: '38px',
+    borderRadius: '50%',
+    border: '3px solid white',
+    boxShadow: '2px 2px 4px 2px  rgba(0, 0, 0, 0.3)',
   },
 ]);

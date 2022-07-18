@@ -1,5 +1,4 @@
 import React, { useReducer } from 'react';
-
 import { Box, BoxProps } from '../Box/Box';
 import { AsyncImageSrc, useAsyncImage } from './useAsyncImage';
 import { SpinnerIcon } from '../Icons/Spinner';
@@ -102,7 +101,6 @@ export function AsyncImage({
           width={typeof width === 'string' ? width : undefined}
           style={{
             color: 'hotPink',
-
             zIndex: 100,
             opacity: loading ? 1 : 0,
             transition: loading ? '0.6s ease' : '0.2s ease',

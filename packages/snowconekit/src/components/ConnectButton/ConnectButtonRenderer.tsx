@@ -218,36 +218,36 @@ export function ConnectButtonRenderer({
 
       <ConnectModal onClose={closeConnectModal} open={connectModalOpen} />
       <AccountModal
+        activeChain={activeChain}
         address={address}
         balanceData={balanceData}
+        chains={chains}
         ensAvatar={ensAvatar}
         ensName={ensName}
+        networkError={networkError}
+        open={accountModalOpen}
         onClose={closeAccountModal}
         onDisconnect={disconnect}
-        open={accountModalOpen}
-        activeChain={activeChain}
-        chains={chains}
-        networkError={networkError}
         onSwitchNetwork={switchNetwork}
         openChainModal={openChainModal}
       />
       <TransactionModal
-        closeTxModal={closeTxModal}
-        txModalOpen={txModalOpen}
-        trackedTx={trackedTx}
+        activeChain={activeChain}
         address={address}
         iconBackground={chainIconBackground}
-        activeChain={activeChain}
         rocketUrl={resolvedRocketUrl}
+        trackedTx={trackedTx}
+        txModalOpen={txModalOpen}
+        closeTxModal={closeTxModal}
       />
       <ChainModal
         activeChain={activeChain}
         chains={chains}
         networkError={networkError}
+        open={chainModalOpen}
         onClose={closeChainModal}
         onDisconnect={disconnect}
         onSwitchNetwork={switchNetwork}
-        open={chainModalOpen}
       />
     </>
   );

@@ -31,10 +31,10 @@ export function ChainModal({
   activeChain,
   chains,
   networkError,
+  open,
   onClose,
   onDisconnect,
   onSwitchNetwork,
-  open,
 }: ChainModalProps) {
   const { connector: activeConnector } = useAccount();
   const [switchingToChain, setSwitchingToChain] = useState<number | null>();

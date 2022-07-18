@@ -1,10 +1,9 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi';
 import { isMobile } from '../../utils/isMobile';
 import { AsyncImage } from '../AsyncImage/AsyncImage';
 import { Box, BoxProps } from '../Box/Box';
 import { CarouselButton } from '../MenuButton/CarouselButton';
-import { AppContext } from '../RainbowKitProvider/AppContext';
 import { useRainbowKitChainsById } from '../RainbowKitProvider/RainbowKitChainContext';
 import { Text } from '../Text/Text';
 import ReactSimplyCarousel from 'react-simply-carousel';
@@ -13,7 +12,9 @@ import {
   carousel,
   backBtn,
   forwardBtn,
+  CarouselAvatar,
 } from './NetworkCarousel.css';
+import { DropdownIcon } from '../Icons/Dropdown';
 
 export interface NetworkCarouselProps {
   activeChain: ReturnType<typeof useNetwork>['chain'];
@@ -37,16 +38,17 @@ const chainIconClasses = ({
   const opacity = (isCurrentChain || switching) && !isOld ? '1' : '0.5';
   const size = isCurrentChain || switching ? '38px' : '33px';
 
-  const styles = {
+  const chainIcon = {
     width: size,
     height: size,
     borderRadius: '50%',
     border: '3px solid white',
-    boxShadow: '2px 2px 4px 2px  rgba(0, 0, 0, 0.3)',
+    boxShadow: '3px 3px 3px  rgba(0, 0, 0, 0.3)',
+    filter: 'drop-shadow(1.79px 1.79px 3.58px rgba(0, 0, 0, 0.33))',
     opacity: opacity,
   };
 
-  return styles;
+  return chainIcon;
 };
 
 export function NetworkCarousel({
@@ -97,8 +99,6 @@ export function NetworkCarousel({
     }
   }, [networkError, stopSwitching]);
 
-  const { appName } = useContext(AppContext);
-
   if (!activeChain || !activeChain?.id) {
     return null;
   }
@@ -107,7 +107,6 @@ export function NetworkCarousel({
     <Box
       display="flex"
       flexDirection="column"
-      gap="14"
       paddingTop="6"
       paddingBottom="6"
       className={[GlassCard, carousel]}
@@ -120,7 +119,7 @@ export function NetworkCarousel({
           size={mobile ? '18' : '14'}
           weight="medium"
         >
-          Switch Networks
+          Switch Network
         </Text>
       </Box>
       <ReactSimplyCarousel
@@ -138,11 +137,31 @@ export function NetworkCarousel({
         }}
         forwardBtnProps={{
           style: forwardBtn,
-          children: <span>{`>`}</span>,
+          children: (
+            <Box
+              style={{
+                transform: 'rotate(270deg)',
+                paddingTop: -1,
+                marginLeft: '-3px',
+              }}
+            >
+              <DropdownIcon />
+            </Box>
+          ),
         }}
         backwardBtnProps={{
           style: backBtn,
-          children: <span>{`<`}</span>,
+          children: (
+            <Box
+              style={{
+                transform: 'rotate(90deg)',
+                paddingBottom: 1,
+                marginRight: '-3px',
+              }}
+            >
+              <DropdownIcon />
+            </Box>
+          ),
         }}
         responsiveProps={[
           {
@@ -159,7 +178,7 @@ export function NetworkCarousel({
           const rainbowKitChain = rainbowkitChainsById[chain.id];
           const chainIconSize: BoxProps['width'] = mobile ? '36' : '28';
           const chainIconUrl = rainbowKitChain?.iconUrl;
-          const styles = chainIconClasses({
+          const chainIcon = chainIconClasses({
             isCurrentChain,
             switching,
             switchingToChain,
@@ -179,15 +198,16 @@ export function NetworkCarousel({
                 }
               >
                 <Box
-                  style={{
-                    paddingInline: mobile ? '16px' : '5px',
-                  }}
+                  marginTop="10"
                   alignItems="center"
                   display="flex"
                   height={chainIconSize}
+                  style={{
+                    paddingInline: mobile ? '16px' : '4px',
+                  }}
                 >
                   {chainIconUrl ? (
-                    <Box style={styles}>
+                    <Box style={chainIcon}>
                       <AsyncImage
                         alt={chain.name}
                         borderRadius="full"
@@ -195,6 +215,7 @@ export function NetworkCarousel({
                         src={chainIconUrl}
                         width="full"
                       />
+                      <Box className={CarouselAvatar} />
                     </Box>
                   ) : null}
                 </Box>

@@ -13,7 +13,13 @@ import {
   useEnsAvatar,
   useEnsName,
 } from 'wagmi';
-import { GlassCard, GlassNav, GlassAvatar } from './ProfileDetails.css';
+import {
+  GlassCard,
+  GlassNav,
+  GlassAvatar,
+  NetworkSwitchAlert,
+  ConnectedToAvatar,
+} from './ProfileDetails.css';
 import { isMobile } from '../../utils/isMobile';
 import { Avatar } from '../Avatar/Avatar';
 import { Box } from '../Box/Box';
@@ -28,7 +34,7 @@ import { Text } from '../Text/Text';
 import { emojiAvatarForAddress } from '../Avatar/emojiAvatarForAddress';
 import { LayeredBg } from '../Icons/LayeredBg';
 import { NavButton } from './NavButton';
-import { ModalTxList } from '../Txs/ModalTxList';
+import { ModalTxList } from '../TransactionModal/ModalTxList';
 import { NetworkCarousel } from '../NetworkCarousel/NetworkCarousel';
 import { ChainIcon } from '../Icons/ChainIcon';
 import DangerIcon from '../Icons/danger.png';
@@ -36,36 +42,36 @@ import { AsyncImage } from '../AsyncImage/AsyncImage';
 import { useRainbowKitChainsById } from '../RainbowKitProvider/RainbowKitChainContext';
 
 interface ProfileDetailsProps {
+  activeChain: ReturnType<typeof useNetwork>['chain'];
   address: ReturnType<typeof useAccount>['address'];
   balanceData: ReturnType<typeof useBalance>['data'];
+  chains: ReturnType<typeof useNetwork>['chains'];
   ensAvatar: ReturnType<typeof useEnsAvatar>['data'];
   ensName: ReturnType<typeof useEnsName>['data'];
+  networkError: ReturnType<typeof useSwitchNetwork>['error'];
   onClose: () => void;
   onDisconnect: () => void;
-  activeChain: ReturnType<typeof useNetwork>['chain'];
-  chains: ReturnType<typeof useNetwork>['chains'];
-  networkError: ReturnType<typeof useSwitchNetwork>['error'];
   onSwitchNetwork?: (chainId: number) => unknown;
   openChainModal: () => void;
 }
 
 export function ProfileDetails({
+  activeChain,
   address,
   balanceData,
+  chains,
   ensAvatar,
   ensName,
+  networkError,
   onClose,
   onDisconnect,
-  activeChain,
-  chains,
-  networkError,
   onSwitchNetwork,
   openChainModal,
 }: ProfileDetailsProps) {
   const showRecentTransactions = useContext(ShowRecentTransactionsContext);
   const [copiedAddress, setCopiedAddress] = useState(false);
 
-  const { color: backgroundColor, emoji } = useMemo(
+  const { color: backgroundColor } = useMemo(
     () => emojiAvatarForAddress(address ? address : ''),
     [address]
   );
@@ -89,13 +95,7 @@ export function ProfileDetails({
   if (!address) {
     return null;
   }
-  const styles = {
-    width: '38px',
-    height: '38px',
-    borderRadius: '50%',
-    border: '3px solid white',
-    boxShadow: '2px 2px 4px 2px  rgba(0, 0, 0, 0.3)',
-  };
+
   const rainbowkitChainsById = useRainbowKitChainsById();
 
   const currentChain = activeChain && rainbowkitChainsById[activeChain?.id];
@@ -137,21 +137,10 @@ export function ProfileDetails({
               icon={<DisconnectIcon />}
               label="Disconnect"
             />
-            <Box style={{ background: 'closeButtonBackground' }}>
-              <CloseButton onClose={onClose} />
-            </Box>
+            <CloseButton onClose={onClose} background={true} />
           </Box>
           <Box background="profileForeground" padding="16">
-            <Box
-              className={GlassCard}
-              style={{
-                overflow: 'hidden',
-                borderRadius: '8px',
-                boxShadow:
-                  '0px 5px 5px -3px rgb(145 158 171 / 20%), 0px 8px 10px 1px rgb(145 158 171 / 14%), 0px 3px 14px 2px rgb(145 158 171 / 12%)',
-                marginTop: '13px',
-              }}
-            >
+            <Box className={GlassCard}>
               <Box
                 display="flex"
                 margin="10"
@@ -163,16 +152,8 @@ export function ProfileDetails({
                 <Box marginTop={mobile ? '24' : '0'} className={GlassAvatar}>
                   <Avatar address={address} imageUrl={ensAvatar} size={60} />
                 </Box>
-
-                <Box paddingBottom="0">
-                  <Box
-                    marginTop={'44'}
-                    textAlign="left"
-                    /* style={{
-                  textShadow:
-                    '0px 1px 1px rgba(0,0,0, .15), 0px -1px 1.5px rgba(255,255,255, .5)',
-                }} */
-                  >
+                <Box>
+                  <Box marginTop={'44'} textAlign="left">
                     <Text
                       as="h1"
                       className="accountText"
@@ -185,12 +166,10 @@ export function ProfileDetails({
                   </Box>
                   {balanceData && (
                     <Box
-                      marginTop={'20'}
+                      marginTop="20"
                       textAlign="left"
                       style={{
                         opacity: '.65',
-                        /*  textShadow:
-                          '0px 1px 1px rgba(255,255,255, .15), 0px -1px 1.5px rgba(100,100,100, .5)', */
                       }}
                     >
                       <Text
@@ -222,7 +201,7 @@ export function ProfileDetails({
                   alignItems="center"
                 >
                   {chainIconUrl && (
-                    <Box style={styles}>
+                    <Box className={ConnectedToAvatar}>
                       <AsyncImage
                         alt={activeChain?.name}
                         borderRadius="full"
@@ -247,17 +226,8 @@ export function ProfileDetails({
                 />
               ) : null
             ) : (
-              <Box
-                display="flex"
-                flexDirection="row"
-                style={{
-                  backgroundColor: 'rgb(256,244,226)',
-                  marginTop: '18px',
-                  borderRadius: '8px',
-                  padding: '16px',
-                }}
-              >
-                <Box style={{ paddingRight: '12px', paddingTop: '4px' }}>
+              <Box className={NetworkSwitchAlert}>
+                <Box paddingRight="12" paddingTop="-1">
                   <img src={DangerIcon} alt="danger" />
                 </Box>
                 <Box style={{ color: 'rgb(102, 60, 0)' }}>
