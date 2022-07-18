@@ -4,17 +4,14 @@ import { sprinkles } from '../../css/sprinkles.css';
 
 const slideUp = keyframes({
   '0%': { transform: 'translateY(500px)' },
-  '100%': { transform: 'translateY(100px)' },
+  '100%': { transform: 'translateY(-30px)' },
 });
 const slideOut = keyframes({
-  '0%': { transform: 'translateY(100px)' },
+  '0%': { transform: 'translateY(-30px)' },
   '100%': { transform: 'translateY(-600px)' },
 });
 
 export const onEnter = style([
-  sprinkles({
-    position: 'absolute',
-  }),
   {
     animation: `${slideUp} 750ms ease-out`,
     animationFillMode: 'forwards',
@@ -22,9 +19,6 @@ export const onEnter = style([
   },
 ]);
 export const onExit = style([
-  sprinkles({
-    position: 'absolute',
-  }),
   {
     animation: `${slideOut} 750ms ease-in`,
     animationFillMode: 'forwards',

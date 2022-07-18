@@ -40,7 +40,9 @@ const arbitrumIcon: IconMetadata = {
 };
 
 const arbitrumRocket = {
-  rocketUrl: async () => (await import('../Icons/testRocket.png')).default,
+  rocketUrl: async () =>
+    (await import('../../../assets/rockets/arbitrumRocketAnimated.svg'))
+      .default,
 };
 
 const avalancheIcon: IconMetadata = {
@@ -49,7 +51,8 @@ const avalancheIcon: IconMetadata = {
 };
 
 const avalancheRocket = {
-  rocketUrl: async () => (await import('../Icons/avaxRocket.png')).default,
+  rocketUrl: async () =>
+    (await import('../../../assets/rockets/avaxRocketAnimated.svg')).default,
 };
 
 const ethereumIcon: IconMetadata = {
@@ -58,7 +61,8 @@ const ethereumIcon: IconMetadata = {
 };
 
 const ethereumRocket = {
-  rocketUrl: async () => (await import('../Icons/ethRocket.png')).default,
+  rocketUrl: async () =>
+    (await import('../../../assets/rockets/ethRocketAnimated.svg')).default,
 };
 
 const hardhatIcon: IconMetadata = {
@@ -67,7 +71,8 @@ const hardhatIcon: IconMetadata = {
 };
 
 const hardhatRocket = {
-  rocketUrl: async () => (await import('../Icons/testRocket.png')).default,
+  rocketUrl: async () =>
+    (await import('../../../assets/rockets/defaultRocketAnimated.svg')).default,
 };
 
 const optimismIcon: IconMetadata = {
@@ -76,7 +81,9 @@ const optimismIcon: IconMetadata = {
 };
 
 const optimismRocket = {
-  rocketUrl: async () => (await import('../Icons/testRocket.png')).default,
+  rocketUrl: async () =>
+    (await import('../../../assets/rockets/optimismRocketAnimated.svg'))
+      .default,
 };
 
 const polygonIcon: IconMetadata = {
@@ -85,7 +92,8 @@ const polygonIcon: IconMetadata = {
 };
 
 const polygonRocket = {
-  rocketUrl: async () => (await import('../Icons/polyRocket.png')).default,
+  rocketUrl: async () =>
+    (await import('../../../assets/rockets/polyRocketAnimated.svg')).default,
 };
 
 const chainMetadataByName: Record<ChainName, ChainMetadata | null> = {

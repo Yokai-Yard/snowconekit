@@ -1,5 +1,8 @@
 import { DesktopOptions } from '../components/ConnectOptions/DesktopOptions';
 import { MobileOptions } from '../components/ConnectOptions/MobileOptions';
+import { AccountModal } from '../components/AccountModal/AccountModal';
+import TransactionModal from '../components/TransactionModal';
+
 import {
   dialogContent,
   dialogContentMobile,
@@ -10,4 +13,6 @@ export const __private__ = {
   dialogContent,
   dialogContentMobile,
   MobileOptions,
+  AccountModal,
+  TransactionModal,
 };
