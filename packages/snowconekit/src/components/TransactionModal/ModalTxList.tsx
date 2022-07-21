@@ -18,7 +18,7 @@ interface ModalTxListProps {
   chains: ReturnType<typeof useNetwork>['chains'];
 }
 
-export function ModalTxList({ address, chains }: ModalTxListProps) {
+export function ModalTxList({ address }: ModalTxListProps) {
   const recentTransactions = useRecentTransactions();
   const { chain: activeChain } = useNetwork();
   const explorerLink = chainToExplorerUrl(activeChain);
@@ -32,7 +32,7 @@ export function ModalTxList({ address, chains }: ModalTxListProps) {
       <Box
         className={ModalList}
         paddingX={mobile ? '8' : '18'}
-        style={{ background: { hover: 'profileForeground' } }}
+        background="connectButtonBackground"
       >
         <Box display="flex" flexDirection="column" gap="4">
           {hasTransactions ? (
@@ -63,43 +63,42 @@ export function ModalTxList({ address, chains }: ModalTxListProps) {
         </Box>
       </Box>
       {explorerLink && (
-        <Box className={ExplorerLink} paddingX={mobile ? '8' : '18'}>
+        <Box
+          as="a"
+          className={ExplorerLink}
+          display="flex"
+          href={`${explorerLink}/address/${address}`}
+          rel="noreferrer"
+          target="_blank"
+          paddingX={mobile ? '8' : '18'}
+          background="connectButtonBackground"
+        >
           <Box
-            as="a"
+            alignItems="center"
             borderRadius="menuButton"
-            className={increaseHitAreaForHoverTransform.grow}
+            color="modalTextDim"
             display="flex"
-            href={`${explorerLink}/address/${address}`}
-            rel="noreferrer"
-            target="_blank"
+            flexDirection="row"
+            justifyContent="space-between"
+            paddingX="8"
+            paddingTop="6"
+            style={{ willChange: 'transform' }}
+            transform={{
+              active: 'shrink',
+            }}
+            transition="default"
+            width="full"
+            {...(mobile ? { paddingLeft: '12' } : {})}
           >
-            <Box
-              alignItems="center"
-              borderRadius="menuButton"
-              color="modalTextDim"
-              display="flex"
-              flexDirection="row"
-              justifyContent="space-between"
-              paddingX="8"
-              paddingY="12"
-              style={{ willChange: 'transform' }}
-              transform={{
-                active: 'shrink',
-              }}
-              transition="default"
-              width="full"
-              {...(mobile ? { paddingLeft: '12' } : {})}
+            <Text
+              color="modalText"
+              font="body"
+              size={mobile ? '16' : '14'}
+              weight={mobile ? 'semibold' : 'bold'}
             >
-              <Text
-                color="modalText"
-                font="body"
-                size={mobile ? '16' : '14'}
-                weight={mobile ? 'semibold' : 'bold'}
-              >
-                View more on Explorer
-              </Text>
-              <ExternalLinkIcon />
-            </Box>
+              View more on Explorer
+            </Text>
+            <ExternalLinkIcon />
           </Box>
         </Box>
       )}
