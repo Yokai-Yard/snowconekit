@@ -10,6 +10,7 @@ describe('cssObjectFromTheme', () => {
         "--rk-blurs-modalOverlay": "blur(0px)",
         "--rk-colors-accentColor": "#ff66cc",
         "--rk-colors-accentColorForeground": "#FFF",
+        "--rk-colors-accentColorName": "pink",
         "--rk-colors-actionButtonBorder": "rgba(0, 0, 0, 0.04)",
         "--rk-colors-actionButtonBorderMobile": "rgba(0, 0, 0, 0.06)",
         "--rk-colors-actionButtonSecondaryBackground": "rgba(0, 0, 0, 0.06)",
