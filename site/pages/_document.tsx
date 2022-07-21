@@ -10,7 +10,7 @@ import React from 'react';
 class Document extends NextDocument {
   render() {
     return (
-      <Html data-mode="light">
+      <Html data-mode="light" lang="en">
         <Head />
         <body>
           <Main />

@@ -12,7 +12,6 @@ export const ModalList = style([
     gap: '10px',
     paddingBottom: '2px',
     paddingTop: '16px',
-    backgroundColor: 'white',
     borderRadius: '16px 16px 0 0',
   },
 ]);
@@ -20,8 +19,8 @@ export const ModalList = style([
 export const ExplorerLink = style([
   {
     alignSelf: 'center',
-    backgroundColor: 'white',
-    height: '62px',
+    paddingBottom: '20px',
+    borderRadius: 0,
   },
 ]);
 

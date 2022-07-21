@@ -72,7 +72,11 @@
     ]
   },
   "dependencies": {
+    "@mui/material": "^5.8.2",
+    "@mui/system": "^5.9.1",
     "ethers": "^5.0.0",
+    "react-lazy-load-image-component": "^1.5.5",
+    "styles": "link:@mui/material/styles",
     "vite": "^2.9.12"
   }
 }

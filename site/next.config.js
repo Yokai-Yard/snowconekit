@@ -1,3 +1,6 @@
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
 const { createVanillaExtractPlugin } = require('@vanilla-extract/next-plugin');
 const withPlugins = require('next-compose-plugins');
 // TODO: update import https://github.com/contentlayerdev/contentlayer/issues/140
@@ -20,6 +23,6 @@ const nextConfig = {
 };
 
 module.exports = withPlugins(
-  [withVanillaExtract, withContentlayer, withFonts()],
+  [withVanillaExtract, withContentlayer, withFonts(), withBundleAnalyzer({})],
   nextConfig
 );

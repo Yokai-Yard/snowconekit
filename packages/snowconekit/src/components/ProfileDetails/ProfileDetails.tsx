@@ -113,12 +113,7 @@ export function ProfileDetails({
     <>
       <Box display="flex" flexDirection="column">
         <LayeredBg profColor={backgroundColor}>
-          <Box
-            className={GlassNav}
-            style={{
-              background: `linear-gradient(52deg, ${backgroundColor}20 0%, ${backgroundColor}40 100%)`,
-            }}
-          >
+          <Box className={GlassNav}>
             {mobile && onSwitchNetwork ? (
               <NavButton
                 action={openChainModal}

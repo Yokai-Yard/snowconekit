@@ -44,7 +44,9 @@ const avalancheChain: Chain = {
     default:
       'https://nd-274-434-047.p2pify.com/648ffb21504d82b842193feaafb6c1f2/ext/bc/C/rpc',
   },
-
+  blockExplorers: {
+    default: { name: 'Avalanche', url: 'https://snowtrace.io' },
+  },
   testnet: true,
 };
 

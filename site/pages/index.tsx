@@ -13,26 +13,30 @@ import { TitleAndMetaTags } from 'components/TitleAndMetaTags/TitleAndMetaTags';
 import { Wrapper } from 'components/Wrapper/Wrapper';
 import copy from 'copy-to-clipboard';
 import { vars } from 'css/vars.css';
-import { useCoolMode } from 'lib/useCoolMode';
 import NextImage from 'next/image';
 import NextLink from 'next/link';
-import React, { Ref, useState } from 'react';
+import React, { useState } from 'react';
 
 export default function Home() {
   return (
     <Box
       data-mode="dark"
       style={{
+        background: 'radial-gradient(#ff66cc 0%, rgba(0,0,0,1) 100%);)',
         minHeight: '100vh',
         overflow: 'hidden',
-        background: 'radial-gradient(#ff66cc 0%, rgba(0,0,0,1) 100%);)',
       }}
     >
       <TitleAndMetaTags color="black" />
       <Header darkMode />
       <Wrapper>
         <Box marginTop="11" textAlign="center">
-          <NextImage height="136px" src="/SnowConeKitNeon.svg" width="969px" />
+          <NextImage
+            alt="SnowConeKit Neon Sign"
+            height="227"
+            src="/SnowConeKitNeon.png"
+            width="1091"
+          />
           <Text
             as="h2"
             marginBottom="5"
@@ -43,17 +47,23 @@ export default function Home() {
             A beautiful wallet experience
           </Text>
 
-          {/* <Box marginBottom={{ xs: '0', md: '2' }}>
+          <Box marginBottom={{ xs: '0', md: '2' }}>
             <NextLink href="/docs" passHref>
-              <Button as="a" size="xl" variant="purpleGradient">
+              <Button
+                aria-label="View Docs"
+                as="a"
+                size="xl"
+                variant="purpleGradient"
+              >
                 View the Docs
               </Button>
             </NextLink>
-          </Box> */}
+          </Box>
         </Box>
       </Wrapper>
 
       <Hero />
+
       <Box display="flex" justifyContent="center" marginBottom="8">
         <InstallScript />
       </Box>
@@ -190,6 +200,7 @@ export default function Home() {
               />
             </Box>
           </Text>
+
           <Text
             align={{ xs: 'left', md: 'center' }}
             as="p"
@@ -285,7 +296,7 @@ export default function Home() {
 function InstallScript() {
   const [requestCopy, setRequestCopy] = useState(false);
   const code = 'npm init @rainbow-me/SnowConeKit@latest';
-  const ref = useCoolMode('/NeonIconSvg.svg') as Ref<HTMLButtonElement>;
+  // const ref = useCoolMode('/NeonIconSvg.svg') as Ref<HTMLButtonElement>;
 
   React.useEffect(() => {
     if (requestCopy) copy(code);
@@ -305,9 +316,10 @@ function InstallScript() {
     >
       <code>{code}</code>
       <Button
+        aria-label="Copy to clipboard"
         marginLeft="7"
         onClick={() => setRequestCopy(true)}
-        ref={ref}
+        // ref={ref}
         shape="circle"
         size="xs"
         style={{

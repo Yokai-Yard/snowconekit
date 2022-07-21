@@ -11,7 +11,7 @@ const src = async () =>
 /* const src = async () => await ColorChangingLayers('#ff66cc'); */
 
 const darkSrc = async () =>
-  (await import('../../../assets/SnowConeLayers.svg')).default;
+  (await import('../../../assets/darkLayerShader.svg')).default;
 
 export const preloadLoginIcon = () => loadImages(src);
 

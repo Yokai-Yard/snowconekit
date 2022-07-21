@@ -18,7 +18,7 @@ export const GlassNav = style([
     'justifyContent': 'flex-end',
     '::before': {
       background:
-        'linear-gradient(12deg, rgba(191,77,153,0) 0%, rgba(191,77,153,0.4) 100%)',
+        'linear-gradient(12deg, rgba(255,255,255,0) 0%, rgba(0,0,0,0.2) 100%)',
       content: "''",
       backdropFilter: 'blur( 8px )',
       WebkitBackdropFilter: 'blur( 8px )',
@@ -28,7 +28,6 @@ export const GlassNav = style([
     },
   },
 ]);
-
 export const GlassCard = style([
   {
     'background':
