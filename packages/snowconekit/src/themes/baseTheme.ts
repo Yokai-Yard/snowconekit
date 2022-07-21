@@ -91,6 +91,7 @@ export const baseTheme = ({
 });
 
 export interface AccentColor {
+  name: string;
   accentColor: string;
   accentColorForeground: string;
 }
@@ -104,6 +105,7 @@ export type AccentColorPreset =
   | 'orange';
 
 export interface ThemeOptions extends BaseThemeOptions {
+  accentColorName?: string;
   accentColor?: string;
   accentColorForeground?: string;
 }

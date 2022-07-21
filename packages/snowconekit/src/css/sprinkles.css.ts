@@ -12,6 +12,7 @@ import {
 
 const themeContractValues = {
   colors: {
+    accentColorName: '',
     accentColor: '',
     accentColorForeground: '',
     actionButtonBorder: '',

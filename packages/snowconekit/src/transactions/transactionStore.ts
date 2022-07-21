@@ -76,9 +76,6 @@ export function createTransactionStore({
     provider = newProvider;
   }
 
-  useEffect(() => {
-    data && console.log(data);
-  }, [data]);
   function getTransactions(account: string, chainId: number): Transaction[] {
     return data[account]?.[chainId] ?? [];
   }

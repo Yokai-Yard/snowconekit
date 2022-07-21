@@ -145,7 +145,11 @@ function App({ Component, pageProps }: AppProps) {
 
   const accentColor =
     selectedAccentColor === 'custom'
-      ? { accentColor: 'red', accentColorForeground: 'yellow' } // https://blog.codinghorror.com/a-tribute-to-the-windows-31-hot-dog-stand-color-scheme
+      ? {
+          accentColorName: 'red',
+          accentColor: 'red',
+          accentColorForeground: 'yellow',
+        } // https://blog.codinghorror.com/a-tribute-to-the-windows-31-hot-dog-stand-color-scheme
       : currentTheme.accentColors[selectedAccentColor];
 
   const [isMounted, setIsMounted] = useState(false);

@@ -6,23 +6,37 @@ import {
 } from './baseTheme';
 
 const accentColors: Record<AccentColorPreset, AccentColor> = {
-  pink: { accentColor: '#ff66cc', accentColorForeground: '#FFF' },
-  blue: { accentColor: '#667fff', accentColorForeground: '#FFF' },
-  green: { accentColor: '#66ff99', accentColorForeground: '#FFF' },
-  orange: { accentColor: '#ff9966', accentColorForeground: '#FFF' },
-  purple: { accentColor: '#8cabcf', accentColorForeground: '#FFF' },
-  red: { accentColor: '#ff6680', accentColorForeground: '#FFF' },
+  pink: { name: 'pink', accentColor: '#ff66cc', accentColorForeground: '#FFF' },
+  blue: { name: 'blue', accentColor: '#667fff', accentColorForeground: '#FFF' },
+  green: {
+    name: 'green',
+    accentColor: '#66ff99',
+    accentColorForeground: '#FFF',
+  },
+  orange: {
+    name: 'orange',
+    accentColor: '#ff9966',
+    accentColorForeground: '#FFF',
+  },
+  purple: {
+    name: 'purple',
+    accentColor: '#8cabcf',
+    accentColorForeground: '#FFF',
+  },
+  red: { name: 'red', accentColor: '#ff6680', accentColorForeground: '#FFF' },
 };
 
 const defaultAccentColor = accentColors.pink;
 
 export const lightTheme = ({
+  accentColorName = defaultAccentColor.name,
   accentColor = defaultAccentColor.accentColor,
   accentColorForeground = defaultAccentColor.accentColorForeground,
   ...baseThemeOptions
 }: ThemeOptions = {}) => ({
   ...baseTheme(baseThemeOptions),
   colors: {
+    accentColorName,
     accentColor,
     accentColorForeground,
     actionButtonBorder: 'rgba(0, 0, 0, 0.04)',
