@@ -104,15 +104,12 @@ export function ConnectButton({
                     type="button"
                   >
                     {unsupportedChain && (
-                      <Box>
-                        <Box
-                          alignItems="center"
-                          display="flex"
-                          height="24"
-                          paddingX="4"
-                        >
-                          Wrong network
-                        </Box>
+                      <Box
+                        display="flex"
+                        flexDirection="row"
+                        alignItems="center"
+                      >
+                        <Box paddingX="10">Wrong network</Box>
                         <DropdownIcon />
                       </Box>
                     )}

@@ -40,6 +40,7 @@ import { ChainIcon } from '../Icons/ChainIcon';
 import DangerIcon from '../Icons/danger.png';
 import { AsyncImage } from '../AsyncImage/AsyncImage';
 import { useRainbowKitChainsById } from '../RainbowKitProvider/RainbowKitChainContext';
+import { ThemeContext } from '../RainbowKitProvider/RainbowKitProvider';
 
 interface ProfileDetailsProps {
   activeChain: ReturnType<typeof useNetwork>['chain'];
@@ -108,6 +109,9 @@ export function ProfileDetails({
   const balance = Number(ethBalance).toPrecision(3);
   const titleId = 'rk_profile_title';
   const mobile = isMobile();
+  const theme = useContext(ThemeContext);
+
+  const isLightMode = theme?.colors?.modalBackground === '#FFFFFF';
 
   return (
     <>
@@ -135,7 +139,14 @@ export function ProfileDetails({
             <CloseButton onClose={onClose} background={true} />
           </Box>
           <Box background="profileForeground" padding="16">
-            <Box className={GlassCard}>
+            <Box
+              className={GlassCard}
+              style={{
+                background: !isLightMode
+                  ? 'linear-gradient(112deg, rgba(0, 0, 0,0.2) 0%, rgba(0, 0, 0,0.0) 100%)'
+                  : 'linear-gradient(112deg, rgba(255, 255, 255,0.2) 0%, rgba(255, 255, 255,0.0) 100%)',
+              }}
+            >
               <Box
                 display="flex"
                 margin="10"

@@ -105,7 +105,7 @@ export function ModalTxItem({ tx, address }: ModalTxProps) {
               </Box>
               <Box>
                 <Text
-                  color={tx.status === 'pending' ? 'modalTextSecondary' : color}
+                  color="modalTextSecondary"
                   font="body"
                   size="14"
                   weight={mobile ? 'medium' : 'regular'}

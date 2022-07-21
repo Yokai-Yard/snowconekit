@@ -85,7 +85,7 @@ export default function Home() {
             style={{ lineHeight: 1 }}
             weight="bold"
           >
-            Rainbow 🤝 Developers
+            SnowCone 🤝 Developers
           </Text>
           <Text
             align={{ xs: 'left', md: 'center' }}
@@ -211,7 +211,7 @@ export default function Home() {
             weight="semibold"
           >
             Building SnowConeKit has been an incredibly fun effort across many
-            people at Rainbow and our frens at other companies. We&apos;re
+            people at SnowCone and our frens at other companies. We&apos;re
             always looking to make SnowConeKit better, so please let us know how
             we can improve.
           </Text>
@@ -284,7 +284,7 @@ export default function Home() {
               </Link>
             </Text>
             <Text color="labelTertiary" size="4" weight="bold">
-              © Rainbow
+              © SnowCone
             </Text>
           </Box>
         </Wrapper>
