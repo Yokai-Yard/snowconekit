@@ -40,6 +40,7 @@ export function Header({
               active: 'shrink',
               hover: 'grow',
             }}
+            style={{ maxWidth: '40px', maxHeight: '40px' }}
             transitionDuration="100"
             transitionProperty="transform"
             transitionTimingFunction="ease"

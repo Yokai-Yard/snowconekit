@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { increaseHitAreaForHoverTransform } from '../../css/increaseHitAreaForHoverTransform.css';
 
 export const GlassCard = style([
   {
@@ -20,7 +21,7 @@ export const GlassCard = style([
   },
 ]);
 
-export const carousel = style({
+export const Carousel = style({
   overflow: 'hidden',
   borderRadius: '8px',
   boxShadow:
@@ -28,12 +29,12 @@ export const carousel = style({
   marginTop: '13px',
 });
 
-export const backBtn = {
+export const BackBtn = {
   margin: '5px',
   opacity: '.6',
   position: 'absolute',
-  left: 4,
-  top: '48%',
+  left: 0,
+  top: '46%',
   zIndex: 100,
   background: 'black',
   border: 'none',
@@ -49,12 +50,12 @@ export const backBtn = {
   justifyContent: 'center',
 };
 
-export const forwardBtn = {
+export const ForwardBtn = {
   margin: '5px',
   opacity: '.6',
   position: 'absolute',
-  right: 4,
-  top: '48%',
+  right: 0,
+  top: '46%',
   zIndex: 100,
   background: 'black',
   border: 'none',

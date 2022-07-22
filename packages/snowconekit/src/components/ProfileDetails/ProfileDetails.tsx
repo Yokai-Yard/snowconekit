@@ -126,11 +126,7 @@ export function ProfileDetails({
               />
             ) : null}
             <Box style={{ flexGrow: 1 }} />
-            <NavButton
-              action={copyAddressAction}
-              icon={copiedAddress ? <CopiedIcon /> : <CopyIcon />}
-              label={copiedAddress ? 'Copied!' : 'Copy Address'}
-            />
+
             <NavButton
               action={onDisconnect}
               icon={<DisconnectIcon />}
@@ -142,9 +138,12 @@ export function ProfileDetails({
             <Box
               className={GlassCard}
               style={{
-                background: !isLightMode
-                  ? 'linear-gradient(112deg, rgba(0, 0, 0,0.2) 0%, rgba(0, 0, 0,0.0) 100%)'
-                  : 'linear-gradient(112deg, rgba(255, 255, 255,0.2) 0%, rgba(255, 255, 255,0.0) 100%)',
+                border: isLightMode
+                  ? '1px solid rgba( 255, 255, 255, .68 )'
+                  : '1px solid rgba( 0, 0, 0, 0.68 )',
+                background: isLightMode
+                  ? 'linear-gradient(112deg, rgba(255, 255, 255,0.2) 0%, rgba(255, 255, 255,0.0) 100%)'
+                  : 'linear-gradient(112deg, rgba(0, 0, 0,0.2) 0%, rgba(0, 0, 0,0.0) 100%)',
               }}
             >
               <Box
@@ -172,6 +171,10 @@ export function ProfileDetails({
                   </Box>
                   {balanceData && (
                     <Box
+                      gap="12"
+                      display="flex"
+                      flexDirection="row"
+                      alignItems="center"
                       marginTop="20"
                       textAlign="left"
                       style={{
@@ -187,6 +190,13 @@ export function ProfileDetails({
                       >
                         {balance} {balanceData.symbol}
                       </Text>
+                      <Box style={{ color: 'accentColorForeground' }}>
+                        <NavButton
+                          action={copyAddressAction}
+                          icon={copiedAddress ? <CopiedIcon /> : <CopyIcon />}
+                          label={copiedAddress ? 'Copied!' : 'Copy Address'}
+                        />
+                      </Box>
                     </Box>
                   )}
                 </Box>
@@ -199,6 +209,14 @@ export function ProfileDetails({
                 paddingY="14"
                 paddingLeft="10"
                 className={GlassCard}
+                style={{
+                  border: isLightMode
+                    ? '1px solid rgba( 255, 255, 255, 0.68 )'
+                    : '1px solid rgba( 0, 0, 0, 0.68 )',
+                  background: isLightMode
+                    ? 'linear-gradient(112deg, rgba(255, 255, 255,0.2) 0%, rgba(255, 255, 255,0.0) 100%)'
+                    : 'linear-gradient(112deg, rgba(0, 0, 0,0.2) 0%, rgba(0, 0, 0,0.0) 100%)',
+                }}
               >
                 <Box
                   display="flex"

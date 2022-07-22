@@ -36,7 +36,6 @@ export const GlassCard = style([
     'backdropFilter': 'blur( 18px )',
     'WebkitBackdropFilter': 'blur( 18px )',
     'borderRadius': '10px',
-    'border': '1px solid rgba( 255, 255, 255, 0.68 )',
     '::before': {
       content: "''",
       backdropFilter: 'blur(12px )',

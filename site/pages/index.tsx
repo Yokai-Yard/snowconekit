@@ -47,7 +47,7 @@ export default function Home() {
             A beautiful wallet experience
           </Text>
 
-          <Box marginBottom={{ xs: '0', md: '2' }}>
+          <Box marginBottom={{ xs: '0', md: '4' }}>
             <NextLink href="/docs" passHref>
               <Button
                 aria-label="View Docs"
