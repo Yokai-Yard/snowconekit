@@ -368,7 +368,6 @@
   In order to improve image loading performance and eliminate the dependency on remote URLs, all built-in wallet and chain icons are now included within the RainbowKit package itself as Base64 data URLs. Since this would typically have a negative impact on bundle size, all image loading is done via dynamic imports and deferred until after app hydration.
 
 - df6c310: Truncates long ENS names
-- 792fd03: Add cool mode
 - 13fa857: Add recent transaction support
 
   You can now opt in to displaying recent transactions within RainbowKit’s account modal. Note that all transactions must be manually registered with RainbowKit in order to be displayed.

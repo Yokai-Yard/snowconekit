@@ -138,7 +138,6 @@ function App({ Component, pageProps }: AppProps) {
   const [selectedRadiusScale, setRadiusScale] = useState<RadiusScale>('large');
   const [selectedOverlayBlur, setOverlayBlur] = useState<OverlayBlur>('none');
   const [showRecentTransactions, setShowRecentTransactions] = useState(true);
-  const [coolModeEnabled, setCoolModeEnabled] = useState(false);
   const [showDisclaimer, setShowDisclaimer] = useState(false);
 
   const currentTheme = (
@@ -169,7 +168,6 @@ function App({ Component, pageProps }: AppProps) {
             ...(showDisclaimer && { disclaimer: DisclaimerDemo }),
           }}
           chains={chains}
-          coolMode={coolModeEnabled}
           showRecentTransactions={showRecentTransactions}
           theme={currentTheme({
             ...accentColor,
@@ -207,15 +205,6 @@ function App({ Component, pageProps }: AppProps) {
                         type="checkbox"
                       />{' '}
                       showRecentTransactions
-                    </label>
-                    <label style={{ userSelect: 'none' }}>
-                      <input
-                        checked={coolModeEnabled}
-                        name="coolMode"
-                        onChange={e => setCoolModeEnabled(e.target.checked)}
-                        type="checkbox"
-                      />{' '}
-                      coolMode
                     </label>
                     <label style={{ userSelect: 'none' }}>
                       <input

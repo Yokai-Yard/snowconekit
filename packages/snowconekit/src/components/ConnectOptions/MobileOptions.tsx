@@ -15,7 +15,6 @@ import { DisclaimerText } from '../Disclaimer/DisclaimerText';
 import { BackIcon } from '../Icons/Back';
 import { AppContext } from '../RainbowKitProvider/AppContext';
 import { setWalletConnectDeepLink } from '../RainbowKitProvider/walletConnectDeepLink';
-import { useCoolMode } from '../RainbowKitProvider/useCoolMode';
 import { Text } from '../Text/Text';
 import * as styles from './MobileOptions.css';
 
@@ -33,7 +32,6 @@ function WalletButton({ wallet }: { wallet: WalletConnector }) {
     shortName,
   } = wallet;
   const getMobileUri = mobile?.getUri;
-  const coolModeRef = useCoolMode(iconUrl);
 
   return (
     <Box
@@ -74,7 +72,6 @@ function WalletButton({ wallet }: { wallet: WalletConnector }) {
           }
         });
       }, [connect, getMobileUri, onConnecting])}
-      ref={coolModeRef}
       style={{ overflow: 'visible', textAlign: 'center' }}
       type="button"
       width="full"
