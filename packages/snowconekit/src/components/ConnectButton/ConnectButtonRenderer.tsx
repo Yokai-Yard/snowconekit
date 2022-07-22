@@ -20,11 +20,11 @@ import { ConnectModal } from '../ConnectModal/ConnectModal';
 import { preloadAssetsIcon } from '../Icons/Assets';
 import { preloadLoginIcon } from '../Icons/Login';
 import {
-  useRainbowKitChains,
+  useSnowConeKitChains,
   useRainbowKitChainsById,
-} from '../RainbowKitProvider/RainbowKitChainContext';
+} from '../SnowConeKitProvider/SnowConeKitChainContext';
 import TransactionModal from '../TransactionModal';
-import { ShowRecentTransactionsContext } from '../RainbowKitProvider/ShowRecentTransactionsContext';
+import { ShowRecentTransactionsContext } from '../SnowConeKitProvider/ShowRecentTransactionsContext';
 import { abbreviateETHBalance } from './abbreviateETHBalance';
 import { formatAddress } from './formatAddress';
 import { formatENS } from './formatENS';
@@ -92,11 +92,11 @@ export function ConnectButtonRenderer({
 
   const { disconnect } = useDisconnect();
 
-  const rainbowKitChains = useRainbowKitChains();
-  const rainbowkitChainsById = useRainbowKitChainsById();
+  const rainbowKitChains = useSnowConeKitChains();
+  const snowconekitChainsById = useRainbowKitChainsById();
 
   const rainbowKitChain = activeChain
-    ? rainbowkitChainsById[activeChain.id]
+    ? snowconekitChainsById[activeChain.id]
     : undefined;
   const chainIconUrl = rainbowKitChain?.iconUrl ?? undefined;
   const chainIconBackground = rainbowKitChain?.iconBackground ?? undefined;

@@ -14,7 +14,7 @@ description: Creating a custom theme
 While the built-in themes provide some level of customization, the `Theme` type is provided to help you define your own custom themes with lower-level access to the underlying theme variables.
 
 ```tsx
-import { RainbowKitProvider, Theme } from '@rainbow-me/rainbowkit';
+import { SnowConeKitProvider, Theme } from '@rainbow-me/rainbowkit';
 
 const myCustomTheme: Theme = {
   colors: {
@@ -68,9 +68,9 @@ const myCustomTheme: Theme = {
 };
 
 const App = () => (
-  <RainbowKitProvider theme={myCustomTheme}>
+  <SnowConeKitProvider theme={myCustomTheme}>
     {/* Your App */}
-  </RainbowKitProvider>;
+  </SnowConeKitProvider>;
 )
 ```
 
@@ -89,7 +89,7 @@ Import it, along with the theme you want to extend (eg: `darkTheme`) and the Typ
 ```tsx
 import merge from 'lodash.merge';
 import {
-  RainbowKitProvider,
+  SnowConeKitProvider,
   darkTheme,
   Theme,
 } from '@rainbow-me/rainbowkit';
@@ -105,14 +105,14 @@ const myTheme = merge(darkTheme(), {
 } as Theme);
 ```
 
-Finally, you can now pass your custom theme to `RainbowKitProvider`'s `theme` prop.
+Finally, you can now pass your custom theme to `SnowConeKitProvider`'s `theme` prop.
 
 ```tsx
 const App = () => {
   return (
-    <RainbowKitProvider theme={myTheme}>
+    <SnowConeKitProvider theme={myTheme}>
       {/* Your App */}
-    </RainbowKitProvider>
+    </SnowConeKitProvider>
   );
 };
 ```
@@ -126,11 +126,11 @@ If your app is server/statically rendered and allows users to manually toggle be
 
 These functions return CSS that sets all required theme variables. Since both strings and objects are supported, this can be integrated with any CSS-in-JS system.
 
-As a basic example, you can render your own `style` element with custom selectors for each theme. Since we're taking control of rendering the theme's CSS, we're passing `null` to the `theme` prop so that RainbowKitProvider doesn't render any styles for us. Also note the use of the extends option on the cssStringFromTheme function which omits any theme variables that are the same as the base theme.
+As a basic example, you can render your own `style` element with custom selectors for each theme. Since we're taking control of rendering the theme's CSS, we're passing `null` to the `theme` prop so that SnowConeKitProvider doesn't render any styles for us. Also note the use of the extends option on the cssStringFromTheme function which omits any theme variables that are the same as the base theme.
 
 ```tsx
 import {
-  RainbowKitProvider,
+  SnowConeKitProvider,
   cssStringFromTheme,
   lightTheme,
   darkTheme,
@@ -138,7 +138,7 @@ import {
 
 const App = () => {
   return (
-    <RainbowKitProvider theme={null} {...etc}>
+    <SnowConeKitProvider theme={null} {...etc}>
       <style
         dangerouslySetInnerHTML={{
           __html: `
@@ -156,7 +156,7 @@ const App = () => {
       />
 
       {/* ... */}
-    </RainbowKitProvider>
+    </SnowConeKitProvider>
   );
 };
 ```

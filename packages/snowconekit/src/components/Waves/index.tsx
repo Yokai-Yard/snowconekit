@@ -2,7 +2,7 @@ import './waves.css';
 
 import React, { useContext } from 'react';
 
-import { ThemeContext } from '../RainbowKitProvider/RainbowKitProvider';
+import { ThemeContext } from '../SnowConeKitProvider/SnowConeKitProvider';
 
 export default function Waves() {
   const theme = useContext(ThemeContext);

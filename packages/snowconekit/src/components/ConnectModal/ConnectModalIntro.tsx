@@ -5,7 +5,7 @@ import { ActionButton } from '../Button/ActionButton';
 import { DisclaimerLink } from '../Disclaimer/DisclaimerLink';
 import { DisclaimerText } from '../Disclaimer/DisclaimerText';
 import { LoginIcon } from '../Icons/Login';
-import { AppContext } from '../RainbowKitProvider/AppContext';
+import { AppContext } from '../SnowConeKitProvider/AppContext';
 import { Text } from '../Text/Text';
 import { connectCards } from './ConnectModal.css';
 

@@ -1,14 +1,18 @@
-# RainbowKit Contribution Guide
+# SnowConeKit Contribution Guide
 
-Thanks for your interest in contributing to RainbowKit! Please take a moment to review this document **before submitting a pull request.**
+Thanks for your interest in contributing to SnowConeKit! Please take a moment to review this document **before submitting a pull request.**
 
-If you want to contribute but aren't sure where to start, you can create a [new discussion](https://github.com/rainbow-me/rainbowkit/discussions).
+<!-- fixit -->
+
+If you want to contribute but aren't sure where to start, you can create a [new discussion](https://github.com/sirbenchalot757/snowconekit/discussions).
 
 ## Pull requests
 
 **Please ask first before starting work on any significant new features. This includes things like adding new wallets, chains, components, etc.**
 
-It's never a fun experience to have your pull request declined after investing a lot of time and effort into a new feature. To avoid this from happening, we request that contributors create [a feature request](https://github.com/rainbow-me/rainbowkit/discussions/new?category=ideas) to first discuss any API changes or significant new ideas.
+<!-- fixit -->
+
+It's never a fun experience to have your pull request declined after investing a lot of time and effort into a new feature. To avoid this from happening, we request that contributors create [a feature request](https://github.com/sirbenchalot757/snowconekit/discussions/new?category=ideas) to first discuss any API changes or significant new ideas.
 
 ## Prerequisites
 
@@ -27,7 +31,7 @@ This will run an example app on [localhost:3000](http://localhost:3000) and the 
 
 The example app code is located in [`packages/example`](../packages/example). The documentation site code is located in [`site`](../site). Make sure you clean up after yourself before pushing up any changes.
 
-All API changes should also include updates to [`README.md`](../README.md) and the documentation site. Documentation is crucial to helping developers of all experience levels use RainbowKit.
+All API changes should also include updates to [`README.md`](../README.md) and the documentation site. Documentation is crucial to helping developers of all experience levels use SnowConeKit.
 
 ## Coding standards
 
@@ -45,7 +49,7 @@ pnpm lint:fix
 
 ## Running tests
 
-RainbowKit has a suite of unit tests that can be run with the following command:
+SnowConeKit has a suite of unit tests that can be run with the following command:
 
 ```bash
 pnpm test
@@ -59,7 +63,7 @@ pnpm test:update
 
 ## Release notes
 
-RainbowKit uses [Changesets](https://github.com/changesets/changesets) to manage versioning and publishing.
+SnowConeKit uses [Changesets](https://github.com/changesets/changesets) to manage versioning and publishing.
 
 Each PR with a user-facing change (API change, bug fix, notable UI update, etc.) should include a “changeset”, which is a markdown file in the `.changeset` directory. This directory acts as a release queue and is automatically cleared out after each release.
 
@@ -108,11 +112,11 @@ git push --tags
 
 Once you’ve pushed the tag, you can create a new release on GitHub.
 
-- Navigate to the [new release form on GitHub.](https://github.com/rainbow-me/rainbowkit/releases/new)
-- From the dropdown labelled “Choose a tag”, select the latest version tag for `@rainbow-me/rainbowkit`.
-- Set the title to `@rainbow-me/rainbowkit@x.x.x`, substituting the latest version number.
-- Copy the Markdown content below the latest version heading from the [RainbowKit changelog.](../packages/rainbowkit/CHANGELOG.md)
+- Navigate to the [new release form on GitHub.](https://github.com/sirbenchalot757/snowconekit/releases/new)
+- From the dropdown labelled “Choose a tag”, select the latest version tag for `@sirbenchalot757/snowconekit`.
+- Set the title to `@sirbenchalot757/snowconekit@x.x.x`, substituting the latest version number.
+- Copy the Markdown content below the latest version heading from the [SnowConeKit changelog.](../packages/snowconekit/CHANGELOG.md)
 
-If at any stage you’re unsure of the formatting, you can [reference past RainbowKit releases.](https://github.com/rainbow-me/rainbowkit/releases)
+If at any stage you’re unsure of the formatting, you can [reference past SnowConeKit releases.](https://github.com/sirbenchalot757/snowconekit/releases)
 
 That’s it — you’re all done! 🎉

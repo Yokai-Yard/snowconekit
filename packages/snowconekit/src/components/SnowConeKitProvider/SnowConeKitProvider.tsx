@@ -7,11 +7,11 @@ import { TransactionStoreProvider } from '../../transactions/TransactionStoreCon
 import { AppContext, defaultAppInfo, DisclaimerComponent } from './AppContext';
 import { AvatarComponent, AvatarContext, defaultAvatar } from './AvatarContext';
 import {
-  RainbowKitChain,
-  RainbowKitChainContext,
-} from './RainbowKitChainContext';
+  SnowConeKitChain,
+  SnowConeKitChainContext,
+} from './SnowConeKitChainContext';
 import { ShowRecentTransactionsContext } from './ShowRecentTransactionsContext';
-import { provideRainbowKitChains } from './provideRainbowKitChains';
+import { provideRainbowKitChains } from './provideSnowConeKitChains';
 import { clearWalletConnectDeepLink } from './walletConnectDeepLink';
 const ThemeIdContext = createContext<string | undefined>(undefined);
 export const ThemeContext = createContext<ThemeVars>(lightTheme());
@@ -49,7 +49,7 @@ const convertTheme = (theme: Theme): ThemeVars => {
 };
 
 export interface RainbowKitProviderProps {
-  chains: RainbowKitChain[];
+  chains: SnowConeKitChain[];
   id?: string;
   children: ReactNode;
   theme?: Theme;
@@ -64,7 +64,7 @@ export interface RainbowKitProviderProps {
 
 const defaultTheme = lightTheme();
 
-export function RainbowKitProvider({
+export function SnowConeKitProvider({
   chains,
   id,
   theme = defaultTheme,
@@ -73,7 +73,7 @@ export function RainbowKitProvider({
   showRecentTransactions = false,
   avatar,
 }: RainbowKitProviderProps) {
-  const rainbowkitChains = useMemo(
+  const snowconekitChains = useMemo(
     () => provideRainbowKitChains(chains),
     [chains]
   );
@@ -97,7 +97,7 @@ export function RainbowKitProvider({
   const avatarContext = avatar ?? defaultAvatar;
 
   return (
-    <RainbowKitChainContext.Provider value={rainbowkitChains}>
+    <SnowConeKitChainContext.Provider value={snowconekitChains}>
       <ShowRecentTransactionsContext.Provider value={showRecentTransactions}>
         <TransactionStoreProvider>
           <AvatarContext.Provider value={avatarContext}>
@@ -138,6 +138,6 @@ export function RainbowKitProvider({
           </AvatarContext.Provider>
         </TransactionStoreProvider>
       </ShowRecentTransactionsContext.Provider>
-    </RainbowKitChainContext.Provider>
+    </SnowConeKitChainContext.Provider>
   );
 }

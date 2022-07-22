@@ -24,7 +24,7 @@ import {
   getDefaultWallets,
   lightTheme,
   midnightTheme,
-  RainbowKitProvider,
+  SnowConeKitProvider,
   wallet,
 } from '../../snowconekit/dist';
 
@@ -162,7 +162,7 @@ function App({ Component, pageProps }: AppProps) {
         <title>RainbowKit Example</title>
       </Head>
       <WagmiConfig client={wagmiClient}>
-        <RainbowKitProvider
+        <SnowConeKitProvider
           appInfo={{
             ...demoAppInfo,
             ...(showDisclaimer && { disclaimer: DisclaimerDemo }),
@@ -186,7 +186,7 @@ function App({ Component, pageProps }: AppProps) {
                     fontFamily: 'sans-serif',
                   }}
                 >
-                  <h3>RainbowKitProvider props</h3>
+                  <h3>SnowConeKitProvider props</h3>
                   <div
                     style={{
                       alignItems: 'flex-start',
@@ -374,7 +374,7 @@ function App({ Component, pageProps }: AppProps) {
               </>
             )}
           </div>
-        </RainbowKitProvider>
+        </SnowConeKitProvider>
       </WagmiConfig>
     </>
   );

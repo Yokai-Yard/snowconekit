@@ -44,7 +44,7 @@ export default function Home() {
             style={{ lineHeight: 1 }}
             weight="bold"
           >
-            A beautiful wallet experience
+            A classy wallet experience
           </Text>
 
           <Box marginBottom={{ xs: '0', md: '4' }}>
@@ -97,9 +97,9 @@ export default function Home() {
             weight="semibold"
           >
             SnowConeKit provides a fast, easy and highly customizable way for
-            developers to add a great wallet experience to their application. We
-            handle the hard stuff so developers and teams can focus on building
-            amazing products and communities for their users.
+            developers to add a classy wallet experience to their application.
+            We handle the hard stuff so developers and teams can focus on
+            building amazing products and communities for their users.
           </Text>
 
           <Box marginTop={{ xs: '10', md: '11' }} marginX="auto">
@@ -170,11 +170,11 @@ export default function Home() {
             style={{ lineHeight: '1' }}
             weight="bold"
           >
-            Made with ❤️ by your frens at{' '}
+            {' '}
             <Box
               as="span"
               display={{ md: 'none' }}
-              marginLeft="2"
+              marginRight="2"
               position="relative"
               top="3"
             >
@@ -188,7 +188,7 @@ export default function Home() {
             <Box
               as="span"
               display={{ xs: 'none', md: 'inline' }}
-              marginLeft="2"
+              marginRight="2"
               position="relative"
               top="3"
             >
@@ -199,6 +199,7 @@ export default function Home() {
                 width={56}
               />
             </Box>
+            Made by candlelight 🪔
           </Text>
 
           <Text
@@ -210,10 +211,9 @@ export default function Home() {
             style={{ lineHeight: '28px', maxWidth: 720 }}
             weight="semibold"
           >
-            Building SnowConeKit has been an incredibly fun effort across many
-            people at SnowCone and our frens at other companies. We&apos;re
-            always looking to make SnowConeKit better, so please let us know how
-            we can improve.
+            Building SnowConeKit has been an incredibly fun effort for two
+            people at SnowCone and noone else. We&apos;re always looking to make
+            SnowConeKit better, so please let us know how we can improve.
           </Text>
 
           <Box
@@ -240,7 +240,7 @@ export default function Home() {
             </Button>
             <Button
               as="a"
-              href="https://github.com/rainbow-me/rainbowkit/discussions/new?category=feedback"
+              href="https://github.com/sirbenchalot757/snowconekit/discussions/new?category=feedback"
               shadow
               size="xl"
               target="_blank"
@@ -269,16 +269,21 @@ export default function Home() {
               </Link>
             </Text>
             <Text size="4" weight="bold">
+              {/* fixit */}
               <Link href="https://rainbow.me/media-kit.zip" variant="gray">
                 <span data-emoji>⬇️</span> media kit
               </Link>
             </Text>
             <Text size="4" weight="bold">
+              {/* fixit */}
+
               <Link href="https://rainbow.me/terms-of-use" variant="gray">
                 <span data-emoji>📜</span> terms of use
               </Link>
             </Text>
             <Text size="4" weight="bold">
+              {/* fixit */}
+
               <Link href="https://rainbow.me/privacy" variant="gray">
                 <span data-emoji>🔒</span> privacy policy
               </Link>
@@ -295,8 +300,8 @@ export default function Home() {
 
 function InstallScript() {
   const [requestCopy, setRequestCopy] = useState(false);
-  const code = 'npm init @rainbow-me/SnowConeKit@latest';
-  // const ref = useCoolMode('/NeonIconSvg.svg') as Ref<HTMLButtonElement>;
+  // fixit
+  const code = 'npm init @sirbenchalot757/SnowConeKit@latest';
 
   React.useEffect(() => {
     if (requestCopy) copy(code);
@@ -319,7 +324,6 @@ function InstallScript() {
         aria-label="Copy to clipboard"
         marginLeft="7"
         onClick={() => setRequestCopy(true)}
-        // ref={ref}
         shape="circle"
         size="xs"
         style={{

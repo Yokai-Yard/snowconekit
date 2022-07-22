@@ -11,16 +11,16 @@ You can opt in to displaying recent transactions within RainbowKit's account mod
 
 The default `ConnectButton` implementation will also display a loading indicator around the user's avatar if there are any pending transactions. Custom `ConnectButton` implementations can recreate this behavior via the `account.hasPendingTransactions` property that is passed to your render function.
 
-To use this feature, first enable the `showRecentTransactions` option on `RainbowKitProvider`.
+To use this feature, first enable the `showRecentTransactions` option on `SnowConeKitProvider`.
 
 ```tsx
-import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { SnowConeKitProvider } from '@rainbow-me/rainbowkit';
 
 const App = () => {
   return (
-    <RainbowKitProvider showRecentTransactions={true} {...etc}>
+    <SnowConeKitProvider showRecentTransactions={true} {...etc}>
       {/* ... */}
-    </RainbowKitProvider>
+    </SnowConeKitProvider>
   );
 };
 ```

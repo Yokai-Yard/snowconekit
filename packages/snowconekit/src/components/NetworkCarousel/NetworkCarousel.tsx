@@ -4,7 +4,7 @@ import { isMobile } from '../../utils/isMobile';
 import { AsyncImage } from '../AsyncImage/AsyncImage';
 import { Box, BoxProps } from '../Box/Box';
 import { CarouselButton } from '../MenuButton/CarouselButton';
-import { useRainbowKitChainsById } from '../RainbowKitProvider/RainbowKitChainContext';
+import { useRainbowKitChainsById } from '../SnowConeKitProvider/SnowConeKitChainContext';
 import { Text } from '../Text/Text';
 import ReactSimplyCarousel from 'react-simply-carousel';
 import {
@@ -15,7 +15,7 @@ import {
   CarouselAvatar,
 } from './NetworkCarousel.css';
 import { DropdownIcon } from '../Icons/Dropdown';
-import { ThemeContext } from '../RainbowKitProvider/RainbowKitProvider';
+import { ThemeContext } from '../SnowConeKitProvider/SnowConeKitProvider';
 
 export interface NetworkCarouselProps {
   activeChain: ReturnType<typeof useNetwork>['chain'];
@@ -66,7 +66,7 @@ export function NetworkCarousel({
   const [switchingToChain, setSwitchingToChain] = useState<number | null>();
   const titleId = 'rk_chain_modal_title';
   const mobile = isMobile();
-  const rainbowkitChainsById = useRainbowKitChainsById();
+  const snowconekitChainsById = useRainbowKitChainsById();
   const [activeSlideIndex, setActiveSlideIndex] = useState(
     chains.findIndex(chain => chain.id === activeChain?.id)
   );
@@ -189,7 +189,7 @@ export function NetworkCarousel({
         {chains.map((chain, idx) => {
           const isCurrentChain = chain.id === activeChain?.id;
           const switching = chain.id === switchingToChain;
-          const rainbowKitChain = rainbowkitChainsById[chain.id];
+          const rainbowKitChain = snowconekitChainsById[chain.id];
           const chainIconSize: BoxProps['width'] = mobile ? '36' : '28';
           const chainIconUrl = rainbowKitChain?.iconUrl;
           const chainIcon = chainIconClasses({

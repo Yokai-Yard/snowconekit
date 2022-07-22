@@ -1,7 +1,7 @@
 {
   "name": "site",
   "version": "0.0.7",
-  "description": "Site and docs for RainbowKit.",
+  "description": "Site and docs for SnowConeKit.",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.0.0-0",

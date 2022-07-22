@@ -1,6 +1,6 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
-import { Chain } from '../../../components/RainbowKitProvider/RainbowKitChainContext';
+import { Chain } from '../../../components/SnowConeKitProvider/SnowConeKitChainContext';
 import { isAndroid, isMobile } from '../../../utils/isMobile';
 import { Wallet } from '../../Wallet';
 import { getWalletConnectConnector } from '../../getWalletConnectConnector';

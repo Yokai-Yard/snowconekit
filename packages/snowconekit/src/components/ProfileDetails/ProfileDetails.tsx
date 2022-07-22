@@ -29,7 +29,7 @@ import { formatENS } from '../ConnectButton/formatENS';
 import { CopiedIcon } from '../Icons/Copied';
 import { CopyIcon } from '../Icons/Copy';
 import { DisconnectIcon } from '../Icons/Disconnect';
-import { ShowRecentTransactionsContext } from '../RainbowKitProvider/ShowRecentTransactionsContext';
+import { ShowRecentTransactionsContext } from '../SnowConeKitProvider/ShowRecentTransactionsContext';
 import { Text } from '../Text/Text';
 import { emojiAvatarForAddress } from '../Avatar/emojiAvatarForAddress';
 import { LayeredBg } from '../Icons/LayeredBg';
@@ -39,8 +39,8 @@ import { NetworkCarousel } from '../NetworkCarousel/NetworkCarousel';
 import { ChainIcon } from '../Icons/ChainIcon';
 import DangerIcon from '../Icons/danger.png';
 import { AsyncImage } from '../AsyncImage/AsyncImage';
-import { useRainbowKitChainsById } from '../RainbowKitProvider/RainbowKitChainContext';
-import { ThemeContext } from '../RainbowKitProvider/RainbowKitProvider';
+import { useRainbowKitChainsById } from '../SnowConeKitProvider/SnowConeKitChainContext';
+import { ThemeContext } from '../SnowConeKitProvider/SnowConeKitProvider';
 
 interface ProfileDetailsProps {
   activeChain: ReturnType<typeof useNetwork>['chain'];
@@ -97,9 +97,9 @@ export function ProfileDetails({
     return null;
   }
 
-  const rainbowkitChainsById = useRainbowKitChainsById();
+  const snowconekitChainsById = useRainbowKitChainsById();
 
-  const currentChain = activeChain && rainbowkitChainsById[activeChain?.id];
+  const currentChain = activeChain && snowconekitChainsById[activeChain?.id];
   const chainIconUrl = currentChain?.iconUrl;
 
   const accountName = ensName

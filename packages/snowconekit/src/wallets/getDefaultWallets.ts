@@ -1,11 +1,11 @@
-import { Chain } from '../components/RainbowKitProvider/RainbowKitChainContext';
+import { Chain } from '../components/SnowConeKitProvider/SnowConeKitChainContext';
 import { WalletList } from './Wallet';
 import { connectorsForWallets } from './connectorsForWallets';
 import { brave } from './walletConnectors/brave/brave';
 import { coinbase } from './walletConnectors/coinbase/coinbase';
 import { injected } from './walletConnectors/injected/injected';
 import { isMetaMask, metaMask } from './walletConnectors/metaMask/metaMask';
-import { rainbow } from './walletConnectors/rainbow/rainbow';
+import { snowcone } from './walletConnectors/snowcone/snowcone';
 import { walletConnect } from './walletConnectors/walletConnect/walletConnect';
 
 export const getDefaultWallets = ({
@@ -29,7 +29,7 @@ export const getDefaultWallets = ({
     {
       groupName: 'Popular',
       wallets: [
-        rainbow({ chains }),
+        snowcone({ chains }),
         coinbase({ appName, chains }),
         metaMask({ chains, shimDisconnect: true }),
         walletConnect({ chains }),

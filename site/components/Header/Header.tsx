@@ -2,7 +2,7 @@ import {
   ConnectButton,
   darkTheme,
   lightTheme,
-  RainbowKitProvider,
+  SnowConeKitProvider,
 } from '@sirbenchalot/snowconekit';
 import { Badge } from 'components/Badge/Badge';
 import { Box } from 'components/Box/Box';
@@ -63,7 +63,7 @@ export function Header({
         </Box>
 
         <Box style={{ marginLeft: 'auto' }}>
-          <RainbowKitProvider
+          <SnowConeKitProvider
             chains={chains}
             theme={
               darkMode
@@ -74,7 +74,7 @@ export function Header({
             <ConnectButton
               accountStatus={{ largeScreen: 'full', smallScreen: 'avatar' }}
             />
-          </RainbowKitProvider>{' '}
+          </SnowConeKitProvider>{' '}
         </Box>
       </Box>
       {docsMobileMenuRef && (

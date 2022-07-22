@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- a921853: Add `disclaimer` to the `appInfo` property in `RainbowKitProvider`, which displays a custom disclaimer at the bottom of the connection modal's welcome screen
+- a921853: Add `disclaimer` to the `appInfo` property in `SnowConeKitProvider`, which displays a custom disclaimer at the bottom of the connection modal's welcome screen
 
 ## 0.2.0
 
@@ -196,18 +196,18 @@
   When using a custom accent color:
 
   ```tsx
-  import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+  import { SnowConeKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 
   const App = () => {
     return (
-      <RainbowKitProvider
+      <SnowConeKitProvider
         theme={darkTheme({
           accentColor: '#7b3fe4',
           accentColorForeground: 'white',
         })}
       >
         {/* Your App */}
-      </RainbowKitProvider>
+      </SnowConeKitProvider>
     );
   };
   ```
@@ -215,17 +215,17 @@
   When using a built-in accent color preset:
 
   ```tsx
-  import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+  import { SnowConeKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 
   const App = () => {
     return (
-      <RainbowKitProvider
+      <SnowConeKitProvider
         theme={darkTheme({
           ...darkTheme.accentColors.purple,
         })}
       >
         {/* Your App */}
-      </RainbowKitProvider>
+      </SnowConeKitProvider>
     );
   };
   ```
@@ -316,9 +316,9 @@
   const App = () => {
     return (
       <WagmiProvider autoConnect connectors={connectors} provider={provider}>
-        <RainbowKitProvider chains={chains}>
+        <SnowConeKitProvider chains={chains}>
           <YourApp />
-        </RainbowKitProvider>
+        </SnowConeKitProvider>
       </WagmiProvider>
     );
   };
@@ -338,9 +338,9 @@
   const App = () => {
     return (
       <WagmiProvider client={wagmiClient}>
-        <RainbowKitProvider chains={chains}>
+        <SnowConeKitProvider chains={chains}>
           <YourApp />
-        </RainbowKitProvider>
+        </SnowConeKitProvider>
       </WagmiProvider>
     );
   };
@@ -372,16 +372,16 @@
 
   You can now opt in to displaying recent transactions within RainbowKit’s account modal. Note that all transactions must be manually registered with RainbowKit in order to be displayed.
 
-  First enable the `showRecentTransactions` option on `RainbowKitProvider`.
+  First enable the `showRecentTransactions` option on `SnowConeKitProvider`.
 
   ```tsx
-  import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
+  import { SnowConeKitProvider } from '@rainbow-me/rainbowkit';
 
   const App = () => {
     return (
-      <RainbowKitProvider showRecentTransactions={true} {...etc}>
+      <SnowConeKitProvider showRecentTransactions={true} {...etc}>
         {/* ... */}
-      </RainbowKitProvider>
+      </SnowConeKitProvider>
     );
   };
   ```
@@ -461,7 +461,7 @@
 
   ```tsx
   import {
-    RainbowKitProvider,
+    SnowConeKitProvider,
     Chain,
     getDefaultWallets,
   } from '@rainbow-me/rainbowkit';
@@ -502,9 +502,9 @@
   const App = () => {
     return (
       <WagmiProvider client={wagmiClient}>
-        <RainbowKitProvider chains={chains}>
+        <SnowConeKitProvider chains={chains}>
           <YourApp />
-        </RainbowKitProvider>
+        </SnowConeKitProvider>
       </WagmiProvider>
     );
   };
@@ -518,7 +518,7 @@
     Chain,
     configureChains,
     getDefaultWallets,
-    RainbowKitProvider,
+    SnowConeKitProvider,
   } from '@rainbow-me/rainbowkit';
   import { createClient, WagmiProvider, chain } from 'wagmi';
   import { providers } from 'ethers';
@@ -542,9 +542,9 @@
   const App = () => {
     return (
       <WagmiProvider client={wagmiClient}>
-        <RainbowKitProvider chains={chains}>
+        <SnowConeKitProvider chains={chains}>
           <YourApp />
-        </RainbowKitProvider>
+        </SnowConeKitProvider>
       </WagmiProvider>
     );
   };
@@ -567,14 +567,14 @@
 
   - `borders.modalBorderWidth`
 
-- 9d351d0: Update `RainbowKitChain` API.
+- 9d351d0: Update `SnowConeKitChain` API.
 
   Note that this only affects consumers that have customized chain metadata. All built-in chains have been updated to use the new API.
 
   - The `iconUrl` property now optionally accepts an async function that returns a string (`() => Promise<string>`). This is to support bundling lazy-loadable Base64 images in JavaScript when publishing to npm. All built-in chains are now using this feature to delay loading of images until after app hydration.
   - The `iconBackground` property has been added to improve the visual appearance of chain icons while loading.
 
-- 13fa857: `RainbowKitProvider` must now be nested inside `WagmiProvider` since it now makes use of wagmi hooks internally.
+- 13fa857: `SnowConeKitProvider` must now be nested inside `WagmiProvider` since it now makes use of wagmi hooks internally.
 
 ## 0.0.2
 
@@ -622,7 +622,7 @@
 - a696f2c: Add Hardhat chain (chainId: 31337) icon
 - e33d34b: Add support for custom “Learn more” URLs
 
-  - To customize the URL for the “Learn more” link within the “What is a wallet?” section, you can provide the optional `learnMoreUrl` prop to `RainbowKitProvider`.
+  - To customize the URL for the “Learn more” link within the “What is a wallet?” section, you can provide the optional `learnMoreUrl` prop to `SnowConeKitProvider`.
   - If you‘ve created a custom wallet with QR code instructions, you must now provide the `qrCode.instructions.learnMoreUrl` property.
 
 - 96e78b3: Add `fontStack` option to built-in themes, supporting `"rounded"` and `"system"` variants.

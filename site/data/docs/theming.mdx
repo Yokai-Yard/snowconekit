@@ -15,25 +15,25 @@ There are 3 built-in theme functions:
 - `darkTheme`
 - `midnightTheme`
 
-A theme function returns a theme object. You can pass the object to the `RainbowKitProvider`'s `theme` prop.
+A theme function returns a theme object. You can pass the object to the `SnowConeKitProvider`'s `theme` prop.
 
 ```tsx
-import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import { SnowConeKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 
 export const App = () => (
-  <RainbowKitProvider theme={darkTheme()}>
+  <SnowConeKitProvider theme={darkTheme()}>
     {/* Your App */}
-  </RainbowKitProvider>
+  </SnowConeKitProvider>
 );
 ```
 
 If you want, You can pass in `accentColor`, `accentColorForeground`, `borderRadius` and `fontStack` to customize them.
 
 ```tsx
-import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import { SnowConeKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 
 export const App = () => (
-  <RainbowKitProvider
+  <SnowConeKitProvider
     theme={darkTheme({
       __accentColor__: '#7b3fe4',
       __accentColorForeground__: 'white',
@@ -42,7 +42,7 @@ export const App = () => (
     })}
   >
     {/* Your App */}
-  </RainbowKitProvider>
+  </SnowConeKitProvider>
 );
 ```
 
@@ -99,11 +99,11 @@ The built-in theme functions also accept an options object, allowing you to sele
 For example, to customize the dark theme with a purple accent color and a `medium` border radius scale:
 
 ```tsx
-import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import { SnowConeKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 
 const App = () => {
   return (
-    <RainbowKitProvider
+    <SnowConeKitProvider
       theme={darkTheme({
         accentColor: '#7b3fe4',
         accentColorForeground: 'white',
@@ -112,7 +112,7 @@ const App = () => {
       {...etc}
     >
       {/* Your App */}
-    </RainbowKitProvider>
+    </SnowConeKitProvider>
   );
 };
 ```
@@ -120,17 +120,17 @@ const App = () => {
 Each theme also provides several accent color presets (`blue`, `green`, `orange`, `pink`, `purple`, `red`) that can be spread into the options object. For example, to use the `pink` accent color preset:
 
 ```tsx
-import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import { SnowConeKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 
 const App = () => {
   return (
-    <RainbowKitProvider
+    <SnowConeKitProvider
       theme={darkTheme({
         ...darkTheme.accentColors.pink,
       })}
     >
       {/* Your App */}
-    </RainbowKitProvider>
+    </SnowConeKitProvider>
   );
 };
 ```
@@ -144,12 +144,12 @@ Here are a few different ways you can use the `theme` prop.
 Use the `darkTheme` theme.
 
 ```tsx
-import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import { SnowConeKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 
 export const App = () => (
-  <RainbowKitProvider theme={darkTheme()}>
+  <SnowConeKitProvider theme={darkTheme()}>
     {/* Your App */}
-  </RainbowKitProvider>
+  </SnowConeKitProvider>
 );
 ```
 
@@ -157,14 +157,14 @@ Use the `midnightTheme` theme.
 
 ```tsx
 import {
-  RainbowKitProvider,
+  SnowConeKitProvider,
   midnightTheme,
 } from '@rainbow-me/rainbowkit';
 
 export const App = () => (
-  <RainbowKitProvider theme={midnightTheme()}>
+  <SnowConeKitProvider theme={midnightTheme()}>
     {/* Your App */}
-  </RainbowKitProvider>
+  </SnowConeKitProvider>
 );
 ```
 
@@ -175,18 +175,18 @@ Here are a few different ways you can use the `accentColor` config.
 Set the accent color to a custom purple value.
 
 ```tsx
-import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import { SnowConeKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 
 const App = () => {
   return (
-    <RainbowKitProvider
+    <SnowConeKitProvider
       theme={darkTheme({
         accentColor: '#7b3fe4',
         accentColorForeground: 'white',
       })}
     >
       {/* Your App */}
-    </RainbowKitProvider>
+    </SnowConeKitProvider>
   );
 };
 ```
@@ -194,17 +194,17 @@ const App = () => {
 Set the accent color to the built-in `green` preset.
 
 ```tsx
-import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import { SnowConeKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 
 const App = () => {
   return (
-    <RainbowKitProvider
+    <SnowConeKitProvider
       theme={darkTheme({
         ...darkTheme.accentColors.green,
       })}
     >
       {/* Your App */}
-    </RainbowKitProvider>
+    </SnowConeKitProvider>
   );
 };
 ```
@@ -216,17 +216,17 @@ Here are a few different ways you can use the `borderRadius` config.
 Set the border radius to `medium`.
 
 ```tsx
-import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import { SnowConeKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 
 const App = () => {
   return (
-    <RainbowKitProvider
+    <SnowConeKitProvider
       theme={darkTheme({
         borderRadius: 'medium',
       })}
     >
       {/* Your App */}
-    </RainbowKitProvider>
+    </SnowConeKitProvider>
   );
 };
 ```
@@ -234,17 +234,17 @@ const App = () => {
 Set the border radius to `none`.
 
 ```tsx
-import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import { SnowConeKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 
 const App = () => {
   return (
-    <RainbowKitProvider
+    <SnowConeKitProvider
       theme={darkTheme({
         borderRadius: 'none',
       })}
     >
       {/* Your App */}
-    </RainbowKitProvider>
+    </SnowConeKitProvider>
   );
 };
 ```
@@ -258,17 +258,17 @@ By default, the `fontStack` is set to `rounded`. But here's how you can use the 
 Set the font stack to `system`.
 
 ```tsx
-import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import { SnowConeKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 
 const App = () => {
   return (
-    <RainbowKitProvider
+    <SnowConeKitProvider
       theme={darkTheme({
         fontStack: 'system',
       })}
     >
       {/* Your App */}
-    </RainbowKitProvider>
+    </SnowConeKitProvider>
   );
 };
 ```
@@ -280,17 +280,17 @@ By default, the `overlayBlur` is set to `none`. But here's how you can use the `
 Set the overlay blur to `small`.
 
 ```tsx
-import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import { SnowConeKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 
 const App = () => {
   return (
-    <RainbowKitProvider
+    <SnowConeKitProvider
       theme={darkTheme({
         overlayBlur: 'small',
       })}
     >
       {/* Your App */}
-    </RainbowKitProvider>
+    </SnowConeKitProvider>
   );
 };
 ```
@@ -305,11 +305,14 @@ Here are a few different ways you can use different themes, with `accentColor`, 
 - Set the font stack to `system`
 
 ```tsx
-import { RainbowKitProvider, lightTheme } from '@rainbow-me/rainbowkit';
+import {
+  SnowConeKitProvider,
+  lightTheme,
+} from '@rainbow-me/rainbowkit';
 
 const App = () => {
   return (
-    <RainbowKitProvider
+    <SnowConeKitProvider
       theme={lightTheme({
         accentColor: '#7b3fe4',
         accentColorForeground: 'white',
@@ -318,7 +321,7 @@ const App = () => {
       })}
     >
       {/* Your App */}
-    </RainbowKitProvider>
+    </SnowConeKitProvider>
   );
 };
 ```
@@ -330,13 +333,13 @@ const App = () => {
 
 ```tsx
 import {
-  RainbowKitProvider,
+  SnowConeKitProvider,
   midnightTheme,
 } from '@rainbow-me/rainbowkit';
 
 const App = () => {
   return (
-    <RainbowKitProvider
+    <SnowConeKitProvider
       theme={midnightTheme({
         ...midnightTheme.accentColors.pink,
         borderRadius: 'small',
@@ -344,7 +347,7 @@ const App = () => {
       })}
     >
       {/* Your App */}
-    </RainbowKitProvider>
+    </SnowConeKitProvider>
   );
 };
 ```
@@ -355,19 +358,19 @@ If your app uses the standard `prefers-color-mode: dark` media query to swap bet
 
 ```tsx
 import {
-  RainbowKitProvider,
+  SnowConeKitProvider,
   lightTheme,
   darkTheme,
 } from '@rainbow-me/rainbowkit';
 
 const App = () => (
-  <RainbowKitProvider
+  <SnowConeKitProvider
     theme={{
       lightMode: lightTheme(),
       darkMode: darkTheme(),
     }}
   >
     {/* Your App */}
-  </RainbowKitProvider>
+  </SnowConeKitProvider>
 );
 ```

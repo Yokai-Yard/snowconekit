@@ -14,8 +14,8 @@ import { Dialog } from '../Dialog/Dialog';
 import { DialogContent } from '../Dialog/DialogContent';
 import { DisconnectSqIcon } from '../Icons/DisconnectSq';
 import { MenuButton } from '../MenuButton/MenuButton';
-import { AppContext } from '../RainbowKitProvider/AppContext';
-import { useRainbowKitChainsById } from '../RainbowKitProvider/RainbowKitChainContext';
+import { AppContext } from '../SnowConeKitProvider/AppContext';
+import { useRainbowKitChainsById } from '../SnowConeKitProvider/SnowConeKitChainContext';
 import { Text } from '../Text/Text';
 export interface ChainModalProps {
   activeChain: ReturnType<typeof useNetwork>['chain'];
@@ -40,7 +40,7 @@ export function ChainModal({
   const [switchingToChain, setSwitchingToChain] = useState<number | null>();
   const titleId = 'rk_chain_modal_title';
   const mobile = isMobile();
-  const rainbowkitChainsById = useRainbowKitChainsById();
+  const snowconekitChainsById = useRainbowKitChainsById();
   const unsupportedChain = activeChain?.unsupported ?? false;
   const chainIconSize = mobile ? '36' : '28';
   const stopSwitching = useCallback(() => {
@@ -116,7 +116,7 @@ export function ChainModal({
               chains.map((chain, idx) => {
                 const isCurrentChain = chain.id === activeChain?.id;
                 const switching = chain.id === switchingToChain;
-                const rainbowKitChain = rainbowkitChainsById[chain.id];
+                const rainbowKitChain = snowconekitChainsById[chain.id];
                 const chainIconSize: BoxProps['width'] = mobile ? '36' : '28';
                 const chainIconUrl = rainbowKitChain?.iconUrl;
                 const chainIconBackground = rainbowKitChain?.iconBackground;

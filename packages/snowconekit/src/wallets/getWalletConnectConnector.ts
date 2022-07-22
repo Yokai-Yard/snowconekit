@@ -1,5 +1,5 @@
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
-import { Chain } from '../components/RainbowKitProvider/RainbowKitChainContext';
+import { Chain } from '../components/SnowConeKitProvider/SnowConeKitChainContext';
 type SerializedOptions = string;
 const sharedConnectors = new Map<SerializedOptions, WalletConnectConnector>();
 

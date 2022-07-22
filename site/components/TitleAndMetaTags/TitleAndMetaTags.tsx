@@ -13,7 +13,7 @@ type TitleAndMetaTagsProps = {
 
 export function TitleAndMetaTags({
   color = 'white',
-  description = 'The best way to connect a wallet 🌈',
+  description = 'A classy wallet connector for the dicerning dev 🧑‍💻',
   image,
   pathname,
   title = 'SnowConeKit',
@@ -34,7 +34,7 @@ export function TitleAndMetaTags({
       <meta content={title} property="og:title" />
       <meta content={description} property="og:description" />
       <meta content={imageUrl} property="og:image" />
-
+      {/* fixit */}
       <meta content="@rainbowdotme" name="twitter:site" />
       <meta content="summary_large_image" name="twitter:card" />
 
