@@ -36,11 +36,11 @@ export function Header({
             className={logo}
             marginRight="4"
             src="/NeonIconSvg.svg"
+            style={{ maxHeight: '40px', maxWidth: '40px' }}
             transform={{
               active: 'shrink',
               hover: 'grow',
             }}
-            style={{ maxWidth: '40px', maxHeight: '40px' }}
             transitionDuration="100"
             transitionProperty="transform"
             transitionTimingFunction="ease"
