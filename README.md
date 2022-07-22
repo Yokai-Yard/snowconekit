@@ -2,11 +2,11 @@
   <img alt="rainbowkit" src="https://user-images.githubusercontent.com/372831/168174718-685980e0-391e-4621-94a1-29bf83979fa5.png" />
 </a>
 
-# RainbowKit
+# SnowConeKit
 
 **The best way to connect a wallet 🌈**
 
-RainbowKit is a [React](https://reactjs.org/) library that makes it easy to add wallet connection to your dapp.
+SnowConeKit is a [React](https://reactjs.org/) library that makes it easy to add wallet connection to your dapp.
 
 - 🔥 Out-of-the-box wallet management
 - ✅ Easily customizable
