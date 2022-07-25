@@ -15,14 +15,14 @@ import { vars } from 'css/vars.css';
 import NextImage from 'next/image';
 import NextLink from 'next/link';
 import React, { useState } from 'react';
+import bg from '../public/scKitBg.png';
 
 export default function Home() {
   return (
     <Box
       data-mode="dark"
       style={{
-        background: 'radial-gradient(#ff66cc 0%, rgba(0,0,0,1) 100%);)',
-        backgroundImage: 'url(/ScKitBg.png)',
+        backgroundImage: `url(${bg.src})`,
         backgroundSize: 'cover',
         minHeight: '100vh',
         overflow: 'hidden',
@@ -46,7 +46,11 @@ export default function Home() {
         <TitleAndMetaTags color="black" />
         <Header darkMode />
         <Wrapper>
-          <Box marginTop="11" textAlign="center">
+          <Box
+            marginTop="11"
+            style={{ transform: 'translateX(-20px ) ' }}
+            textAlign="center"
+          >
             <NextImage
               alt="SnowConeKit Neon Sign"
               height="227"
@@ -86,12 +90,15 @@ export default function Home() {
 
         <Playground />
 
-        <Box paddingY={{ xs: '11', lg: '12' }}>
+        <Box
+          display="flex"
+          flexDirection={{ xs: 'column', md: 'row' }}
+          paddingY={{ xs: '11', lg: '12' }}
+        >
+          <Box width="1/4" />
           <Box
             style={{
-              width: '1456px',
-              height: '589px',
-              marginLeft: 'auto',
+              marginLeft: '50px',
               backgroundColor: '#293A50',
               borderRadius: '8px',
               overflow: 'hidden',
@@ -99,6 +106,7 @@ export default function Home() {
               borderColor:
                 'linear-gradient(rgba(255, 255, 255, 1) 0%, #ffffff 100%))',
             }}
+            width="3/4"
           >
             <Box
               style={{
@@ -140,6 +148,7 @@ export default function Home() {
               </Box>
             </Box>
             <Box
+              fontSize="4"
               paddingLeft="10"
               paddingTop="10"
               style={{ display: 'block', marginTop: 'auto' }}
@@ -191,136 +200,148 @@ export default function Home() {
           </Box>
         </Box>
         <Box
-          backgroundColor="backgroundElevated"
-          data-mode="light"
+          paddingX="10"
           paddingY={{ xs: '11', lg: '12' }}
+          style={{
+            backgroundColor: '#293A50',
+          }}
         >
-          <Wrapper>
-            <Text
-              align={{ xs: 'left', md: 'center' }}
-              as="h2"
-              size={{ xs: '7', md: '9' }}
-              style={{ lineHeight: '1' }}
-              weight="bold"
-            >
-              Made with ❤️ by your frens at{' '}
+          <Box display="flex" flexDirection="row" gap="5">
+            <Box width="full">
+              <Text
+                align="left"
+                as="h4"
+                size={{ xs: '6', md: '7' }}
+                style={{ lineHeight: '1' }}
+                weight="bold"
+              >
+                Made with ❤️ by the light of candle{' '}
+                {/*  <Box
+                    as="span"
+                    display={{ md: 'none' }}
+                    marginLeft="2"
+                    position="relative"
+                    top="3"
+                  >
+                    <NextImage
+                      alt="SnowCone logo"
+                      height={36}
+                      src="/NeonIcon.png"
+                      width={36}
+                    />
+                  </Box> */}
+                {/*  <Box
+                    as="span"
+                    display={{ xs: 'none', md: 'inline' }}
+                    marginLeft="2"
+                    position="relative"
+                    top="3"
+                  >
+                    <NextImage
+                      alt="SnowCone logo"
+                      height={56}
+                      src="/NeonIcon.png"
+                      width={56}
+                    />
+                  </Box> */}
+              </Text>
+
+              <Text
+                align="left"
+                as="p"
+                marginY={{ xs: '7', md: '9' }}
+                size={{ xs: '3', md: '4' }}
+                style={{ lineHeight: '28px', maxWidth: 720 }}
+                weight="normal"
+              >
+                Building SnowConeKit has been an incredibly fun effort across
+                many people at SnowCone and our frens at other companies.
+                We&apos;re always looking to make SnowConeKit better, so please
+                let us know how we can improve.
+              </Text>
+
               <Box
-                as="span"
-                display={{ md: 'none' }}
-                marginLeft="2"
-                position="relative"
-                top="3"
+                display="flex"
+                flexDirection={{ xs: 'column', sm: 'row' }}
+                gap={{ xs: '4', sm: '6' }}
+                justifyContent="flex-start"
               >
-                <NextImage
-                  alt="SnowCone logo"
-                  height={36}
-                  src="/NeonIcon.png"
-                  width={36}
-                />
+                <Button
+                  as="a"
+                  href="https://twitter.com/rainbowdotme"
+                  shadow
+                  size="l"
+                  variant="outline"
+                >
+                  <Box
+                    as="span"
+                    marginX={{ sm: '4' }}
+                    textAlign="center"
+                    width="full"
+                  >
+                    Follow us on Twitter
+                  </Box>
+                </Button>
+                <Button
+                  as="a"
+                  href="https://github.com/rainbow-me/SnowConeKit/discussions/new?category=feedback"
+                  shadow
+                  size="l"
+                  target="_blank"
+                  variant="contrast"
+                >
+                  <Box as="span" textAlign="center" width="full">
+                    Share feedback with us
+                  </Box>
+                </Button>
               </Box>
+
               <Box
-                as="span"
-                display={{ xs: 'none', md: 'inline' }}
-                marginLeft="2"
-                position="relative"
-                top="3"
+                display="flex"
+                flexDirection="row"
+                gap="6"
+                justifyContent="flex-start"
+                marginTop={{ xs: '11', lg: '12' }}
+                textAlign="center"
               >
-                <NextImage
-                  alt="SnowCone logo"
-                  height={56}
-                  src="/NeonIcon.png"
-                  width={56}
-                />
+                <Text size="4" weight="bold">
+                  <Link
+                    href="https://github.com/rainbow-me/SnowConeKit"
+                    variant="gray"
+                  >
+                    <span data-emoji>👾</span> github
+                  </Link>
+                </Text>
+                <Text size="4" weight="bold">
+                  <Link href="https://rainbow.me/media-kit.zip" variant="gray">
+                    <span data-emoji>⬇️</span> media kit
+                  </Link>
+                </Text>
+                <Text size="4" weight="bold">
+                  <Link href="https://rainbow.me/terms-of-use" variant="gray">
+                    <span data-emoji>📜</span> terms of use
+                  </Link>
+                </Text>
+                <Text size="4" weight="bold">
+                  <Link href="https://rainbow.me/privacy" variant="gray">
+                    <span data-emoji>🔒</span> privacy policy
+                  </Link>
+                </Text>
+                <Text color="labelTertiary" size="4" weight="bold">
+                  © SnowCone
+                </Text>
               </Box>
-            </Text>
-
-            <Text
-              align={{ xs: 'left', md: 'center' }}
-              as="p"
-              marginX="auto"
-              marginY={{ xs: '7', md: '9' }}
-              size={{ xs: '4', md: '5' }}
-              style={{ lineHeight: '28px', maxWidth: 720 }}
-              weight="semibold"
-            >
-              Building SnowConeKit has been an incredibly fun effort across many
-              people at SnowCone and our frens at other companies. We&apos;re
-              always looking to make SnowConeKit better, so please let us know
-              how we can improve.
-            </Text>
-
-            <Box
-              display="flex"
-              flexDirection={{ xs: 'column', sm: 'row' }}
-              gap={{ xs: '5', sm: '8' }}
-              justifyContent="center"
-            >
-              <Button
-                as="a"
-                href="https://twitter.com/rainbowdotme"
-                shadow
-                size="xl"
-                variant="blueGradient"
-              >
-                <Box
-                  as="span"
-                  marginX={{ sm: '4' }}
-                  textAlign="center"
-                  width="full"
-                >
-                  Follow us on Twitter
-                </Box>
-              </Button>
-              <Button
-                as="a"
-                href="https://github.com/rainbow-me/SnowConeKit/discussions/new?category=feedback"
-                shadow
-                size="xl"
-                target="_blank"
-                variant="pinkGradient"
-              >
-                <Box as="span" textAlign="center" width="full">
-                  Share feedback with us
-                </Box>
-              </Button>
             </Box>
-
-            <Box
-              display="flex"
-              flexDirection="column"
-              gap="6"
-              justifyContent="center"
-              marginTop={{ xs: '11', lg: '12' }}
-              textAlign="center"
-            >
-              <Text size="4" weight="bold">
-                <Link
-                  href="https://github.com/rainbow-me/SnowConeKit"
-                  variant="gray"
-                >
-                  <span data-emoji>👾</span> github
-                </Link>
-              </Text>
-              <Text size="4" weight="bold">
-                <Link href="https://rainbow.me/media-kit.zip" variant="gray">
-                  <span data-emoji>⬇️</span> media kit
-                </Link>
-              </Text>
-              <Text size="4" weight="bold">
-                <Link href="https://rainbow.me/terms-of-use" variant="gray">
-                  <span data-emoji>📜</span> terms of use
-                </Link>
-              </Text>
-              <Text size="4" weight="bold">
-                <Link href="https://rainbow.me/privacy" variant="gray">
-                  <span data-emoji>🔒</span> privacy policy
-                </Link>
-              </Text>
-              <Text color="labelTertiary" size="4" weight="bold">
-                © SnowCone
-              </Text>
+            <Box marginTop="auto" width="1/4">
+              <object
+                data="/ScCandle.svg"
+                style={{ width: '320px' }}
+                type="image/svg+xml"
+              >
+                svg-animation
+              </object>
             </Box>
-          </Wrapper>
+          </Box>
         </Box>
       </Box>
     </Box>
