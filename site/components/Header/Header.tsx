@@ -31,11 +31,11 @@ export function Header({
       <Box className={row}>
         <NextLink href="/">
           <Box
-            alt="Rainbow logo"
+            alt="SnowCone logo"
             as="img"
             className={logo}
             marginRight="4"
-            src="/NeonIconSvg.svg"
+            src="/NeonIcon.png"
             transform={{
               active: 'shrink',
               hover: 'grow',

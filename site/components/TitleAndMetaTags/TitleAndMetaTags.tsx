@@ -13,7 +13,7 @@ type TitleAndMetaTagsProps = {
 
 export function TitleAndMetaTags({
   color = 'white',
-  description = 'The best way to connect a wallet 🌈',
+  description = 'Web3 connector for the discerning dev 👨‍💻',
   image,
   pathname,
   title = 'SnowConeKit',
@@ -35,10 +35,34 @@ export function TitleAndMetaTags({
       <meta content={description} property="og:description" />
       <meta content={imageUrl} property="og:image" />
 
-      <meta content="@rainbowdotme" name="twitter:site" />
+      <meta content="@snowconedao" name="twitter:site" />
       <meta content="summary_large_image" name="twitter:card" />
 
-      <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+      <link
+        href="/favicon/apple-touch-icon.png"
+        rel="apple-touch-icon"
+        sizes="180x180"
+      />
+      <link
+        href="/favicon/favicon-32x32.png"
+        rel="icon"
+        sizes="32x32"
+        type="image/png"
+      />
+      <link
+        href="/favicon/favicon-16x16.png"
+        rel="icon"
+        sizes="16x16"
+        type="image/png"
+      />
+      <link href="/favicon/site.webmanifest" rel="manifest" />
+      <link
+        color="#5bbad5"
+        href="/favicon/safari-pinned-tab.svg"
+        rel="mask-icon"
+      />
+      <meta content="#2b5797" name="msapplication-TileColor" />
+      <meta content="#8cabcf" name="theme-color" />
 
       <meta content={color} name="theme-color" />
     </Head>

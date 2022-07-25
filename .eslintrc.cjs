@@ -20,7 +20,7 @@ module.exports = {
       'error',
       {
         ignore: [
-          '^@rainbow-me\\/rainbowkit\\/?', // Workspace packages aren't able to be resolved correctly
+          '^@sirbenchalot\\/snowconekit\\/?', // Workspace packages aren't able to be resolved correctly
         ],
       },
     ],

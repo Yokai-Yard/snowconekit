@@ -26,7 +26,7 @@ export const heroWrapper = style([
 export const modalWrapper = style([
   atoms({ display: { xs: 'none', md: 'block' } }),
   {
-    maxWidth: 800,
+    maxWidth: 1000,
   },
 ]);
 
