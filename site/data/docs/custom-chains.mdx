@@ -12,7 +12,7 @@ You can use the `Chain` type to help you create a custom chain. Then, pass that 
 For example, here's how you can create an Avalanche chain for [avax.network](https://avax.network).
 
 ```tsx
-import { Chain, getDefaultWallets } from '@rainbow-me/rainbowkit';
+import { Chain, getDefaultWallets } from '@sirbenchalot757/snowconekit';
 import {
   chain,
   configureChains,
@@ -45,7 +45,7 @@ const { provider, chains } = configureChains(
 );
 
 const { connectors } = getDefaultWallets({
-  appName: 'My RainbowKit App',
+  appName: 'My SnowConeKit App',
   chains,
 });
 

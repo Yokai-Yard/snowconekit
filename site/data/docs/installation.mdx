@@ -1,33 +1,33 @@
 ---
 title: Installation
-description: Get up and running with RainbowKit
+description: Get up and running with SnowConeKit
 ---
 
 # Installation
 
-## Get up and running with RainbowKit
+## Get up and running with SnowConeKit
 
 ### Install
 
-Install RainbowKit and its peer dependencies, [wagmi](https://wagmi-xyz.vercel.app/) and [ethers](https://docs.ethers.io).
+Install SnowConeKit and its peer dependencies, [wagmi](https://wagmi-xyz.vercel.app/) and [ethers](https://docs.ethers.io).
 
 ```bash
-npm install @rainbow-me/rainbowkit wagmi ethers
+npm install @sirbenchalot757/snowconekit wagmi ethers
 ```
 
-> Note: RainbowKit is a [React](https://reactjs.org/) library.
+> Note: SnowConeKit is a [React](https://reactjs.org/) library.
 
 ### Import
 
-Import RainbowKit, wagmi, and ethers.
+Import SnowConeKit, wagmi, and ethers.
 
 ```tsx
-import '@rainbow-me/rainbowkit/styles.css';
+import '@sirbenchalot757/snowconekit/styles.css';
 
 import {
   getDefaultWallets,
   SnowConeKitProvider,
-} from '@rainbow-me/rainbowkit';
+} from '@sirbenchalot757/snowconekit';
 import {
   chain,
   configureChains,
@@ -56,7 +56,7 @@ const { chains, provider } = configureChains(
 );
 
 const { connectors } = getDefaultWallets({
-  appName: 'My RainbowKit App',
+  appName: 'My SnowConeKit App',
   chains
 });
 
@@ -90,16 +90,16 @@ const App = () => {
 Then, in your app, import and render the `ConnectButton` component.
 
 ```tsx
-import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { ConnectButton } from '@sirbenchalot757/snowconekit';
 
 export const YourApp = () => {
   return <ConnectButton />;
 };
 ```
 
-You're done! RainbowKit will now handle your user's wallet selection, display wallet/transaction information and handle network/wallet switching.
+You're done! SnowConeKit will now handle your user's wallet selection, display wallet/transaction information and handle network/wallet switching.
 
-> Note: If you're using [Remix,](https://remix.run) remember to [add RainbowKit to its server dependencies](https://remix.run/docs/en/v1/pages/gotchas#importing-esm-packages).
+> Note: If you're using [Remix,](https://remix.run) remember to [add SnowConeKit to its server dependencies](https://remix.run/docs/en/v1/pages/gotchas#importing-esm-packages).
 
 ### Add your own functionality
 
@@ -111,9 +111,9 @@ For more detail, view the [wagmi documentation.](https://wagmi.sh)
 
 ### Further examples
 
-To see some running examples of RainbowKit, or even use them to automatically scaffold a new project, check out the official [rainbowkit-examples](https://github.com/rainbow-me/rainbowkit-examples) repository.
+To see some running examples of SnowConeKit, or even use them to automatically scaffold a new project, check out the official [snowconekit-examples](https://github.com/sirbenchalot757/snowconekit-examples) repository.
 
-To try RainbowKit directly in your browser, check out the CodeSandbox links below:
+To try SnowConeKit directly in your browser, check out the CodeSandbox links below:
 
 - with [Create React App](https://codesandbox.io/s/dn3rho)
 - with [Create React App](https://codesandbox.io/s/ilfuoy) (TypeScript)

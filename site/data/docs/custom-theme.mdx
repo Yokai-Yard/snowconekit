@@ -14,7 +14,7 @@ description: Creating a custom theme
 While the built-in themes provide some level of customization, the `Theme` type is provided to help you define your own custom themes with lower-level access to the underlying theme variables.
 
 ```tsx
-import { SnowConeKitProvider, Theme } from '@rainbow-me/rainbowkit';
+import { SnowConeKitProvider, Theme } from '@sirbenchalot757/snowconekit';
 
 const myCustomTheme: Theme = {
   colors: {
@@ -92,7 +92,7 @@ import {
   SnowConeKitProvider,
   darkTheme,
   Theme,
-} from '@rainbow-me/rainbowkit';
+} from '@sirbenchalot757/snowconekit';
 ```
 
 Then, merge the built-in theme, with the theme tokens you'd like to override. In this example, I'm overriding the `accentColor` token to match my brand's accent color.
@@ -119,7 +119,7 @@ const App = () => {
 
 ### Creating custom theme selectors
 
-If your app is server/statically rendered and allows users to manually toggle between themes, RainbowKit's theming system can be hooked up to custom CSS selectors with the following functions that can be used with any CSS-in-JS system:
+If your app is server/statically rendered and allows users to manually toggle between themes, SnowConeKit's theming system can be hooked up to custom CSS selectors with the following functions that can be used with any CSS-in-JS system:
 
 - `cssStringFromTheme`
 - `cssObjectFromTheme`
@@ -134,7 +134,7 @@ import {
   cssStringFromTheme,
   lightTheme,
   darkTheme,
-} from '@rainbow-me/rainbowkit';
+} from '@sirbenchalot757/snowconekit';
 
 const App = () => {
   return (

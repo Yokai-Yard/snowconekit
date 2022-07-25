@@ -7,7 +7,7 @@ description: Create a custom wallet
 
 ## Create a custom wallet
 
-> Note: This API is unstable and likely to change in the near future. We will be adding more built-in wallets over time. [Let us know](https://github.com/rainbow-me/rainbowkit/issues) if there are any particular wallets you're interested in.
+> Note: This API is unstable and likely to change in the near future. We will be adding more built-in wallets over time. [Let us know](https://github.com/sirbenchalot757/snowconekit/issues) if there are any particular wallets you're interested in.
 
 The `Wallet` function type is provided to help you define your own custom wallets. The following properties can be configured on the return value of your `Wallet` function:
 
@@ -67,7 +67,7 @@ The `Wallet` function type is provided to help you define your own custom wallet
     {
       name: 'createConnector',
       required: true,
-      type: '(connectorArgs: { chainId? number }) => RainbowKitConnector',
+      type: '(connectorArgs: { chainId? number }) => SnowConeKitConnector',
       typeSimple: 'Connector',
       description:
         'Function for providing the connector instance and configuration for different connection methods, described below',
@@ -75,7 +75,7 @@ The `Wallet` function type is provided to help you define your own custom wallet
   ]}
 />
 
-### RainbowKitConnector properties
+### SnowConeKitConnector properties
 
 The following properties are defined on the return value of the `createConnector` function.
 
@@ -113,7 +113,7 @@ For example, to create a custom wallet using WalletConnect:
 
 ```tsx
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
-import { Chain, Wallet } from '@rainbow-me/rainbowkit';
+import { Chain, Wallet } from '@sirbenchalot757/snowconekit';
 
 export interface MyWalletOptions {
   chains: Chain[];

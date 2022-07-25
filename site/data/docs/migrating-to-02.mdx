@@ -4,35 +4,35 @@ title: Migrating to 0.2
 
 # Migrating to 0.2
 
-## Migrating RainbowKit
+## Migrating SnowConeKit
 
-RainbowKit has updated the `wagmi` peer dependency to `^0.4` which comes with a few [breaking changes](https://wagmi.sh/docs/migrating-to-03#04x-breaking-changes).
+SnowConeKit has updated the `wagmi` peer dependency to `^0.4` which comes with a few [breaking changes](https://wagmi.sh/docs/migrating-to-03#04x-breaking-changes).
 
 Follow the steps below to migrate.
 
 #### 1. Upgrade dependencies
 
-Upgrade RainbowKit and wagmi to their latest version:
+Upgrade SnowConeKit and wagmi to their latest version:
 
 ```bash
-npm i @rainbow-me/rainbowkit@^0.2.0 wagmi@^0.4.2
+npm i @sirbenchalot757/snowconekit@^0.2.0 wagmi@^0.4.2
 ```
 
 #### 2. Replace configureChains import
 
-Import `configureChains` from wagmi instead of RainbowKit:
+Import `configureChains` from wagmi instead of SnowConeKit:
 
 ```diff
-- import { configureChains } from '@rainbow-me/rainbowkit';
+- import { configureChains } from '@sirbenchalot757/snowconekit';
 + import { configureChains } from 'wagmi';
 ```
 
 #### 3. Migrate providers
 
-RainbowKit no longer exports an `apiProvider` API. Replace it with your desired provider from wagmi.
+SnowConeKit no longer exports an `apiProvider` API. Replace it with your desired provider from wagmi.
 
 ```diff
-- import { apiProvider } from '@rainbow-me/rainbowkit';
+- import { apiProvider } from '@sirbenchalot757/snowconekit';
 ```
 
 #### Alchemy

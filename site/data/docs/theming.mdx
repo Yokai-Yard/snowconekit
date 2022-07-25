@@ -7,7 +7,7 @@ description: Using and customizing the themes
 
 ## Using and customizing the themes
 
-You can tweak the RainbowKit UI to match your branding. You can pick from a few pre-defined accent colors and border radius configurations.
+You can tweak the SnowConeKit UI to match your branding. You can pick from a few pre-defined accent colors and border radius configurations.
 
 There are 3 built-in theme functions:
 
@@ -18,7 +18,10 @@ There are 3 built-in theme functions:
 A theme function returns a theme object. You can pass the object to the `SnowConeKitProvider`'s `theme` prop.
 
 ```tsx
-import { SnowConeKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import {
+  SnowConeKitProvider,
+  darkTheme,
+} from '@sirbenchalot757/snowconekit';
 
 export const App = () => (
   <SnowConeKitProvider theme={darkTheme()}>
@@ -30,7 +33,10 @@ export const App = () => (
 If you want, You can pass in `accentColor`, `accentColorForeground`, `borderRadius` and `fontStack` to customize them.
 
 ```tsx
-import { SnowConeKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import {
+  SnowConeKitProvider,
+  darkTheme,
+} from '@sirbenchalot757/snowconekit';
 
 export const App = () => (
   <SnowConeKitProvider
@@ -99,7 +105,10 @@ The built-in theme functions also accept an options object, allowing you to sele
 For example, to customize the dark theme with a purple accent color and a `medium` border radius scale:
 
 ```tsx
-import { SnowConeKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import {
+  SnowConeKitProvider,
+  darkTheme,
+} from '@sirbenchalot757/snowconekit';
 
 const App = () => {
   return (
@@ -120,7 +129,10 @@ const App = () => {
 Each theme also provides several accent color presets (`blue`, `green`, `orange`, `pink`, `purple`, `red`) that can be spread into the options object. For example, to use the `pink` accent color preset:
 
 ```tsx
-import { SnowConeKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import {
+  SnowConeKitProvider,
+  darkTheme,
+} from '@sirbenchalot757/snowconekit';
 
 const App = () => {
   return (
@@ -144,7 +156,10 @@ Here are a few different ways you can use the `theme` prop.
 Use the `darkTheme` theme.
 
 ```tsx
-import { SnowConeKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import {
+  SnowConeKitProvider,
+  darkTheme,
+} from '@sirbenchalot757/snowconekit';
 
 export const App = () => (
   <SnowConeKitProvider theme={darkTheme()}>
@@ -159,7 +174,7 @@ Use the `midnightTheme` theme.
 import {
   SnowConeKitProvider,
   midnightTheme,
-} from '@rainbow-me/rainbowkit';
+} from '@sirbenchalot757/snowconekit';
 
 export const App = () => (
   <SnowConeKitProvider theme={midnightTheme()}>
@@ -175,7 +190,10 @@ Here are a few different ways you can use the `accentColor` config.
 Set the accent color to a custom purple value.
 
 ```tsx
-import { SnowConeKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import {
+  SnowConeKitProvider,
+  darkTheme,
+} from '@sirbenchalot757/snowconekit';
 
 const App = () => {
   return (
@@ -194,7 +212,10 @@ const App = () => {
 Set the accent color to the built-in `green` preset.
 
 ```tsx
-import { SnowConeKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import {
+  SnowConeKitProvider,
+  darkTheme,
+} from '@sirbenchalot757/snowconekit';
 
 const App = () => {
   return (
@@ -216,7 +237,10 @@ Here are a few different ways you can use the `borderRadius` config.
 Set the border radius to `medium`.
 
 ```tsx
-import { SnowConeKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import {
+  SnowConeKitProvider,
+  darkTheme,
+} from '@sirbenchalot757/snowconekit';
 
 const App = () => {
   return (
@@ -234,7 +258,10 @@ const App = () => {
 Set the border radius to `none`.
 
 ```tsx
-import { SnowConeKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import {
+  SnowConeKitProvider,
+  darkTheme,
+} from '@sirbenchalot757/snowconekit';
 
 const App = () => {
   return (
@@ -258,7 +285,10 @@ By default, the `fontStack` is set to `rounded`. But here's how you can use the 
 Set the font stack to `system`.
 
 ```tsx
-import { SnowConeKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import {
+  SnowConeKitProvider,
+  darkTheme,
+} from '@sirbenchalot757/snowconekit';
 
 const App = () => {
   return (
@@ -280,7 +310,10 @@ By default, the `overlayBlur` is set to `none`. But here's how you can use the `
 Set the overlay blur to `small`.
 
 ```tsx
-import { SnowConeKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import {
+  SnowConeKitProvider,
+  darkTheme,
+} from '@sirbenchalot757/snowconekit';
 
 const App = () => {
   return (
@@ -308,7 +341,7 @@ Here are a few different ways you can use different themes, with `accentColor`, 
 import {
   SnowConeKitProvider,
   lightTheme,
-} from '@rainbow-me/rainbowkit';
+} from '@sirbenchalot757/snowconekit';
 
 const App = () => {
   return (
@@ -335,7 +368,7 @@ const App = () => {
 import {
   SnowConeKitProvider,
   midnightTheme,
-} from '@rainbow-me/rainbowkit';
+} from '@sirbenchalot757/snowconekit';
 
 const App = () => {
   return (
@@ -361,7 +394,7 @@ import {
   SnowConeKitProvider,
   lightTheme,
   darkTheme,
-} from '@rainbow-me/rainbowkit';
+} from '@sirbenchalot757/snowconekit';
 
 const App = () => (
   <SnowConeKitProvider

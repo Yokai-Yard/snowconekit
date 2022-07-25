@@ -1,10 +1,10 @@
 import React from 'react';
 import { isMobile } from '../../utils/isMobile';
 import { Dialog } from '../Dialog/Dialog';
-import { TxDialogContent } from './TxDialogContent';
+import { TxDialogContent } from '../TransactionModal/TxDialogContent';
 import type { Transaction } from '../../transactions/transactionStore';
 import { useAccount, useNetwork } from 'wagmi';
-import { TxItem } from './TxItem';
+import { TxItem } from '../TransactionModal/TxItem';
 
 export interface TransactionModalProps {
   txModalOpen: boolean;

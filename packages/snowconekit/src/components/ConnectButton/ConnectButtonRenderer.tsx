@@ -176,12 +176,7 @@ export function ConnectButtonRenderer({
       }`
     : undefined;
 
-  const trackedTxTemp = {
-    hash: '0xb13049ba0870d6ac59167ebba039ae5ce5434bc5c16187a5f9c2178f2b455db8',
-    description: 'Transaction',
-    status: 'pending',
-    timeStamp: 1658162472463,
-  };
+  // 1 hook, accepts modal, alert, none, allows dev to choose which one to use. default modal. on modal close, show alert.
 
   return (
     <>

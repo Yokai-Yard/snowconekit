@@ -14,7 +14,10 @@ You can use the `wallet` object and the `connectorsForWallets` function to build
 For example, you can choose to only show Rainbow and WalletConnect.
 
 ```tsx
-import { connectorsForWallets, wallet } from '@rainbow-me/rainbowkit';
+import {
+  connectorsForWallets,
+  wallet,
+} from '@sirbenchalot757/snowconekit';
 import { chain, configureChains } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
@@ -65,7 +68,7 @@ The following wallets are provided via the `wallet` object (in alphabetical orde
 #### Argent
 
 ```tsx
-import { wallet } from '@rainbow-me/rainbowkit';
+import { wallet } from '@sirbenchalot757/snowconekit';
 
 wallet.argent(options: {
   chains: Chain[];
@@ -75,7 +78,7 @@ wallet.argent(options: {
 #### Coinbase Wallet
 
 ```tsx
-import { wallet } from '@rainbow-me/rainbowkit';
+import { wallet } from '@sirbenchalot757/snowconekit';
 
 wallet.coinbase(options: {
   appName: string;
@@ -88,7 +91,7 @@ wallet.coinbase(options: {
 This is a fallback wallet option designed for scenarios where `window.ethereum` exists but hasn’t been provided by another wallet in the list.
 
 ```tsx
-import { wallet } from '@rainbow-me/rainbowkit';
+import { wallet } from '@sirbenchalot757/snowconekit';
 
 wallet.injected(options: {
   chains: Chain[];
@@ -99,7 +102,10 @@ wallet.injected(options: {
 This shouldn’t be used if another injected wallet is available. For example, when combined with MetaMask and Coinbase Wallet:
 
 ```tsx line=3-7,23-25
-import { connectorsForWallets, wallet } from '@rainbow-me/rainbowkit';
+import {
+  connectorsForWallets,
+  wallet,
+} from '@sirbenchalot757/snowconekit';
 
 const needsInjectedWalletFallback =
   typeof window !== 'undefined' &&
@@ -113,7 +119,7 @@ const connectors = connectorsForWallets([
     wallets: [
       wallet.rainbow({ chains }),
       wallet.metaMask({ chains }),
-      wallet.coinbase({ appName: 'My RainbowKit App', chains }),
+      wallet.coinbase({ appName: 'My SnowConeKit App', chains }),
       wallet.metaMask({ chains }),
       ...(needsInjectedWalletFallback
         ? [wallet.injected({ chains })]
@@ -126,7 +132,7 @@ const connectors = connectorsForWallets([
 #### Ledger Live
 
 ```tsx
-import { wallet } from '@rainbow-me/rainbowkit';
+import { wallet } from '@sirbenchalot757/snowconekit';
 
 wallet.ledger(options: {
   chains: Chain[];
@@ -137,7 +143,7 @@ wallet.ledger(options: {
 #### MetaMask
 
 ```tsx
-import { wallet } from '@rainbow-me/rainbowkit';
+import { wallet } from '@sirbenchalot757/snowconekit';
 
 wallet.metaMask(options: {
   chains: Chain[];
@@ -148,7 +154,7 @@ wallet.metaMask(options: {
 #### Rainbow
 
 ```tsx
-import { wallet } from '@rainbow-me/rainbowkit';
+import { wallet } from '@sirbenchalot757/snowconekit';
 
 wallet.rainbow(options: {
   chains: Chain[];
@@ -158,7 +164,7 @@ wallet.rainbow(options: {
 #### Trust Wallet
 
 ```tsx
-import { wallet } from '@rainbow-me/rainbowkit';
+import { wallet } from '@sirbenchalot757/snowconekit';
 
 wallet.trust(options: {
   chains: Chain[];
@@ -168,7 +174,7 @@ wallet.trust(options: {
 #### Steakwallet
 
 ```tsx
-import { wallet } from '@rainbow-me/rainbowkit';
+import { wallet } from '@sirbenchalot757/snowconekit';
 
 wallet.steak(options: {
   chains: Chain[];
@@ -178,7 +184,7 @@ wallet.steak(options: {
 #### imToken
 
 ```tsx
-import { wallet } from '@rainbow-me/rainbowkit';
+import { wallet } from '@sirbenchalot757/snowconekit';
 
 wallet.imToken(options: {
   chains: Chain[];
@@ -190,7 +196,7 @@ wallet.imToken(options: {
 This is a fallback wallet option designed for other WalletConnect-based wallets that haven’t been provided by another wallet in the list.
 
 ```tsx
-import { wallet } from '@rainbow-me/rainbowkit';
+import { wallet } from '@sirbenchalot757/snowconekit';
 
 wallet.walletConnect(options: {
   chains: Chain[];
@@ -206,7 +212,10 @@ Here are a few examples of displaying different wallets, in different order.
 Show MetaMask and WalletConnect.
 
 ```tsx
-import { connectorsForWallets, wallet } from '@rainbow-me/rainbowkit';
+import {
+  connectorsForWallets,
+  wallet,
+} from '@sirbenchalot757/snowconekit';
 
 const connectors = connectorsForWallets([
   {
@@ -222,7 +231,10 @@ const connectors = connectorsForWallets([
 Show MetaMask, Rainbow and Coinbase.
 
 ```tsx
-import { connectorsForWallets, wallet } from '@rainbow-me/rainbowkit';
+import {
+  connectorsForWallets,
+  wallet,
+} from '@sirbenchalot757/snowconekit';
 
 const connectors = connectorsForWallets([
   {
@@ -230,7 +242,7 @@ const connectors = connectorsForWallets([
     wallets: [
       wallet.metaMask({ chains }),
       wallet.rainbow({ chains }),
-      wallet.coinbase({ appName: 'My RainbowKit App', chains }),
+      wallet.coinbase({ appName: 'My SnowConeKit App', chains }),
     ],
   },
 ]);
@@ -245,7 +257,10 @@ You can use the `groupName` key to name different wallet groups. This is useful 
 Recommend Rainbow and MetaMask, but also offer WalletConnect and Coinbase.
 
 ```tsx
-import { connectorsForWallets, wallet } from '@rainbow-me/rainbowkit';
+import {
+  connectorsForWallets,
+  wallet,
+} from '@sirbenchalot757/snowconekit';
 
 const connectors = connectorsForWallets([
   {
@@ -256,7 +271,7 @@ const connectors = connectorsForWallets([
     groupName: 'Others',
     wallets: [
       wallet.walletConnect({ chains }),
-      wallet.coinbase({ chains, appName: 'My RainbowKit App' }),
+      wallet.coinbase({ chains, appName: 'My SnowConeKit App' }),
     ],
   },
 ]);

@@ -9,7 +9,7 @@ description: Customizing chains
 
 The `chains` prop on `SnowConeKitProvider` defines which chains are available for the user to select.
 
-RainbowKit is designed to integrate with [wagmi’s `chain` object](https://wagmi.sh/docs/constants/chains#chain) which currently provides the following chains:
+SnowConeKit is designed to integrate with [wagmi’s `chain` object](https://wagmi.sh/docs/constants/chains#chain) which currently provides the following chains:
 
 - `chain.mainnet`
 - `chain.ropsten`
@@ -30,7 +30,10 @@ RainbowKit is designed to integrate with [wagmi’s `chain` object](https://wagm
 Your chain config can be defined in a single array provided to [`configureChains`](/docs/configure-chains).
 
 ```tsx
-import { SnowConeKitProvider, Chain } from '@rainbow-me/rainbowkit';
+import {
+  SnowConeKitProvider,
+  Chain,
+} from '@sirbenchalot757/snowconekit';
 import { chain, configureChains } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
