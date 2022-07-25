@@ -1,5 +1,5 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix */
-import { Chain } from '../../../components/RainbowKitProvider/RainbowKitChainContext';
+import { Chain } from '../../../components/SnowConeKitProvider/SnowConeKitChainContext';
 import { isAndroid } from '../../../utils/isMobile';
 import { Wallet } from '../../Wallet';
 import { getWalletConnectConnector } from '../../getWalletConnectConnector';

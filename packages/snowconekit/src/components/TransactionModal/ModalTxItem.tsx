@@ -8,7 +8,7 @@ import { Box } from '../Box/Box';
 import { ExternalLinkIcon } from '../Icons/ExternalLink';
 import { Text } from '../Text/Text';
 import { AsyncImage } from '../AsyncImage/AsyncImage';
-import { useRainbowKitChainsById } from '../RainbowKitProvider/RainbowKitChainContext';
+import { useRainbowKitChainsById } from '../SnowConeKitProvider/SnowConeKitChainContext';
 import { timeAgo } from '../../utils/timeAgo';
 import { formatTransactionAddress } from '../ConnectButton/formatModalAddresses';
 import CheckIcon from '../Icons/check.png';
@@ -24,8 +24,8 @@ export function ModalTxItem({ tx, address }: ModalTxProps) {
   const color = tx.status === 'failed' ? 'error' : 'accentColor';
   const { chain } = useNetwork();
   const explorerLink = chainToExplorerUrl(chain);
-  const rainbowkitChainsById = useRainbowKitChainsById();
-  const rainbowKitChain = chain ? rainbowkitChainsById[chain.id] : undefined;
+  const snowconekitChainsById = useRainbowKitChainsById();
+  const rainbowKitChain = chain ? snowconekitChainsById[chain.id] : undefined;
   const chainIconUrl = rainbowKitChain?.iconUrl ?? undefined;
   const confirmationStatus =
     tx.status === 'confirmed'

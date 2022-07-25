@@ -1,6 +1,6 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 import { InjectedConnector } from 'wagmi/connectors/injected';
-import { Chain } from '../../../components/RainbowKitProvider/RainbowKitChainContext';
+import { Chain } from '../../../components/SnowConeKitProvider/SnowConeKitChainContext';
 import { Wallet } from '../../Wallet';
 
 export interface BraveOptions {

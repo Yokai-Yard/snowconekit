@@ -1,20 +1,21 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useContext } from 'react';
 import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi';
 import { isMobile } from '../../utils/isMobile';
 import { AsyncImage } from '../AsyncImage/AsyncImage';
 import { Box, BoxProps } from '../Box/Box';
 import { CarouselButton } from '../MenuButton/CarouselButton';
-import { useRainbowKitChainsById } from '../RainbowKitProvider/RainbowKitChainContext';
+import { useRainbowKitChainsById } from '../SnowConeKitProvider/SnowConeKitChainContext';
 import { Text } from '../Text/Text';
 import ReactSimplyCarousel from 'react-simply-carousel';
 import {
   GlassCard,
-  carousel,
-  backBtn,
-  forwardBtn,
+  Carousel,
+  BackBtn,
+  ForwardBtn,
   CarouselAvatar,
 } from './NetworkCarousel.css';
 import { DropdownIcon } from '../Icons/Dropdown';
+import { ThemeContext } from '../SnowConeKitProvider/SnowConeKitProvider';
 
 export interface NetworkCarouselProps {
   activeChain: ReturnType<typeof useNetwork>['chain'];
@@ -58,10 +59,14 @@ export function NetworkCarousel({
   onSwitchNetwork,
 }: NetworkCarouselProps) {
   const { connector: activeConnector } = useAccount();
+  const theme = useContext(ThemeContext);
+
+  const isLightMode = theme?.colors?.modalBackground === '#FFFFFF';
+
   const [switchingToChain, setSwitchingToChain] = useState<number | null>();
   const titleId = 'rk_chain_modal_title';
   const mobile = isMobile();
-  const rainbowkitChainsById = useRainbowKitChainsById();
+  const snowconekitChainsById = useRainbowKitChainsById();
   const [activeSlideIndex, setActiveSlideIndex] = useState(
     chains.findIndex(chain => chain.id === activeChain?.id)
   );
@@ -109,7 +114,15 @@ export function NetworkCarousel({
       flexDirection="column"
       paddingTop="6"
       paddingBottom="6"
-      className={[GlassCard, carousel]}
+      className={[GlassCard, Carousel]}
+      style={{
+        border: isLightMode
+          ? '1px solid rgba( 255, 255, 255, 0.68 )'
+          : '1px solid rgba( 0, 0, 0, 0.68 )',
+        background: isLightMode
+          ? 'linear-gradient(112deg, rgba(255, 255, 255,0.2) 0%, rgba(255, 255, 255,0.0) 100%)'
+          : 'linear-gradient(112deg, rgba(0, 0, 0,0.2) 0%, rgba(0, 0, 0,0.0) 100%)',
+      }}
     >
       <Box paddingBottom="0" paddingLeft="10" paddingTop="4">
         <Text
@@ -136,13 +149,13 @@ export function NetworkCarousel({
           },
         }}
         forwardBtnProps={{
-          style: forwardBtn,
+          style: ForwardBtn,
           children: (
             <Box
               style={{
                 transform: 'rotate(270deg)',
                 paddingTop: -1,
-                marginLeft: '-3px',
+                marginLeft: '-4px',
               }}
             >
               <DropdownIcon />
@@ -150,13 +163,14 @@ export function NetworkCarousel({
           ),
         }}
         backwardBtnProps={{
-          style: backBtn,
+          style: BackBtn,
           children: (
             <Box
               style={{
                 transform: 'rotate(90deg)',
                 paddingBottom: 1,
-                marginRight: '-3px',
+                paddingRight: 2,
+                marginRight: '-4px',
               }}
             >
               <DropdownIcon />
@@ -175,7 +189,7 @@ export function NetworkCarousel({
         {chains.map((chain, idx) => {
           const isCurrentChain = chain.id === activeChain?.id;
           const switching = chain.id === switchingToChain;
-          const rainbowKitChain = rainbowkitChainsById[chain.id];
+          const rainbowKitChain = snowconekitChainsById[chain.id];
           const chainIconSize: BoxProps['width'] = mobile ? '36' : '28';
           const chainIconUrl = rainbowKitChain?.iconUrl;
           const chainIcon = chainIconClasses({

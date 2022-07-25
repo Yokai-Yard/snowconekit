@@ -329,8 +329,8 @@ export default function Home() {
 
 function InstallScript() {
   const [requestCopy, setRequestCopy] = useState(false);
-  const code = 'npm init @rainbow-me/SnowConeKit@latest';
-  // const ref = useCoolMode('/NeonIconSvg.svg') as Ref<HTMLButtonElement>;
+  // fixit
+  const code = 'npm init @sirbenchalot757/SnowConeKit@latest';
 
   React.useEffect(() => {
     if (requestCopy) copy(code);
@@ -353,7 +353,6 @@ function InstallScript() {
         aria-label="Copy to clipboard"
         marginLeft="7"
         onClick={() => setRequestCopy(true)}
-        // ref={ref}
         shape="circle"
         size="xs"
         style={{

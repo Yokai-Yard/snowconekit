@@ -14,11 +14,9 @@ import { Text } from 'components/Text/Text';
 import { Wrapper } from 'components/Wrapper/Wrapper';
 import { vars } from 'css/vars.css';
 import { allDocsRoutes, docsRoutes } from 'lib/docsRoutes';
-import { useCoolMode } from 'lib/useCoolMode';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import React, { Ref, useEffect } from 'react';
-import { useAccount } from 'wagmi';
+import React, { useEffect } from 'react';
 import {
   content,
   navigationSidebar,
@@ -37,13 +35,6 @@ export function DocsLayout({ children }: { children: React.ReactNode }) {
   const next = allDocsRoutes[currentPageIndex + 1];
   const docsMobileMenuRef = React.useRef<HTMLDivElement>(null);
 
-  const { isConnected } = useAccount();
-  const ref = useCoolMode(
-    '/NeonIconSvg.svg',
-    !isConnected,
-    true
-  ) as Ref<HTMLDivElement>;
-
   // Listen to route change so we can programatically close
   // the docs mobile menu when changing routes.
   useEffect(() => {
@@ -53,7 +44,7 @@ export function DocsLayout({ children }: { children: React.ReactNode }) {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div ref={ref}>
+    <div>
       <Header docsMobileMenuRef={docsMobileMenuRef} sticky />
 
       <DocsMobileMenuContext.Provider value={docsMobileMenuRef}>

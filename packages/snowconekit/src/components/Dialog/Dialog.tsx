@@ -8,7 +8,7 @@ import { createPortal } from 'react-dom';
 import { RemoveScroll } from 'react-remove-scroll';
 import { isMobile } from '../../utils/isMobile';
 import { Box } from '../Box/Box';
-import { useThemeRootProps } from '../RainbowKitProvider/RainbowKitProvider';
+import { useThemeRootProps } from '../SnowConeKitProvider/SnowConeKitProvider';
 import * as styles from './Dialog.css';
 import { FocusTrap } from './FocusTrap';
 

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Box } from '../Box/Box';
-import { AvatarComponent } from '../RainbowKitProvider/AvatarContext';
+import { AvatarComponent } from '../SnowConeKitProvider/AvatarContext';
 import { emojiAvatarForAddress } from './emojiAvatarForAddress';
 
 export const EmojiAvatar: AvatarComponent = ({ address, ensImage, size }) => {

@@ -58,9 +58,9 @@ const wagmiClient = createClient({
 const App = () => {
   return (
     <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains}>
+      <SnowConeKitProvider chains={chains}>
         <YourApp />
-      </RainbowKitProvider>
+      </SnowConeKitProvider>
     </WagmiConfig>
   );
 };

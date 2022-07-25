@@ -1,6 +1,6 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet';
-import { Chain } from '../../../components/RainbowKitProvider/RainbowKitChainContext';
+import { Chain } from '../../../components/SnowConeKitProvider/SnowConeKitChainContext';
 import { isIOS } from '../../../utils/isMobile';
 import { Wallet } from '../../Wallet';
 

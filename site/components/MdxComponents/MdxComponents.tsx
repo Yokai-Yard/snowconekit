@@ -2,7 +2,6 @@
 import { Box } from 'components/Box/Box';
 import { Button } from 'components/Button/Button';
 import { Code } from 'components/Code/Code';
-import { CoolMode } from 'components/CoolMode/CoolMode';
 import { CheckIcon } from 'components/Icons/Check';
 import { CopyIcon } from 'components/Icons/Copy';
 import { Link } from 'components/Link/Link';
@@ -40,7 +39,6 @@ export const components = {
       <code>{children}</code>
     );
   },
-  CoolMode,
   h1: props => (
     <Text
       as="h1"

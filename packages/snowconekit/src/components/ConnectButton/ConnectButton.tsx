@@ -9,7 +9,7 @@ import { isMobile } from '../../utils/isMobile';
 import { Avatar } from '../Avatar/Avatar';
 import { Box } from '../Box/Box';
 import { DropdownIcon } from '../Icons/Dropdown';
-import { useRainbowKitChains } from '../RainbowKitProvider/RainbowKitChainContext';
+import { useSnowConeKitChains } from '../SnowConeKitProvider/SnowConeKitChainContext';
 import { ConnectButtonRenderer } from './ConnectButtonRenderer';
 
 type AccountStatus = 'full' | 'avatar' | 'address';
@@ -35,7 +35,7 @@ export function ConnectButton({
   label = defaultProps.label,
   showBalance = defaultProps.showBalance,
 }: ConnectButtonProps) {
-  const chains = useRainbowKitChains();
+  const chains = useSnowConeKitChains();
 
   return (
     <ConnectButtonRenderer>

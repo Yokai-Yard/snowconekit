@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { AsyncBgImage } from '../AsyncImage/AsyncBgImage';
 import { loadImages } from '../AsyncImage/useAsyncImage';
 import { BoxProps } from '../Box/Box';
-import { ThemeContext } from '../RainbowKitProvider/RainbowKitProvider';
+import { ThemeContext } from '../SnowConeKitProvider/SnowConeKitProvider';
 
 const src = async () =>
   (await import('../../../assets/LayerShader.svg')).default;

@@ -4,7 +4,7 @@ import { MeshGradient } from '../MeshGradient/MeshGradient.jsx';
 import { AsyncBgImage } from '../AsyncImage/AsyncBgImage';
 import { loadImages } from '../AsyncImage/useAsyncImage';
 import { BoxProps } from '../Box/Box';
-import { ThemeContext } from '../RainbowKitProvider/RainbowKitProvider';
+import { ThemeContext } from '../SnowConeKitProvider/SnowConeKitProvider';
 /* import { motion } from 'framer-motion'; */
 
 export const gradientColors: Record<string, any> = {

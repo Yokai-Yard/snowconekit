@@ -7,14 +7,14 @@ description: Customizing your app's info
 
 ## Customizing your app’s info
 
-You can pass your app’s info in the `appInfo` prop for `RainbowKitProvider`. Properties you can modify are your app's name (`appName`) and the link where the “Learn More” button in the connection modal redirects to (`learnMoreUrl`):
+You can pass your app’s info in the `appInfo` prop for `SnowConeKitProvider`. Properties you can modify are your app's name (`appName`) and the link where the “Learn More” button in the connection modal redirects to (`learnMoreUrl`):
 
 ```tsx
-import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { SnowConeKitProvider } from '@rainbow-me/rainbowkit';
 
 const App = () => {
   return (
-    <RainbowKitProvider
+    <SnowConeKitProvider
       appInfo={{
         appName: 'Rainbowkit Demo',
         learnMoreUrl: 'https://learnaboutcryptowallets.example',
@@ -22,7 +22,7 @@ const App = () => {
       {...etc}
     >
       {/* ... */}
-    </RainbowKitProvider>
+    </SnowConeKitProvider>
   );
 };
 ```
@@ -33,7 +33,7 @@ You can provide your own disclaimer to be displayed at the bottom of the connect
 
 ```tsx
 import {
-  RainbowKitProvider,
+  SnowConeKitProvider,
   DisclaimerComponent,
 } from '@rainbow-me/rainbowkit';
 
@@ -48,7 +48,7 @@ const Disclaimer: DisclaimerComponent = ({ Text, Link }) => (
 
 const App = () => {
   return (
-    <RainbowKitProvider
+    <SnowConeKitProvider
       appInfo={{
         appName: 'RainbowKit Demo',
         disclaimer: Disclaimer,
@@ -56,7 +56,7 @@ const App = () => {
       {...etc}
     >
       {/* ... */}
-    </RainbowKitProvider>
+    </SnowConeKitProvider>
   );
 };
 ```

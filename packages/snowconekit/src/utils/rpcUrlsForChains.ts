@@ -1,4 +1,4 @@
-import { Chain } from '../components/RainbowKitProvider/RainbowKitChainContext';
+import { Chain } from '../components/SnowConeKitProvider/SnowConeKitChainContext';
 
 export const rpcUrlsForChains = (
   chains: Chain[]

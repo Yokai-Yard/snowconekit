@@ -26,7 +26,7 @@ import '@rainbow-me/rainbowkit/styles.css';
 
 import {
   getDefaultWallets,
-  RainbowKitProvider,
+  SnowConeKitProvider,
 } from '@rainbow-me/rainbowkit';
 import {
   chain,
@@ -71,15 +71,15 @@ const wagmiClient = createClient({
 
 ### Wrap providers
 
-Wrap your application with `RainbowKitProvider` and [`WagmiConfig`](https://wagmi.sh/docs/provider).
+Wrap your application with `SnowConeKitProvider` and [`WagmiConfig`](https://wagmi.sh/docs/provider).
 
 ```tsx
 const App = () => {
   return (
     <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains}>
+      <SnowConeKitProvider chains={chains}>
         <YourApp />
-      </RainbowKitProvider>
+      </SnowConeKitProvider>
     </WagmiConfig>
   );
 };

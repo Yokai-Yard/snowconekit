@@ -29,7 +29,7 @@ import { formatENS } from '../ConnectButton/formatENS';
 import { CopiedIcon } from '../Icons/Copied';
 import { CopyIcon } from '../Icons/Copy';
 import { DisconnectIcon } from '../Icons/Disconnect';
-import { ShowRecentTransactionsContext } from '../RainbowKitProvider/ShowRecentTransactionsContext';
+import { ShowRecentTransactionsContext } from '../SnowConeKitProvider/ShowRecentTransactionsContext';
 import { Text } from '../Text/Text';
 import { emojiAvatarForAddress } from '../Avatar/emojiAvatarForAddress';
 import { LayeredBg } from '../Icons/LayeredBg';
@@ -39,8 +39,8 @@ import { NetworkCarousel } from '../NetworkCarousel/NetworkCarousel';
 import { ChainIcon } from '../Icons/ChainIcon';
 import DangerIcon from '../Icons/danger.png';
 import { AsyncImage } from '../AsyncImage/AsyncImage';
-import { useRainbowKitChainsById } from '../RainbowKitProvider/RainbowKitChainContext';
-import { ThemeContext } from '../RainbowKitProvider/RainbowKitProvider';
+import { useRainbowKitChainsById } from '../SnowConeKitProvider/SnowConeKitChainContext';
+import { ThemeContext } from '../SnowConeKitProvider/SnowConeKitProvider';
 
 interface ProfileDetailsProps {
   activeChain: ReturnType<typeof useNetwork>['chain'];
@@ -97,9 +97,9 @@ export function ProfileDetails({
     return null;
   }
 
-  const rainbowkitChainsById = useRainbowKitChainsById();
+  const snowconekitChainsById = useRainbowKitChainsById();
 
-  const currentChain = activeChain && rainbowkitChainsById[activeChain?.id];
+  const currentChain = activeChain && snowconekitChainsById[activeChain?.id];
   const chainIconUrl = currentChain?.iconUrl;
 
   const accountName = ensName
@@ -126,11 +126,7 @@ export function ProfileDetails({
               />
             ) : null}
             <Box style={{ flexGrow: 1 }} />
-            <NavButton
-              action={copyAddressAction}
-              icon={copiedAddress ? <CopiedIcon /> : <CopyIcon />}
-              label={copiedAddress ? 'Copied!' : 'Copy Address'}
-            />
+
             <NavButton
               action={onDisconnect}
               icon={<DisconnectIcon />}
@@ -142,9 +138,12 @@ export function ProfileDetails({
             <Box
               className={GlassCard}
               style={{
-                background: !isLightMode
-                  ? 'linear-gradient(112deg, rgba(0, 0, 0,0.2) 0%, rgba(0, 0, 0,0.0) 100%)'
-                  : 'linear-gradient(112deg, rgba(255, 255, 255,0.2) 0%, rgba(255, 255, 255,0.0) 100%)',
+                border: isLightMode
+                  ? '1px solid rgba( 255, 255, 255, .68 )'
+                  : '1px solid rgba( 0, 0, 0, 0.68 )',
+                background: isLightMode
+                  ? 'linear-gradient(112deg, rgba(255, 255, 255,0.2) 0%, rgba(255, 255, 255,0.0) 100%)'
+                  : 'linear-gradient(112deg, rgba(0, 0, 0,0.2) 0%, rgba(0, 0, 0,0.0) 100%)',
               }}
             >
               <Box
@@ -172,6 +171,10 @@ export function ProfileDetails({
                   </Box>
                   {balanceData && (
                     <Box
+                      gap="12"
+                      display="flex"
+                      flexDirection="row"
+                      alignItems="center"
                       marginTop="20"
                       textAlign="left"
                       style={{
@@ -187,6 +190,13 @@ export function ProfileDetails({
                       >
                         {balance} {balanceData.symbol}
                       </Text>
+                      <Box style={{ color: 'accentColorForeground' }}>
+                        <NavButton
+                          action={copyAddressAction}
+                          icon={copiedAddress ? <CopiedIcon /> : <CopyIcon />}
+                          label={copiedAddress ? 'Copied!' : 'Copy Address'}
+                        />
+                      </Box>
                     </Box>
                   )}
                 </Box>
@@ -199,6 +209,14 @@ export function ProfileDetails({
                 paddingY="14"
                 paddingLeft="10"
                 className={GlassCard}
+                style={{
+                  border: isLightMode
+                    ? '1px solid rgba( 255, 255, 255, 0.68 )'
+                    : '1px solid rgba( 0, 0, 0, 0.68 )',
+                  background: isLightMode
+                    ? 'linear-gradient(112deg, rgba(255, 255, 255,0.2) 0%, rgba(255, 255, 255,0.0) 100%)'
+                    : 'linear-gradient(112deg, rgba(0, 0, 0,0.2) 0%, rgba(0, 0, 0,0.0) 100%)',
+                }}
               >
                 <Box
                   display="flex"

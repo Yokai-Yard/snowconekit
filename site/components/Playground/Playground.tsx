@@ -5,7 +5,7 @@ import {
   darkTheme,
   lightTheme,
   midnightTheme,
-  RainbowKitProvider,
+  SnowConeKitProvider,
 } from '@sirbenchalot/snowconekit';
 import clsx from 'clsx';
 import { Box } from 'components/Box/Box';
@@ -81,7 +81,11 @@ export function Playground() {
 
   return useMounted() ? (
     <Provider>
-      <RainbowKitProvider chains={chains} id="playground" theme={selectedTheme}>
+      <SnowConeKitProvider
+        chains={chains}
+        id="playground"
+        theme={selectedTheme}
+      >
         <Box
           marginTop={{ md: '11', lg: '12' }}
           paddingY={{ xs: '11', lg: '12' }}
@@ -322,7 +326,7 @@ export function Playground() {
             </Box>
           </Box>
         </Box>
-      </RainbowKitProvider>
+      </SnowConeKitProvider>
     </Provider>
   ) : null;
 }

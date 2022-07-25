@@ -13,9 +13,8 @@ import { CloseButton } from '../CloseButton/CloseButton';
 import { DisclaimerLink } from '../Disclaimer/DisclaimerLink';
 import { DisclaimerText } from '../Disclaimer/DisclaimerText';
 import { BackIcon } from '../Icons/Back';
-import { AppContext } from '../RainbowKitProvider/AppContext';
-import { setWalletConnectDeepLink } from '../RainbowKitProvider/walletConnectDeepLink';
-import { useCoolMode } from '../RainbowKitProvider/useCoolMode';
+import { AppContext } from '../SnowConeKitProvider/AppContext';
+import { setWalletConnectDeepLink } from '../SnowConeKitProvider/walletConnectDeepLink';
 import { Text } from '../Text/Text';
 import * as styles from './MobileOptions.css';
 
@@ -33,7 +32,6 @@ function WalletButton({ wallet }: { wallet: WalletConnector }) {
     shortName,
   } = wallet;
   const getMobileUri = mobile?.getUri;
-  const coolModeRef = useCoolMode(iconUrl);
 
   return (
     <Box
@@ -74,7 +72,6 @@ function WalletButton({ wallet }: { wallet: WalletConnector }) {
           }
         });
       }, [connect, getMobileUri, onConnecting])}
-      ref={coolModeRef}
       style={{ overflow: 'visible', textAlign: 'center' }}
       type="button"
       width="full"

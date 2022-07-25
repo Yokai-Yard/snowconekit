@@ -2,16 +2,16 @@ import {
   ConnectButton,
   darkTheme,
   lightTheme,
-  RainbowKitProvider,
+  SnowConeKitProvider,
 } from '@sirbenchalot/snowconekit';
-import { Badge } from 'components/Badge/Badge';
-import { Box } from 'components/Box/Box';
-import { chains } from 'components/Provider/Provider';
-import { Text } from 'components/Text/Text';
-import { vars } from 'css/vars.css';
 import NextLink from 'next/link';
 import React from 'react';
 import pckg from '../../../packages/snowconekit/package.json';
+import { vars } from '../../css/vars.css';
+import { Badge } from '../Badge/Badge';
+import { Box } from '../Box/Box';
+import { chains } from '../Provider/Provider';
+import { Text } from '../Text/Text';
 import { header, logo, row } from './Header.css';
 
 const SNOWCONEKIT_VERSION = pckg.version;
@@ -62,7 +62,7 @@ export function Header({
         </Box>
 
         <Box style={{ marginLeft: 'auto' }}>
-          <RainbowKitProvider
+          <SnowConeKitProvider
             chains={chains}
             theme={
               darkMode
@@ -73,7 +73,7 @@ export function Header({
             <ConnectButton
               accountStatus={{ largeScreen: 'full', smallScreen: 'avatar' }}
             />
-          </RainbowKitProvider>{' '}
+          </SnowConeKitProvider>{' '}
         </Box>
       </Box>
       {docsMobileMenuRef && (

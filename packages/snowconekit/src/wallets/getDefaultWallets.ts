@@ -1,4 +1,4 @@
-import { Chain } from '../components/RainbowKitProvider/RainbowKitChainContext';
+import { Chain } from '../components/SnowConeKitProvider/SnowConeKitChainContext';
 import { WalletList } from './Wallet';
 import { connectorsForWallets } from './connectorsForWallets';
 import { brave } from './walletConnectors/brave/brave';

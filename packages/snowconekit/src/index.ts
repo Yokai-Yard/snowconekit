@@ -6,9 +6,9 @@ export { useAddRecentTransaction } from './transactions/useAddRecentTransaction'
 export { useRecentTransactions } from './transactions/useRecentTransactions';
 export { useSendTransaction } from './transactions/useSendTransaction';
 export type { Wallet, WalletList } from './wallets/Wallet';
-export type { Chain } from './components/RainbowKitProvider/RainbowKitChainContext';
-export type { Theme } from './components/RainbowKitProvider/RainbowKitProvider';
-export type { DisclaimerComponent } from './components/RainbowKitProvider/AppContext';
+export type { Chain } from './components/SnowConeKitProvider/SnowConeKitChainContext';
+export type { Theme } from './components/SnowConeKitProvider/SnowConeKitProvider';
+export type { DisclaimerComponent } from './components/SnowConeKitProvider/AppContext';
 export { lightTheme } from './themes/lightTheme';
 export { darkTheme } from './themes/darkTheme';
 export { midnightTheme } from './themes/midnightTheme';
