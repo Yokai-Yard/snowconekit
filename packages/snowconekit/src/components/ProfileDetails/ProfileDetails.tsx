@@ -126,7 +126,6 @@ export function ProfileDetails({
               />
             ) : null}
             <Box style={{ flexGrow: 1 }} />
-
             <NavButton
               action={onDisconnect}
               icon={<DisconnectIcon />}
@@ -154,7 +153,7 @@ export function ProfileDetails({
                   height: '187px',
                 }}
               >
-                <Box marginTop={mobile ? '24' : '0'} className={GlassAvatar}>
+                <Box className={GlassAvatar}>
                   <Avatar address={address} imageUrl={ensAvatar} size={60} />
                 </Box>
                 <Box>
