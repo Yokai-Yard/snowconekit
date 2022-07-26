@@ -31,6 +31,7 @@ import { formatENS } from './formatENS';
 import useBooleanState from '../../hooks/useBooleanState';
 import type { Transaction } from '../../transactions/transactionStore';
 import useTxModal from '../../hooks/useTxModal';
+import TransactionAlert from '../TransactionAlert';
 
 export interface ConnectButtonRendererProps {
   children: (renderProps: {
@@ -176,8 +177,6 @@ export function ConnectButtonRenderer({
       }`
     : undefined;
 
-  // 1 hook, accepts modal, alert, none, allows dev to choose which one to use. default modal. on modal close, show alert.
-
   return (
     <>
       {children({
@@ -217,7 +216,6 @@ export function ConnectButtonRenderer({
         setTx,
         pendingTransactions,
       })}
-
       <ConnectModal onClose={closeConnectModal} open={connectModalOpen} />
       <AccountModal
         activeChain={activeChain}
@@ -242,6 +240,7 @@ export function ConnectButtonRenderer({
         txModalOpen={txModalOpen}
         closeTxModal={closeTxModal}
       />
+      <TransactionAlert address={address} trackedTx={trackedTx} />0
       <ChainModal
         activeChain={activeChain}
         chains={chains}

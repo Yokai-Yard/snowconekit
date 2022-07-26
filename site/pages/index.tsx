@@ -12,14 +12,12 @@ import { TitleAndMetaTags } from 'components/TitleAndMetaTags/TitleAndMetaTags';
 import { Wrapper } from 'components/Wrapper/Wrapper';
 import copy from 'copy-to-clipboard';
 import { vars } from 'css/vars.css';
-import { isMobile } from 'lib/isMobile';
 import NextImage from 'next/image';
 import NextLink from 'next/link';
 import React, { useState } from 'react';
 import bg from '../public/scKitBg.png';
 
 export default function Home() {
-  const mobile = isMobile();
   const comment = '//';
   return (
     <Box
