@@ -15,32 +15,23 @@ import { DialogContent } from '../Dialog/DialogContent';
 import { DisconnectSqIcon } from '../Icons/DisconnectSq';
 import { MenuButton } from '../MenuButton/MenuButton';
 import { AppContext } from '../SnowConeKitProvider/AppContext';
-import { useRainbowKitChainsById } from '../SnowConeKitProvider/SnowConeKitChainContext';
+import { useSnowConeKitChainsById } from '../SnowConeKitProvider/SnowConeKitChainContext';
 import { Text } from '../Text/Text';
+
 export interface ChainModalProps {
-  activeChain: ReturnType<typeof useNetwork>['chain'];
-  chains: ReturnType<typeof useSwitchNetwork>['chains'];
   open: boolean;
   onClose: () => void;
-  networkError: ReturnType<typeof useSwitchNetwork>['error'];
-  onDisconnect: ReturnType<typeof useDisconnect>['disconnect'];
-  onSwitchNetwork?: (chainId: number) => unknown;
 }
 
-export function ChainModal({
-  activeChain,
-  chains,
-  networkError,
-  open,
-  onClose,
-  onDisconnect,
-  onSwitchNetwork,
-}: ChainModalProps) {
+export function ChainModal({ open, onClose }: ChainModalProps) {
   const { connector: activeConnector } = useAccount();
+  const { chain: activeChain } = useNetwork();
+  const { disconnect } = useDisconnect();
+  const { chains, error: networkError, switchNetwork } = useSwitchNetwork();
   const [switchingToChain, setSwitchingToChain] = useState<number | null>();
   const titleId = 'rk_chain_modal_title';
   const mobile = isMobile();
-  const snowconekitChainsById = useRainbowKitChainsById();
+  const snowconekitChainsById = useSnowConeKitChainsById();
   const unsupportedChain = activeChain?.unsupported ?? false;
   const chainIconSize = mobile ? '36' : '28';
   const stopSwitching = useCallback(() => {
@@ -112,7 +103,7 @@ export function ChainModal({
             </Box>
           )}
           <Box display="flex" flexDirection="column" gap="4" padding="2">
-            {onSwitchNetwork ? (
+            {switchNetwork ? (
               chains.map((chain, idx) => {
                 const isCurrentChain = chain.id === activeChain?.id;
                 const switching = chain.id === switchingToChain;
@@ -130,7 +121,7 @@ export function ChainModal({
                           ? undefined
                           : () => {
                               setSwitchingToChain(chain.id);
-                              onSwitchNetwork(chain.id);
+                              switchNetwork(chain.id);
                             }
                       }
                     >
@@ -237,7 +228,7 @@ export function ChainModal({
             {unsupportedChain && (
               <>
                 <Box background="generalBorderDim" height="1" marginX="8" />
-                <MenuButton onClick={() => onDisconnect()}>
+                <MenuButton onClick={() => disconnect()}>
                   <Box
                     color="error"
                     fontFamily="body"

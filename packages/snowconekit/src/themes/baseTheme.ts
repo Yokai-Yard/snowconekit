@@ -91,7 +91,7 @@ export const baseTheme = ({
 });
 
 export interface AccentColor {
-  name: string;
+  accentColorName: string;
   accentColor: string;
   accentColorForeground: string;
 }

@@ -6,7 +6,6 @@ import {
 } from '../../css/sprinkles.css';
 import { touchableStyles } from '../../css/touchableStyles';
 import { isMobile } from '../../utils/isMobile';
-import { AsyncImage } from '../AsyncImage/AsyncImage';
 import { Avatar } from '../Avatar/Avatar';
 import { Box } from '../Box/Box';
 import { DropdownIcon } from '../Icons/Dropdown';
@@ -44,10 +43,10 @@ export function ConnectButton({
         account,
         chain,
         mounted,
+        pendingTransactions,
         openAccountModal,
         openChainModal,
         openConnectModal,
-        pendingTransactions,
         setTx,
       }) => {
         const unsupportedChain = chain?.unsupported ?? false;
@@ -68,7 +67,7 @@ export function ConnectButton({
             {mounted && account ? (
               <>
                 {pendingTransactions && setTx(pendingTransactions)}
-                {chain && (chains.length > 1 || unsupportedChain) && (
+                {chain && unsupportedChain && (
                   <Box
                     alignItems="center"
                     as="button"
@@ -104,53 +103,16 @@ export function ConnectButton({
                     transition="default"
                     type="button"
                   >
-                    {unsupportedChain ? (
+                    {unsupportedChain && (
                       <Box
-                        alignItems="center"
                         display="flex"
-                        height="24"
-                        paddingX="4"
+                        flexDirection="row"
+                        alignItems="center"
                       >
-                        Wrong network
-                      </Box>
-                    ) : (
-                      <Box alignItems="center" display="flex" gap="6">
-                        {chain.hasIcon ? (
-                          <Box
-                            display={mapResponsiveValue(chainStatus, value =>
-                              value === 'full' || value === 'icon'
-                                ? 'block'
-                                : 'none'
-                            )}
-                            height="24"
-                            width="24"
-                          >
-                            <AsyncImage
-                              alt={chain.name ?? 'Chain icon'}
-                              background={chain.iconBackground}
-                              borderRadius="full"
-                              height="24"
-                              src={chain.iconUrl}
-                              width="24"
-                            />
-                          </Box>
-                        ) : null}
-                        <Box
-                          display={mapResponsiveValue(chainStatus, value => {
-                            if (value === 'icon' && !chain.iconUrl) {
-                              return 'block'; // Show the chain name if there is no iconUrl
-                            }
-
-                            return value === 'full' || value === 'name'
-                              ? 'block'
-                              : 'none';
-                          })}
-                        >
-                          {chain.name ?? chain.id}
-                        </Box>
+                        <Box paddingX="10">Wrong network</Box>
+                        <DropdownIcon />
                       </Box>
                     )}
-                    <DropdownIcon />
                   </Box>
                 )}
 

@@ -1,36 +1,25 @@
-import React, { ReactNode, useCallback, useContext, useEffect } from 'react';
-import {
-  useAccount,
-  useBalance,
-  useDisconnect,
-  useEnsAvatar,
-  useEnsName,
-  useNetwork,
-  useSwitchNetwork,
-} from 'wagmi';
+import React, { ReactNode, useContext, useEffect } from 'react';
+import { useAccount, useBalance, useNetwork } from 'wagmi';
 import { useIsMounted } from '../../hooks/useIsMounted';
+import { useMainnetEnsAvatar } from '../../hooks/useMainnetEnsAvatar';
+import { useMainnetEnsName } from '../../hooks/useMainnetEnsName';
 import { useRecentTransactions } from '../../transactions/useRecentTransactions';
-import { isMobile } from '../../utils/isMobile';
-import { isNotNullish } from '../../utils/isNotNullish';
-import { useWalletConnectors } from '../../wallets/useWalletConnectors';
-import { AccountModal } from '../AccountModal/AccountModal';
-import { loadImages, useAsyncImage } from '../AsyncImage/useAsyncImage';
-import { ChainModal } from '../ChainModal/ChainModal';
-import { ConnectModal } from '../ConnectModal/ConnectModal';
-import { preloadAssetsIcon } from '../Icons/Assets';
-import { preloadLoginIcon } from '../Icons/Login';
+import { useAsyncImage } from '../AsyncImage/useAsyncImage';
 import {
-  useSnowConeKitChains,
-  useRainbowKitChainsById,
-} from '../SnowConeKitProvider/SnowConeKitChainContext';
-import TransactionModal from '../TransactionModal';
+  useAccountModal,
+  useChainModal,
+  useConnectModal,
+  useModalState,
+  useTransactionModal,
+} from '../SnowConeKitProvider/ModalContext';
+import { useSnowConeKitChainsById } from '../SnowConeKitProvider/SnowConeKitChainContext';
 import { ShowRecentTransactionsContext } from '../SnowConeKitProvider/ShowRecentTransactionsContext';
 import { abbreviateETHBalance } from './abbreviateETHBalance';
 import { formatAddress } from './formatAddress';
 import { formatENS } from './formatENS';
-import useBooleanState from '../../hooks/useBooleanState';
 import type { Transaction } from '../../transactions/transactionStore';
-import useTxModal from '../../hooks/useTxModal';
+
+const noop = () => {};
 
 export interface ConnectButtonRendererProps {
   children: (renderProps: {
@@ -43,26 +32,26 @@ export interface ConnectButtonRendererProps {
       displayName: string;
       ensAvatar?: string;
       ensName?: string;
-      displayRecentTransactions: boolean;
+      hasPendingTransactions: boolean;
     };
     chain?: {
       hasIcon: boolean;
       iconUrl?: string;
       iconBackground?: string;
-      rocketUrl?: string;
       id: number;
       name?: string;
       unsupported?: boolean;
     };
+    pendingTransactions: Transaction;
     mounted: boolean;
     openAccountModal: () => void;
     openChainModal: () => void;
     openConnectModal: () => void;
+    setTx: (tx: Transaction) => void;
     accountModalOpen: boolean;
     chainModalOpen: boolean;
     connectModalOpen: boolean;
-    setTx: (tx: Transaction) => void;
-    pendingTransactions: Transaction;
+    txModalOpen: boolean;
   }) => ReactNode;
 }
 
@@ -70,105 +59,29 @@ export function ConnectButtonRenderer({
   children,
 }: ConnectButtonRendererProps) {
   const mounted = useIsMounted();
-
-  const { address, isConnected } = useAccount();
-
-  const { data: ensAvatar } = useEnsAvatar({
-    addressOrName: address,
-    chainId: 1,
-  });
-
-  const { data: ensName } = useEnsName({
-    address,
-    chainId: 1,
-  });
-
-  const { data: balanceData } = useBalance({
-    addressOrName: address,
-  });
-
+  const { address } = useAccount();
+  const ensAvatar = useMainnetEnsAvatar(address);
+  const ensName = useMainnetEnsName(address);
+  const { data: balanceData } = useBalance({ addressOrName: address });
   const { chain: activeChain } = useNetwork();
-  const { chains, error: networkError, switchNetwork } = useSwitchNetwork();
-
-  const { disconnect } = useDisconnect();
-
-  const rainbowKitChains = useSnowConeKitChains();
-  const snowconekitChainsById = useRainbowKitChainsById();
-
-  const rainbowKitChain = activeChain
-    ? snowconekitChainsById[activeChain.id]
-    : undefined;
-  const chainIconUrl = rainbowKitChain?.iconUrl ?? undefined;
-  const chainIconBackground = rainbowKitChain?.iconBackground ?? undefined;
-  const chainRocketUrl = rainbowKitChain?.rocketUrl ?? undefined;
-
-  const resolvedChainIconUrl = useAsyncImage(chainIconUrl);
-  const resolvedRocketUrl = useAsyncImage(chainRocketUrl);
-
-  const showRecentTransactions = useContext(ShowRecentTransactionsContext);
+  const SnowConekitChainsById = useSnowConeKitChainsById();
 
   const pendingTransactions = useRecentTransactions().filter(
     ({ status }) => status === 'pending'
   )[0];
 
-  const displayRecentTransactions =
-    pendingTransactions && showRecentTransactions;
+  const SnowConeKitChain = activeChain
+    ? SnowConekitChainsById[activeChain.id]
+    : undefined;
+  const chainIconUrl = SnowConeKitChain?.iconUrl ?? undefined;
+  const chainIconBackground = SnowConeKitChain?.iconBackground ?? undefined;
 
-  const {
-    setFalse: closeTxModal,
-    setTrue: openTxModal,
-    value: txModalOpen,
-  } = useBooleanState(false);
+  const resolvedChainIconUrl = useAsyncImage(chainIconUrl);
 
-  const { setTx, trackedTx } = useTxModal({
-    closeTxModal,
-    openTxModal,
-    txModalOpen,
-  });
-
-  const {
-    setFalse: closeConnectModal,
-    setTrue: openConnectModal,
-    value: connectModalOpen,
-  } = useBooleanState(false);
-
-  const {
-    setFalse: closeAccountModal,
-    setTrue: openAccountModal,
-    value: accountModalOpen,
-  } = useBooleanState(false);
-
-  const {
-    setFalse: closeChainModal,
-    setTrue: openChainModal,
-    value: chainModalOpen,
-  } = useBooleanState(false);
-
-  useEffect(() => {
-    closeConnectModal();
-    closeAccountModal();
-    closeChainModal();
-  }, [isConnected, closeConnectModal, closeAccountModal, closeChainModal]);
-
-  const walletConnectors = useWalletConnectors();
-
-  const preloadImages = useCallback(() => {
-    loadImages(
-      ...walletConnectors.map(wallet => wallet.iconUrl),
-      ...rainbowKitChains.map(chain => chain.iconUrl).filter(isNotNullish),
-      ...rainbowKitChains.map(chain => chain.rocketUrl).filter(isNotNullish)
-    );
-
-    // Preload illustrations used on desktop
-    if (!isMobile()) {
-      preloadAssetsIcon();
-      preloadLoginIcon();
-    }
-  }, [walletConnectors, rainbowKitChains]);
-
-  useEffect(() => {
-    preloadImages();
-  }, [preloadImages]);
+  const showRecentTransactions = useContext(ShowRecentTransactionsContext);
+  const hasPendingTransactions =
+    useRecentTransactions().some(({ status }) => status === 'pending') &&
+    showRecentTransactions;
 
   const displayBalance = balanceData
     ? `${abbreviateETHBalance(parseFloat(balanceData.formatted))} ${
@@ -176,7 +89,12 @@ export function ConnectButtonRenderer({
       }`
     : undefined;
 
-  // 1 hook, accepts modal, alert, none, allows dev to choose which one to use. default modal. on modal close, show alert.
+  const { openConnectModal } = useConnectModal();
+  const { openChainModal } = useChainModal();
+  const { openAccountModal } = useAccountModal();
+  const { setTx } = useTransactionModal();
+  const { accountModalOpen, chainModalOpen, connectModalOpen, txModalOpen } =
+    useModalState();
 
   return (
     <>
@@ -193,16 +111,16 @@ export function ConnectButtonRenderer({
                 : formatAddress(address),
               ensAvatar: ensAvatar ?? undefined,
               ensName: ensName ?? undefined,
-              displayRecentTransactions,
+              hasPendingTransactions,
             }
           : undefined,
         accountModalOpen,
+        pendingTransactions,
         chain: activeChain
           ? {
               hasIcon: Boolean(chainIconUrl),
               iconBackground: chainIconBackground,
               iconUrl: resolvedChainIconUrl,
-              rocketUrl: resolvedRocketUrl,
               id: activeChain.id,
               name: activeChain.name,
               unsupported: activeChain.unsupported,
@@ -210,47 +128,13 @@ export function ConnectButtonRenderer({
           : undefined,
         chainModalOpen,
         connectModalOpen,
-        mounted,
-        openAccountModal,
-        openChainModal,
-        openConnectModal,
+        txModalOpen,
         setTx,
-        pendingTransactions,
+        mounted,
+        openAccountModal: openAccountModal ?? noop,
+        openChainModal: openChainModal ?? noop,
+        openConnectModal: openConnectModal ?? noop,
       })}
-
-      <ConnectModal onClose={closeConnectModal} open={connectModalOpen} />
-      <AccountModal
-        activeChain={activeChain}
-        address={address}
-        balanceData={balanceData}
-        chains={chains}
-        ensAvatar={ensAvatar}
-        ensName={ensName}
-        networkError={networkError}
-        open={accountModalOpen}
-        onClose={closeAccountModal}
-        onDisconnect={disconnect}
-        onSwitchNetwork={switchNetwork}
-        openChainModal={openChainModal}
-      />
-      <TransactionModal
-        activeChain={activeChain}
-        address={address}
-        iconBackground={chainIconBackground}
-        rocketUrl={resolvedRocketUrl}
-        trackedTx={trackedTx}
-        txModalOpen={txModalOpen}
-        closeTxModal={closeTxModal}
-      />
-      <ChainModal
-        activeChain={activeChain}
-        chains={chains}
-        networkError={networkError}
-        open={chainModalOpen}
-        onClose={closeChainModal}
-        onDisconnect={disconnect}
-        onSwitchNetwork={switchNetwork}
-      />
     </>
   );
 }

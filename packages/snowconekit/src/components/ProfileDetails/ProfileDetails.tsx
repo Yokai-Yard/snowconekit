@@ -39,38 +39,44 @@ import { NetworkCarousel } from '../NetworkCarousel/NetworkCarousel';
 import { ChainIcon } from '../Icons/ChainIcon';
 import DangerIcon from '../Icons/danger.png';
 import { AsyncImage } from '../AsyncImage/AsyncImage';
-import { useRainbowKitChainsById } from '../SnowConeKitProvider/SnowConeKitChainContext';
+import { useSnowConeKitChainsById } from '../SnowConeKitProvider/SnowConeKitChainContext';
 import { ThemeContext } from '../SnowConeKitProvider/SnowConeKitProvider';
+import { useChainModal } from '../SnowConeKitProvider/ModalContext';
 
 interface ProfileDetailsProps {
-  activeChain: ReturnType<typeof useNetwork>['chain'];
   address: ReturnType<typeof useAccount>['address'];
   balanceData: ReturnType<typeof useBalance>['data'];
-  chains: ReturnType<typeof useNetwork>['chains'];
   ensAvatar: ReturnType<typeof useEnsAvatar>['data'];
   ensName: ReturnType<typeof useEnsName>['data'];
-  networkError: ReturnType<typeof useSwitchNetwork>['error'];
   onClose: () => void;
   onDisconnect: () => void;
-  onSwitchNetwork?: (chainId: number) => unknown;
-  openChainModal: () => void;
 }
 
+/*   activeChain: ReturnType<typeof useNetwork>['chain'];
+  chains: ReturnType<typeof useNetwork>['chains'];
+  networkError: ReturnType<typeof useSwitchNetwork>['error'];
+  onSwitchNetwork?: (chainId: number) => unknown;
+  openChainModal: () => void; */
+
+/*   activeChain,
+chains,
+networkError,
+onSwitchNetwork,
+openChainModal, */
+
 export function ProfileDetails({
-  activeChain,
   address,
   balanceData,
-  chains,
   ensAvatar,
   ensName,
-  networkError,
   onClose,
   onDisconnect,
-  onSwitchNetwork,
-  openChainModal,
 }: ProfileDetailsProps) {
+  const { chain: activeChain } = useNetwork();
+  const { chains, error: networkError, switchNetwork } = useSwitchNetwork();
   const showRecentTransactions = useContext(ShowRecentTransactionsContext);
   const [copiedAddress, setCopiedAddress] = useState(false);
+  const { openChainModal } = useChainModal();
 
   const { color: backgroundColor } = useMemo(
     () => emojiAvatarForAddress(address ? address : ''),
@@ -97,7 +103,7 @@ export function ProfileDetails({
     return null;
   }
 
-  const snowconekitChainsById = useRainbowKitChainsById();
+  const snowconekitChainsById = useSnowConeKitChainsById();
 
   const currentChain = activeChain && snowconekitChainsById[activeChain?.id];
   const chainIconUrl = currentChain?.iconUrl;
@@ -118,7 +124,7 @@ export function ProfileDetails({
       <Box display="flex" flexDirection="column">
         <LayeredBg profColor={backgroundColor}>
           <Box className={GlassNav}>
-            {mobile && onSwitchNetwork ? (
+            {mobile && switchNetwork ? (
               <NavButton
                 action={openChainModal}
                 icon={<ChainIcon />}
@@ -240,13 +246,13 @@ export function ProfileDetails({
                   </Text>
                 </Box>
               </Box>
-            ) : onSwitchNetwork ? (
+            ) : switchNetwork ? (
               !mobile ? (
                 <NetworkCarousel
                   activeChain={activeChain}
                   chains={chains}
                   networkError={networkError}
-                  onSwitchNetwork={onSwitchNetwork}
+                  onSwitchNetwork={switchNetwork}
                 />
               ) : null
             ) : (

@@ -5,28 +5,37 @@ import { TxDialogContent } from './TxDialogContent';
 import type { Transaction } from '../../transactions/transactionStore';
 import { useAccount, useNetwork } from 'wagmi';
 import { TxItem } from './TxItem';
+import {
+  useSnowConeKitChains,
+  useSnowConeKitChainsById,
+} from '../SnowConeKitProvider/SnowConeKitChainContext';
+import { useAsyncImage } from '../AsyncImage/useAsyncImage';
 
 export interface TransactionModalProps {
   txModalOpen: boolean;
   closeTxModal: () => void;
   trackedTx: Transaction | null;
-  address: ReturnType<typeof useAccount>['address'];
-  activeChain: ReturnType<typeof useNetwork>['chain'];
-  iconBackground?: string;
-  rocketUrl?: string;
 }
 
 const TransactionModal = ({
   txModalOpen,
   closeTxModal,
   trackedTx,
-  address,
-  activeChain,
-  iconBackground,
-  rocketUrl,
 }: TransactionModalProps) => {
+  const { address } = useAccount();
+  const { chain: activeChain } = useNetwork();
   const mobile = isMobile();
   const titleId = 'rk_account_modal_title';
+
+  const snowconekitChainsById = useSnowConeKitChainsById();
+  const snowconekitChain = activeChain
+    ? snowconekitChainsById[activeChain.id]
+    : undefined;
+
+  const iconBackground = snowconekitChain?.iconBackground;
+  const chainRocketUrl = snowconekitChain?.rocketUrl ?? undefined;
+
+  const rocketUrl = useAsyncImage(chainRocketUrl);
 
   return (
     <>
