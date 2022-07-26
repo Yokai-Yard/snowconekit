@@ -34,7 +34,7 @@ const useTxModal = ({ closeTxModal, openTxModal, txModalOpen }: stateProps) => {
     trackedTx && !txModalOpen && openTxModal();
   }, [trackedTx]);
 
-  const handleonClose = () => {
+  const handleOnClose = () => {
     setTimeout(() => {
       closeTxModal();
       setTrackedTx(null);
@@ -47,7 +47,7 @@ const useTxModal = ({ closeTxModal, openTxModal, txModalOpen }: stateProps) => {
   }, [transactions]);
 
   useEffect(() => {
-    trackedTx && findTx(trackedTx)?.status === 'confirmed' && handleonClose();
+    trackedTx && findTx(trackedTx)?.status === 'confirmed' && handleOnClose();
   }, [trackedTx, transactions]);
 
   return { setTx, trackedTx };

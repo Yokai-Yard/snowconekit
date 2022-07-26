@@ -18,6 +18,7 @@ import React, { useState } from 'react';
 import bg from '../public/scKitBg.png';
 
 export default function Home() {
+  const comment = '//';
   return (
     <Box
       data-mode="dark"
@@ -98,6 +99,7 @@ export default function Home() {
           <Box width="1/4" />
           <Box
             style={{
+              paddingBottom: '50px',
               marginLeft: '50px',
               backgroundColor: '#293A50',
               borderRadius: '8px',
@@ -106,7 +108,7 @@ export default function Home() {
               borderColor:
                 'linear-gradient(rgba(255, 255, 255, 1) 0%, #ffffff 100%))',
             }}
-            width="3/4"
+            width={{ md: '3/4', lg: '3/4', xl: '3/4' }}
           >
             <Box
               style={{
@@ -158,44 +160,65 @@ export default function Home() {
               <span> = </span>
               <span> SnowConeKit</span> <br />
               <p style={{ color: '#bdddff' }}>
-                <span>SnowConeKit provides a fast, easy and highly </span>
+                <span> {comment} SnowConeKit provides a fast, easy and </span>
                 <br />
-                <span>customizable way for developers to add a great </span>
+                <span> {comment} highly customizable way for developers </span>
                 <br />
-                <span>wallet experience to their application. We handle </span>
+                <span>
+                  {' '}
+                  {comment} to add a great wallet experience to their{' '}
+                </span>
                 <br />
-                <span>the hard stuff so developers and teams can </span>
+                <span> {comment} application. We handle the hard stuff so</span>
                 <br />
-                <span>focus on building amazing products and </span>
+                <span> {comment} developers and teams can focus on </span>
                 <br />
-                <span>communities for their users.</span>
+                <span> {comment} building amazing products and </span>
+                <br />
+                <span> {comment} communities for their users. </span>
                 <br />
                 <br />
               </p>
-              <p>
+              <div>
                 <span style={{ color: '#9eaeff' }}>SnowConeKit</span>.
                 <span style={{ color: '#ffca95' }}>features </span>=
                 <span style={{ color: '#667fff' }}> [ </span>
-                <span style={{ color: '#9fffcb' }}>
-                  {' '}
-                  &apos;Easy Installation&apos; , &apos;Built-in Themes&apos; ,
-                  &apos;Light and Dark Mode&apos;{' '}
-                </span>
-                <span style={{ color: '#667fff' }}>]</span>
-                ;
                 <br />
+                <Box
+                  display="flex"
+                  flexDirection="column"
+                  style={{ color: '#9fffcb' }}
+                >
+                  <span>&apos;Easy Installation&apos; ,</span>
+                  <span>&apos;Built-in Themes&apos; ,</span>
+                  <span>
+                    &apos;Light and Dark Mode&apos;
+                    <br />
+                    <span style={{ color: '#667fff' }}>]</span>
+                    <span style={{ color: 'white' }}>;</span>
+                  </span>
+                </Box>
                 <br />
                 <span style={{ color: '#9eaeff' }}>SnowConeKit</span>.
                 <span style={{ color: '#ffca95' }}>customization </span>=
                 <span style={{ color: '#667fff' }}> [ </span>
-                <span style={{ color: '#9fffcb' }}>
-                  {' '}
-                  &apos;Custom Themes&apos; , &apos;Custom Wallets List&apos; ,
-                  &apos;Custom Chains&apos; , &apos;Custom Connect Button&apos;{' '}
-                </span>
-                <span style={{ color: '#667fff' }}>]</span>
-                ;<br />
-              </p>
+                <br />
+                <Box
+                  display="flex"
+                  flexDirection="column"
+                  style={{ color: '#9fffcb' }}
+                >
+                  <span>&apos;Custom Themes&apos; ,</span>
+                  <span>&apos;Custom Wallets List&apos; ,</span>
+                  <span>&apos;Custom Connect Button&apos; ,</span>
+                  <span>
+                    &apos;Custom Chains&apos;
+                    <br />
+                    <span style={{ color: '#667fff' }}>]</span>
+                    <span style={{ color: 'white' }}>;</span>
+                  </span>
+                </Box>
+              </div>
             </Box>
           </Box>
         </Box>
