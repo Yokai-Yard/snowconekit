@@ -4,13 +4,13 @@ import { atoms } from 'css/atoms';
 import { responsiveStyle } from 'css/responsiveStyle';
 
 export const MODAL_SIZE = {
-  width: 2352,
-  height: 1704,
+  width: 900,
+  height: 630,
 };
 
 export const PHONE_SIZE = {
-  width: 780,
-  height: 1560,
+  width: 340,
+  height: 682,
 };
 
 export const heroWrapper = style([
@@ -26,7 +26,7 @@ export const heroWrapper = style([
 export const modalWrapper = style([
   atoms({ display: { xs: 'none', md: 'block' } }),
   {
-    maxWidth: 1000,
+    maxWidth: 750,
   },
 ]);
 
@@ -36,10 +36,10 @@ export const phoneWrapper = style([
     md: { display: 'none' },
     lg: {
       display: 'block',
-      maxWidth: 320,
+      maxWidth: 300,
       position: 'relative',
       bottom: 30,
-      marginLeft: -100,
+      marginLeft: -250,
       marginBottom: 0,
     },
   }),

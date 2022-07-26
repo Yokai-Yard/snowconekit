@@ -100,6 +100,7 @@ export type Variant = keyof typeof variant;
 
 const shape = {
   base: style([atoms({ borderRadius: 'round' })]),
+  smallRadius: style([atoms({ borderRadius: '3' })]),
   circle: style([atoms({ borderRadius: 'round' })]),
   square: {},
 };
