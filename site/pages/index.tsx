@@ -17,6 +17,7 @@ import NextLink from 'next/link';
 import React, { useState } from 'react';
 
 export default function Home() {
+  const comment = '//';
   return (
     <Box
       data-mode="dark"
@@ -149,19 +150,31 @@ export default function Home() {
               <span> = </span>
               <span> SnowConeKit</span> <br />
               <p style={{ color: '#bdddff' }}>
-                <span> /* SnowConeKit provides a fast, easy and highly </span>
+                <span>
+                  {' '}
+                  {comment} SnowConeKit provides a fast, easy and highly{' '}
+                </span>
                 <br />
-                <span> customizable way for developers to add a </span>
+                <span>
+                  {' '}
+                  {comment} customizable way for developers to add a{' '}
+                </span>
                 <br />
-                <span> great wallet experience to their application. </span>
+                <span>
+                  {' '}
+                  {comment} great wallet experience to their application.{' '}
+                </span>
                 <br />
-                <span> We handle the hard stuff so developers and</span>
+                <span>
+                  {' '}
+                  {comment} We handle the hard stuff so developers and
+                </span>
                 <br />
-                <span> teams can focus on building</span>
+                <span> {comment} teams can focus on building</span>
                 <br />
-                <span> amazing products and </span>
+                <span> {comment} amazing products and </span>
                 <br />
-                <span> communities for their users. */ </span>
+                <span> {comment} communities for their users. </span>
                 <br />
                 <br />
               </p>
