@@ -5,6 +5,10 @@ import { Header } from 'components/Header/Header';
 import { Hero } from 'components/Hero/Hero';
 import { CheckIcon } from 'components/Icons/Check';
 import { CopyIcon } from 'components/Icons/Copy';
+import { DocumentIcon } from 'components/Icons/Document';
+import { DownloadIcon } from 'components/Icons/Download';
+import { GithubIcon } from 'components/Icons/Github';
+import { LockIcon } from 'components/Icons/Lock';
 import { Link } from 'components/Link/Link';
 import { Playground } from 'components/Playground/Playground';
 import { Text } from 'components/Text/Text';
@@ -98,6 +102,7 @@ export default function Home() {
         >
           <Box width="1/4" />
           <Box
+            marginLeft={{ xs: '0', md: '2' }}
             style={{
               paddingBottom: '50px',
               marginLeft: '50px',
@@ -238,7 +243,19 @@ export default function Home() {
                 style={{ lineHeight: '1' }}
                 weight="bold"
               >
-                Made with ❤️ by the light of candle{' '}
+                Made with ❤️ by{' '}
+                <span>
+                  {' '}
+                  <Box display="inline">
+                    <object
+                      data="/ScCandle.svg"
+                      style={{ width: '36px' }}
+                      type="image/svg+xml"
+                    >
+                      svg-animation
+                    </object>
+                  </Box>
+                </span>{' '}
                 {/*  <Box
                     as="span"
                     display={{ md: 'none' }}
@@ -292,7 +309,6 @@ export default function Home() {
                 <Button
                   as="a"
                   href="https://twitter.com/rainbowdotme"
-                  shadow
                   size="l"
                   variant="outline"
                 >
@@ -308,7 +324,6 @@ export default function Home() {
                 <Button
                   as="a"
                   href="https://github.com/rainbow-me/SnowConeKit/discussions/new?category=feedback"
-                  shadow
                   size="l"
                   target="_blank"
                   variant="contrast"
@@ -320,11 +335,12 @@ export default function Home() {
               </Box>
 
               <Box
+                alignItems="flex-start"
                 display="flex"
-                flexDirection="row"
+                flexDirection={{ xs: 'column', md: 'row' }}
                 gap="6"
                 justifyContent="flex-start"
-                marginTop={{ xs: '11', lg: '12' }}
+                marginTop={{ xs: '8', lg: '10' }}
                 textAlign="center"
               >
                 <Text size="4" weight="bold">
@@ -332,22 +348,22 @@ export default function Home() {
                     href="https://github.com/rainbow-me/SnowConeKit"
                     variant="gray"
                   >
-                    <span data-emoji>👾</span> github
+                    <GithubIcon /> github
                   </Link>
                 </Text>
                 <Text size="4" weight="bold">
                   <Link href="https://rainbow.me/media-kit.zip" variant="gray">
-                    <span data-emoji>⬇️</span> media kit
+                    <DownloadIcon /> media kit
                   </Link>
                 </Text>
                 <Text size="4" weight="bold">
                   <Link href="https://rainbow.me/terms-of-use" variant="gray">
-                    <span data-emoji>📜</span> terms of use
+                    <DocumentIcon /> terms of use
                   </Link>
                 </Text>
                 <Text size="4" weight="bold">
                   <Link href="https://rainbow.me/privacy" variant="gray">
-                    <span data-emoji>🔒</span> privacy policy
+                    <LockIcon /> privacy policy
                   </Link>
                 </Text>
                 <Text color="labelTertiary" size="4" weight="bold">
@@ -355,7 +371,11 @@ export default function Home() {
                 </Text>
               </Box>
             </Box>
-            <Box marginTop="auto" width="1/4">
+            <Box
+              display={{ xs: 'none', md: 'inline' }}
+              marginTop="auto"
+              width="1/4"
+            >
               <object
                 data="/ScCandle.svg"
                 style={{ width: '320px' }}
