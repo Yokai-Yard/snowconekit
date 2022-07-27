@@ -19,6 +19,16 @@ import { vars } from 'css/vars.css';
 import NextImage from 'next/image';
 import NextLink from 'next/link';
 import React, { useState } from 'react';
+import {
+  codeBoxBorder,
+  codeBoxNav,
+  codeBoxPosition,
+  container,
+  greenDot,
+  madeForDevs,
+  redDot,
+  yellowDot,
+} from '../css/index.css';
 import bg from '../public/scKitBg.png';
 
 export default function Home() {
@@ -33,21 +43,7 @@ export default function Home() {
         overflow: 'hidden',
       }}
     >
-      <Box
-        data-mode="dark"
-        style={{
-          maxWidth: '1600px',
-          margin: '0 auto',
-          minHeight: '100vh',
-          overflow: 'hidden',
-          background: 'rgba(255, 255, 255, 0.01)',
-          backdropFilter: 'blur(50px)',
-          /*           backgroundImage: 'url(/bodyBg.png)', */
-          borderRadius: '8px',
-          borderWidth: '2px',
-          borderColor: 'linear-gradient(#FFFFFFAC 0%, #ffffff 100%);)',
-        }}
-      >
+      <Box className={container} data-mode="dark">
         <TitleAndMetaTags color="black" />
         <Header darkMode />
         <Wrapper>
@@ -100,66 +96,19 @@ export default function Home() {
           flexDirection={{ xs: 'column', md: 'row' }}
           paddingY={{ xs: '11', lg: '12' }}
         >
-          <Box width="1/4" />
+          <Box width={{ xs: '0', sm: '0', md: '1/4' }} />
           <Box
-            marginLeft={{ xs: '0', md: '2' }}
-            style={{
-              paddingBottom: '50px',
-              marginLeft: '50px',
-              backgroundColor: '#293A50',
-              borderRadius: '8px',
-              overflow: 'hidden',
-              borderWidth: '2px',
-              borderColor:
-                'linear-gradient(rgba(255, 255, 255, 1) 0%, #ffffff 100%))',
-            }}
-            width={{ md: '3/4', lg: '3/4', xl: '3/4' }}
+            className={codeBoxPosition}
+            width={{ xs: 'full', sm: 'full', md: '3/4', lg: '3/4', xl: '3/4' }}
           >
-            <Box
-              style={{
-                height: '40px',
-                backgroundColor: '#36465b',
-                padding: '15px 20px',
-              }}
-            >
-              <Box
-                display="flex"
-                flexDirection="row"
-                gap="5"
-                justifyContent="flex-start"
-              >
-                <Box
-                  style={{
-                    height: '10px',
-                    width: '10px',
-                    borderRadius: '50px',
-                    backgroundColor: '#ff6680',
-                  }}
-                />
-                <Box
-                  style={{
-                    height: '10px',
-                    width: '10px',
-                    borderRadius: '50px',
-                    backgroundColor: '#ffca95',
-                  }}
-                />
-                <Box
-                  style={{
-                    height: '10px',
-                    width: '10px',
-                    borderRadius: '50px',
-                    backgroundColor: '#66ff99',
-                  }}
-                />
+            <Box className={codeBoxBorder}>
+              <Box className={codeBoxNav}>
+                <Box className={redDot} />
+                <Box className={yellowDot} />
+                <Box className={greenDot} />
               </Box>
             </Box>
-            <Box
-              fontSize="4"
-              paddingLeft="10"
-              paddingTop="10"
-              style={{ display: 'block', marginTop: 'auto' }}
-            >
+            <Box className={madeForDevs}>
               <span style={{ color: '#9eaeff' }}>const</span>
               <span style={{ color: '#ffca95' }}> madeForDevs</span>
               <span> = </span>
@@ -308,7 +257,8 @@ export default function Home() {
               >
                 <Button
                   as="a"
-                  href="https://twitter.com/rainbowdotme"
+                  href="https://twitter.com/snowconedao"
+                  shadow
                   size="l"
                   variant="outline"
                 >
@@ -323,7 +273,8 @@ export default function Home() {
                 </Button>
                 <Button
                   as="a"
-                  href="https://github.com/rainbow-me/SnowConeKit/discussions/new?category=feedback"
+                  href="https://github.com/sirbenchalot757/SnowConeKit/discussions/new?category=feedback"
+                  shadow
                   size="l"
                   target="_blank"
                   variant="contrast"
@@ -345,7 +296,7 @@ export default function Home() {
               >
                 <Text size="4" weight="bold">
                   <Link
-                    href="https://github.com/rainbow-me/SnowConeKit"
+                    href="https://github.com/sirbenchalot757/SnowConeKit"
                     variant="gray"
                   >
                     <GithubIcon /> github

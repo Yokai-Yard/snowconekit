@@ -16,6 +16,7 @@ import { touchableStyles } from '../../css/touchableStyles';
 import { ExternalLinkIcon } from '../Icons/ExternalLink';
 import { chainToExplorerUrl } from '../../utils/chainToExplorerUrl';
 import { TxBg } from '../Icons/txBackground';
+import CheckIcon from '../Icons/check.svg';
 
 interface TxProps {
   transactionStatus: Transaction['status'];
@@ -100,63 +101,80 @@ export function TxItem({
               </Box>
             )
           ) : (
-            <Box style={{ marginBottom: '3px' }}>
-              {pendingTx && <SphereSpinner size={18} />}
+            <Box style={{ marginBottom: '10px', paddingTop: '10px' }}>
+              {pendingTx ? (
+                <Box paddingBottom="6" paddingTop="4">
+                  <SphereSpinner size={18} style={{ padding: 0, margin: 0 }} />
+                </Box>
+              ) : (
+                <img
+                  src={CheckIcon}
+                  alt="Check Mark"
+                  style={{
+                    width: '24px',
+                    height: '24px',
+                    padding: 0,
+                    margin: 0,
+                  }}
+                />
+              )}
             </Box>
           )}
-          <Box className={StatusBox}>
-            <Box className={BoxInfo}>
+          {mobile ? null : (
+            <Box className={StatusBox}>
+              <Box className={BoxInfo}>
+                <Box
+                  style={{
+                    alignSelf: 'center',
+                    width: '200px',
+                  }}
+                >
+                  <Text color="modalText" font="body" size="16" weight="medium">
+                    {confirmationStatus}
+                  </Text>
+                  {/* {explorerLink && ( */}
+                  <Box paddingX={mobile ? '8' : '18'} />
+                  {/* )} */}
+                </Box>
+
+                <Box style={{ paddingTop: '20px' }}>
+                  <TxStatusImage transactionStatus={transactionStatus} />
+                </Box>
+              </Box>
+
               <Box
-                style={{
-                  alignSelf: 'center',
-                  width: '200px',
-                }}
+                as="a"
+                background={{ hover: 'profileForeground' }}
+                borderRadius="menuButton"
+                className={touchableStyles({ active: 'shrink' })}
+                color="modalTextDim"
+                display="flex"
+                flexDirection="row"
+                href={`${explorerLink}/address/${address}`}
+                justifyContent="flex-start"
+                paddingX="28"
+                paddingBottom="16"
+                rel="noreferrer noopener"
+                style={{ willChange: 'transform' }}
+                target="_blank"
+                transition="default"
+                width="full"
+                {...(mobile ? { paddingLeft: '12' } : {})}
               >
-                <Text color="modalText" font="body" size="16" weight="medium">
-                  {confirmationStatus}
+                <Text
+                  color="modalTextSecondary"
+                  font="body"
+                  size={mobile ? '16' : '14'}
+                  weight="semibold"
+                >
+                  View on Explorer
                 </Text>
-                {/* {explorerLink && ( */}
-                <Box paddingX={mobile ? '8' : '18'} />
-                {/* )} */}
-              </Box>
-
-              <Box style={{ paddingTop: '20px' }}>
-                <TxStatusImage transactionStatus={transactionStatus} />
+                <Box paddingLeft="8">
+                  <ExternalLinkIcon />
+                </Box>
               </Box>
             </Box>
-
-            <Box
-              as="a"
-              background={{ hover: 'profileForeground' }}
-              borderRadius="menuButton"
-              className={touchableStyles({ active: 'shrink' })}
-              color="modalTextDim"
-              display="flex"
-              flexDirection="row"
-              href={`${explorerLink}/address/${address}`}
-              justifyContent="flex-start"
-              paddingX="28"
-              paddingBottom="16"
-              rel="noreferrer noopener"
-              style={{ willChange: 'transform' }}
-              target="_blank"
-              transition="default"
-              width="full"
-              {...(mobile ? { paddingLeft: '12' } : {})}
-            >
-              <Text
-                color="modalTextSecondary"
-                font="body"
-                size={mobile ? '16' : '14'}
-                weight="semibold"
-              >
-                View on Explorer
-              </Text>
-              <Box paddingLeft="8">
-                <ExternalLinkIcon />
-              </Box>
-            </Box>
-          </Box>
+          )}
         </Box>
       </TxBg>
     </Box>

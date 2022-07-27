@@ -23,7 +23,7 @@ const TransactionAlert = ({ trackedTx, address }: TransactionAlertProps) => {
     console.log(trackedTx?.status);
   });
 
-  return trackedTx?.status ? (
+  return trackedTx?.status && !mobile ? (
     <Box
       className={AlertBox}
       style={{
