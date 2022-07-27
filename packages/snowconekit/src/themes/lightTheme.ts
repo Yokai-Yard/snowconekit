@@ -56,6 +56,8 @@ export const lightTheme = ({
     actionButtonSecondaryBackground: 'rgba(0, 0, 0, 0.06)',
     closeButton: 'rgba(60, 66, 66, 0.8)',
     closeButtonBackground: 'rgba(0, 0, 0, 0.06)',
+    glassForeground: 'rgba(255,255,255, 0.6)',
+    glassBackground: 'rgba(0, 0, 0, 0.06)',
     connectButtonBackground: '#FFF',
     connectButtonBackgroundError: '#FF494A',
     connectButtonInnerBackground:

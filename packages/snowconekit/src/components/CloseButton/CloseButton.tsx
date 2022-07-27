@@ -3,49 +3,35 @@ import { increaseHitAreaForHoverTransform } from '../../css/increaseHitAreaForHo
 import { isMobile } from '../../utils/isMobile';
 import { Box } from '../Box/Box';
 import { CloseIcon } from '../Icons/Close';
+import * as styles from './CloseButton.css';
 
-export const CloseButton = ({
-  'aria-label': ariaLabel = 'Close',
-  background,
-  onClose,
-}: {
-  'aria-label'?: string;
-  'onClose': () => void;
-  'background'?: boolean;
-}) => {
-  const mobile = isMobile();
-  return (
-    <Box
-      aria-label={ariaLabel}
-      as="button"
-      borderRadius="full"
-      className={increaseHitAreaForHoverTransform.growLg}
-      display="flex"
-      height={mobile ? '30' : '28'}
-      onClick={onClose}
-      type="button"
-      width={mobile ? '30' : '28'}
-    >
+export const CloseButton = React.forwardRef(
+  ({
+    'aria-label': ariaLabel = 'Close',
+    variant = 'default',
+    onClose,
+  }: {
+    'aria-label'?: string;
+    'onClose': () => void;
+    'variant'?: 'default' | 'glass';
+  }) => {
+    const mobile = isMobile();
+    return (
       <Box
-        alignItems="center"
+        aria-label={ariaLabel}
+        as="button"
         borderRadius="full"
-        background={background ? 'closeButtonBackground' : undefined}
-        borderColor="actionButtonBorder"
-        borderWidth={mobile ? '0' : '1'}
-        color="closeButton"
+        className={increaseHitAreaForHoverTransform.growLg}
         display="flex"
-        height="full"
-        justifyContent="center"
-        style={{
-          willChange: 'transform',
-          color: 'white',
-        }}
-        transform={{ active: 'shrinkSm', hover: 'growLg' }}
-        transition="default"
-        width="full"
+        height={mobile ? '30' : '28'}
+        onClick={onClose}
+        type="button"
+        width={mobile ? '30' : '28'}
       >
-        <CloseIcon />
+        <Box className={styles.variants({ variant })}>
+          <CloseIcon />
+        </Box>
       </Box>
-    </Box>
-  );
-};
+    );
+  }
+);

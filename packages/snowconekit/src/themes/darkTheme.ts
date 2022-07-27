@@ -59,6 +59,8 @@ export const darkTheme = ({
     closeButton: 'rgba(224, 232, 255, 0.6)',
     closeButtonBackground: 'rgba(255, 255, 255, 0.08)',
     connectButtonBackground: darkGrey,
+    glassForeground: 'rgba(255,255,255, 0.6)',
+    glassBackground: 'rgba(255, 255, 255, 0.06)',
     connectButtonBackgroundError: '#FF494A',
     connectButtonInnerBackground:
       'linear-gradient(0deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.15))',

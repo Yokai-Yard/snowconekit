@@ -137,7 +137,7 @@ export function ProfileDetails({
               icon={<DisconnectIcon />}
               label="Disconnect"
             />
-            <CloseButton onClose={onClose} background={true} />
+            <CloseButton onClose={onClose} variant="glass" />
           </Box>
           <Box background="profileForeground" padding="16">
             <Box

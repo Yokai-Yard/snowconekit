@@ -312,7 +312,7 @@ export function DesktopOptions({ onClose }: { onClose: () => void }) {
                     </Text>
                   )}
                 </Box>
-                <CloseButton onClose={onClose} />
+                <CloseButton onClose={onClose} variant="glass" />
               </Box>
               <Box
                 display="flex"

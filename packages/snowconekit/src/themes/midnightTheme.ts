@@ -56,6 +56,8 @@ export const midnightTheme = ({
     actionButtonSecondaryBackground: 'rgba(255, 255, 255, 0.08)',
     closeButton: 'rgba(255, 255, 255, 0.7)',
     closeButtonBackground: 'rgba(255, 255, 255, 0.08)',
+    glassForeground: 'rgba(255,255,255, 0.6)',
+    glassBackground: 'rgba(0, 0, 0, 0.06)',
     connectButtonBackground: '#000',
     connectButtonBackgroundError: '#FF494A',
     connectButtonInnerBackground:

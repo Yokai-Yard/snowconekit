@@ -80,7 +80,7 @@ export function TxItem({
           boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
         }}
       >
-        <CloseButton onClose={onClose} background={false} />
+        <CloseButton onClose={onClose} variant="glass" />
       </Box>
       <TxBg>
         <Box display="flex" flexDirection="column" alignItems="center">
