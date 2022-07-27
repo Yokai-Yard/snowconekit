@@ -6,14 +6,12 @@ import {
 } from '../../css/sprinkles.css';
 import { touchableStyles } from '../../css/touchableStyles';
 import { isMobile } from '../../utils/isMobile';
+import { AsyncImage } from '../AsyncImage/AsyncImage';
 import { Avatar } from '../Avatar/Avatar';
 import { Box } from '../Box/Box';
 import { DropdownIcon } from '../Icons/Dropdown';
+import { useSnowConeKitChains } from '../SnowConeKitProvider/SnowConeKitChainContext';
 import { ConnectButtonRenderer } from './ConnectButtonRenderer';
-import type { Transaction } from '../../transactions/transactionStore';
-import { Text } from '../Text/Text';
-import { SphereSpinner, ImpulseSpinner } from 'react-spinners-kit';
-import CheckIcon from '../Icons/check.svg';
 
 type AccountStatus = 'full' | 'avatar' | 'address';
 type ChainStatus = 'full' | 'icon' | 'name' | 'none';
@@ -38,22 +36,21 @@ export function ConnectButton({
   label = defaultProps.label,
   showBalance = defaultProps.showBalance,
 }: ConnectButtonProps) {
+  const chains = useSnowConeKitChains();
+
   return (
     <ConnectButtonRenderer>
       {({
         account,
         chain,
         mounted,
-        pendingTransactions,
-        trackedTx,
         openAccountModal,
         openChainModal,
         openConnectModal,
+        pendingTransactions,
         setTx,
       }) => {
         const unsupportedChain = chain?.unsupported ?? false;
-
-        console.log(trackedTx);
 
         return (
           <Box
@@ -71,7 +68,7 @@ export function ConnectButton({
             {mounted && account ? (
               <>
                 {pendingTransactions && setTx(pendingTransactions)}
-                {chain && unsupportedChain && (
+                {chain && (chains.length > 1 || unsupportedChain) && (
                   <Box
                     alignItems="center"
                     as="button"
@@ -107,16 +104,53 @@ export function ConnectButton({
                     transition="default"
                     type="button"
                   >
-                    {unsupportedChain && (
+                    {unsupportedChain ? (
                       <Box
-                        display="flex"
-                        flexDirection="row"
                         alignItems="center"
+                        display="flex"
+                        height="24"
+                        paddingX="4"
                       >
-                        <Box paddingX="10">Wrong network</Box>
-                        <DropdownIcon />
+                        Wrong network
+                      </Box>
+                    ) : (
+                      <Box alignItems="center" display="flex" gap="6">
+                        {chain.hasIcon ? (
+                          <Box
+                            display={mapResponsiveValue(chainStatus, value =>
+                              value === 'full' || value === 'icon'
+                                ? 'block'
+                                : 'none'
+                            )}
+                            height="24"
+                            width="24"
+                          >
+                            <AsyncImage
+                              alt={chain.name ?? 'Chain icon'}
+                              background={chain.iconBackground}
+                              borderRadius="full"
+                              height="24"
+                              src={chain.iconUrl}
+                              width="24"
+                            />
+                          </Box>
+                        ) : null}
+                        <Box
+                          display={mapResponsiveValue(chainStatus, value => {
+                            if (value === 'icon' && !chain.iconUrl) {
+                              return 'block'; // Show the chain name if there is no iconUrl
+                            }
+
+                            return value === 'full' || value === 'name'
+                              ? 'block'
+                              : 'none';
+                          })}
+                        >
+                          {chain.name ?? chain.id}
+                        </Box>
                       </Box>
                     )}
+                    <DropdownIcon />
                   </Box>
                 )}
 
@@ -182,25 +216,12 @@ export function ConnectButton({
                               : 'none'
                           )}
                         >
-                          {trackedTx?.status === 'pending' ? (
-                            <Box style={{ width: 24, paddingLeft: '4px' }}>
-                              <SphereSpinner color="black" size={17} />
-                            </Box>
-                          ) : trackedTx?.status === 'confirmed' ? (
-                            <img
-                              src={CheckIcon}
-                              alt="Check mark"
-                              width="24px"
-                              height="24px"
-                            />
-                          ) : (
-                            <Avatar
-                              address={account.address}
-                              imageUrl={account.ensAvatar}
-                              loading={account.displayRecentTransactions}
-                              size={24}
-                            />
-                          )}
+                          <Avatar
+                            address={account.address}
+                            imageUrl={account.ensAvatar}
+                            loading={account.hasPendingTransactions}
+                            size={24}
+                          />
                         </Box>
 
                         <Box alignItems="center" display="flex" gap="6">
@@ -211,39 +232,8 @@ export function ConnectButton({
                                 : 'none'
                             )}
                           >
-                            {trackedTx?.status === 'pending' ? (
-                              <Box
-                                display="flex"
-                                position="relative"
-                                style={{ width: '96px', paddingLeft: '2px' }}
-                              >
-                                Pending
-                                <Box paddingTop="12" paddingLeft="1">
-                                  <ImpulseSpinner
-                                    size={11}
-                                    frontColor={'#14516d'}
-                                  />
-                                </Box>
-                              </Box>
-                            ) : trackedTx?.status === 'confirmed' ? (
-                              <Box
-                                display="flex"
-                                position="relative"
-                                style={{
-                                  width: '96px',
-                                  paddingLeft: '2px',
-                                  alignSelf: 'center',
-                                }}
-                              >
-                                Confirmed
-                              </Box>
-                            ) : (
-                              <Box style={{ width: '96px', display: 'flex' }}>
-                                {account.displayName}
-                              </Box>
-                            )}
+                            {account.displayName}
                           </Box>
-
                           <DropdownIcon />
                         </Box>
                       </Box>

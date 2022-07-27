@@ -20,6 +20,8 @@ const themeContractValues = {
     actionButtonSecondaryBackground: '',
     closeButton: '',
     closeButtonBackground: '',
+    glassForeground: '',
+    glassBackground: '',
     connectButtonBackground: '',
     connectButtonBackgroundError: '',
     connectButtonInnerBackground: '',

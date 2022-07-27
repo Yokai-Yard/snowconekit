@@ -16,7 +16,7 @@ export const SnowConeKitChainContext = createContext<SnowConeKitChain[]>([]);
 
 export const useSnowConeKitChains = () => useContext(SnowConeKitChainContext);
 
-export const useRainbowKitChainsById = () => {
+export const useSnowConeKitChainsById = () => {
   const snowconekitChains = useSnowConeKitChains();
 
   return useMemo(() => {

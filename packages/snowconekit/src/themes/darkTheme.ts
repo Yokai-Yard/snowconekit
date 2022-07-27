@@ -8,30 +8,42 @@ import {
 const darkGrey = '#1A1B1F';
 
 const accentColors: Record<AccentColorPreset, AccentColor> = {
-  blue: { name: 'blue', accentColor: '#667fff', accentColorForeground: '#FFF' },
+  blue: {
+    accentColorName: 'blue',
+    accentColor: '#667fff',
+    accentColorForeground: '#FFF',
+  },
   green: {
-    name: 'green',
+    accentColorName: 'green',
     accentColor: '#66ff99',
     accentColorForeground: darkGrey,
   },
   orange: {
-    name: 'orange',
+    accentColorName: 'orange',
     accentColor: '#ff9966',
     accentColorForeground: darkGrey,
   },
-  pink: { name: 'pink', accentColor: '#ff66cc', accentColorForeground: '#FFF' },
+  pink: {
+    accentColorName: 'pink',
+    accentColor: '#ff66cc',
+    accentColorForeground: '#FFF',
+  },
   purple: {
-    name: 'purple',
+    accentColorName: 'purple',
     accentColor: '#8cabcf',
     accentColorForeground: '#FFF',
   },
-  red: { name: 'red', accentColor: '#ff6680', accentColorForeground: '#FFF' },
+  red: {
+    accentColorName: 'red',
+    accentColor: '#ff6680',
+    accentColorForeground: '#FFF',
+  },
 };
 
 const defaultAccentColor = accentColors.pink;
 
 export const darkTheme = ({
-  accentColorName = defaultAccentColor.name,
+  accentColorName = defaultAccentColor.accentColorName,
   accentColor = defaultAccentColor.accentColor,
   accentColorForeground = defaultAccentColor.accentColorForeground,
   ...baseThemeOptions
@@ -47,6 +59,8 @@ export const darkTheme = ({
     closeButton: 'rgba(224, 232, 255, 0.6)',
     closeButtonBackground: 'rgba(255, 255, 255, 0.08)',
     connectButtonBackground: darkGrey,
+    glassForeground: 'rgba(255,255,255, 0.6)',
+    glassBackground: 'rgba(255, 255, 255, 0.06)',
     connectButtonBackgroundError: '#FF494A',
     connectButtonInnerBackground:
       'linear-gradient(0deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.15))',

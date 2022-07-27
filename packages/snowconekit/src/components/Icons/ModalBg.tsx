@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Box } from '../Box/Box';
 import { MeshGradient } from '../MeshGradient/MeshGradient.jsx';
 import { AsyncBgImage } from '../AsyncImage/AsyncBgImage';
@@ -55,8 +55,8 @@ type AsyncBgImageProps = {
 
 export const ModalBg = ({ children, other }: AsyncBgImageProps) => {
   const theme = useContext(ThemeContext);
-  console.log(theme);
   const accent = theme.colors.accentColorName;
+  const colorValue = theme.colors.accentColor;
 
   const gradient = gradientColors[accent];
 
@@ -75,7 +75,7 @@ export const ModalBg = ({ children, other }: AsyncBgImageProps) => {
         {/* <Box style={{ backgroundImage: `linear-gradient(136deg, rgb(${gradient[2]}) 0%, rgb(${gradient[0]}) 100%` }}> */}
         <div style={{ width: '100%', height: '100%', ...bgImage }}>
           <MeshGradient
-            backgroundColor="#1f4fcc"
+            backgroundColor={gradient[0]}
             u_c1={gradient[0]}
             u_c2={gradient[1]}
             u_c3={gradient[2]}

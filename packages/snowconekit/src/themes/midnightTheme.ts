@@ -6,30 +6,42 @@ import {
 } from './baseTheme';
 
 const accentColors: Record<AccentColorPreset, AccentColor> = {
-  blue: { name: 'blue', accentColor: '#667fff', accentColorForeground: '#FFF' },
+  blue: {
+    accentColorName: 'blue',
+    accentColor: '#667fff',
+    accentColorForeground: '#FFF',
+  },
   green: {
-    name: 'green',
+    accentColorName: 'green',
     accentColor: '#66ff99',
     accentColorForeground: '#000',
   },
   orange: {
-    name: 'orange',
+    accentColorName: 'orange',
     accentColor: '#ff9966',
     accentColorForeground: '#000',
   },
-  pink: { name: 'pink', accentColor: '#FF7AB8', accentColorForeground: '#FFF' },
+  pink: {
+    accentColorName: 'pink',
+    accentColor: '#FF7AB8',
+    accentColorForeground: '#FFF',
+  },
   purple: {
-    name: 'purple',
+    accentColorName: 'purple',
     accentColor: '#8cabcf',
     accentColorForeground: '#FFF',
   },
-  red: { name: 'red', accentColor: '#ff6680', accentColorForeground: '#FFF' },
+  red: {
+    accentColorName: 'red',
+    accentColor: '#ff6680',
+    accentColorForeground: '#FFF',
+  },
 };
 
 const defaultAccentColor = accentColors.pink;
 
 export const midnightTheme = ({
-  accentColorName = defaultAccentColor.name,
+  accentColorName = defaultAccentColor.accentColorName,
   accentColor = defaultAccentColor.accentColor,
   accentColorForeground = defaultAccentColor.accentColorForeground,
   ...baseThemeOptions
@@ -44,6 +56,8 @@ export const midnightTheme = ({
     actionButtonSecondaryBackground: 'rgba(255, 255, 255, 0.08)',
     closeButton: 'rgba(255, 255, 255, 0.7)',
     closeButtonBackground: 'rgba(255, 255, 255, 0.08)',
+    glassForeground: 'rgba(255,255,255, 0.6)',
+    glassBackground: 'rgba(0, 0, 0, 0.06)',
     connectButtonBackground: '#000',
     connectButtonBackgroundError: '#FF494A',
     connectButtonInnerBackground:

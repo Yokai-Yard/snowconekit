@@ -125,6 +125,7 @@ importers:
       '@vanilla-extract/css-utils': 0.1.2
       '@vanilla-extract/dynamic': 2.0.2
       '@vanilla-extract/private': ^1.0.2
+      '@vanilla-extract/recipes': ^0.2.5
       '@vanilla-extract/sprinkles': 1.4.1
       autoprefixer: ^10.4.0
       badge: link:@mui/material/badge
@@ -149,6 +150,7 @@ importers:
       '@mui/material': 5.9.0_gekxolzlsl5akj7tvvg62g5h2i
       '@vanilla-extract/css': 1.7.0
       '@vanilla-extract/dynamic': 2.0.2
+      '@vanilla-extract/recipes': 0.2.5_@vanilla-extract+css@1.7.0
       '@vanilla-extract/sprinkles': 1.4.1_@vanilla-extract+css@1.7.0
       badge: link:@mui/material/badge
       clsx: 1.1.1
