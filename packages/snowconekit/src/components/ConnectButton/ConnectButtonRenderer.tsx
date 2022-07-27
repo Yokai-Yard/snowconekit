@@ -62,6 +62,7 @@ export interface ConnectButtonRendererProps {
     accountModalOpen: boolean;
     chainModalOpen: boolean;
     connectModalOpen: boolean;
+    trackedTx?: Transaction | null;
     setTx: (tx: Transaction) => void;
     pendingTransactions: Transaction;
   }) => ReactNode;
@@ -215,6 +216,7 @@ export function ConnectButtonRenderer({
         openConnectModal,
         setTx,
         pendingTransactions,
+        trackedTx,
       })}
       <ConnectModal onClose={closeConnectModal} open={connectModalOpen} />
       <AccountModal
@@ -231,7 +233,7 @@ export function ConnectButtonRenderer({
         onSwitchNetwork={switchNetwork}
         openChainModal={openChainModal}
       />
-      <TransactionModal
+      {/* <TransactionModal
         activeChain={activeChain}
         address={address}
         iconBackground={chainIconBackground}
@@ -239,8 +241,8 @@ export function ConnectButtonRenderer({
         trackedTx={trackedTx}
         txModalOpen={txModalOpen}
         closeTxModal={closeTxModal}
-      />
-      <TransactionAlert address={address} trackedTx={trackedTx} />0
+      /> */}
+      <TransactionAlert address={address} trackedTx={trackedTx} />
       <ChainModal
         activeChain={activeChain}
         chains={chains}
@@ -255,3 +257,5 @@ export function ConnectButtonRenderer({
 }
 
 ConnectButtonRenderer.displayName = 'ConnectButton.Custom';
+
+// turn acct button into a component. during TX avatar turns into spinning loading with address turning into Pending... on success, avatar turns into check mark and address "success"

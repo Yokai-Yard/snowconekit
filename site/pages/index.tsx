@@ -291,7 +291,7 @@ export default function Home() {
               >
                 <Button
                   as="a"
-                  href="https://twitter.com/rainbowdotme"
+                  href="https://twitter.com/snowconedao"
                   shadow
                   size="l"
                   variant="outline"
@@ -307,7 +307,7 @@ export default function Home() {
                 </Button>
                 <Button
                   as="a"
-                  href="https://github.com/rainbow-me/SnowConeKit/discussions/new?category=feedback"
+                  href="https://github.com/sirbenchalot757/SnowConeKit/discussions/new?category=feedback"
                   shadow
                   size="l"
                   target="_blank"
@@ -329,7 +329,7 @@ export default function Home() {
               >
                 <Text size="4" weight="bold">
                   <Link
-                    href="https://github.com/rainbow-me/SnowConeKit"
+                    href="https://github.com/sirbenchalot757/SnowConeKit"
                     variant="gray"
                   >
                     <span data-emoji>👾</span> github

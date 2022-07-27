@@ -9,8 +9,11 @@ import { isMobile } from '../../utils/isMobile';
 import { Avatar } from '../Avatar/Avatar';
 import { Box } from '../Box/Box';
 import { DropdownIcon } from '../Icons/Dropdown';
-import { useSnowConeKitChains } from '../SnowConeKitProvider/SnowConeKitChainContext';
 import { ConnectButtonRenderer } from './ConnectButtonRenderer';
+import type { Transaction } from '../../transactions/transactionStore';
+import { Text } from '../Text/Text';
+import { SphereSpinner, ImpulseSpinner } from 'react-spinners-kit';
+import CheckIcon from '../Icons/check.svg';
 
 type AccountStatus = 'full' | 'avatar' | 'address';
 type ChainStatus = 'full' | 'icon' | 'name' | 'none';
@@ -35,8 +38,6 @@ export function ConnectButton({
   label = defaultProps.label,
   showBalance = defaultProps.showBalance,
 }: ConnectButtonProps) {
-  const chains = useSnowConeKitChains();
-
   return (
     <ConnectButtonRenderer>
       {({
@@ -44,12 +45,15 @@ export function ConnectButton({
         chain,
         mounted,
         pendingTransactions,
+        trackedTx,
         openAccountModal,
         openChainModal,
         openConnectModal,
         setTx,
       }) => {
         const unsupportedChain = chain?.unsupported ?? false;
+
+        console.log(trackedTx);
 
         return (
           <Box
@@ -178,12 +182,25 @@ export function ConnectButton({
                               : 'none'
                           )}
                         >
-                          <Avatar
-                            address={account.address}
-                            imageUrl={account.ensAvatar}
-                            loading={account.displayRecentTransactions}
-                            size={24}
-                          />
+                          {trackedTx?.status === 'pending' ? (
+                            <Box style={{ width: 24, paddingLeft: '4px' }}>
+                              <SphereSpinner color="black" size={17} />
+                            </Box>
+                          ) : trackedTx?.status === 'confirmed' ? (
+                            <img
+                              src={CheckIcon}
+                              alt="Check mark"
+                              width="24px"
+                              height="24px"
+                            />
+                          ) : (
+                            <Avatar
+                              address={account.address}
+                              imageUrl={account.ensAvatar}
+                              loading={account.displayRecentTransactions}
+                              size={24}
+                            />
+                          )}
                         </Box>
 
                         <Box alignItems="center" display="flex" gap="6">
@@ -194,8 +211,39 @@ export function ConnectButton({
                                 : 'none'
                             )}
                           >
-                            {account.displayName}
+                            {trackedTx?.status === 'pending' ? (
+                              <Box
+                                display="flex"
+                                position="relative"
+                                style={{ width: '96px', paddingLeft: '2px' }}
+                              >
+                                Pending
+                                <Box paddingTop="12" paddingLeft="1">
+                                  <ImpulseSpinner
+                                    size={11}
+                                    frontColor={'#14516d'}
+                                  />
+                                </Box>
+                              </Box>
+                            ) : trackedTx?.status === 'confirmed' ? (
+                              <Box
+                                display="flex"
+                                position="relative"
+                                style={{
+                                  width: '96px',
+                                  paddingLeft: '2px',
+                                  alignSelf: 'center',
+                                }}
+                              >
+                                Confirmed
+                              </Box>
+                            ) : (
+                              <Box style={{ width: '96px', display: 'flex' }}>
+                                {account.displayName}
+                              </Box>
+                            )}
                           </Box>
+
                           <DropdownIcon />
                         </Box>
                       </Box>
