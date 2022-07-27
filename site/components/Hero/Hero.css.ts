@@ -32,9 +32,8 @@ export const modalWrapper = style([
 
 export const phoneWrapper = style([
   responsiveStyle({
-    xs: { maxWidth: PHONE_SIZE.width / 2, marginBottom: -189 },
-    md: { display: 'none' },
-    lg: {
+    xs: { maxWidth: PHONE_SIZE.width / 2, marginBottom: 10 },
+    md: {
       display: 'block',
       maxWidth: 300,
       position: 'relative',

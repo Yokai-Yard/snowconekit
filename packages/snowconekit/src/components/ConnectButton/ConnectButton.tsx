@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   mapResponsiveValue,
   normalizeResponsiveValue,
@@ -12,6 +12,9 @@ import { Box } from '../Box/Box';
 import { DropdownIcon } from '../Icons/Dropdown';
 import { useSnowConeKitChains } from '../SnowConeKitProvider/SnowConeKitChainContext';
 import { ConnectButtonRenderer } from './ConnectButtonRenderer';
+import { SphereSpinner, ImpulseSpinner } from 'react-spinners-kit';
+import CheckIcon from '../Icons/check.svg';
+import type { Transaction } from '../../transactions/transactionStore';
 
 type AccountStatus = 'full' | 'avatar' | 'address';
 type ChainStatus = 'full' | 'icon' | 'name' | 'none';
@@ -21,6 +24,7 @@ export interface ConnectButtonProps {
   showBalance?: ResponsiveValue<boolean>;
   chainStatus?: ResponsiveValue<ChainStatus>;
   label?: string;
+  trackedTx?: Transaction | null;
 }
 
 const defaultProps = {
@@ -28,6 +32,7 @@ const defaultProps = {
   chainStatus: { largeScreen: 'full', smallScreen: 'icon' },
   label: 'Connect Wallet',
   showBalance: { largeScreen: true, smallScreen: false },
+  trackedTx: null,
 } as const;
 
 export function ConnectButton({
@@ -35,6 +40,7 @@ export function ConnectButton({
   chainStatus = defaultProps.chainStatus,
   label = defaultProps.label,
   showBalance = defaultProps.showBalance,
+  trackedTx = defaultProps.trackedTx,
 }: ConnectButtonProps) {
   const chains = useSnowConeKitChains();
 
@@ -216,12 +222,25 @@ export function ConnectButton({
                               : 'none'
                           )}
                         >
-                          <Avatar
-                            address={account.address}
-                            imageUrl={account.ensAvatar}
-                            loading={account.hasPendingTransactions}
-                            size={24}
-                          />
+                          {trackedTx?.status === 'pending' ? (
+                            <Box style={{ width: 24, paddingLeft: '4px' }}>
+                              <SphereSpinner color="black" size={17} />
+                            </Box>
+                          ) : trackedTx?.status === 'confirmed' ? (
+                            <img
+                              src={CheckIcon}
+                              alt="Check mark"
+                              width="24px"
+                              height="24px"
+                            />
+                          ) : (
+                            <Avatar
+                              address={account.address}
+                              imageUrl={account.ensAvatar}
+                              loading={account.hasPendingTransactions}
+                              size={24}
+                            />
+                          )}
                         </Box>
 
                         <Box alignItems="center" display="flex" gap="6">
@@ -232,7 +251,37 @@ export function ConnectButton({
                                 : 'none'
                             )}
                           >
-                            {account.displayName}
+                            {trackedTx?.status === 'pending' ? (
+                              <Box
+                                display="flex"
+                                position="relative"
+                                style={{ width: '96px', paddingLeft: '2px' }}
+                              >
+                                Pending
+                                <Box paddingTop="12" paddingLeft="1">
+                                  <ImpulseSpinner
+                                    size={11}
+                                    frontColor={'#14516d'}
+                                  />
+                                </Box>
+                              </Box>
+                            ) : trackedTx?.status === 'confirmed' ? (
+                              <Box
+                                display="flex"
+                                position="relative"
+                                style={{
+                                  width: '96px',
+                                  paddingLeft: '2px',
+                                  alignSelf: 'center',
+                                }}
+                              >
+                                Confirmed
+                              </Box>
+                            ) : (
+                              <Box style={{ width: '96px', display: 'flex' }}>
+                                {account.displayName}
+                              </Box>
+                            )}
                           </Box>
                           <DropdownIcon />
                         </Box>

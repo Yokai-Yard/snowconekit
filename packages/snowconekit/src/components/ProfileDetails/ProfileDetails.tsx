@@ -124,13 +124,6 @@ export function ProfileDetails({
       <Box display="flex" flexDirection="column">
         <LayeredBg profColor={backgroundColor}>
           <Box className={GlassNav}>
-            {mobile && switchNetwork ? (
-              <NavButton
-                action={openChainModal}
-                icon={<ChainIcon />}
-                label={'Change Network'}
-              />
-            ) : null}
             <Box style={{ flexGrow: 1 }} />
             <NavButton
               action={onDisconnect}
