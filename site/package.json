@@ -41,6 +41,7 @@
     "refractor": "4.5.0",
     "rehype-parse": "8.0.4",
     "remark-slug": "^7.0.1",
+    "sharp": "^0.30.7",
     "three": "^0.139.2",
     "unified": "10.1.2",
     "unist-util-visit": "4.1.0",
