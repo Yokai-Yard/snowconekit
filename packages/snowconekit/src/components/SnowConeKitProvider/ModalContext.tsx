@@ -14,6 +14,7 @@ import { ConnectModal } from '../ConnectModal/ConnectModal';
 import TransactionModal from '../TransactionModal';
 import useTxModal from '../../hooks/useTxModal';
 import type { Transaction } from '../../transactions/transactionStore';
+import TransactionAlert from '../TransactionAlert';
 
 function useModalStateValue() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -119,11 +120,12 @@ export function ModalProvider({ children }: ModalProviderProps) {
       )}
     >
       {children}
-      <TransactionModal
+      {/* <TransactionModal
         trackedTx={trackedTx}
         txModalOpen={txModalOpen}
         closeTxModal={closeTxModal}
-      />
+      /> */}
+      <TransactionAlert trackedTx={trackedTx} />
       <ConnectModal onClose={closeConnectModal} open={connectModalOpen} />
       <AccountModal onClose={closeAccountModal} open={accountModalOpen} />
       <ChainModal onClose={closeChainModal} open={chainModalOpen} />
