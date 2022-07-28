@@ -4,7 +4,7 @@ export const container = style([
   {
     backdropFilter: 'blur(50px)',
     background: 'rgba(255, 255, 255, 0.01)',
-    borderColor: 'linear-gradient(#FFFFFFAC 0%, #ffffff 100%);)',
+    borderColor: 'linear-gradient(#FFFFFFAC 0%, #ffffff 100%))',
     borderRadius: '8px',
     borderWidth: '2px',
     margin: '0 auto',

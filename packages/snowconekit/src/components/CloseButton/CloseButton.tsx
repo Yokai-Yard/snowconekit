@@ -6,19 +6,23 @@ import { CloseIcon } from '../Icons/Close';
 import * as styles from './CloseButton.css';
 
 export const CloseButton = React.forwardRef(
-  ({
-    'aria-label': ariaLabel = 'Close',
-    variant = 'default',
-    onClose,
-  }: {
-    'aria-label'?: string;
-    'onClose': () => void;
-    'variant'?: 'default' | 'glass';
-  }) => {
+  (
+    {
+      'aria-label': ariaLabel = 'Close',
+      variant = 'default',
+      onClose,
+    }: {
+      'aria-label'?: string;
+      'onClose': () => void;
+      'variant'?: 'default' | 'glass';
+    },
+    ref: React.Ref<HTMLButtonElement>
+  ) => {
     const mobile = isMobile();
     return (
       <Box
         aria-label={ariaLabel}
+        ref={ref}
         as="button"
         borderRadius="full"
         className={increaseHitAreaForHoverTransform.growLg}
