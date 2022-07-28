@@ -4,6 +4,7 @@ import {
   lightTheme,
   SnowConeKitProvider,
 } from '@sirbenchalot/snowconekit';
+import NextImage from 'next/image';
 import NextLink from 'next/link';
 import React from 'react';
 import pckg from '../../../packages/snowconekit/package.json';
@@ -12,7 +13,7 @@ import { Badge } from '../Badge/Badge';
 import { Box } from '../Box/Box';
 import { chains } from '../Provider/Provider';
 import { Text } from '../Text/Text';
-import { header, logo, row } from './Header.css';
+import { header, row } from './Header.css';
 
 const SNOWCONEKIT_VERSION = pckg.version;
 
@@ -30,19 +31,12 @@ export function Header({
     <Box className={sticky ? header : undefined} {...props}>
       <Box className={row}>
         <NextLink href="/">
-          <Box
-            alt="SnowCone logo"
-            as="img"
-            className={logo}
-            marginRight="4"
+          <NextImage
+            alt="SnowConeKit Logo"
+            height="40"
             src="/NeonIcon.png"
-            transform={{
-              active: 'shrink',
-              hover: 'grow',
-            }}
-            transitionDuration="100"
-            transitionProperty="transform"
-            transitionTimingFunction="ease"
+            style={{ cursor: 'pointer' }}
+            width="40"
           />
         </NextLink>
 
@@ -55,7 +49,11 @@ export function Header({
           // eslint-disable-next-line sort-keys-fix/sort-keys-fix
           gap={{ xs: '1', sm: '4' }}
         >
-          <Text style={{ lineHeight: 1 }} variant="title3" weight="bold">
+          <Text
+            style={{ lineHeight: 1, marginLeft: '8px' }}
+            variant="title3"
+            weight="bold"
+          >
             SnowConeKit
           </Text>
           <Badge>{SNOWCONEKIT_VERSION}</Badge>
