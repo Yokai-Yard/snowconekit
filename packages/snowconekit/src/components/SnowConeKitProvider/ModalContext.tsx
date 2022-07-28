@@ -33,7 +33,7 @@ interface ModalContextValue {
   openAccountModal?: () => void;
   openChainModal?: () => void;
   openConnectModal?: () => void;
-  setTx: (tx: Transaction) => void;
+  trackedTx?: Transaction | null;
 }
 
 const ModalContext = createContext<ModalContextValue>({
@@ -41,7 +41,6 @@ const ModalContext = createContext<ModalContextValue>({
   chainModalOpen: false,
   connectModalOpen: false,
   txModalOpen: false,
-  setTx: () => {},
 });
 
 interface ModalProviderProps {
@@ -77,7 +76,7 @@ export function ModalProvider({ children }: ModalProviderProps) {
   const { chain } = useNetwork();
   const isChainSupported = !chain?.unsupported;
 
-  const { setTx, trackedTx } = useTxModal({
+  const { trackedTx } = useTxModal({
     closeTxModal,
     openTxModal,
     txModalOpen,
@@ -103,7 +102,7 @@ export function ModalProvider({ children }: ModalProviderProps) {
           chainModalOpen,
           connectModalOpen,
           txModalOpen,
-          setTx,
+          trackedTx,
         }),
         [
           isChainSupported,
@@ -114,7 +113,6 @@ export function ModalProvider({ children }: ModalProviderProps) {
           openAccountModal,
           openChainModal,
           openConnectModal,
-          setTx,
         ]
       )}
     >
@@ -157,8 +155,7 @@ export function useConnectModal() {
   const { openConnectModal } = useContext(ModalContext);
   return { openConnectModal };
 }
-
-export function useTransactionModal() {
-  const { setTx } = useContext(ModalContext);
-  return { setTx };
+export function useTrackedTx() {
+  const { trackedTx } = useContext(ModalContext);
+  return { trackedTx };
 }

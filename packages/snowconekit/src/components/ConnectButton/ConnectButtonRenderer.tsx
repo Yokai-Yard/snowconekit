@@ -10,7 +10,6 @@ import {
   useChainModal,
   useConnectModal,
   useModalState,
-  useTransactionModal,
 } from '../SnowConeKitProvider/ModalContext';
 import { useSnowConeKitChainsById } from '../SnowConeKitProvider/SnowConeKitChainContext';
 import { ShowRecentTransactionsContext } from '../SnowConeKitProvider/ShowRecentTransactionsContext';
@@ -47,7 +46,6 @@ export interface ConnectButtonRendererProps {
     openAccountModal: () => void;
     openChainModal: () => void;
     openConnectModal: () => void;
-    setTx: (tx: Transaction) => void;
     accountModalOpen: boolean;
     chainModalOpen: boolean;
     connectModalOpen: boolean;
@@ -92,7 +90,6 @@ export function ConnectButtonRenderer({
   const { openConnectModal } = useConnectModal();
   const { openChainModal } = useChainModal();
   const { openAccountModal } = useAccountModal();
-  const { setTx } = useTransactionModal();
   const { accountModalOpen, chainModalOpen, connectModalOpen, txModalOpen } =
     useModalState();
 
@@ -129,7 +126,6 @@ export function ConnectButtonRenderer({
         chainModalOpen,
         connectModalOpen,
         txModalOpen,
-        setTx,
         mounted,
         openAccountModal: openAccountModal ?? noop,
         openChainModal: openChainModal ?? noop,

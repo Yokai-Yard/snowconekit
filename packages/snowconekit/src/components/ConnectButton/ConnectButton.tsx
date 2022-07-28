@@ -53,8 +53,6 @@ export function ConnectButton({
         openAccountModal,
         openChainModal,
         openConnectModal,
-        pendingTransactions,
-        setTx,
       }) => {
         const unsupportedChain = chain?.unsupported ?? false;
 
@@ -73,7 +71,6 @@ export function ConnectButton({
           >
             {mounted && account ? (
               <>
-                {pendingTransactions && setTx(pendingTransactions)}
                 {chain && (chains.length > 1 || unsupportedChain) && (
                   <Box
                     alignItems="center"

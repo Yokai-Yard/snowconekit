@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import type { Transaction } from '../transactions/transactionStore';
 import { useRecentTransactions } from '../transactions/useRecentTransactions';
 
-type txModalProps = Transaction | null;
+export type txModalProps = Transaction | null;
 
 type Props = {
   pendingTransactions: Transaction;
@@ -20,6 +20,10 @@ const useTxModal = ({ closeTxModal, openTxModal, txModalOpen }: stateProps) => {
 
   const transactions = useRecentTransactions();
 
+  const pendingTransactions = useRecentTransactions().filter(
+    ({ status }) => status === 'pending'
+  )[0];
+
   const findTx = (tx: txModalProps) =>
     tx && transactions.filter(({ hash }) => hash === tx?.hash)[0];
 
@@ -29,6 +33,10 @@ const useTxModal = ({ closeTxModal, openTxModal, txModalOpen }: stateProps) => {
       setTrackedTx(findTx(transaction));
     }
   };
+
+  useEffect(() => {
+    pendingTransactions && setTx(pendingTransactions);
+  }, [pendingTransactions]);
 
   useEffect(() => {
     trackedTx && !txModalOpen && openTxModal();
@@ -50,7 +58,7 @@ const useTxModal = ({ closeTxModal, openTxModal, txModalOpen }: stateProps) => {
     trackedTx && findTx(trackedTx)?.status === 'confirmed' && handleOnClose();
   }, [trackedTx, transactions]);
 
-  return { setTx, trackedTx };
+  return { trackedTx };
 };
 
 export default useTxModal;
