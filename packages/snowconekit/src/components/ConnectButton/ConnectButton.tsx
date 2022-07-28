@@ -14,6 +14,7 @@ import { useSnowConeKitChains } from '../SnowConeKitProvider/SnowConeKitChainCon
 import { ConnectButtonRenderer } from './ConnectButtonRenderer';
 import { SphereSpinner, ImpulseSpinner } from 'react-spinners-kit';
 import CheckIcon from '../Icons/check.svg';
+import ExclamationIcon from '../Icons/exclamationMark.svg';
 import type { Transaction } from '../../transactions/transactionStore';
 import { useTrackedTx } from '../SnowConeKitProvider/ModalContext';
 
@@ -234,6 +235,13 @@ export function ConnectButton({
                               width="24px"
                               height="24px"
                             />
+                          ) : trackedTx?.status === 'failed' ? (
+                            <img
+                              src={ExclamationIcon}
+                              alt="Exclamation mark"
+                              width="24px"
+                              height="24px"
+                            />
                           ) : (
                             <Avatar
                               address={account.address}
@@ -277,6 +285,18 @@ export function ConnectButton({
                                 }}
                               >
                                 Confirmed
+                              </Box>
+                            ) : trackedTx?.status === 'failed' ? (
+                              <Box
+                                display="flex"
+                                position="relative"
+                                style={{
+                                  width: '96px',
+                                  paddingLeft: '2px',
+                                  alignSelf: 'center',
+                                }}
+                              >
+                                Failed
                               </Box>
                             ) : (
                               <Box style={{ width: '96px', display: 'flex' }}>
