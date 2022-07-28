@@ -18,6 +18,8 @@ export function AccountModal({ onClose, open }: AccountModalProps) {
   const ensName = useMainnetEnsName(address);
   const { disconnect } = useDisconnect();
 
+  /*   let displayName = address */
+
   if (!address) {
     return null;
   }

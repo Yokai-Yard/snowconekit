@@ -14,7 +14,7 @@ import { ExplorerLink, ModalList } from './ModalTxs.css';
 const NUMBER_OF_VISIBLE_TXS = 3;
 
 interface ModalTxListProps {
-  address: ReturnType<typeof useAccount>['address'];
+  address: string;
   chains: ReturnType<typeof useNetwork>['chains'];
 }
 

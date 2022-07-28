@@ -16,6 +16,7 @@ import { TitleAndMetaTags } from 'components/TitleAndMetaTags/TitleAndMetaTags';
 import { Wrapper } from 'components/Wrapper/Wrapper';
 import copy from 'copy-to-clipboard';
 import { vars } from 'css/vars.css';
+import ScLinks from 'lib/links';
 import NextImage from 'next/image';
 import NextLink from 'next/link';
 import React, { useState } from 'react';
@@ -47,11 +48,7 @@ export default function Home() {
         <TitleAndMetaTags color="black" />
         <Header darkMode />
         <Wrapper>
-          <Box
-            marginTop="11"
-            style={{ transform: 'translateX(-20px ) ' }}
-            textAlign="center"
-          >
+          <Box marginTop="11" textAlign="center">
             <NextImage
               alt="SnowConeKit Neon Sign"
               height="227"
@@ -65,7 +62,7 @@ export default function Home() {
               style={{ lineHeight: 1 }}
               weight="bold"
             >
-              A beautiful wallet experience
+              A gorgeous wallet connector
             </Text>
           </Box>
         </Wrapper>
@@ -192,10 +189,10 @@ export default function Home() {
                 style={{ lineHeight: '1' }}
                 weight="bold"
               >
-                Made with ❤️ by{' '}
+                Made with ❤️ in dim candle light{' '}
                 <span>
                   {' '}
-                  <Box display="inline">
+                  <Box display={{ xs: 'inline', md: 'none' }}>
                     <object
                       data="/ScCandle.svg"
                       style={{ width: '36px' }}
@@ -257,7 +254,7 @@ export default function Home() {
               >
                 <Button
                   as="a"
-                  href="https://twitter.com/snowconedao"
+                  href={ScLinks.twitter}
                   shadow
                   size="l"
                   variant="outline"
@@ -273,7 +270,7 @@ export default function Home() {
                 </Button>
                 <Button
                   as="a"
-                  href="https://github.com/sirbenchalot757/SnowConeKit/discussions/new?category=feedback"
+                  href={ScLinks.feedback}
                   shadow
                   size="l"
                   target="_blank"
@@ -295,25 +292,22 @@ export default function Home() {
                 textAlign="center"
               >
                 <Text size="4" weight="bold">
-                  <Link
-                    href="https://github.com/sirbenchalot757/SnowConeKit"
-                    variant="gray"
-                  >
+                  <Link href={ScLinks.github} variant="gray">
                     <GithubIcon /> github
                   </Link>
                 </Text>
                 <Text size="4" weight="bold">
-                  <Link href="https://rainbow.me/media-kit.zip" variant="gray">
+                  <Link href={ScLinks.mediaKit} variant="gray">
                     <DownloadIcon /> media kit
                   </Link>
                 </Text>
                 <Text size="4" weight="bold">
-                  <Link href="https://rainbow.me/terms-of-use" variant="gray">
+                  <Link href={ScLinks.terms} variant="gray">
                     <DocumentIcon /> terms of use
                   </Link>
                 </Text>
                 <Text size="4" weight="bold">
-                  <Link href="https://rainbow.me/privacy" variant="gray">
+                  <Link href={ScLinks.privacy} variant="gray">
                     <LockIcon /> privacy policy
                   </Link>
                 </Text>

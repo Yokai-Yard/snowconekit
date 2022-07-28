@@ -42,10 +42,11 @@ import DangerIcon from '../Icons/danger.png';
 import { AsyncImage } from '../AsyncImage/AsyncImage';
 import { useSnowConeKitChainsById } from '../SnowConeKitProvider/SnowConeKitChainContext';
 import { ThemeContext } from '../SnowConeKitProvider/SnowConeKitProvider';
-import { useChainModal } from '../SnowConeKitProvider/ModalContext';
+
+import { formatAddress } from '../ConnectButton/formatAddress';
 
 interface ProfileDetailsProps {
-  address: ReturnType<typeof useAccount>['address'];
+  address: string;
   balanceData: ReturnType<typeof useBalance>['data'];
   ensAvatar: ReturnType<typeof useEnsAvatar>['data'];
   ensName: ReturnType<typeof useEnsName>['data'];
@@ -77,7 +78,8 @@ export function ProfileDetails({
   const { chains, error: networkError, switchNetwork } = useSwitchNetwork();
   const showRecentTransactions = useContext(ShowRecentTransactionsContext);
   const [copiedAddress, setCopiedAddress] = useState(false);
-  const { openChainModal } = useChainModal();
+
+  const displayName = ensName ? formatENS(ensName) : formatAddress(address);
 
   const { color: backgroundColor } = useMemo(
     () => emojiAvatarForAddress(address ? address : ''),
@@ -109,9 +111,6 @@ export function ProfileDetails({
   const currentChain = activeChain && snowconekitChainsById[activeChain?.id];
   const chainIconUrl = currentChain?.iconUrl;
 
-  const accountName = ensName
-    ? formatENS(ensName)
-    : formatModalAddress(address);
   const ethBalance = balanceData?.formatted;
   const balance = Number(ethBalance).toPrecision(3);
   const titleId = 'rk_profile_title';
@@ -165,7 +164,7 @@ export function ProfileDetails({
                       size={mobile ? '20' : '23'}
                       weight="regular"
                     >
-                      {accountName}
+                      {displayName}
                     </Text>
                   </Box>
                   {balanceData && (

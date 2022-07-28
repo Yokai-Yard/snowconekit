@@ -1,11 +1,10 @@
 import React from 'react';
-import { useNetwork, useAccount } from 'wagmi';
+import { useNetwork } from 'wagmi';
 import { increaseHitAreaForHoverTransform } from '../../css/increaseHitAreaForHoverTransform.css';
 import { Transaction } from '../../transactions/transactionStore';
 import { chainToExplorerUrl } from '../../utils/chainToExplorerUrl';
 import { isMobile } from '../../utils/isMobile';
 import { Box } from '../Box/Box';
-import { ExternalLinkIcon } from '../Icons/ExternalLink';
 import { Text } from '../Text/Text';
 import { AsyncImage } from '../AsyncImage/AsyncImage';
 import { useSnowConeKitChainsById } from '../SnowConeKitProvider/SnowConeKitChainContext';
@@ -13,9 +12,12 @@ import { timeAgo } from '../../utils/timeAgo';
 import { formatTransactionAddress } from '../ConnectButton/formatModalAddresses';
 import CheckIcon from '../Icons/check.png';
 import { Avatar, Badge, BadgeImage, Time } from './ModalTxs.css';
+import { formatENS } from '../ConnectButton/formatENS';
+import { formatAddress } from '../ConnectButton/formatAddress';
+import { useMainnetEnsName } from '../../hooks/useMainnetEnsName';
 
 interface ModalTxProps {
-  address: ReturnType<typeof useAccount>['address'];
+  address: string;
   tx: Transaction;
 }
 
@@ -23,6 +25,7 @@ export function ModalTxItem({ tx, address }: ModalTxProps) {
   const mobile = isMobile();
   const color = tx.status === 'failed' ? 'error' : 'accentColor';
   const { chain } = useNetwork();
+  const ensName = useMainnetEnsName(address);
   const explorerLink = chainToExplorerUrl(chain);
   const snowconekitChainsById = useSnowConeKitChainsById();
   const rainbowKitChain = chain ? snowconekitChainsById[chain.id] : undefined;
@@ -34,7 +37,8 @@ export function ModalTxItem({ tx, address }: ModalTxProps) {
       ? 'Failed'
       : 'Pending';
 
-  const transactionAddress = address && formatTransactionAddress(address);
+  const displayName =
+    ensName && address ? formatENS(ensName) : formatAddress(address);
 
   return (
     <>
@@ -100,7 +104,7 @@ export function ModalTxItem({ tx, address }: ModalTxProps) {
                   size={mobile ? '16' : '14'}
                   weight="bold"
                 >
-                  {transactionAddress}
+                  {displayName}
                 </Text>
               </Box>
               <Box>

@@ -11,9 +11,8 @@ import {
 
 export function Hero() {
   return (
-    <Box marginTop="12" position="relative">
+    <Box marginTop={{ md: '12', xs: '8' }} position="relative">
       <Box
-        backgroundColor="purple90"
         position="absolute"
         style={{
           borderRadius: '100%',
