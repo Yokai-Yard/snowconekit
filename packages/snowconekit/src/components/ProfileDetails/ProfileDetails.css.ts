@@ -88,3 +88,15 @@ export const ConnectedToAvatar = style([
     boxShadow: '2px 2px 4px 2px  rgba(0, 0, 0, 0.3)',
   },
 ]);
+
+export const Balance = style([
+  {
+    gap: '12px',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: '20px',
+    textAlign: 'left',
+    opacity: '.65',
+  },
+]);

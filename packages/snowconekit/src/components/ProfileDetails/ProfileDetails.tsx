@@ -19,6 +19,7 @@ import {
   GlassAvatar,
   NetworkSwitchAlert,
   ConnectedToAvatar,
+  Balance,
 } from './ProfileDetails.css';
 import { isMobile } from '../../utils/isMobile';
 import { Avatar } from '../Avatar/Avatar';
@@ -168,17 +169,7 @@ export function ProfileDetails({
                     </Text>
                   </Box>
                   {balanceData && (
-                    <Box
-                      gap="12"
-                      display="flex"
-                      flexDirection="row"
-                      alignItems="center"
-                      marginTop="20"
-                      textAlign="left"
-                      style={{
-                        opacity: '.65',
-                      }}
-                    >
+                    <Box className={Balance}>
                       <Text
                         as="h1"
                         color="accentColorForeground"

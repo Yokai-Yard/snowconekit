@@ -256,7 +256,7 @@ export function ConnectButton({
                               <Box
                                 display="flex"
                                 position="relative"
-                                style={{ width: '96px', paddingLeft: '2px' }}
+                                style={{ width: '100px', paddingLeft: '2px' }}
                               >
                                 Pending
                                 <Box paddingTop="12" paddingLeft="1">
