@@ -36,11 +36,12 @@ interface ModalContextValue {
   trackedTx?: Transaction | null;
 }
 
-const ModalContext = createContext<ModalContextValue>({
+export const ModalContext = createContext<ModalContextValue>({
   accountModalOpen: false,
   chainModalOpen: false,
   connectModalOpen: false,
   txModalOpen: false,
+  trackedTx: null,
 });
 
 interface ModalProviderProps {
@@ -113,6 +114,7 @@ export function ModalProvider({ children }: ModalProviderProps) {
           openAccountModal,
           openChainModal,
           openConnectModal,
+          trackedTx,
         ]
       )}
     >

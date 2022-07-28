@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import {
   mapResponsiveValue,
   normalizeResponsiveValue,
@@ -15,6 +15,7 @@ import { ConnectButtonRenderer } from './ConnectButtonRenderer';
 import { SphereSpinner, ImpulseSpinner } from 'react-spinners-kit';
 import CheckIcon from '../Icons/check.svg';
 import type { Transaction } from '../../transactions/transactionStore';
+import { useTrackedTx } from '../SnowConeKitProvider/ModalContext';
 
 type AccountStatus = 'full' | 'avatar' | 'address';
 type ChainStatus = 'full' | 'icon' | 'name' | 'none';
@@ -40,9 +41,12 @@ export function ConnectButton({
   chainStatus = defaultProps.chainStatus,
   label = defaultProps.label,
   showBalance = defaultProps.showBalance,
-  trackedTx = defaultProps.trackedTx,
 }: ConnectButtonProps) {
   const chains = useSnowConeKitChains();
+
+  const { trackedTx } = useTrackedTx();
+
+  console.log('trackedTx', trackedTx);
 
   return (
     <ConnectButtonRenderer>
