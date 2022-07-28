@@ -47,8 +47,6 @@ export function ConnectButton({
 
   const { trackedTx } = useTrackedTx();
 
-  console.log('trackedTx', trackedTx);
-
   return (
     <ConnectButtonRenderer>
       {({

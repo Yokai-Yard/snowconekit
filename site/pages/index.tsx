@@ -17,6 +17,8 @@ import { Wrapper } from 'components/Wrapper/Wrapper';
 import copy from 'copy-to-clipboard';
 import { vars } from 'css/vars.css';
 import ScLinks from 'lib/links';
+import { useMounted } from 'lib/useMounted';
+
 import NextImage from 'next/image';
 import NextLink from 'next/link';
 import React, { useState } from 'react';
@@ -34,15 +36,26 @@ import bg from '../public/scKitBg.png';
 
 export default function Home() {
   const comment = '//';
+
+  const mounted = useMounted();
+
   return (
     <Box
       data-mode="dark"
-      style={{
-        backgroundImage: `url(${bg.src})`,
-        backgroundSize: 'cover',
-        minHeight: '100vh',
-        overflow: 'hidden',
-      }}
+      style={
+        mounted
+          ? {
+              backgroundImage: `url(${bg.src})`,
+              backgroundSize: 'cover',
+              minHeight: '100vh',
+              overflow: 'hidden',
+            }
+          : {
+              background: 'linear-gradient(to right,#667fff, #ff66cc)',
+              minHeight: '100vh',
+              overflow: 'hidden',
+            }
+      }
     >
       <Box className={container} data-mode="dark">
         <TitleAndMetaTags color="black" />
