@@ -1,5 +1,5 @@
 {
-  "name": "@sirbenchalot/snowconekit",
+  "name": "@snowcone/snowconekit",
   "version": "0.1.6",
   "description": "SnowCone's Web3 Connector",
   "files": [
@@ -76,7 +76,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sirbenchalot757/snowconekit",
+    "url": "git+https://github.com/SnowConeDao/snowconekit",
     "directory": "packages/snowconekit"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/SnowConeDao/snowconekit/issues"
+  },
+  "homepage": "https://github.com/SnowConeDao/snowconekit/blob/main/README.md"
 }
