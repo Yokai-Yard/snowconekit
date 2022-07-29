@@ -75,7 +75,7 @@ export default function Home() {
               style={{ lineHeight: 1 }}
               weight="bold"
             >
-              A gorgeous wallet connector
+              A beautiful wallet connector
             </Text>
           </Box>
         </Wrapper>
