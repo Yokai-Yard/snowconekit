@@ -113,6 +113,8 @@ importers:
       '@emotion/styled': ^11.8.1
       '@ethersproject/abstract-provider': ^5.5.1
       '@ethersproject/providers': ^5.5.1
+      '@react-spring/three': ^9.5.0
+      '@react-three/fiber': ^8.2.0
       '@types/qrcode': ^1.4.2
       '@vanilla-extract/css': 1.7.0
       '@vanilla-extract/css-utils': 0.1.2
@@ -132,12 +134,15 @@ importers:
       react-simply-carousel: ^8.3.3
       react-spinners-kit: ^1.9.1
       rgb-hex: ^4.0.0
+      three: ^0.139.2
       values.js: ^2.1.1
       vitest: ^0.5.0
     dependencies:
       '@babel/core': 7.18.9
       '@emotion/react': 11.9.3_lxeixztqul6ae7cp3cpkyxlhzm
       '@emotion/styled': 11.9.3_lrdyawhmscavswn6eqk2uibmxm
+      '@react-spring/three': 9.5.2_k3vl4emayk5qarbzyuw523fs2m
+      '@react-three/fiber': 8.2.2_hufx7hqejpwlztoweibuugu2tq
       '@vanilla-extract/css': 1.7.0
       '@vanilla-extract/dynamic': 2.0.2
       '@vanilla-extract/recipes': 0.2.5_@vanilla-extract+css@1.7.0
@@ -148,6 +153,7 @@ importers:
       react-simply-carousel: 8.3.5_sgv4m26tnl4echlq645clg5jc4
       react-spinners-kit: 1.9.1
       rgb-hex: 4.0.0
+      three: 0.139.2
       values.js: 2.1.1
     devDependencies:
       '@ethersproject/abstract-provider': 5.6.1
@@ -3415,13 +3421,47 @@ packages:
       '@react-spring/core': 9.5.2_react@18.2.0
       '@react-spring/shared': 9.5.2_react@18.2.0
       '@react-spring/types': 9.5.2
-      '@react-three/fiber': 8.2.2_u6x6ncgn42q65eioqbfyxyvkmq
+      '@react-three/fiber': 8.2.2_hufx7hqejpwlztoweibuugu2tq
       react: 18.2.0
       three: 0.139.2
     dev: false
 
   /@react-spring/types/9.5.2:
     resolution: {integrity: sha512-n/wBRSHPqTmEd4BFWY6TeR1o/UY+3ujoqMxLjqy90CcY/ozJzDRuREL3c+pxMeTF2+B7dX33dTPCtFMX51nbxg==}
+    dev: false
+
+  /@react-three/fiber/8.2.2_hufx7hqejpwlztoweibuugu2tq:
+    resolution: {integrity: sha512-NO/tOCYK8SQ2vuM2y2r98054X4SMGYIlHgiVRNaSo6JiXyoT3FN0aIH1nDzhDFJ5N/2C/PKa+yeg2M2/8YDFJg==}
+    peerDependencies:
+      expo: '>=43.0'
+      expo-asset: '>=8.4'
+      expo-gl: '>=11.0'
+      react: '>=18.0'
+      react-dom: '>=18.0'
+      react-native: '>=0.64'
+      three: '>=0.133'
+    peerDependenciesMeta:
+      expo:
+        optional: true
+      expo-asset:
+        optional: true
+      expo-gl:
+        optional: true
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.18.9
+      '@types/react-reconciler': 0.26.7
+      react: 18.2.0
+      react-dom: 17.0.2_react@18.2.0
+      react-reconciler: 0.27.0_react@18.2.0
+      react-use-measure: 2.1.1_sgv4m26tnl4echlq645clg5jc4
+      scheduler: 0.21.0
+      suspend-react: 0.0.8_react@18.2.0
+      three: 0.139.2
+      zustand: 3.7.2_react@18.2.0
     dev: false
 
   /@react-three/fiber/8.2.2_u6x6ncgn42q65eioqbfyxyvkmq:
@@ -9308,6 +9348,17 @@ packages:
       debounce: 1.2.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /react-use-measure/2.1.1_sgv4m26tnl4echlq645clg5jc4:
+    resolution: {integrity: sha512-nocZhN26cproIiIduswYpV5y5lQpSQS1y/4KuvUCjSKmw7ZWIS/+g3aFnX3WdBkyuGUtTLif3UTqnLLhbDoQig==}
+    peerDependencies:
+      react: '>=16.13'
+      react-dom: '>=16.13'
+    dependencies:
+      debounce: 1.2.1
+      react: 18.2.0
+      react-dom: 17.0.2_react@18.2.0
     dev: false
 
   /react/16.14.0:
