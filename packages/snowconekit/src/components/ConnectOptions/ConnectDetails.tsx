@@ -304,7 +304,7 @@ export function ConnectDetail({
             <ActionButton
               label={secondaryAction.label}
               onClick={secondaryAction.onClick}
-              type="secondary"
+              // type="secondary"
             />
           </>
         )}
