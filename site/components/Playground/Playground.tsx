@@ -14,6 +14,7 @@ import { Text } from 'components/Text/Text';
 import { Wrapper } from 'components/Wrapper/Wrapper';
 import { motion } from 'framer-motion';
 import { useMounted } from 'lib/useMounted';
+import ScWords from 'lib/words';
 import React, { useState } from 'react';
 import { radio, ring } from './Playground.css';
 const { DesktopOptions, MobileOptions, dialogContent, dialogContentMobile } =
@@ -127,7 +128,7 @@ export function Playground() {
                 style={{ lineHeight: 1 }}
                 weight="bold"
               >
-                Give SnowConeKit a spin
+                {ScWords.playground.title}
               </Text>
               <Text
                 align={{ xs: 'left', md: 'center' }}
@@ -138,10 +139,7 @@ export function Playground() {
                 style={{ lineHeight: '28px', maxWidth: 720 }}
                 weight="semibold"
               >
-                Make your Ethereum login experience feel right at home on your
-                website. SnowConeKit allows you to fully customize color, border
-                radius, wallet providers and a lot more — all through an
-                easy-to-use API. Get a feel for it below!
+                {ScWords.playground.description}
               </Text>
             </Wrapper>
 

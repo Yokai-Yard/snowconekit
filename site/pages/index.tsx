@@ -18,6 +18,7 @@ import copy from 'copy-to-clipboard';
 import { vars } from 'css/vars.css';
 import ScLinks from 'lib/links';
 import { useMounted } from 'lib/useMounted';
+import ScWords from 'lib/words';
 
 import NextImage from 'next/image';
 import NextLink from 'next/link';
@@ -75,7 +76,7 @@ export default function Home() {
               style={{ lineHeight: 1 }}
               weight="bold"
             >
-              A gorgeous wallet connector
+              {ScWords.title}
             </Text>
           </Box>
         </Wrapper>
@@ -202,7 +203,7 @@ export default function Home() {
                 style={{ lineHeight: '1' }}
                 weight="bold"
               >
-                Made with ❤️ in dim candle light{' '}
+                {ScWords.footer.title}
                 <span>
                   {' '}
                   <Box display={{ xs: 'inline', md: 'none' }}>
@@ -253,10 +254,7 @@ export default function Home() {
                 style={{ lineHeight: '28px', maxWidth: 720 }}
                 weight="normal"
               >
-                Building SnowConeKit has been an incredibly fun effort across
-                many people at SnowCone and our frens at other companies.
-                We&apos;re always looking to make SnowConeKit better, so please
-                let us know how we can improve.
+                {ScWords.footer.description}
               </Text>
 
               <Box
