@@ -15,7 +15,7 @@ Follow the steps below to migrate.
 Upgrade SnowConeKit and wagmi to their latest version:
 
 ```bash
-npm i @sirbenchalot757/snowconekit@^0.2.0 wagmi@^0.4.2
+npm i @snowcone/snowconekit@^0.2.0 wagmi@^0.4.2
 ```
 
 #### 2. Replace configureChains import
@@ -23,7 +23,7 @@ npm i @sirbenchalot757/snowconekit@^0.2.0 wagmi@^0.4.2
 Import `configureChains` from wagmi instead of SnowConeKit:
 
 ```diff
-- import { configureChains } from '@sirbenchalot757/snowconekit';
+- import { configureChains } from '@snowcone/snowconekit';
 + import { configureChains } from 'wagmi';
 ```
 
@@ -32,7 +32,7 @@ Import `configureChains` from wagmi instead of SnowConeKit:
 SnowConeKit no longer exports an `apiProvider` API. Replace it with your desired provider from wagmi.
 
 ```diff
-- import { apiProvider } from '@sirbenchalot757/snowconekit';
+- import { apiProvider } from '@snowcone/snowconekit';
 ```
 
 #### Alchemy

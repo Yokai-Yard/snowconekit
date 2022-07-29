@@ -91,7 +91,7 @@ importers:
   packages/example:
     specifiers:
       '@babel/core': ^7.16.0
-      '@sirbenchalot/snowconekit': workspace:*
+      '@snowcone/snowconekit': workspace:*
       ethers: ^5.0.0
       next: ^12.1.5
       react: ^18.0.0
@@ -99,7 +99,7 @@ importers:
       react-spinners-kit: ^1.9.1
     dependencies:
       '@babel/core': 7.18.9
-      '@sirbenchalot/snowconekit': link:../snowconekit
+      '@snowcone/snowconekit': link:../snowconekit
       ethers: 5.6.9
       next: 12.2.3_qugu52izettqdqqm5qcjcltcia
       react: 18.2.0
@@ -176,7 +176,7 @@ importers:
       '@radix-ui/react-radio-group': ^0.1.5
       '@react-spring/three': ^9.5.0
       '@react-three/fiber': ^8.2.0
-      '@sirbenchalot/snowconekit': workspace:0.1.5
+      '@snowcone/snowconekit': workspace:0.1.6
       '@vanilla-extract/babel-plugin': 1.1.4
       '@vanilla-extract/css': 1.7.0
       '@vanilla-extract/css-utils': ^0.1.2
@@ -221,7 +221,7 @@ importers:
       '@radix-ui/react-radio-group': 0.1.5_react@18.2.0
       '@react-spring/three': 9.5.2_k3vl4emayk5qarbzyuw523fs2m
       '@react-three/fiber': 8.2.2_u6x6ncgn42q65eioqbfyxyvkmq
-      '@sirbenchalot/snowconekit': link:../packages/snowconekit
+      '@snowcone/snowconekit': link:../packages/snowconekit
       '@vanilla-extract/babel-plugin': 1.1.4
       '@vanilla-extract/css': 1.7.0
       '@vanilla-extract/css-utils': 0.1.2

@@ -1,4 +1,4 @@
-import '@sirbenchalot/snowconekit/styles.css';
+import '@snowcone/snowconekit/styles.css';
 import { Provider } from 'components/Provider/Provider';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';

@@ -1,7 +1,7 @@
 /* eslint-disable import/order */
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 import './global.css';
-import '@sirbenchalot/snowconekit/styles.css';
+import '@snowcone/snowconekit/styles.css';
 
 import React, { useEffect, useState } from 'react';
 

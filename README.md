@@ -19,7 +19,7 @@ Install SnowConeKit along with [wagmi](https://wagmi.sh) and its [ethers](https:
 
 <!-- fixit -->
 
-`npm install @sirbenchalot757/snowconekit wagmi ethers`
+`npm install @snowcone/snowconekit wagmi ethers`
 
 ## Documentation
 

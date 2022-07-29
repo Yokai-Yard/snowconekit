@@ -12,7 +12,7 @@ description: Get up and running with SnowConeKit
 Install SnowConeKit and its peer dependencies, [wagmi](https://wagmi-xyz.vercel.app/) and [ethers](https://docs.ethers.io).
 
 ```bash
-npm install @sirbenchalot757/snowconekit wagmi ethers
+npm install @snowcone/snowconekit wagmi ethers
 ```
 
 > Note: SnowConeKit is a [React](https://reactjs.org/) library.
@@ -22,12 +22,12 @@ npm install @sirbenchalot757/snowconekit wagmi ethers
 Import SnowConeKit, wagmi, and ethers.
 
 ```tsx
-import '@sirbenchalot757/snowconekit/styles.css';
+import '@snowcone/snowconekit/styles.css';
 
 import {
   getDefaultWallets,
   SnowConeKitProvider,
-} from '@sirbenchalot757/snowconekit';
+} from '@snowcone/snowconekit';
 import {
   chain,
   configureChains,
@@ -90,7 +90,7 @@ const App = () => {
 Then, in your app, import and render the `ConnectButton` component.
 
 ```tsx
-import { ConnectButton } from '@sirbenchalot757/snowconekit';
+import { ConnectButton } from '@snowcone/snowconekit';
 
 export const YourApp = () => {
   return <ConnectButton />;

@@ -14,7 +14,7 @@ description: Creating a custom theme
 While the built-in themes provide some level of customization, the `Theme` type is provided to help you define your own custom themes with lower-level access to the underlying theme variables.
 
 ```tsx
-import { SnowConeKitProvider, Theme } from '@sirbenchalot757/snowconekit';
+import { SnowConeKitProvider, Theme } from '@snowcone/snowconekit';
 
 const myCustomTheme: Theme = {
   colors: {
@@ -92,7 +92,7 @@ import {
   SnowConeKitProvider,
   darkTheme,
   Theme,
-} from '@sirbenchalot757/snowconekit';
+} from '@snowcone/snowconekit';
 ```
 
 Then, merge the built-in theme, with the theme tokens you'd like to override. In this example, I'm overriding the `accentColor` token to match my brand's accent color.
@@ -134,7 +134,7 @@ import {
   cssStringFromTheme,
   lightTheme,
   darkTheme,
-} from '@sirbenchalot757/snowconekit';
+} from '@snowcone/snowconekit';
 
 const App = () => {
   return (

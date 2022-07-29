@@ -6,7 +6,7 @@
   "main": "index.js",
   "dependencies": {
     "@babel/core": "^7.16.0",
-    "@sirbenchalot/snowconekit": "workspace:*",
+    "@snowcone/snowconekit": "workspace:*",
     "ethers": "^5.0.0",
     "next": "^12.1.5",
     "react": "^18.0.0",

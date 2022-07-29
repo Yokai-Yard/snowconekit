@@ -6,7 +6,7 @@ import {
   lightTheme,
   midnightTheme,
   SnowConeKitProvider,
-} from '@sirbenchalot/snowconekit';
+} from '@snowcone/snowconekit';
 import clsx from 'clsx';
 import { Box } from 'components/Box/Box';
 import { chains, Provider } from 'components/Provider/Provider';

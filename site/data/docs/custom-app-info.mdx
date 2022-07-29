@@ -10,7 +10,7 @@ description: Customizing your app's info
 You can pass your app’s info in the `appInfo` prop for `SnowConeKitProvider`. Properties you can modify are your app's name (`appName`) and the link where the “Learn More” button in the connection modal redirects to (`learnMoreUrl`):
 
 ```tsx
-import { SnowConeKitProvider } from '@sirbenchalot757/snowconekit';
+import { SnowConeKitProvider } from '@snowcone/snowconekit';
 
 const App = () => {
   return (
@@ -35,7 +35,7 @@ You can provide your own disclaimer to be displayed at the bottom of the connect
 import {
   SnowConeKitProvider,
   DisclaimerComponent,
-} from '@sirbenchalot757/snowconekit';
+} from '@snowcone/snowconekit';
 
 const Disclaimer: DisclaimerComponent = ({ Text, Link }) => (
   <Text>

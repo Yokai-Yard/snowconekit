@@ -2,7 +2,7 @@ import {
   connectorsForWallets,
   getDefaultWallets,
   wallet,
-} from '@sirbenchalot/snowconekit';
+} from '@snowcone/snowconekit';
 import React from 'react';
 import { chain, configureChains, createClient, WagmiConfig } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';

@@ -17,7 +17,7 @@ For example, you can choose to only show Rainbow and WalletConnect.
 import {
   connectorsForWallets,
   wallet,
-} from '@sirbenchalot757/snowconekit';
+} from '@snowcone/snowconekit';
 import { chain, configureChains } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
@@ -68,7 +68,7 @@ The following wallets are provided via the `wallet` object (in alphabetical orde
 #### Argent
 
 ```tsx
-import { wallet } from '@sirbenchalot757/snowconekit';
+import { wallet } from '@snowcone/snowconekit';
 
 wallet.argent(options: {
   chains: Chain[];
@@ -78,7 +78,7 @@ wallet.argent(options: {
 #### Coinbase Wallet
 
 ```tsx
-import { wallet } from '@sirbenchalot757/snowconekit';
+import { wallet } from '@snowcone/snowconekit';
 
 wallet.coinbase(options: {
   appName: string;
@@ -91,7 +91,7 @@ wallet.coinbase(options: {
 This is a fallback wallet option designed for scenarios where `window.ethereum` exists but hasn’t been provided by another wallet in the list.
 
 ```tsx
-import { wallet } from '@sirbenchalot757/snowconekit';
+import { wallet } from '@snowcone/snowconekit';
 
 wallet.injected(options: {
   chains: Chain[];
@@ -105,7 +105,7 @@ This shouldn’t be used if another injected wallet is available. For example, w
 import {
   connectorsForWallets,
   wallet,
-} from '@sirbenchalot757/snowconekit';
+} from '@snowcone/snowconekit';
 
 const needsInjectedWalletFallback =
   typeof window !== 'undefined' &&
@@ -132,7 +132,7 @@ const connectors = connectorsForWallets([
 #### Ledger Live
 
 ```tsx
-import { wallet } from '@sirbenchalot757/snowconekit';
+import { wallet } from '@snowcone/snowconekit';
 
 wallet.ledger(options: {
   chains: Chain[];
@@ -143,7 +143,7 @@ wallet.ledger(options: {
 #### MetaMask
 
 ```tsx
-import { wallet } from '@sirbenchalot757/snowconekit';
+import { wallet } from '@snowcone/snowconekit';
 
 wallet.metaMask(options: {
   chains: Chain[];
@@ -154,7 +154,7 @@ wallet.metaMask(options: {
 #### Rainbow
 
 ```tsx
-import { wallet } from '@sirbenchalot757/snowconekit';
+import { wallet } from '@snowcone/snowconekit';
 
 wallet.rainbow(options: {
   chains: Chain[];
@@ -164,7 +164,7 @@ wallet.rainbow(options: {
 #### Trust Wallet
 
 ```tsx
-import { wallet } from '@sirbenchalot757/snowconekit';
+import { wallet } from '@snowcone/snowconekit';
 
 wallet.trust(options: {
   chains: Chain[];
@@ -174,7 +174,7 @@ wallet.trust(options: {
 #### Steakwallet
 
 ```tsx
-import { wallet } from '@sirbenchalot757/snowconekit';
+import { wallet } from '@snowcone/snowconekit';
 
 wallet.steak(options: {
   chains: Chain[];
@@ -184,7 +184,7 @@ wallet.steak(options: {
 #### imToken
 
 ```tsx
-import { wallet } from '@sirbenchalot757/snowconekit';
+import { wallet } from '@snowcone/snowconekit';
 
 wallet.imToken(options: {
   chains: Chain[];
@@ -196,7 +196,7 @@ wallet.imToken(options: {
 This is a fallback wallet option designed for other WalletConnect-based wallets that haven’t been provided by another wallet in the list.
 
 ```tsx
-import { wallet } from '@sirbenchalot757/snowconekit';
+import { wallet } from '@snowcone/snowconekit';
 
 wallet.walletConnect(options: {
   chains: Chain[];
@@ -215,7 +215,7 @@ Show MetaMask and WalletConnect.
 import {
   connectorsForWallets,
   wallet,
-} from '@sirbenchalot757/snowconekit';
+} from '@snowcone/snowconekit';
 
 const connectors = connectorsForWallets([
   {
@@ -234,7 +234,7 @@ Show MetaMask, Rainbow and Coinbase.
 import {
   connectorsForWallets,
   wallet,
-} from '@sirbenchalot757/snowconekit';
+} from '@snowcone/snowconekit';
 
 const connectors = connectorsForWallets([
   {
@@ -260,7 +260,7 @@ Recommend Rainbow and MetaMask, but also offer WalletConnect and Coinbase.
 import {
   connectorsForWallets,
   wallet,
-} from '@sirbenchalot757/snowconekit';
+} from '@snowcone/snowconekit';
 
 const connectors = connectorsForWallets([
   {

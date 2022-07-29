@@ -113,8 +113,8 @@ git push --tags
 Once you’ve pushed the tag, you can create a new release on GitHub.
 
 - Navigate to the [new release form on GitHub.](https://github.com/sirbenchalot757/snowconekit/releases/new)
-- From the dropdown labelled “Choose a tag”, select the latest version tag for `@sirbenchalot757/snowconekit`.
-- Set the title to `@sirbenchalot757/snowconekit@x.x.x`, substituting the latest version number.
+- From the dropdown labelled “Choose a tag”, select the latest version tag for `@snowcone/snowconekit`.
+- Set the title to `@snowcone/snowconekit@x.x.x`, substituting the latest version number.
 - Copy the Markdown content below the latest version heading from the [SnowConeKit changelog.](../packages/snowconekit/CHANGELOG.md)
 
 If at any stage you’re unsure of the formatting, you can [reference past SnowConeKit releases.](https://github.com/sirbenchalot757/snowconekit/releases)

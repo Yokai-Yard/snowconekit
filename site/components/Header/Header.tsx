@@ -3,7 +3,7 @@ import {
   darkTheme,
   lightTheme,
   SnowConeKitProvider,
-} from '@sirbenchalot/snowconekit';
+} from '@snowcone/snowconekit';
 import NextImage from 'next/image';
 import NextLink from 'next/link';
 import React from 'react';
