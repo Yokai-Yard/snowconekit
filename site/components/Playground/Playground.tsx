@@ -159,7 +159,7 @@ export function Playground() {
                   <div
                     className={dialogContent}
                     style={{
-                      width: 712,
+                      width: 729,
                     }}
                   >
                     <DesktopOptions onClose={() => {}} />
