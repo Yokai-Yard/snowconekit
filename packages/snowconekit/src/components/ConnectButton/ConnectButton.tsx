@@ -12,11 +12,11 @@ import { Box } from '../Box/Box';
 import { DropdownIcon } from '../Icons/Dropdown';
 import { useSnowConeKitChains } from '../SnowConeKitProvider/SnowConeKitChainContext';
 import { ConnectButtonRenderer } from './ConnectButtonRenderer';
-import { SphereSpinner, ImpulseSpinner } from 'react-spinners-kit';
 import CheckIcon from '../Icons/check.svg';
 import ExclamationIcon from '../Icons/exclamationMark.svg';
 import type { Transaction } from '../../transactions/transactionStore';
 import { useTrackedTx } from '../SnowConeKitProvider/ModalContext';
+import LoadingDots from '../Icons/LoadingDots';
 
 type AccountStatus = 'full' | 'avatar' | 'address';
 type ChainStatus = 'full' | 'icon' | 'name' | 'none';
@@ -224,7 +224,7 @@ export function ConnectButton({
                         >
                           {trackedTx?.status === 'pending' ? (
                             <Box style={{ width: 24, paddingLeft: '4px' }}>
-                              <SphereSpinner color="black" size={17} />
+                              <LoadingDots size={6} />
                             </Box>
                           ) : trackedTx?.status === 'confirmed' ? (
                             <img
@@ -266,10 +266,7 @@ export function ConnectButton({
                               >
                                 Pending
                                 <Box paddingTop="12" paddingLeft="1">
-                                  <ImpulseSpinner
-                                    size={11}
-                                    frontColor={'#14516d'}
-                                  />
+                                  <LoadingDots size={4} />
                                 </Box>
                               </Box>
                             ) : trackedTx?.status === 'confirmed' ? (

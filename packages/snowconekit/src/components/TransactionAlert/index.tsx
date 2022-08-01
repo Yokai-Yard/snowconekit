@@ -5,7 +5,7 @@ import { Box } from '../Box/Box';
 import CheckIcon from '../Icons/check.svg';
 import InfoIcon from '../Icons/info.svg';
 import ExclamationIcon from '../Icons/exclamationMark.svg';
-import { ImpulseSpinner } from 'react-spinners-kit';
+import LoadingDots from '../Icons/LoadingDots';
 import { Text } from '../Text/Text';
 
 export interface TransactionAlertProps {
@@ -78,7 +78,7 @@ const TransactionAlert = ({ trackedTx }: TransactionAlertProps) => {
               >
                 <Text color="modalText">Transaction Pending</Text>
                 <Box style={{ paddingTop: '11px', paddingLeft: '1px' }}>
-                  <ImpulseSpinner size={11} frontColor={'#14516d'} />
+                  <LoadingDots size={4} />
                 </Box>
               </Box>
             </Box>

@@ -1,10 +1,7 @@
 import React from 'react';
-import { isMobile } from '../../utils/isMobile';
-import { Dialog } from '../Dialog/Dialog';
-import { TxDialogContent } from './TxDialogContent';
 import { Box } from '../Box/Box';
 import { Text } from '../Text/Text';
-import { PushSpinner, SphereSpinner } from 'react-spinners-kit';
+import LoadingDots from '../Icons/LoadingDots';
 import { CopiedIcon } from '../Icons/Copied';
 import * as styles from './TxDialog.css';
 import type { Transaction } from '../../transactions/transactionStore';
@@ -103,8 +100,12 @@ export function TxItem({
           ) : (
             <Box style={{ marginBottom: '10px', paddingTop: '10px' }}>
               {pendingTx ? (
-                <Box paddingBottom="6" paddingTop="4">
-                  <SphereSpinner size={18} style={{ padding: 0, margin: 0 }} />
+                <Box
+                  paddingBottom="6"
+                  paddingTop="4"
+                  style={{ padding: 0, margin: 0 }}
+                >
+                  <LoadingDots size={6} />
                 </Box>
               ) : (
                 <img
