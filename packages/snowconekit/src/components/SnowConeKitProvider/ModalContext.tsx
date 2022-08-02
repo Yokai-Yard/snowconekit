@@ -120,11 +120,11 @@ export function ModalProvider({ children }: ModalProviderProps) {
       )}
     >
       {children}
-      {/* <TransactionModal
+      <TransactionModal
         trackedTx={trackedTx}
         txModalOpen={txModalOpen}
         closeTxModal={closeTxModal}
-      /> */}
+      />
       <TransactionAlert trackedTx={trackedTx} />
       <ConnectModal onClose={closeConnectModal} open={connectModalOpen} />
       <AccountModal onClose={closeAccountModal} open={accountModalOpen} />

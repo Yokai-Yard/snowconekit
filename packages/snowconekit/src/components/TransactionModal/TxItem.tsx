@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box } from '../Box/Box';
 import { Text } from '../Text/Text';
-import LoadingDots from '../Icons/LoadingDots';
 import { CopiedIcon } from '../Icons/Copied';
 import * as styles from './TxDialog.css';
 import type { Transaction } from '../../transactions/transactionStore';
@@ -14,6 +13,7 @@ import { ExternalLinkIcon } from '../Icons/ExternalLink';
 import { chainToExplorerUrl } from '../../utils/chainToExplorerUrl';
 import { TxBg } from '../Icons/txBackground';
 import CheckIcon from '../Icons/check.svg';
+import spinners from 'react-spinners-kit';
 
 interface TxProps {
   transactionStatus: Transaction['status'];
@@ -105,7 +105,7 @@ export function TxItem({
                   paddingTop="4"
                   style={{ padding: 0, margin: 0 }}
                 >
-                  <LoadingDots size={6} />
+                  <spinners.SphereSpinner size={18} />
                 </Box>
               ) : (
                 <img

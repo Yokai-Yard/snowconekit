@@ -16,7 +16,7 @@ import CheckIcon from '../Icons/check.svg';
 import ExclamationIcon from '../Icons/exclamationMark.svg';
 import type { Transaction } from '../../transactions/transactionStore';
 import { useTrackedTx } from '../SnowConeKitProvider/ModalContext';
-import LoadingDots from '../Icons/LoadingDots';
+import spinners from 'react-spinners-kit';
 
 type AccountStatus = 'full' | 'avatar' | 'address';
 type ChainStatus = 'full' | 'icon' | 'name' | 'none';
@@ -224,7 +224,7 @@ export function ConnectButton({
                         >
                           {trackedTx?.status === 'pending' ? (
                             <Box style={{ width: 24, paddingLeft: '4px' }}>
-                              <LoadingDots size={6} />
+                              <spinners.SphereSpinner color="black" size={17} />
                             </Box>
                           ) : trackedTx?.status === 'confirmed' ? (
                             <img
@@ -266,7 +266,10 @@ export function ConnectButton({
                               >
                                 Pending
                                 <Box paddingTop="12" paddingLeft="1">
-                                  <LoadingDots size={4} />
+                                  <spinners.ImpulseSpinner
+                                    size={11}
+                                    frontColor={'#14516d'}
+                                  />
                                 </Box>
                               </Box>
                             ) : trackedTx?.status === 'confirmed' ? (

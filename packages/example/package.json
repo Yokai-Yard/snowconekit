@@ -14,7 +14,7 @@
     "react-spinners-kit": "^1.9.1"
   },
   "peerDependencies": {
-    "wagmi": "^0.5.3"
+    "wagmi": "^0.6.0"
   },
   "scripts": {
     "dev": "NEXT_PUBLIC_ENABLE_TESTNETS=true next dev",

@@ -61,7 +61,7 @@ const { chains, provider, webSocketProvider } = configureChains(
       ? [chain.goerli, chain.kovan, chain.rinkeby, chain.ropsten]
       : []),
   ],
-  [alchemyProvider({ alchemyId }), publicProvider()]
+  [alchemyProvider({ apiKey: alchemyId }), publicProvider()]
 );
 
 const { wallets } = getDefaultWallets({

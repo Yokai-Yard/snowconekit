@@ -1,12 +1,11 @@
-/* const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-}); */
 const { createVanillaExtractPlugin } = require('@vanilla-extract/next-plugin');
-const withPlugins = require('next-compose-plugins');
 // TODO: update import https://github.com/contentlayerdev/contentlayer/issues/140
 const { withContentlayer } = require('next-contentlayer');
 /* const withFonts = require('next-fonts'); */
 const withVanillaExtract = createVanillaExtractPlugin();
+
+const withPlugins = nextConfig =>
+  withContentlayer(withVanillaExtract(nextConfig));
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -20,9 +19,7 @@ const nextConfig = {
       },
     ];
   },
+  swcMinify: true,
 };
 
-module.exports = withPlugins(
-  [withVanillaExtract, withContentlayer],
-  nextConfig
-);
+module.exports = withPlugins(nextConfig);

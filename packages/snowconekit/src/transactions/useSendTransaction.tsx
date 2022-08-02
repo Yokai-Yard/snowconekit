@@ -1,18 +1,30 @@
-import { useSendTransaction as wagmiSendTransaction } from 'wagmi';
+import { useCallback, useEffect } from 'react';
+import {
+  useSendTransaction as wagmiSendTransaction,
+  usePrepareSendTransaction,
+} from 'wagmi';
 
 import { useAddRecentTransaction } from './useAddRecentTransaction';
 
-type txProps = Partial<import('@wagmi/core').SendTransactionArgs> | undefined;
+type prepProps =
+  | Partial<import('@wagmi/core').PrepareSendTransactionArgs>
+  | undefined;
 
-export function useSendTransaction(props: txProps) {
+export function useSendTransaction({ ...props }: prepProps) {
   const addRecentTransaction = useAddRecentTransaction();
 
+  const { config, error } = usePrepareSendTransaction({
+    request: props,
+  });
+
   const transaction = wagmiSendTransaction({
-    onSuccess(data) {
-      addRecentTransaction({
-        hash: data.hash,
-        description: 'Transaction',
-      });
+    ...config,
+    onSettled(data, error) {
+      data &&
+        addRecentTransaction({
+          hash: data.hash,
+          description: props?.request?.description ?? '',
+        });
     },
     ...props,
   });

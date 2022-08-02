@@ -4,6 +4,7 @@ import React, { ComponentProps, useEffect, useState } from 'react';
 import {
   useAccount,
   useNetwork,
+  usePrepareSendTransaction,
   useSignMessage,
   useSignTypedData,
 } from 'wagmi';
@@ -42,16 +43,14 @@ const Example = () => {
 
   const { chain: activeChain } = useNetwork();
 
+  const { config } = usePrepareSendTransaction({
+    request: { to: address, value: 0 },
+  });
   const {
     data: transactionData,
     error: transactionError,
     sendTransaction,
-  } = useSendTransaction({
-    request: {
-      to: address,
-      value: 0,
-    },
-  });
+  } = useSendTransaction(config);
 
   const {
     data: signingData,
@@ -294,7 +293,7 @@ const Example = () => {
             <div style={{ display: 'flex', gap: 12, paddingBottom: 12 }}>
               <button
                 disabled={!isConnected}
-                onClick={() => sendTransaction()}
+                onClick={() => sendTransaction?.()}
                 type="button"
               >
                 Send Transaction

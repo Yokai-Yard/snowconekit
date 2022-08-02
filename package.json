@@ -20,6 +20,7 @@
     "release:verify-git": "git diff --exit-code && git rev-parse --abbrev-ref HEAD | grep \"main\"",
     "release:build": "pnpm clean && pnpm lint && pnpm test && MINIFY_CSS=true pnpm --recursive build && cp README.md packages/snowconekit/README.md",
     "release:test": "pnpm release:build && pnpm --filter example dev",
+    "prep": "pnpm format:fix & pnpm release:test",
     "ci:example": "pnpm --filter=@sirbenchalot/snowconekit prepare && pnpm --filter=example build",
     "ci:site": "pnpm --filter=@sirbenchalot/snowconekit prepare && pnpm --filter=site build"
   },
@@ -46,7 +47,7 @@
     "@typescript-eslint/parser": "^5.5.0",
     "@vanilla-extract/esbuild-plugin": "^2.0.0",
     "@vanilla-extract/vite-plugin": "^3.1.2",
-    "@wagmi/core": "^0.4.2",
+    "@wagmi/core": "^0.5.0",
     "autoprefixer": "^10.4.0",
     "esbuild": "^0.14.1",
     "eslint": "7.32.0",
@@ -64,7 +65,7 @@
     "recursive-readdir-files": "^2.0.7",
     "typescript": "~4.5.2",
     "vitest": "^0.5.0",
-    "wagmi": "^0.5.3"
+    "wagmi": "^0.6.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
