@@ -5,10 +5,10 @@ import { useWalletConnectors } from '../../wallets/useWalletConnectors';
 import { loadImages } from '../AsyncImage/useAsyncImage';
 import { preloadAssetsIcon } from '../Icons/Assets';
 import { preloadLoginIcon } from '../Icons/Login';
-import { useSnowConeKitChains } from './SnowConeKitChainContext';
+import { useSnowconeKitChains } from './SnowConeKitChainContext';
 
 export function usePreloadImages() {
-  const snowconeKitChains = useSnowConeKitChains();
+  const snowconeKitChains = useSnowconeKitChains();
   const walletConnectors = useWalletConnectors();
 
   const preloadImages = useCallback(() => {

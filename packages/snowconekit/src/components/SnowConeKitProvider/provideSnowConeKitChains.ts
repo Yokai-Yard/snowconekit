@@ -1,5 +1,5 @@
 import { isNotNullish } from '../../utils/isNotNullish';
-import type { SnowConeKitChain } from './SnowConeKitChainContext';
+import type { SnowconeKitChain } from './SnowConeKitChainContext';
 
 // Sourced from https://github.com/tmm/wagmi/blob/main/packages/core/src/constants/chains.ts
 // This is just so we can clearly see which of wagmi's first-class chains we provide metadata for
@@ -121,7 +121,7 @@ const chainMetadataById = Object.fromEntries(
 );
 
 /** @description Decorates an array of wagmi `Chain` objects with SnowConeKitChain properties if not already provided */
-export const provideRainbowKitChains = <Chain extends SnowConeKitChain>(
+export const provideSnowconeKitChains = <Chain extends SnowconeKitChain>(
   chains: Chain[]
 ): Chain[] =>
   chains.map(chain => ({

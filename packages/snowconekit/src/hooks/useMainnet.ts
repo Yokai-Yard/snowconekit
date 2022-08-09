@@ -1,8 +1,8 @@
 import { chain } from 'wagmi';
-import { useSnowConeKitChains } from '../components/SnowConeKitProvider/SnowConeKitChainContext';
+import { useSnowconeKitChains } from '../components/SnowConeKitProvider/SnowConeKitChainContext';
 
 export function useMainnet() {
-  const snowConeKitChains = useSnowConeKitChains();
+  const snowConeKitChains = useSnowconeKitChains();
 
   const chainId = chain.mainnet.id;
   const enabled = snowConeKitChains.some(

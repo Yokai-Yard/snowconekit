@@ -7,11 +7,11 @@ import { TransactionStoreProvider } from '../../transactions/TransactionStoreCon
 import { AppContext, defaultAppInfo, DisclaimerComponent } from './AppContext';
 import { AvatarComponent, AvatarContext, defaultAvatar } from './AvatarContext';
 import {
-  SnowConeKitChain,
-  SnowConeKitChainContext,
+  SnowconeKitChain,
+  SnowconeKitChainProvider,
 } from './SnowConeKitChainContext';
 import { ShowRecentTransactionsContext } from './ShowRecentTransactionsContext';
-import { provideRainbowKitChains } from './provideSnowConeKitChains';
+import { provideSnowconeKitChains } from './provideSnowConeKitChains';
 import { clearWalletConnectDeepLink } from './walletConnectDeepLink';
 import { ModalProvider } from './ModalContext';
 import { usePreloadImages } from './usePreloadImages';
@@ -51,7 +51,8 @@ const convertTheme = (theme: Theme): ThemeVars => {
 };
 
 export interface SnowConeKitProviderProps {
-  chains: SnowConeKitChain[];
+  chains: SnowconeKitChain[];
+  initialChain?: SnowconeKitChain | number;
   id?: string;
   children: ReactNode;
   theme?: Theme;
@@ -68,6 +69,7 @@ const defaultTheme = lightTheme();
 
 export function SnowConeKitProvider({
   chains,
+  initialChain,
   id,
   theme = defaultTheme,
   children,
@@ -75,13 +77,8 @@ export function SnowConeKitProvider({
   showRecentTransactions = false,
   avatar,
 }: SnowConeKitProviderProps) {
-  const snowconekitChains = useMemo(
-    () => provideRainbowKitChains(chains),
-    [chains]
-  );
-
   usePreloadImages();
-
+  useAccount({ onDisconnect: clearWalletConnectDeepLink });
   const newTheme = convertTheme(theme);
   useAccount({ onDisconnect: clearWalletConnectDeepLink });
 
@@ -101,7 +98,7 @@ export function SnowConeKitProvider({
   const avatarContext = avatar ?? defaultAvatar;
 
   return (
-    <SnowConeKitChainContext.Provider value={snowconekitChains}>
+    <SnowconeKitChainProvider chains={chains} initialChain={initialChain}>
       <ShowRecentTransactionsContext.Provider value={showRecentTransactions}>
         <TransactionStoreProvider>
           <AvatarContext.Provider value={avatarContext}>
@@ -145,6 +142,6 @@ export function SnowConeKitProvider({
           </AvatarContext.Provider>
         </TransactionStoreProvider>
       </ShowRecentTransactionsContext.Provider>
-    </SnowConeKitChainContext.Provider>
+    </SnowconeKitChainProvider>
   );
 }

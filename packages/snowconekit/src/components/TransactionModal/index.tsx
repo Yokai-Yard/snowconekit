@@ -5,10 +5,7 @@ import { TxDialogContent } from './TxDialogContent';
 import type { Transaction } from '../../transactions/transactionStore';
 import { useAccount, useNetwork } from 'wagmi';
 import { TxItem } from './TxItem';
-import {
-  useSnowConeKitChains,
-  useSnowConeKitChainsById,
-} from '../SnowConeKitProvider/SnowConeKitChainContext';
+import { useSnowConeKitChainsById } from '../SnowConeKitProvider/SnowConeKitChainContext';
 import { useAsyncImage } from '../AsyncImage/useAsyncImage';
 
 export interface TransactionModalProps {

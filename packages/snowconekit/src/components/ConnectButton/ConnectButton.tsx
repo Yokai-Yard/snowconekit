@@ -10,7 +10,7 @@ import { AsyncImage } from '../AsyncImage/AsyncImage';
 import { Avatar } from '../Avatar/Avatar';
 import { Box } from '../Box/Box';
 import { DropdownIcon } from '../Icons/Dropdown';
-import { useSnowConeKitChains } from '../SnowConeKitProvider/SnowConeKitChainContext';
+import { useSnowconeKitChains } from '../SnowConeKitProvider/SnowConeKitChainContext';
 import { ConnectButtonRenderer } from './ConnectButtonRenderer';
 import CheckIcon from '../Icons/check.svg';
 import ExclamationIcon from '../Icons/exclamationMark.svg';
@@ -43,7 +43,7 @@ export function ConnectButton({
   label = defaultProps.label,
   showBalance = defaultProps.showBalance,
 }: ConnectButtonProps) {
-  const chains = useSnowConeKitChains();
+  const chains = useSnowconeKitChains();
 
   const { trackedTx } = useTrackedTx();
 
