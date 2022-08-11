@@ -168,6 +168,7 @@ function App({ Component, pageProps }: AppProps) {
             ...(showDisclaimer && { disclaimer: DisclaimerDemo }),
           }}
           chains={chains}
+          initialChain={43_113}
           showRecentTransactions={showRecentTransactions}
           theme={currentTheme({
             ...accentColor,
