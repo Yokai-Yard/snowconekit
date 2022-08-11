@@ -1,4 +1,3 @@
-/* eslint-disable sort-keys-fix/sort-keys-fix */
 import React, { ComponentProps, useEffect, useState } from 'react';
 
 import {
@@ -12,6 +11,7 @@ import {
 import {
   ConnectButton,
   useAddRecentTransaction,
+  useConnectedClick,
   useSendTransaction,
 } from '../../snowconekit/dist';
 
@@ -21,6 +21,8 @@ type AccountStatus = ExtractString<ConnectButtonProps['accountStatus']>;
 type ChainStatus = ExtractString<ConnectButtonProps['chainStatus']>;
 
 const Example = () => {
+  const { onClick } = useConnectedClick();
+  const [testClick, setTestClick] = useState('Connect To Change Me');
   const { address, isConnected } = useAccount();
   const defaultProps = ConnectButton.__defaultProps;
 
@@ -220,77 +222,13 @@ const Example = () => {
               Example Actions {!isConnected && <span>(not connected)</span>}
             </h3>
 
-            <div
-              style={{
-                backgroundColor: 'rgba(209, 209, 209, 0.5)',
-                height: '72px',
-                width: '21px',
-                borderRadius: '14px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'column',
-              }}
-            >
-              <div
-                style={{
-                  position: 'relative',
-                  top: 8,
-                  zIndex: 1,
-                  height: '50px',
-                  borderRight: '1px solid #A3A3A3',
-                }}
-              />
-              <div
-                style={{
-                  position: 'relative',
-                  top: -49,
-                  // right: 0,
-                  zIndex: 10,
-                  backgroundColor: 'rgb(16, 194, 10)',
-                  height: '9px',
-                  width: '9px',
-                  borderRadius: '50%',
-                }}
-              />
-              <div
-                style={{
-                  position: 'relative',
-                  top: -25,
-                  right: 0,
-                  zIndex: 10,
-                  backgroundColor: 'black',
-                  // backgroundColor: 'rgb(255, 255, 0)',
-                  height: '9px',
-                  width: '9px',
-                  borderRadius: '50%',
-                  margin: -10,
-                }}
-              />
-              <div
-                style={{
-                  position: 'relative',
-                  top: 1,
-                  // right: 8.2,
-                  zIndex: 10,
-                  backgroundColor: 'rgb(241, 29, 29)',
-                  height: '9px',
-                  width: '9px',
-                  borderRadius: '50%',
-                }}
-              />
-            </div>
-
-            {/* 
-
-
-
-
-
-
-
-*/}
             <div style={{ display: 'flex', gap: 12, paddingBottom: 12 }}>
+              <button
+                onClick={onClick(() => setTestClick('I have been Changed!'))}
+                type="button"
+              >
+                {testClick}
+              </button>
               <button
                 disabled={!isConnected}
                 onClick={() => sendTransaction?.()}

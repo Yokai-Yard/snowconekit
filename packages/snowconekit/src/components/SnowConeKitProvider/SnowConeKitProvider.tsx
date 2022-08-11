@@ -11,7 +11,6 @@ import {
   SnowconeKitChainProvider,
 } from './SnowConeKitChainContext';
 import { ShowRecentTransactionsContext } from './ShowRecentTransactionsContext';
-import { provideSnowconeKitChains } from './provideSnowConeKitChains';
 import { clearWalletConnectDeepLink } from './walletConnectDeepLink';
 import { ModalProvider } from './ModalContext';
 import { usePreloadImages } from './usePreloadImages';

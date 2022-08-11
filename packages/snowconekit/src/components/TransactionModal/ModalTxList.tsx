@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
-import { useAccount, useNetwork } from 'wagmi';
-import { increaseHitAreaForHoverTransform } from '../../css/increaseHitAreaForHoverTransform.css';
+import { useNetwork } from 'wagmi';
 import { useRecentTransactions } from '../../transactions/useRecentTransactions';
 import { chainToExplorerUrl } from '../../utils/chainToExplorerUrl';
 import { isMobile } from '../../utils/isMobile';

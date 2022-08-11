@@ -43,8 +43,6 @@ export function ConnectButton({
   label = defaultProps.label,
   showBalance = defaultProps.showBalance,
 }: ConnectButtonProps) {
-  const chains = useSnowconeKitChains();
-
   const { trackedTx } = useTrackedTx();
 
   return (
@@ -52,6 +50,7 @@ export function ConnectButton({
       {({
         account,
         chain,
+        chains,
         mounted,
         openAccountModal,
         openChainModal,

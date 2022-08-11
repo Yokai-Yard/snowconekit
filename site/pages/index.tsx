@@ -350,7 +350,7 @@ export default function Home() {
 function InstallScript() {
   const [requestCopy, setRequestCopy] = useState(false);
   // fixit
-  const code = 'npm init @snowcone/snowconekit@latest';
+  const code = 'npm install @snowcone/snowconekit@latest';
 
   React.useEffect(() => {
     if (requestCopy) copy(code);

@@ -7,7 +7,7 @@ type ChainName =
   | 'arbitrum'
   | 'arbitrumRinkeby'
   | 'avalanche'
-  | 'avalancheFuji'
+  | 'fuji'
   | 'goerli'
   | 'hardhat'
   | 'kovan'
@@ -100,7 +100,7 @@ const chainMetadataByName: Record<ChainName, ChainMetadata | null> = {
   arbitrum: { chainId: 42_161, ...arbitrumIcon, ...arbitrumRocket },
   arbitrumRinkeby: { chainId: 421_611, ...arbitrumIcon, ...arbitrumRocket },
   avalanche: { chainId: 43_114, ...avalancheIcon, ...avalancheRocket },
-  avalancheFuji: { chainId: 43_113, ...avalancheIcon, ...avalancheRocket },
+  fuji: { chainId: 43_113, ...avalancheIcon, ...avalancheRocket },
   goerli: { chainId: 5, ...ethereumIcon, ...ethereumRocket },
   hardhat: { chainId: 31_337, ...hardhatIcon, ...hardhatRocket },
   kovan: { chainId: 42, ...ethereumIcon, ...ethereumRocket },

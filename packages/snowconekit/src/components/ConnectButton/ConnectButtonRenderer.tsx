@@ -17,6 +17,10 @@ import { abbreviateETHBalance } from './abbreviateETHBalance';
 import { formatAddress } from './formatAddress';
 import { formatENS } from './formatENS';
 import type { Transaction } from '../../transactions/transactionStore';
+import {
+  useSnowconeKitChains,
+  SnowconeKitChain,
+} from '../SnowConeKitProvider/SnowConeKitChainContext';
 
 const noop = () => {};
 
@@ -41,6 +45,7 @@ export interface ConnectButtonRendererProps {
       name?: string;
       unsupported?: boolean;
     };
+    chains: SnowconeKitChain[];
     pendingTransactions: Transaction;
     mounted: boolean;
     openAccountModal: () => void;
@@ -63,7 +68,7 @@ export function ConnectButtonRenderer({
   const { data: balanceData } = useBalance({ addressOrName: address });
   const { chain: activeChain } = useNetwork();
   const SnowConekitChainsById = useSnowConeKitChainsById();
-
+  const chains = useSnowconeKitChains();
   const pendingTransactions = useRecentTransactions().filter(
     ({ status }) => status === 'pending'
   )[0];
@@ -123,6 +128,7 @@ export function ConnectButtonRenderer({
               unsupported: activeChain.unsupported,
             }
           : undefined,
+        chains,
         chainModalOpen,
         connectModalOpen,
         txModalOpen,

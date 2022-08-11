@@ -7,17 +7,12 @@ import React, { useEffect, useState } from 'react';
 
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import {
-  chain,
-  Chain,
-  configureChains,
-  createClient,
-  WagmiConfig,
-} from 'wagmi';
+import { configureChains, createClient, WagmiConfig } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 
 import {
+  chain,
   connectorsForWallets,
   darkTheme,
   DisclaimerComponent,
@@ -28,37 +23,19 @@ import {
   wallet,
 } from '../../snowconekit/dist';
 
-const alchemyId = '_gg7wSSi0KMBsdKnGVfHDueq6xMB9EkC';
-const RAINBOW_TERMS = 'https://rainbow.me/terms-of-use';
-
-const avalancheChain: Chain = {
-  id: 43_113,
-  name: 'Avalanche',
-  network: 'avalanche',
-  nativeCurrency: {
-    decimals: 18,
-    name: 'Avalanche',
-    symbol: 'AVAX',
-  },
-  rpcUrls: {
-    default:
-      'https://nd-274-434-047.p2pify.com/648ffb21504d82b842193feaafb6c1f2/ext/bc/C/rpc',
-  },
-  blockExplorers: {
-    default: { name: 'Avalanche', url: 'https://snowtrace.io' },
-  },
-  testnet: true,
-};
+const alchemyId = process.env.ALCHEMY_ID;
+const SNOWCONE_TERMS =
+  'https://docs.google.com/document/d/14GghK0idIIJcCCqnmJuuTBMkgj9G070B_-2e7RiaXMY/edit';
 
 const { chains, provider, webSocketProvider } = configureChains(
   [
-    avalancheChain,
+    chain.avalanche,
     chain.mainnet,
     chain.polygon,
     chain.optimism,
     chain.arbitrum,
     ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true'
-      ? [chain.goerli, chain.kovan, chain.rinkeby, chain.ropsten]
+      ? [chain.fuji, chain.goerli, chain.kovan, chain.rinkeby, chain.ropsten]
       : []),
   ],
   [alchemyProvider({ apiKey: alchemyId }), publicProvider()]
@@ -77,8 +54,8 @@ const DisclaimerDemo: DisclaimerComponent = ({ Link, Text }: any) => {
   return (
     <Text>
       By connecting, you agree to this demo&apos;s{' '}
-      <Link href={RAINBOW_TERMS}>Terms of Service</Link> and acknowledge you
-      have read and understand our <Link href={RAINBOW_TERMS}>Disclaimer</Link>
+      <Link href={SNOWCONE_TERMS}>Terms of Service</Link> and acknowledge you
+      have read and understand our <Link href={SNOWCONE_TERMS}>Disclaimer</Link>
     </Text>
   );
 };

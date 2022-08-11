@@ -5,6 +5,8 @@ export { connectorsForWallets } from './wallets/connectorsForWallets';
 export { useAddRecentTransaction } from './transactions/useAddRecentTransaction';
 export { useRecentTransactions } from './transactions/useRecentTransactions';
 export { useSendTransaction } from './transactions/useSendTransaction';
+export { useConnectedClick } from './hooks/useConnectedClick';
+export { chain } from './utils/chain';
 export type { Wallet, WalletList } from './wallets/Wallet';
 export type { Chain } from './components/SnowConeKitProvider/SnowConeKitChainContext';
 export type { Theme } from './components/SnowConeKitProvider/SnowConeKitProvider';
