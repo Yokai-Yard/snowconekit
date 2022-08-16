@@ -62,6 +62,10 @@ const Example = () => {
     message: 'wen token',
   });
 
+  const myWeb3Tx = () => {
+    setTestClick('I have been Changed!');
+  };
+
   const {
     data: typedData,
     error: typedError,
@@ -223,10 +227,7 @@ const Example = () => {
             </h3>
 
             <div style={{ display: 'flex', gap: 12, paddingBottom: 12 }}>
-              <button
-                onClick={onClick(() => setTestClick('I have been Changed!'))}
-                type="button"
-              >
+              <button onClick={onClick(myWeb3Tx)} type="button">
                 {testClick}
               </button>
               <button

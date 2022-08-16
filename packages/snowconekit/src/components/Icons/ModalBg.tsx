@@ -66,14 +66,24 @@ export const ModalBg = ({ children, other }: AsyncBgImageProps) => {
     backgroundImage: `linear-gradient(136deg, rgb(${gradient[2]}) 0%, rgb(${gradient[0]}) 100%)`,
   };
 
+  const avaxBg = {
+    backgroundImage: `url(${src})`,
+  };
+
   return (
+    <AsyncBgImage src={isLightMode ? src : darkSrc} other={other}>
+      {children}
+    </AsyncBgImage>
+  );
+
+  /* return (
     <>
       <Box
         position="absolute"
         style={{ height: '100%', width: '100%', inset: '0px 0px 0px 0px' }}
       >
-        {/* <Box style={{ backgroundImage: `linear-gradient(136deg, rgb(${gradient[2]}) 0%, rgb(${gradient[0]}) 100%` }}> */}
-        <div style={{ width: '100%', height: '100%', ...bgImage }}>
+        {<Box style={{ backgroundImage: `linear-gradient(136deg, rgb(${gradient[2]}) 0%, rgb(${gradient[0]}) 100%` }}>}
+        <div style={{ width: '100%', height: '100%', ...avaxBg }}>
           <MeshGradient
             backgroundColor={gradient[0]}
             u_c1={gradient[0]}
@@ -86,7 +96,7 @@ export const ModalBg = ({ children, other }: AsyncBgImageProps) => {
         {children}
       </Box>
     </>
-  );
+  ); */
 };
 
 //export const modalUrl = useAsyncImage(src)

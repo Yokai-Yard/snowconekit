@@ -42,12 +42,12 @@ const { chains, provider, webSocketProvider } = configureChains(
 );
 
 const { wallets } = getDefaultWallets({
-  appName: 'RainbowKit demo',
+  appName: 'SnowConeKit demo',
   chains,
 });
 
 const demoAppInfo = {
-  appName: 'Rainbowkit Demo',
+  appName: 'SnowConeKit Demo',
 };
 
 const DisclaimerDemo: DisclaimerComponent = ({ Link, Text }: any) => {

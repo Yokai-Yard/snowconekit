@@ -1,17 +1,18 @@
 import {
+  chain,
   connectorsForWallets,
   getDefaultWallets,
   wallet,
 } from '@snowcone/snowconekit';
 import React from 'react';
-import { chain, configureChains, createClient, WagmiConfig } from 'wagmi';
+import { configureChains, createClient, WagmiConfig } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 
 const alchemyId = '_gg7wSSi0KMBsdKnGVfHDueq6xMB9EkC';
 
 export const { chains, provider } = configureChains(
-  [chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum],
+  [chain.fuji, chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum],
   [alchemyProvider({ apiKey: alchemyId }), publicProvider()]
 );
 
