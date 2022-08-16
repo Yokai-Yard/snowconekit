@@ -1,6 +1,5 @@
 <a href="https://snowconekit.com">
-<!-- fixit -->
-  <img alt="snowconekit" src="https://github.com/snowconedao/snowconekit/blob/master/site/public/SnowConeKit.png" />
+  <img alt="snowconekit" src="https://github.com/SnowConeDao/snowconekit/blob/main/site/public/SnowConeKit.png?raw=true" />
 </a>
 
 # SnowConeKit
@@ -16,8 +15,6 @@ SnowConeKit is a [React](https://reactjs.org/) library that makes it easy to add
 ## Installation
 
 Install SnowConeKit along with [wagmi](https://wagmi.sh) and its [ethers](https://docs.ethers.io) peer dependency.
-
-<!-- fixit -->
 
 `npm install @snowcone/snowconekit wagmi ethers`
 
