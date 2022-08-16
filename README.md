@@ -1,6 +1,6 @@
 <a href="https://snowconekit.com">
 <!-- fixit -->
-  <img alt="snowconekit" src="https://github.com/sirbenchalot757/snowconekit/blob/master/site/public/SnowConeKit.png" />
+  <img alt="snowconekit" src="https://github.com/snowconedao/snowconekit/blob/master/site/public/SnowConeKit.png" />
 </a>
 
 # SnowConeKit
