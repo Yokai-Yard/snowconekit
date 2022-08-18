@@ -5,7 +5,6 @@ import { AsyncBgImage } from '../AsyncImage/AsyncBgImage';
 import { loadImages } from '../AsyncImage/useAsyncImage';
 import { BoxProps } from '../Box/Box';
 import { ThemeContext } from '../SnowConeKitProvider/SnowConeKitProvider';
-/* import { motion } from 'framer-motion'; */
 
 export const gradientColors: Record<string, any> = {
   blue: [
@@ -40,13 +39,13 @@ export const gradientColors: Record<string, any> = {
   ],
 };
 
-const src = async () =>
+/* const src = async () =>
   (await import('../../../assets/AvalncheTrophy.png')).default;
 
 const darkSrc = async () =>
   (await import('../../../assets/AvaxDarkMode.png')).default;
 
-export const preloadLoginIcon = () => loadImages(src);
+export const preloadLoginIcon = () => loadImages(src); */
 
 type AsyncBgImageProps = {
   children: React.ReactNode;
@@ -56,34 +55,20 @@ type AsyncBgImageProps = {
 export const ModalBg = ({ children, other }: AsyncBgImageProps) => {
   const theme = useContext(ThemeContext);
   const accent = theme.colors.accentColorName;
-  const colorValue = theme.colors.accentColor;
 
   const gradient = gradientColors[accent];
-
-  const isLightMode = theme?.colors?.modalBackground === '#FFFFFF';
 
   const bgImage = {
     backgroundImage: `linear-gradient(136deg, rgb(${gradient[2]}) 0%, rgb(${gradient[0]}) 100%)`,
   };
 
-  const avaxBg = {
-    backgroundImage: `url(${src})`,
-  };
-
   return (
-    <AsyncBgImage src={isLightMode ? src : darkSrc} other={other}>
-      {children}
-    </AsyncBgImage>
-  );
-
-  /* return (
     <>
       <Box
         position="absolute"
         style={{ height: '100%', width: '100%', inset: '0px 0px 0px 0px' }}
       >
-        {<Box style={{ backgroundImage: `linear-gradient(136deg, rgb(${gradient[2]}) 0%, rgb(${gradient[0]}) 100%` }}>}
-        <div style={{ width: '100%', height: '100%', ...avaxBg }}>
+        <div style={{ width: '100%', height: '100%', ...bgImage }}>
           <MeshGradient
             backgroundColor={gradient[0]}
             u_c1={gradient[0]}
@@ -96,26 +81,5 @@ export const ModalBg = ({ children, other }: AsyncBgImageProps) => {
         {children}
       </Box>
     </>
-  ); */
+  );
 };
-
-//export const modalUrl = useAsyncImage(src)
-
-/* 
-  return (
-    <Box
-      position="absolute"
-      style={{ height: '100%', width: '100%' }}
-    >
-      <Box style={{ backgroundImage: `linear-gradient(136deg, rgb(${gradient[2]}) 0%, rgb(${gradient[0]}) 100%` }}>
-
-        <MeshGradient
-          backgroundColor="#1f4fcc"
-          u_c1={gradient[0]}
-          u_c2={gradient[1]}
-          u_c3={gradient[2]}
-        />
-      </Box>
-      {children}
-    </Box>
-  ) */
