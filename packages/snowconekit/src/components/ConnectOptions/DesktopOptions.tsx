@@ -155,7 +155,6 @@ export function DesktopOptions({ onClose }: { onClose: () => void }) {
       headerLabel = hasQrCode && (
         <Box
           style={{
-            backgroundColor: '#fff',
             borderRadius: '8px',
             padding: '4px 16px',
           }}

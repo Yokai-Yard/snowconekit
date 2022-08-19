@@ -96,7 +96,7 @@ export function GetDetail({
                     downloadUrls?.browserExtension
                       ? { href: downloadUrls.browserExtension }
                       : {})}
-                    type="secondary"
+                    type="primary"
                   />
                 </Box>
               </Box>
