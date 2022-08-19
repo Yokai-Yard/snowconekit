@@ -14,8 +14,7 @@ export function isMetaMask(ethereum: NonNullable<typeof window['ethereum']>) {
   // Logic borrowed from wagmi's MetaMaskConnector
   // https://github.com/tmm/wagmi/blob/main/packages/core/src/connectors/metaMask.ts
   const isMetaMask = Boolean(ethereum.isMetaMask);
-  console.log('this is the ethereum object', ethereum);
-  console.log('this is the isMetamask object', ethereum.isMetaMask);
+
   if (!isMetaMask) {
     return false;
   }

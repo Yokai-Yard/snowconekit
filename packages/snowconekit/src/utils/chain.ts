@@ -10,7 +10,7 @@ const avalanche: Chain = {
     symbol: 'AVAX',
   },
   rpcUrls: {
-    default: 'https://ava-mainnet.public.blastapi.io/ext/bc/C/rpc',
+    default: 'https://api.avax.network/ext/bc/C/rpc',
     public: 'https://ava-mainnet.public.blastapi.io/ext/bc/C/rpc',
   },
   blockExplorers: {
@@ -29,7 +29,7 @@ const fuji: Chain = {
     symbol: 'AVAX',
   },
   rpcUrls: {
-    default: 'https://avalanchetestapi.terminet.io/ext/bc/C/rpc',
+    default: 'https://api.avax-test.network/ext/bc/C/rpc',
   },
   blockExplorers: {
     default: { name: 'Avalanche', url: 'https://testnet.snowtrace.io/' },

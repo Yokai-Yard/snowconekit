@@ -6,7 +6,7 @@ const ScWords = {
   },
   playground: {
     description:
-      'Make your Ethereum login experience feel right at home on your website. SnowConeKit allows you to fully customize color, border radius, wallet providers and a lot more — all through an easy-to-use API. Get a feel for it below!',
+      'Make your web3 login experience feel right at home on your website. SnowConeKit allows you to fully customize color, border radius, wallet providers and a lot more — all through an easy-to-use API. Get a feel for it below!',
     title: 'Give SnowConeKit a spin',
   },
   title: 'A beautiful wallet connector',
