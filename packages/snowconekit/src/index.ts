@@ -1,3 +1,4 @@
+import { AvatarComponent } from './components/SnowConeKitProvider/AvatarContext';
 export * from './components';
 export { wallet } from './wallets/walletConnectors';
 export { getDefaultWallets } from './wallets/getDefaultWallets';
@@ -11,6 +12,7 @@ export type { Wallet, WalletList } from './wallets/Wallet';
 export type { Chain } from './components/SnowConeKitProvider/SnowConeKitChainContext';
 export type { Theme } from './components/SnowConeKitProvider/SnowConeKitProvider';
 export type { DisclaimerComponent } from './components/SnowConeKitProvider/AppContext';
+export { Avatar } from './components/Avatar/Avatar';
 export { lightTheme } from './themes/lightTheme';
 export { darkTheme } from './themes/darkTheme';
 export { midnightTheme } from './themes/midnightTheme';
