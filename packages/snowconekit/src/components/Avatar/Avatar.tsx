@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { Box } from '../Box/Box';
 import { SpinnerIcon } from '../Icons/Spinner';
 import { AvatarContext } from '../SnowConeKitProvider/AvatarContext';
+import { emojiAvatarForAddress } from './emojiAvatarForAddress';
 
 interface AvatarProps {
   address: string;
@@ -9,6 +10,11 @@ interface AvatarProps {
   imageUrl?: string | null;
   size: number;
 }
+
+export const AvatarColor = (address: string) => {
+  const { color } = useMemo(() => emojiAvatarForAddress(address), [address]);
+  return color;
+};
 
 export function Avatar({ address, imageUrl, loading, size }: AvatarProps) {
   const AvatarComponent = useContext(AvatarContext);
