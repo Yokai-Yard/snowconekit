@@ -147,6 +147,7 @@ function App({ Component, pageProps }: AppProps) {
           chains={chains}
           initialChain={43_113}
           showRecentTransactions={showRecentTransactions}
+          showTransactionModal={false}
           theme={currentTheme({
             ...accentColor,
             borderRadius: selectedRadiusScale,

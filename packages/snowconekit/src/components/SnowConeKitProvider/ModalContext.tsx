@@ -47,9 +47,13 @@ export const ModalContext = createContext<ModalContextValue>({
 
 interface ModalProviderProps {
   children: ReactNode;
+  showTransactionModal?: boolean;
 }
 
-export function ModalProvider({ children }: ModalProviderProps) {
+export function ModalProvider({
+  children,
+  showTransactionModal,
+}: ModalProviderProps) {
   const {
     closeModal: closeConnectModal,
     isModalOpen: connectModalOpen,
@@ -120,11 +124,13 @@ export function ModalProvider({ children }: ModalProviderProps) {
       )}
     >
       {children}
-      <TransactionModal
-        trackedTx={trackedTx}
-        txModalOpen={txModalOpen}
-        closeTxModal={closeTxModal}
-      />
+      {showTransactionModal && (
+        <TransactionModal
+          trackedTx={trackedTx}
+          txModalOpen={txModalOpen}
+          closeTxModal={closeTxModal}
+        />
+      )}
       <TransactionAlert trackedTx={trackedTx} />
       <ConnectModal onClose={closeConnectModal} open={connectModalOpen} />
       <AccountModal onClose={closeAccountModal} open={accountModalOpen} />

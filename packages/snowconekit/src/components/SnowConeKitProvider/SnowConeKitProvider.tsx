@@ -56,6 +56,7 @@ export interface SnowConeKitProviderProps {
   children: ReactNode;
   theme?: Theme;
   showRecentTransactions?: boolean;
+  showTransactionModal?: boolean;
   appInfo?: {
     appName?: string;
     learnMoreUrl?: string;
@@ -74,6 +75,7 @@ export function SnowConeKitProvider({
   children,
   appInfo,
   showRecentTransactions = false,
+  showTransactionModal = false,
   avatar,
 }: SnowConeKitProviderProps) {
   usePreloadImages();
@@ -104,7 +106,7 @@ export function SnowConeKitProvider({
             <AppContext.Provider value={appContext}>
               <ThemeIdContext.Provider value={id}>
                 <ThemeContext.Provider value={newTheme}>
-                  <ModalProvider>
+                  <ModalProvider showTransactionModal={showTransactionModal}>
                     {theme ? (
                       <div {...createThemeRootProps(id)}>
                         <style
